@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "English Wallah",
+    "slug": "EnglishWallah",
+<<<<<<< HEAD
+    "version": "1.0.5",
+=======
+    "version": "1.0.7",
+>>>>>>> 0a28a32 (version 1.0.7)
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#9D76C1"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.goutham0306.EnglishWallah"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.goutham0306.EnglishWallah",
+      "versionCode": 3
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "dabe5212-a35e-4cf1-9b4b-2c7467fec893"
+      }
+    }
+  }
+}
