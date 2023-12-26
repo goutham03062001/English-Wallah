@@ -256,9 +256,9 @@ export default function AuthContextProvider({ children }) {
 
   async function getAllQuizzes(){
     try {
+      setLoading(true);
         console.log("Loading Quizzes")
         const response = await axios.get(BACKEND_API_URL+"/api/Quiz/upload/getQuizDetails");
-        setLoading(true);
         if(response.data){
             console.log("All quiz",response.data);
             setQuizExamsArr(response.data)

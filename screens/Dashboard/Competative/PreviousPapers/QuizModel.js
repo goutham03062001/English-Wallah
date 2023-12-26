@@ -1,6 +1,6 @@
 // src/QuizApp.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Button ,Image} from 'react-native';
 import { BACKEND_API_URL } from '../../../../utils/Constants';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Dimensions } from 'react-native';
@@ -11,7 +11,6 @@ const QuizApp = ({quizId}) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [quizCompleted, setQuizCompleted] = useState(false);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,6 +24,8 @@ const QuizApp = ({quizId}) => {
 
     fetchData();
   }, []);
+
+ 
 
   const handlePrevQuestion = () => {
     // Implement logic to handle moving to the previous question
@@ -41,7 +42,7 @@ const QuizApp = ({quizId}) => {
     if (currentQuestion === 0) {
       return (
         <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-          <Text style={{color:"white"}}>Next Question</Text>
+          <Text style={{color:"white"}}>Next <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:30,height:16}}/></Text>
         </TouchableOpacity>
       );
     } else if (currentQuestion === quizData.Questions.length - 1) {
@@ -53,7 +54,8 @@ const QuizApp = ({quizId}) => {
             <Text>Previous</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-            <Text>Finish Quiz</Text>
+          <Text style={{color:"white"}}>Finish Quiz  <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
+
           </TouchableOpacity>
          </View>
         </>
@@ -63,10 +65,12 @@ const QuizApp = ({quizId}) => {
       return (
         <View style={styles.buttonStyle}>
           <Pressable style={styles.prevButton} onPress={handlePrevQuestion}>
-            <Text>Previous</Text>
+          <Text style={{color:"white"}}><Image source={{uri:"https://img.icons8.com/ios/50/left--v1.png"}} style={{width:20,height:16}}/> Previous</Text>
+
           </Pressable>
           <Pressable style={styles.nextButton} onPress={handleNextQuestion}>
-            <Text style={{color:"white"}}>Next Question</Text>
+          <Text style={{color:"white"}}>Next  <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
+
           </Pressable>
         </View>
       );
@@ -125,13 +129,13 @@ const QuizApp = ({quizId}) => {
         style={[
           styles.option,
           selectedOption === key && styles.selectedOption,
-          {backgroundColor:"green"},
+          {backgroundColor:"#65B741",borderColor:"#F2F1EB"},
           {width:Dimensions.get("screen").width-55}
         ]}
         onPress={() => handleOptionPress(key)}
         disabled={quizCompleted}
       >
-        <Text style={{color:"white"}}>
+        <Text style={{color:"black"}}>
           {/* {value === answer ? "true":value} */}
           {value}
         </Text>
@@ -238,13 +242,15 @@ const QuizApp = ({quizId}) => {
               </Text>
               
               {renderOptions1(question.options,question.answer,question.options[answer.selectedOption])}
-              <Text style={isCorrect ? styles.correctText : styles.wrongText}>
+              {isCorrect ? <></> : <>
+              {/* <Text style={isCorrect ? styles.correctText : styles.wrongText}>
                your option- {question.options[answer.selectedOption]}
-              </Text>
+              </Text> */}
 
               <Text style={isCorrect ? styles.correctText : styles.wrongText}>
                correct option- {question.answer}
               </Text>
+              </>}
              
             </View>
           );
@@ -259,6 +265,7 @@ const QuizApp = ({quizId}) => {
     return (
       <View style={styles.container}>
        <View style={styles.questionContainer}>
+       {/* <Text>{timer}</Text> */}
        <Text style={styles.question}>{currentQuestionData.questionName}</Text>
         
        </View>
@@ -278,7 +285,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 5,
+      padding: 10,
     },
     questionContainer:{
       display:"flex",
@@ -304,8 +311,9 @@ const styles = StyleSheet.create({
     nextButton: {
       marginTop: 20,
       padding: 10,
-      backgroundColor: 'blue',
+      backgroundColor: '#7A9D54',
       borderRadius: 5,
+
     },
     prevButton: {
         marginTop: 20,
@@ -320,7 +328,8 @@ const styles = StyleSheet.create({
       color: 'green',
     },
     wrongText: {
-      color: 'red',
+      color: 'green',
+      fontSize:15
     },
     buttonStyle:{
         flexDirection:"row",                                                                     

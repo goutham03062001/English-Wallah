@@ -14,9 +14,7 @@ import {
   import { Card } from "react-native-paper";
   import { useNavigation } from "@react-navigation/native";
   import BoldTextHelper from "../utils/BoldText"
-  import CompoundConjunction from "./CompoundConjunction";
   import CoordinatingConjunction from "./CoordinatingConjunction";
-  import CorrelativeConjunction from "./CorrelativeConjunction";
   import SubordinatingConjunction from "./SubordinatingConjunction"
   function StartingScreen() {
     const navigation = useNavigation();
