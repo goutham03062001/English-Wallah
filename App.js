@@ -6,6 +6,7 @@ import AuthContextProvider from './context/AuthContext';
 import Signup from './screens/Auth/Signup';
 import Login from './screens/Auth/Login';
 import DashboardHandler from './screens/Dashboard/DashboardHandler';
+import PaymentScreen from './screens/PaymentScreen';
 import { AuthContext } from './context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -39,7 +40,11 @@ function Authenticated(){
             headerShown : false,tabBarActiveBackgroundColor:"#191D88",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1},
             }}
           />
-
+ <BottomTab.Screen name = "Payment" component={PaymentScreen}
+            options={{ tabBarIcon : ()=><Image source={require("./assets/Payment.png")} style={{width:40,height:40}}/>,
+            headerShown : false,tabBarActiveBackgroundColor:"#191D88",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1},
+            }}
+          />
        
         </BottomTab.Navigator>
 

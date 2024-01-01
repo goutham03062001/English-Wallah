@@ -1,16 +1,21 @@
 // src/QuizApp.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Button ,Image} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Button ,Image, Alert} from 'react-native';
 import { BACKEND_API_URL } from '../../../../utils/Constants';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Dimensions } from 'react-native';
 import { Pressable } from 'react-native';
+import QuizReview from './QuizReview';
+import { useNavigation } from '@react-navigation/native';
 const QuizApp = ({quizId}) => {
+  const navigation = useNavigation();
   const [quizData, setQuizData] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const[index,setIndex] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,7 +30,13 @@ const QuizApp = ({quizId}) => {
     fetchData();
   }, []);
 
- 
+ const nextBtn = ()=>{
+  return setIndex(index+1);
+ }
+
+ const prevBtn = ()=>{
+  return setIndex(index-1);
+ }
 
   const handlePrevQuestion = () => {
     // Implement logic to handle moving to the previous question
@@ -96,7 +107,24 @@ const QuizApp = ({quizId}) => {
     setSelectedOption(null);
     setUserAnswers([]);
     setQuizCompleted(false);
+    setIndex(0);  
   };
+
+  const finishReview = ()=>{
+    Alert.alert("Review Completed","Cross checked?",[
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', 
+      
+      onPress: () => {
+        return navigation.navigate("Previous Papers");
+      }},
+    ])
+    
+  }
 
   const calculateScore = () => {
     if (!quizData || !quizData.Questions || !Array.isArray(quizData.Questions) || quizData.Questions.length === 0) {
@@ -220,45 +248,20 @@ const QuizApp = ({quizId}) => {
     const score = calculateScore();
     console.log("quiz answers - ",userAnswers)
     return (
-     <ScrollView>
+     <>
          <View style={styles.container}>
-        <Text style={{fontSize:22,marginVertical:15}}>Quiz Completed!</Text>
+        {/* <Text style={{fontSize:22,marginVertical:15}}>Quiz Completed!</Text>
         <Text style={[{fontSize:20},score>=60 ?{color:"green"}:{color:"red"}]}>Your Score: {score.toFixed(2)}% {score>=60 ? "Good 👏":"☹️"}</Text>
-        {userAnswers.map((answer, index) => {
-          const question = quizData.Questions[index];
-          
-          // Additional check to handle undefined or missing data
-          if (!question) {
-            return null;
-          }
-
-         
-
-          const isCorrect = question.options[answer.selectedOption] === question.answer;
-          return (
-            <View key={index} style={styles.resultContainer}>
-              <Text style={{fontSize:16,lineHeight:24,textAlign:"justify"}}>
-                {question.questionName}
-              </Text>
-              
-              {renderOptions1(question.options,question.answer,question.options[answer.selectedOption])}
-              {isCorrect ? <></> : <>
-              {/* <Text style={isCorrect ? styles.correctText : styles.wrongText}>
-               your option- {question.options[answer.selectedOption]}
-              </Text> */}
-
-              <Text style={isCorrect ? styles.correctText : styles.wrongText}>
-               correct option- {question.answer}
-              </Text>
-              </>}
-             
-            </View>
-          );
-        })}
+                */}
+        <QuizReview index={index}  userAnswers={userAnswers} nextBtn = {nextBtn} prevBtn={prevBtn}
+        finishReview={finishReview}
+        quizData={quizData}/>
+       {index === quizData.length-1 ? <>
         <Button title="Retry Quiz" onPress={handleRetryQuiz} />
+       </> : <></>}
         
       </View>
-     </ScrollView>
+     </>
     );
   } else {
     const currentQuestionData = quizData.Questions[currentQuestion];

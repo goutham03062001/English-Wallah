@@ -280,7 +280,7 @@ export default function AuthContextProvider({ children }) {
     removeAuthenticate: removeAuthenticate,
     getDetails: getDetails,
     loading: loading,
-     currentLoggedInStudent: currStudentDetails,
+    currentLoggedInStudent: currStudentDetails,
     sentLetter: sentLetter,
     homeWorksArr: homeWorksArr,
     facultySignup: facultySignup,
