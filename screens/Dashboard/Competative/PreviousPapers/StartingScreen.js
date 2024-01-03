@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View,ScrollView,Dimensions,Image,Pressable } from 'react-native'
 import React,{useContext,useEffect} from 'react';
-import { Card,ActivityIndicator } from 'react-native-paper';
+import { Card,ActivityIndicator, Button } from 'react-native-paper';
 import { AuthContext } from '../../../../context/AuthContext';
 import QuizModel from './QuizModel';
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
+import AttemptImage from "../../../../assets/Attempt.png";
+import BestScoreImage from "../../../../assets/bestscore.png"
 const Stack = createStackNavigator();
 const QuizExam = ({route})=>{
   const navigation = useNavigation();
@@ -34,7 +36,21 @@ const DisplayQuizNames = ()=>{
        {/* <QuizModel quizData = {authContext && authContext.quizExamsArr}/> */}
        {authContext.quizExamsArr.map((exam,index)=>(<>
         {exam && (<Pressable key={index} style={styles.cardStyle} onPress={()=>{navigation.navigate("Quiz",{data : exam._id})}}>
-          <Text key={index} style={{fontSize:20,textAlign:"center"}}>Day - {index+1}</Text>
+          <View style={styles.dayCard}>
+          <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+          <Text key={index} style={{fontSize:16}}>Day - {index+1}</Text>
+          <Button mode='outlined' style={{borderRadius:1}}>Reattempt</Button>
+          </View>
+          <View style={styles.dayCardStyle}>
+          <Text style={{fontWeight:"bold"}}>
+          <Image source={AttemptImage} style={{width:20,height:20}}/>
+          Attempts - 8</Text>
+          <Text style={{fontWeight:"bold"}}>
+          <Image source={BestScoreImage} style={{width:20,height:20}}/>
+           Best Score - 9/10
+          </Text>
+          </View>
+          </View>
         </Pressable>)}
        </>))}
        </ScrollView>
@@ -67,7 +83,7 @@ const styles = StyleSheet.create({
     marginHorizontal:(Dimensions.get("screen").width)/50,
     borderRadius:1,
     elevation:1,
-    padding:40,
+    padding:10,
     borderBottomColor:'green',
     borderBottomWidth:2
 },
@@ -75,5 +91,20 @@ contentStyle:{
     width:"100%",
     flexDirection:"row",
     justifyContent:"center"
+},
+dayCard:{
+  width:"100%",
+  display:"flex",
+  height:80,
+  flexDirection:"column",
+  justifyContent:"space-between",
+  gap:16
+
+},
+dayCardStyle:{
+  width:"100%",
+  display:"flex",
+  flexDirection:"row",
+  justifyContent: 'space-between',
 }
 })

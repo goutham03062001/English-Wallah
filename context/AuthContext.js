@@ -37,39 +37,40 @@ export default function AuthContextProvider({ children }) {
   const [quizExamLink, setQuizExamLink] = useState([]);
   const [currentWeekExamsArr, setCurrentWeekExamsArr] = useState([]);
   const[quizExamsArr,setQuizExamsArr] = useState([])
-  async function updateCurrentStatus(role, id) {
-    let currRole = await AsyncStorage.getItem("role");
-    setCurrentLoggedInStatus(currRole);
-    setCurrentLoggedInId(id);
+  async function updateCurrentStatus(email,isAuthorized) {
+ let curremail =  await AsyncStorage.getItem("email");
+ let currmobile =  await AsyncStorage.getItem("mobile");
+    setCurrentLoggedInStatus(curremail);
+    setCurrentLoggedInId(currmobile);
   }
 
-  async function setLocalItem(role, id, idx) {
+  async function setLocalItem(mobile,name,email,isAuthorized) {
+    let isAuthorizedValue = "";
+    if(isAuthorized===false){
+      isAuthorizedValue="false";
+    }else{
+      isAuthorizedValue="true"
+    }
     await AsyncStorage.setItem("isAuthenticated", "true");
-    await AsyncStorage.setItem("role", role);
-
-    if (idx === 0) {
-      await AsyncStorage.setItem("AdmissionNumber", id);
-      setCurrentLoggedInId(id);
-    }
-    if (idx === 1) {
-      //here id -> mobile
-      await AsyncStorage.setItem("FacultyMobileNumber", id);
-      setCurrentLoggedInId(id);
-    }
+    await AsyncStorage.setItem("name", name);
+    await AsyncStorage.setItem("email",email);
+    await AsyncStorage.setItem("isAuthorized",isAuthorizedValue);
+    await AsyncStorage.setItem("mobile",mobile);
   }
-  async function signup(AdmissionNumber, password, role) {
+  async function signup(name,email,password,address,mobile) {
     setLoading(true);
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    const body = { AdmissionNumber, password };
+    const body = { name,email,password,address,mobile };
     const response = await axios
-      .post(BACKEND_API_URL + "/StudentsRoutes/auth/signup", body, config)
+      .post(BACKEND_API_URL + "/Auth/Signup", body, config)
       .then((data) => {
         console.log(data.data);
-        if (data.data === "This admission number is already registered") {
+        setLoading(false)
+        if (data.data === "Sorry! This Mobile is already in use") {
           setLoading(false);
           return Alert.alert("Registration failed", data.data);
         }
@@ -80,9 +81,10 @@ export default function AuthContextProvider({ children }) {
             "you don't have any access"
           );
         }
-        if (data.data.AdmissionNumber) {
+        if (data.data._id) {
           console.log("Authenticated user");
-          setLocalItem(role, AdmissionNumber);
+          //isAuthenticated -> isAuthorized
+          setLocalItem(mobile,name,email,data.data.isAuthenticated);
           setAuthenticated(true);
           setLoading(false);
 
