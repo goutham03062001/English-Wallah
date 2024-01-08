@@ -7,6 +7,7 @@ import { Dimensions } from 'react-native';
 import { Pressable } from 'react-native';
 import QuizReview from './QuizReview';
 import { useNavigation } from '@react-navigation/native';
+import QuizOverView from "./QuizOverView"
 const QuizApp = ({quizId}) => {
   const navigation = useNavigation();
   const [quizData, setQuizData] = useState(null);
@@ -14,6 +15,7 @@ const QuizApp = ({quizId}) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const[viewAnalytics,setViewAnalytics] = useState(false);
   const[index,setIndex] = useState(0);
 
   useEffect(() => {
@@ -87,6 +89,10 @@ const QuizApp = ({quizId}) => {
       );
     }
   };
+
+  function finishQuizOverView(){
+    
+  }
   const handleOptionPress = (option) => {
     setSelectedOption(option);
   };
@@ -98,7 +104,10 @@ const QuizApp = ({quizId}) => {
     if (currentQuestion + 1 < quizData.Questions.length) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
+      //update the attempt count
       setQuizCompleted(true);
+      // navigation.navigate("Quiz Overview",{userAnswers:userAnswers})
+      
     }
   };
 
@@ -120,7 +129,9 @@ const QuizApp = ({quizId}) => {
       {text: 'OK', 
       
       onPress: () => {
-        return navigation.navigate("Previous Papers");
+        console.log("Press go back to return to quiz screen");
+        setViewAnalytics(true);
+        return;
       }},
     ])
     
@@ -243,7 +254,9 @@ const QuizApp = ({quizId}) => {
       </View>
     );
   }
-
+  if(viewAnalytics){
+    return <QuizOverView userAnswers={userAnswers} quizData = {quizData}/>
+  }
   if (quizCompleted) {
     const score = calculateScore();
     console.log("quiz answers - ",userAnswers)

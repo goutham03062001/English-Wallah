@@ -18,6 +18,7 @@ export const AuthContext = createContext({
   updateCurrentStatus: (role) => {},
   getPersonalDetails: (id) => {},
   getAllQuizzes:()=>{},
+  updateQuizAttempt:(userId,quizId)=>{},
   quizExamsArr : []
 });
 
@@ -44,18 +45,20 @@ export default function AuthContextProvider({ children }) {
     setCurrentLoggedInId(currmobile);
   }
 
-  async function setLocalItem(mobile,name,email,isAuthorized) {
+  async function setLocalItem(id,mobile,name,email,address,isAuthorized) {
     let isAuthorizedValue = "";
     if(isAuthorized===false){
       isAuthorizedValue="false";
     }else{
       isAuthorizedValue="true"
     }
+    await AsyncStorage.setItem("userId",id);
     await AsyncStorage.setItem("isAuthenticated", "true");
     await AsyncStorage.setItem("name", name);
     await AsyncStorage.setItem("email",email);
     await AsyncStorage.setItem("isAuthorized",isAuthorizedValue);
     await AsyncStorage.setItem("mobile",mobile);
+    await AsyncStorage.setItem("address",address);
   }
   async function signup(name,email,password,address,mobile) {
     setLoading(true);
@@ -84,7 +87,7 @@ export default function AuthContextProvider({ children }) {
         if (data.data._id) {
           console.log("Authenticated user");
           //isAuthenticated -> isAuthorized
-          setLocalItem(mobile,name,email,data.data.isAuthenticated);
+          setLocalItem(data.data._id,mobile,name,email,address,data.data.isAuthenticated);
           setAuthenticated(true);
           setLoading(false);
 
@@ -103,7 +106,7 @@ export default function AuthContextProvider({ children }) {
         );
       });
   }
-  async function studentLogin(AdmissionNumber, password, role) {
+  async function studentLogin(mobile,password) {
     // await AsyncStorage.setItem("isAuthenticated","true");
     // setAuthenticated(true);
     setLoading(true);
@@ -112,27 +115,27 @@ export default function AuthContextProvider({ children }) {
         "Content-Type": "application/json",
       },
     };
-    const body = { AdmissionNumber, password };
+    const body = { mobile, password };
     const response = await axios
-      .post(BACKEND_API_URL + "/api/Auth/Login", body, config)
+      .post(BACKEND_API_URL + "/Auth/Login", body, config)
       .then((data) => {
         console.log(data.data);
-        if (data.data === "You are not registered yet.") {
+        if (data.data === "Either mobile number or password is wrong") {
           setLoading(false);
-          return Alert.alert("Login Failed", "You are not registered yet");
+          return Alert.alert("Login Failed", JSON.stringify(data.data));
         }
         if (
-          data.data === "Either your admission number or password is wrong!"
+          data.data === "This mobile number is not yet registered!"
         ) {
           setLoading(false);
           return Alert.alert(
             "Login Failed",
-            "Either your admission number or password is wrong!"
+          JSON.stringify(data.data)
           );
         }
-        if (data.data.AdmissionNumber !== null) {
+        if (data.data._id) {
           let idx = 0;
-          setLocalItem(role, AdmissionNumber, idx);
+          setLocalItem(data.data._id,mobile,data.data.name,data.data.email,data.data.address,data.data.isAuthenticated);
           setLoading(false);
           return Alert.alert("Login Success !", "You are now logged in");
         }
@@ -146,9 +149,8 @@ export default function AuthContextProvider({ children }) {
     let allKeys = await AsyncStorage.getAllKeys();
     console.log("All stored keys : ", allKeys);
     await AsyncStorage.removeItem("isAuthenticated");
-    await AsyncStorage.removeItem("role");
-    await AsyncStorage.removeItem("AdmissionNumber");
-    await AsyncStorage.removeItem("FacultyMobileNumber");
+    await AsyncStorage.removeItem("userId");
+    await AsyncStorage.removeItem("isAuthorized");
 
     return setAuthenticated(false);
   }
@@ -240,10 +242,10 @@ export default function AuthContextProvider({ children }) {
 
       });
   }
-  async function getPersonalDetails(admissionNumber) {
+  async function getPersonalDetails(mobileNumber) {
     setLoading(true);
     const response = await axios
-      .get(BACKEND_API_URL + "/Student/get/details/" + admissionNumber)
+      .get(BACKEND_API_URL + "/auth/getDetails/" + mobileNumber)
       .then((data) => {
         console.log("Loading current student details");
         console.log(data.data);
@@ -273,6 +275,22 @@ export default function AuthContextProvider({ children }) {
 
     }
   }
+
+  async function updateQuizAttempt(userId,quizId){
+    try {
+      setLoading(true);
+      const response = await axios.put(BACKEND_API_URL+"/api/Quiz/upload/updateAttempts/"+userId+"/"+quizId);
+      if(response.data){
+        console.log("quiz attempt uploaded",response.data);
+        }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      return Alert.alert("Error Occurred!","Something went wrong");
+ 
+    }
+  }
+
   const values = {
     signup: signup,
     studentLogin: studentLogin,
@@ -298,7 +316,8 @@ export default function AuthContextProvider({ children }) {
     quizExamLink: quizExamLink,
     currentWeekExamsArr: currentWeekExamsArr,
     getAllQuizzes:getAllQuizzes,
-    quizExamsArr:quizExamsArr
+    quizExamsArr:quizExamsArr,
+    updateQuizAttempt:updateQuizAttempt
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

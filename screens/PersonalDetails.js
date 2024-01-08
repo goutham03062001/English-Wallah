@@ -11,15 +11,18 @@ const PersonalDetails = () => {
   const[mobile,setMobile] = useState("");
   const[email,setEmail] = useState("");
   const[address,setAddress] = useState("");
+  const[currentUserId,setCurrentUserId] = useState("");
   async function loadLocalItemDetails(){
       let currname = await AsyncStorage.getItem("name");
       let curremail = await AsyncStorage.getItem("email");
       let currmobile = await AsyncStorage.getItem("mobile");
       let curraddress = await AsyncStorage.getItem("address");
+      let currUserId = await AsyncStorage.getItem("userId");
       setName(currname);
       setEmail(curremail);
       setMobile(currmobile);
-      setAddress(curraddress)
+      setAddress(curraddress);
+      setCurrentUserId(currUserId);
   }
   loadLocalItemDetails();
 
@@ -31,11 +34,11 @@ const PersonalDetails = () => {
 
      
      <View style={{display:"flex",
-    flexDirection:"row-reverse",
-    justifyContent:"flex-start",
-    alignItems:"center",
-    paddingTop:0,
-    paddingLeft:10}}>
+      flexDirection:"row-reverse",
+      justifyContent:"flex-start",
+      alignItems:"center",
+      paddingTop:0,
+      paddingLeft:10}}>
         <Image source={BestScore} style={{width:30,height:30}}/>
         <Text style={{color:"white",fontWeight:"bold"}}>Subscribed</Text>
         
@@ -67,6 +70,13 @@ const PersonalDetails = () => {
         <Text style={{color:"white",fontWeight:"bold"}}>{address}</Text>
         
       </View>
+
+{/*       
+      <View style={styles.cardInnerContainer}>
+        <Image source={AddressImage} style={{width:30,height:30}}/>
+        <Text style={{color:"white",fontWeight:"bold"}}>{currentUserId}</Text>
+        
+      </View> */}
      </View>
     </View>
   )

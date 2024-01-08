@@ -19,10 +19,7 @@ const QuizReview = ({
   finishReview,
 }) => {
   console.log("user answers - ", userAnswers);
-  let isCorrect =
-    userAnswers[index].selectedOption[
-      userAnswers[index].selectedOption.length - 1
-    ] == quizData.Questions[index].answer[0];
+  // let isCorrect = userAnswers[index].selectedOption[userAnswers[index].selectedOption.length - 1] == quizData.Questions[index].answer[0];
   const renderOptions = (options, currIndex, userAnswer, actualAnswer) => {
     return Object.entries(options).map(([key, value], index) => (
       <>
@@ -82,7 +79,7 @@ const QuizReview = ({
           console.log("\n");
           return (
             <>
-              {currIndex === index ? (
+              {currIndex === index && quizData && quizData.Questions ? (
                 <>
                   <View style={{ marginVertical: 140 }}>
                     <View
@@ -112,62 +109,12 @@ const QuizReview = ({
                         quizData.Questions[currIndex].answer[0]
                       )}
 
-                      {/* <Text style={[styles.optionsStyle, userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] ===quizData.Questions[index].options.option1[0] ?{backgroundColor:""}:{},quizData.Questions[currIndex].answer[0] == userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option1[0] ? {backgroundColor:"#3cb371",color:"yellow",position:"relative"}:quizData.Questions[currIndex].answer[0] != userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option1[0] ? {backgroundColor:"red",color:"white"}:{}]} >
-                    
-                    <Text>
-
-                    {quizData.Questions[index].options.option1}
-                    </Text>
-                    <Text style={{marginRight:0}}>
-                    {quizData.Questions[currIndex].answer[0] != userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option1[0] ? "❎":""}
-
-                    </Text> 
-                    
-                </Text>
-
-                <Text  style={[styles.optionsStyle, quizData.Questions[currIndex].answer[0] == userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option2[0] ? {backgroundColor:"#3cb371",color:"yellow",position:"relative"}:quizData.Questions[currIndex].answer[0] != userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option2[0] ? {backgroundColor:"red",color:"white"}:{}]} >
-                    <Text>{quizData.Questions[index].options.option2}</Text>
-
-                    <Text style={{marginRight:0}}>
-                    {quizData.Questions[currIndex].answer[0] != userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option2[0] ? "❎":""}
-
-                    </Text> 
-                    
-                </Text>
-
-                <Text  style={[styles.optionsStyle, quizData.Questions[currIndex].answer[0] == userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option3[0] ? {backgroundColor:"#3cb371",color:"yellow",position:"relative"}:quizData.Questions[currIndex].answer[0] != userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option3[0] ? {backgroundColor:"red",color:"white"}:{}]}>
-                   <Text> {quizData.Questions[index].options.option3}</Text>
-
-                    <Text style={{marginRight:0}}>
-                    {quizData.Questions[currIndex].answer[0] != userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option3[0] ? "❎":""}
-
-                    </Text> 
-                    
-                </Text>
-
-                <Text  style={[styles.optionsStyle,quizData.Questions[currIndex].answer[0] == userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option4[0] ? {backgroundColor:"#3cb371",color:"yellow",position:"relative"}:quizData.Questions[currIndex].answer[0] != userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option4[0] ? {backgroundColor:"red",color:"white"}:{}]}>
-                    <Text>{quizData.Questions[index].options.option4}</Text>
-
-                   <Text style={{marginRight:0}}>
-                   {quizData.Questions[currIndex].answer[0] != userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1]&& userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length-1] == quizData.Questions[index].options.option4[0] ? "❎":""}
-
-                    </Text> 
-                </Text> */}
-                      {/* <Text>{quizData.Questions[currIndex].answer[0]}</Text> */}
-                      {/* {isCorrect ? (
-                        <Text></Text>
-                      ) : (
-                        <Text>
-                          <Text>
-                            Correct - {quizData.Questions[currIndex].answer[0]}
-                          </Text>
-                        </Text>
-                      )} */}
+                      
                     </View>
                     <View style={styles.btnContainer}>
-                      {quizData.Questions.length - 1 === index ? (
+                      {quizData && quizData.Questions &&quizData.Questions.length - 1 === index ? (
                         <>
-                          <Button onPress={finishReview}>Finish Review</Button>
+                          <Button onPress={finishReview} mode="outlined">View Analytics</Button>
                         </>
                       ) : (
                         <View style={styles.btnStyles}>

@@ -8,6 +8,7 @@ import { useRoute } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import AttemptImage from "../../../../assets/Attempt.png";
 import BestScoreImage from "../../../../assets/bestscore.png"
+import QuizOverView from './QuizOverView';
 const Stack = createStackNavigator();
 const QuizExam = ({route})=>{
   const navigation = useNavigation();
@@ -70,6 +71,7 @@ return(<>
           options={{ headerShown: true }}
         />
         <Stack.Screen name="Quiz" component={QuizExam}/>
+        <Stack.Screen name="Quiz Overview" component={QuizOverView}/>
       </Stack.Navigator>
 </>)
 }

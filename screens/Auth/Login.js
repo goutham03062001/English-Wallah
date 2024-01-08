@@ -15,20 +15,12 @@ const Login = () => {
     const authContext = useContext(AuthContext);
 
    async function loginHandler(){
-       if(role==="Student"){
-        if( admissionNumber === "" || password === ""){
-            return Alert.alert("Required All Fields","In order to login, you must fill all the details");
-        }else{
+      
             authContext.studentLogin(admissionNumber,password,role);
-        }
-       }
-       if(role==="Teacher" || role === "Principal"){
-        if(mobile === "" || password===""){
-            return Alert.alert("Required All Fields","In order to login, you must fill all the details");
-        }else{
-            authContext.facultyLogin(mobile,password,role);
-        }
-       }
+        
+       
+     
+       
         // Alert.alert("Your credentials",name + " "+mobile+" "+age)
         // await AsyncStorage.setItem("mobile",mobile);
         // authContext.signup(mobile);
