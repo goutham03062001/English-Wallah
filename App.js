@@ -11,7 +11,7 @@ import PersonalDetails from "./screens/PersonalDetails";
 import { AuthContext } from "./context/AuthContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StripeProvider } from "@stripe/stripe-react-native";
+
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 import {
@@ -168,11 +168,9 @@ function App() {
             logoHeight={Dimensions.get("window").width}
             logoWidth={Dimensions.get("window").height}
           >
-            <StripeProvider 
-            publishableKey="pk_test_51OUQghSGAfyPJpXobHMlWtoWUU4qzKEet45ExByPc4wnVGyYKoeNpxKGQhBscB1LlnSjgL8X8DdFHoXmFnxvdwjX00yoLf9hDX"
-            >
+           
             <NavigationComponent />
-            </StripeProvider>
+           
           </AnimatedSplash>
         </AuthContextProvider>
       </View>
