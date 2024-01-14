@@ -13,7 +13,7 @@ const PersonalDetails = () => {
 
 
   return (
-    <StripeProvider publishableKey='pk_test_51OUQghSGAfyPJpXobHMlWtoWUU4qzKEet45ExByPc4wnVGyYKoeNpxKGQhBscB1LlnSjgL8X8DdFHoXmFnxvdwjX00yoLf9hDX'>
+    <StripeProvider publishableKey='pk_live_51OUQghSGAfyPJpXo7TJcz8AUl5bhSg6lW5eoEnbxauwYse0pGej2ZxAl3bLOHbsViDeSdynPA4CPpzHlbtJhiN5h002CyoHHni'>
       <StripeApp/>
     </StripeProvider>
   )
@@ -25,9 +25,11 @@ const PersonalDetails = () => {
 const StripeApp = ()=>{
   const[email,setEmail] = useState();
   const[cardDetails,setCardDetails] = useState();
-  const{confirmPayment,loading} = useConfirmPayment();
+  const[loading,setLoading] = useState(false);
+  // const{confirmPayment,loading} = useConfirmPayment();
   const {initPaymentSheet,presentPaymentSheet} = useStripe();
   const fetchPaymentIntentClientSecret = async ()=>{
+
     try {
       console.log("fetch payment intent client triggered");
       const response = await fetch(`${BACKEND_API_URL}/api/payment/create-payment-intent`, {
@@ -54,7 +56,7 @@ const StripeApp = ()=>{
     // if(!cardDetails?.complete || !email){
     //   return Alert.alert("Warning","please fill all the details")
     // }
-
+    setLoading(true);
     const billingDetails = {
       email : email,
       name:"Goutham"
@@ -64,7 +66,8 @@ const StripeApp = ()=>{
     try {
      
       const {clientSecret,error} = await fetchPaymentIntentClientSecret();
-      console.log("client secret - ",clientSecret)
+      console.log("client secret - ",clientSecret);
+      setLoading(false);
       if(error){
         Alert.alert("Error ","error occurred while fetching payment intent")
       }else{
@@ -111,7 +114,7 @@ const StripeApp = ()=>{
     <View>
     
 
-      <Button onPress={handlePayPress}>Pay now</Button>
+      <Button onPress={handlePayPress}>{loading?"Loading.. Please Wait":"Pay now"}</Button>
     </View>
   </>)
 }
