@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
 import BoldTextHelper from '../utils/BoldText'
 const AdverbsOfQuantityOrDegree = () => {
   return (
   <>
-    <View style={{paddingHorizontal:7}}>
+    <ScrollView>
+    <View style={{paddingHorizontal:10}}>
     <View>
       {/* collective noun */}
       <Text style={{fontSize:17,marginVertical:20}}>Adverbs of Quantity or Degree </Text>
 
-      <Text style={{fontSize:16,marginVertical:15}}>An adverb used to show how much or in what degree or to what extent an action is done is known as an adverb of degree.</Text>
+      <Text style={{fontSize:16,marginVertical:15,lineHeight:28,textAlign:"justify"}}>An adverb used to show how much or in what degree or to what extent an action is done is known as an adverb of degree.</Text>
       {/* <Text style={{fontSize:16,marginVertical:15}}>Adverb of manner answers the question ‘how’?</Text> */}
       
       <Text style={{fontSize:16,marginVertical:15}}>
@@ -19,20 +20,23 @@ const AdverbsOfQuantityOrDegree = () => {
       </Text>
 
 
-      <Text style={{fontSize:16}}>1. He speaks English fluently.</Text>
-      <Text style={{fontSize:16}}>2. It was very tragic.</Text>
-      <Text style={{fontSize:16}}>3. They were fully prepared.</Text>
-      <Text style={{fontSize:16}}>4. You are partly right.</Text>
-      <Text style={{fontSize:16}}>5. She is entirely wrong.</Text>
-      <Text style={{fontSize:16}}>6. He is utterly wrong.</Text>
-      <Text style={{fontSize:16}}>7. It is too hard.	</Text>
-      <Text style={{fontSize:16}}>8. These mangoes are almost ripe.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. He speaks English <BoldTextHelper text="fluently"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. It was <BoldTextHelper text="very"/> tragic.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. They were <BoldTextHelper text="fully"/> prepared.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. You are <BoldTextHelper text="partly"/> right.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. She is <BoldTextHelper text="entirely"/> wrong.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. He is <BoldTextHelper text="utterly"/> wrong.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>7. It is <BoldTextHelper text="too"/> hard.	</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>8. These mangoes are <BoldTextHelper text="almost"/> ripe.</Text>
          </View>
   </View>
+    </ScrollView>
   </>
   )
 }
 
 export default AdverbsOfQuantityOrDegree
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  rootContainer:7
+})

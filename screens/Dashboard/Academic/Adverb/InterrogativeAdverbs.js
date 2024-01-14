@@ -19,11 +19,11 @@ const InterrogativeAdverbs = () => {
       </Text>
 
 
-      <Text style={{fontSize:16}}>1. When will you go?</Text>
-      <Text style={{fontSize:16}}>2. What shall I know?</Text>
-      <Text style={{fontSize:16}}>3. Where do you stay?	</Text>
-      <Text style={{fontSize:16}}>4. Why did you do?</Text>
-      <Text style={{fontSize:16}}>5. How long will it run?</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="When"/> will you go.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="What"/> shall I know?</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. <BoldTextHelper text="Where"/> do you stay?	</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. <BoldTextHelper text="Why"/> did you do?</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. <BoldTextHelper text="How"/> long will it run?</Text>
       
       
     </View>

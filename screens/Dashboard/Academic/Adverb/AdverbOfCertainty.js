@@ -19,8 +19,8 @@ const AdverbOfCertainty = () => {
         </Text>
 
 
-        <Text style={{fontSize:16}}>1. I shall certainly help you.</Text>
-        <Text style={{fontSize:16}}>2. Ramya is obviously very clever.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. I shall <BoldTextHelper text="certainly"/> help you.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. Ramya is <BoldTextHelper text="obviously"/> very clever.</Text>
         
         
       </View>

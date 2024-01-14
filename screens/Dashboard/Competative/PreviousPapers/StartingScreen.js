@@ -34,8 +34,7 @@ const DisplayQuizNames = ()=>{
     
     {authContext && authContext.quizExamsArr && (
       <ScrollView>
-       {/* <QuizModel quizData = {authContext && authContext.quizExamsArr}/> */}
-       {authContext.quizExamsArr.map((exam,index)=>(<>
+       {authContext && authContext.quizExamsArr && authContext.quizExamsArr.map((exam,index)=>(<>
         {exam && (<Pressable key={index} style={styles.cardStyle} onPress={()=>{navigation.navigate("Quiz",{data : exam._id})}}>
           <View style={styles.dayCard}>
           <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
@@ -45,7 +44,7 @@ const DisplayQuizNames = ()=>{
           <View style={styles.dayCardStyle}>
           <Text style={{fontWeight:"bold"}}>
           <Image source={AttemptImage} style={{width:20,height:20}}/>
-          Attempts - 8</Text>
+          Attempts - 1</Text>
           <Text style={{fontWeight:"bold"}}>
           <Image source={BestScoreImage} style={{width:20,height:20}}/>
            Best Score - 9/10

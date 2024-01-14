@@ -18,13 +18,13 @@ const AdjectiveOfQuantity = () => {
       />
       </Text>
       
-    <Text style={{fontSize:16}}>1. This is all the milk in the cup.	</Text>
-    <Text style={{fontSize:16}}>2. There is enough sugar for the evening tea.</Text>
-    <Text style={{fontSize:16}}>3. There is no bread in the cupboard.</Text>
-    <Text style={{fontSize:16}}>4. There is one liter milk in the jug.</Text>
-    <Text style={{fontSize:16}}>5. There is a little milk in the jug.</Text>
-    <Text style={{fontSize:16}}>6. My father earned enough money.</Text>
-    <Text style={{fontSize:16}}>7. He showed much courage in the war.</Text>
+    <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. This is <BoldTextHelper text="milk"/> the milk in the cup.	</Text>
+    <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. There is <BoldTextHelper text="enough"/> sugar for the evening tea.</Text>
+    <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. There is <BoldTextHelper text="no"/> bread in the cupboard.</Text>
+    <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. There is one <BoldTextHelper text="lier"/> milk in the jug.</Text>
+    <Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. There is a <BoldTextHelper text="little"/> milk in the jug.</Text>
+    <Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. My father earned <BoldTextHelper text="enough"/> money.</Text>
+    <Text style={{fontSize:16,marginVertical:8,color:"green"}}>7. He showed <BoldTextHelper text="much"/> courage in the war.</Text>
     </View>
   </View>
    </>

@@ -73,7 +73,7 @@ const QuizOverView = ({ userAnswers, quizData, finishQuizOverView }) => {
           />
           <Text style={{fontWeight:"400",fontSize:16}}>Skipped Questions</Text>
          </View>
-         <Text>{wrongCount}</Text>
+         <Text>{skippedCount}</Text>
           </View>
         </Card.Content>
       </Card>

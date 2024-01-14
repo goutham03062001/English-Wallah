@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { View, StyleSheet, Text, Image, Dimensions } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthContextProvider from "./context/AuthContext";
+import * as Font from "expo-font";
 import Signup from "./screens/Auth/Signup";
 import Login from "./screens/Auth/Login";
 import DashboardHandler from "./screens/Dashboard/DashboardHandler";
@@ -10,6 +11,7 @@ import PersonalDetails from "./screens/PersonalDetails";
 import { AuthContext } from "./context/AuthContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StripeProvider } from "@stripe/stripe-react-native";
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 import {
@@ -144,7 +146,16 @@ function App() {
   setTimeout(() => {
     setLoading(true);
   }, 5000);
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'Poppins-Light': require('./assets/fonts/Poppins-Light.ttf'),
+        // Add more fonts as needed
+      });
+    }
 
+    loadFonts();
+  }, []);
   return (
     <>
       <View style={styles.container}>
@@ -157,7 +168,11 @@ function App() {
             logoHeight={Dimensions.get("window").width}
             logoWidth={Dimensions.get("window").height}
           >
+            <StripeProvider 
+            publishableKey="pk_test_51OUQghSGAfyPJpXobHMlWtoWUU4qzKEet45ExByPc4wnVGyYKoeNpxKGQhBscB1LlnSjgL8X8DdFHoXmFnxvdwjX00yoLf9hDX"
+            >
             <NavigationComponent />
+            </StripeProvider>
           </AnimatedSplash>
         </AuthContextProvider>
       </View>

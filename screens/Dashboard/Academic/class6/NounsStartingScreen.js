@@ -1,7 +1,7 @@
 import {View,StyleSheet,Dimensions,Pressable} from "react-native"
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Text } from 'react-native-paper';
-import BoldTextHelper from "../Adverb/BoldTextHelper";
+import BoldTextHelper from "../utils/BoldText"
 import { useNavigation } from "@react-navigation/native";
 const Drawer = createDrawerNavigator();
 import ArticlesStartingScreen from './ProperNoun/ProperNounStartingScreen';
@@ -28,7 +28,7 @@ function StartingScreen(){
             </Text>
                 <Text style={{fontSize:16}}>2. <BoldTextHelper text ="Peacock"/> is a national bird. (bird)</Text>
                 <Text style={{fontSize:16}}>3.  I have a <BoldTextHelper text ="Peacock"/>. (bird)</Text>
-                <Text style={{fontSize:16}}>4. <BoldTextHelper text ="Hyderabad"/> is a national bird. (bird)</Text>
+                <Text style={{fontSize:16}}>4. <BoldTextHelper text ="Hyderabad"/> is in <BoldTextHelper text="Telangana"/>. (place)</Text>
                 <Text style={{fontSize:16}}>5. We all have <BoldTextHelper text ="freedom"/> . (idea/state of mind)</Text>
         </View>
 

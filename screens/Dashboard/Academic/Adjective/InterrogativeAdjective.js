@@ -27,34 +27,17 @@ const InterrogativeAdjective = () => {
   Adverbs of affirmation are words which declare that a given statement or fact is true, or positive.
   </Text> */}
     
-  <Text style={{fontSize:16}}>1. What advice shall I give you?</Text>
-  <Text style={{fontSize:16}}>2. What language do you teach at college?</Text>
-  <Text style={{fontSize:16}}>3. Which book do you want?</Text>
-  <Text style={{fontSize:16}}>4. Which places do you wish to visit?.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="What"/> advice shall I give you?</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="What"/> language do you teach at college?</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. <BoldTextHelper text="Which"/> book do you want?</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. <BoldTextHelper text="Which"/> places do you wish to visit?.</Text>
 
-<Text style={{fontSize:16}}>5. Whose photograph is this?</Text>
-<Text style={{fontSize:16}}>6. Whose hand writing is this?</Text>
-<Text style={{fontSize:16}}>7. Whose book is that?</Text>
-<Text style={{fontSize:16}}>8. On whose recommendation did you apply for this post?</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. <BoldTextHelper text="Whose"/> photograph is this?</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. <BoldTextHelper text="Whose"/> hand writing is this?</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>7. <BoldTextHelper text="Whose"/> book is that?</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>8. On <BoldTextHelper text="Whose"/> recommendation did you apply for this post?</Text>
 
-<Text style={{fontSize:16,marginVertical:15}}>
-Here it should be remembered that a singular Demonstrative should go with a singular noun, and a plural Demonstrative with a plural Noun. Therefore we cannot write this boys or these boy.
-</Text>
-<Text style={{fontSize:16}}>
-A certain book			certain books
-</Text>
-<Text style={{fontSize:16}}>
-The other book			the other books
-</Text>
-<Text style={{fontSize:16}}>
-Such a boy			such boys
-</Text>
-<Text style={{fontSize:16}}>
-Any man			any men
-</Text>
-<Text style={{fontSize:16}}>
-The same boy			the same boys
-</Text>
+
   </View>
 </View>
   </ScrollView>

@@ -22,56 +22,59 @@ import DemonstrativeAdjective from "./DemonstrativeAdjective";
 import DistributiveAdjective from "./DistributiveAdjective";
 import InterrogativeAdjective from "./InterrogativeAdjective";
 import PossessiveAdjective from "./PossessiveAdjective"
+import EmphasizingAdjective from "./EmphasizingAdjective";
+import ExclamatoryAdjective from "./ExclamatoryAdjective";
+import ProperAdjective from "./ProperAdjective";
 function StartingScreen() {
   const navigation = useNavigation();
   return (
     <>
       <ScrollView>
       <Text style={{fontSize:16,paddingHorizontal:7,lineHeight:26,marginTop:8}}>
-      A word used to express the quality, quantity, number and to point out the person or thing is regarded as an Adjective.
+      A word used to express the <BoldTextHelper text= "quality, quantity, number"/> and <BoldTextHelper text="to point out the person or thing"/> is regarded as an Adjective.
       </Text>
-      <Text style={{fontSize:16,marginTop:8,paddingHorizontal:8}}>Two types of uses: There are two uses of every adjective namely:</Text>
-          <Text style={{fontSize:16,marginTop:8,paddingHorizontal:8}}>1. Attributive use</Text>
-          <Text style={{fontSize:16,marginTop:8,paddingHorizontal:8}}> 2. Predicative use</Text>
+      <Text style={{fontSize:17,marginVertical:20,paddingHorizontal:8,color:"#750E21"}}>Two types of uses: There are two uses of every adjective namely:</Text>
+          <Text style={{fontSize:17,marginTop:8,paddingHorizontal:8,color:"#610C9F"}}>1. Attributive use</Text>
+          <Text style={{fontSize:17,marginTop:8,paddingHorizontal:8,color:"#610C9F"}}>2. Predicative use</Text>
           <View style={{paddingHorizontal:7}}>
     <View>
       {/* collective noun */}
 
-      <Text style={{fontSize:16,marginVertical:15}}>ATTRIBUTIVE USE</Text>
+      <Text style={{fontSize:18,marginVertical:15,color:"#610C9F"}}>**ATTRIBUTIVE USE**</Text>
       
       <Text style={{fontSize:16,marginVertical:15}}>
       An adjective used with a noun is known as Attributive use.
       </Text>
    
 
-      <Text style={{fontSize:16}}>1. This is a nice book.</Text>
-      <Text style={{fontSize:16}}>2. He is a clever student, </Text>
+      <Text style={{fontSize:16,color:"green",marginVertical:8}}>1. This is a <BoldTextHelper text="nice"/> book.</Text>
+      <Text style={{fontSize:16,color:"green",marginVertical:8}}>2. He is a <BoldTextHelper text="clever"/> student, </Text>
      
      
-      <Text style={{fontSize:16}}>
-    3. This is a tall tree, 
+      <Text style={{fontSize:16,color:"green",marginVertical:8}}>
+    3. This is a <BoldTextHelper text="tall"/> tree, 
     </Text>
       
-    <Text style={{fontSize:16}}>4. Rose is a lovely flower, </Text>
-    <Text style={{fontSize:16}}>5. She has a fair face.</Text>
-    <Text style={{fontSize:16}}>6. Radha is a beautiful woman.</Text>
+    <Text style={{fontSize:16,color:"green",marginVertical:8}}>4. Rose is a <BoldTextHelper text="lovely"/> flower, </Text>
+    <Text style={{fontSize:16,color:"green",marginVertical:8}}>5. She has a <BoldTextHelper text="fair"/> face.</Text>
+    <Text style={{fontSize:16,color:"green",marginVertical:8}}>6. Radha is a <BoldTextHelper text="beautiful"/> woman.</Text>
 
      
-    <Text style={{fontSize:16,marginVertical:15}}>PREDICATIVE  USE</Text>
+    <Text style={{fontSize:16,color:"green",marginVertical:8,marginVertical:15,color:"#610C9F"}}>**PREDICATIVE  USE**</Text>
       
-      <Text style={{fontSize:16,marginVertical:15}}>
+      <Text style={{fontSize:16,marginVertical:8,marginVertical:15}}>
       An adjective used with a verb is known as Predicative use.  </Text>
    
 
-      <Text style={{fontSize:16}}>1. She is afraid</Text>
-      <Text style={{fontSize:16}}>2. They are dead </Text>
+      <Text style={{fontSize:16,color:"green",marginVertical:8}}>1. She is <BoldTextHelper text="afraid"/></Text>
+      <Text style={{fontSize:16,color:"green",marginVertical:8}}>2. They are <BoldTextHelper text="dead"/> </Text>
      
      
-      <Text style={{fontSize:16}}>
-      3. He is alive
+      <Text style={{fontSize:16,color:"green",marginVertical:8}}>
+      3. He is <BoldTextHelper text="alive"/>
     </Text>
       
-    <Text style={{fontSize:16}}>4. He looked happy </Text>
+    <Text style={{fontSize:16,color:"green",marginVertical:8}}>4. He looked <BoldTextHelper text="happy"/> </Text>
     
 
     </View>
@@ -201,7 +204,7 @@ function StartingScreen() {
           </Card>
         </Pressable>
 
-        <Pressable>
+        <Pressable onPress={(e) => navigation.navigate("Emphasizing Adjective")}>
           <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
             <Card.Content style={styles.contentStyle}>
               <Text style={{ color: "white" }}>Emphasizing adjective</Text>
@@ -215,7 +218,7 @@ function StartingScreen() {
           </Card>
         </Pressable>
 
-        <Pressable>
+        <Pressable onPress={(e) => navigation.navigate("Exclamatory Adjective")}>
           <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
             <Card.Content style={styles.contentStyle}>
               <Text style={{ color: "white" }}>Exclamatory adjective </Text>
@@ -229,7 +232,7 @@ function StartingScreen() {
           </Card>
         </Pressable>
 
-        <Pressable>
+        <Pressable onPress={(e) => navigation.navigate("Proper Adjective")}>
           <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
             <Card.Content style={styles.contentStyle}>
               <Text style={{ color: "white" }}>Proper Adjectives</Text>
@@ -303,17 +306,17 @@ function AdjectiveStartingScreen() {
       />
       <Drawer.Screen
         name="Emphasizing Adjective"
-        component={PredicativeUse}
+        component={EmphasizingAdjective}
         options={{ headerTitle: "Emphasizing Adjective" }}
       />
       <Drawer.Screen
         name="Exclamatory Adjective"
-        component={PredicativeUse}
+        component={ExclamatoryAdjective}
         options={{ headerTitle: "Exclamatory Adjective" }}
       />
       <Drawer.Screen
         name="Proper Adjective"
-        component={PredicativeUse}
+        component={ProperAdjective}
         options={{ headerTitle: "Proper Adjective" }}
       />
     </Drawer.Navigator>

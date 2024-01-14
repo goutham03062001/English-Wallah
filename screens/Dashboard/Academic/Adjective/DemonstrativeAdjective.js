@@ -8,8 +8,8 @@ const DemonstrativeAdjective = () => {
   <View>
     {/* collective noun */}
 
-    <Text style={{fontSize:16,marginVertical:15}}>An adjective used to point out which person or thing we speak about is known as demonstrative adjective. </Text>
-    <Text style={{fontSize:16,marginVertical:15}}>They are of two types – Definite Demonstratives and Indefinite Demonstratives. The more common Definitive Demonstratives are these.
+    <Text style={{fontSize:16,marginVertical:15,lineHeight:29}}>An adjective used to point out which person or thing we speak about is known as demonstrative adjective. </Text>
+    <Text style={{fontSize:16,marginVertical:15,lineHeight:29}}>They are of two types – Definite Demonstratives and Indefinite Demonstratives. The more common Definitive Demonstratives are these.
 
 </Text>
     
@@ -28,30 +28,30 @@ const DemonstrativeAdjective = () => {
   Adverbs of affirmation are words which declare that a given statement or fact is true, or positive.
   </Text> */}
     
-  <Text style={{fontSize:16}}>1. This book is very interesting.</Text>
-  <Text style={{fontSize:16}}>2. That girl is very beautiful.</Text>
-  <Text style={{fontSize:16}}>3. These flowers are lovely.</Text>
-  <Text style={{fontSize:16}}>4. Those books are not mine.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="This"/> book is very interesting.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="That"/> girl is very beautiful.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. <BoldTextHelper text="These"/> flowers are lovely.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. <BoldTextHelper text="Those"/> books are not mine.</Text>
 
-<Text style={{fontSize:16}}>Indefinite Demonstratives are these – any, some, such, other, any other, a certain, etc.</Text>
+<Text style={{fontSize:16,marginVertical:9,}}><BoldTextHelper text="Indefinite Demonstratives"/> are these – any, some, such, other, any other, a certain, etc.</Text>
 
-<Text style={{fontSize:16,marginVertical:15}}>
+<Text style={{fontSize:16,marginVertical:15,lineHeight:28}}>
 Here it should be remembered that a singular Demonstrative should go with a singular noun, and a plural Demonstrative with a plural Noun. Therefore we cannot write this boys or these boy.
 </Text>
 <Text style={{fontSize:16}}>
-A certain book			certain books
+A <BoldTextHelper text="certain" fontSize={17}/> book		                  	   <BoldTextHelper text="certain" fontSize={17}/> books
 </Text>
 <Text style={{fontSize:16}}>
-The other book			the other books
+The <BoldTextHelper text="other" fontSize={17}/> book		                    	the <BoldTextHelper text="other" fontSize={17}/> books
 </Text>
 <Text style={{fontSize:16}}>
-Such a boy			such boys
+<BoldTextHelper text="Such" fontSize={17}/> a boy		                        	    <BoldTextHelper text="such" fontSize={17}/> boys
 </Text>
 <Text style={{fontSize:16}}>
-Any man			any men
+<BoldTextHelper text="Any" fontSize={17}/> man		                          	     <BoldTextHelper text="any" fontSize={17}/> men
 </Text>
 <Text style={{fontSize:16}}>
-The same boy			the same boys
+<BoldTextHelper text="The" fontSize={17}/> same boy		                      	<BoldTextHelper text="the" fontSize={17}/> same boys
 </Text>
   </View>
 </View>

@@ -27,14 +27,14 @@ const AdjectiveOfQuality = () => {
     Adverbs of affirmation are words which declare that a given statement or fact is true, or positive.
     </Text> */}
       
-    <Text style={{fontSize:16}}>1. Telugu is a regional language.</Text>
-    <Text style={{fontSize:16}}>2. He is a wealthy person.</Text>
-    <Text style={{fontSize:16}}>3. Hyderabad is an industrial city.</Text>
-    <Text style={{fontSize:16}}>4. He is a great man.</Text>
-    <Text style={{fontSize:16}}>5. She is a beautiful girl.</Text>
-    <Text style={{fontSize:16}}>6. He is a brave boy.</Text>
-    <Text style={{fontSize:16}}>7. He is a small boy.</Text>
-    <Text style={{fontSize:16}}>8. It is a white cow.</Text>
+    <Text style={{fontSize:16,marginVertical:10,color:"green"}}>1. Telugu is a <BoldTextHelper text = "regional"/> language.</Text>
+    <Text style={{fontSize:16,marginVertical:10,color:"green"}}>2. He is a <BoldTextHelper text="wealthy"/> person.</Text>
+    <Text style={{fontSize:16,marginVertical:10,color:"green"}}>3. Hyderabad is an <BoldTextHelper text="industrial"/> city.</Text>
+    <Text style={{fontSize:16,marginVertical:10,color:"green"}}>4. He is a <BoldTextHelper text="great"/> man.</Text>
+    <Text style={{fontSize:16,marginVertical:10,color:"green"}}>5. She is a <BoldTextHelper text="beautiful"/> girl.</Text>
+    <Text style={{fontSize:16,marginVertical:10,color:"green"}}>6. He is a <BoldTextHelper text="brave"/> boy.</Text>
+    <Text style={{fontSize:16,marginVertical:10,color:"green"}}>7. He is a <BoldTextHelper text="small"/> boy.</Text>
+    <Text style={{fontSize:16,marginVertical:10,color:"green"}}>8. It is a <BoldTextHelper text="white"/> cow.</Text>
      
    
       

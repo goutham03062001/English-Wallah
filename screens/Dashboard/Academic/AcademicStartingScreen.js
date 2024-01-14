@@ -50,12 +50,14 @@ const Classes = () => {
       </Card>
 </Pressable>
 
-
-      <Card style={{backgroundColor:"#6A2C70"}}>
+<Pressable onPress={()=>navigation.navigate("Conjunction")}>
+  
+<Card style={{backgroundColor:"#6A2C70"}}>
         <Card.Content>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Conjunction</Text>
         </Card.Content>
       </Card>
+</Pressable>
 
       <Pressable onPress={()=>navigation.navigate("Verb")}>
       <Card style={{backgroundColor:"#0F4C75"}}>
@@ -97,11 +99,13 @@ const Classes = () => {
         </Card.Content>
       </Card>
 
-      <Card style={{backgroundColor:"#6C5B7B"}}>
+     <Pressable onPress={()=>navigation.navigate("Modifiers")}>
+     <Card style={{backgroundColor:"#6C5B7B"}}>
         <Card.Content>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Modifiers</Text>
         </Card.Content>
       </Card>
+     </Pressable>
 
      <Pressable onPress={()=>navigation.navigate("Active And Passive Voice")}>
      <Card style={{backgroundColor:"#FFDE7D"}}>

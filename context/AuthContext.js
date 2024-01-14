@@ -276,17 +276,25 @@ export default function AuthContextProvider({ children }) {
     }
   }
 
-  async function updateQuizAttempt(userId,quizId){
+  async function updateQuizAttempt(quizId){
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }
     try {
+      let userId = await AsyncStorage.getItem("userId");
+      console.log("userId - "+userId+" quizId - "+quizId)
       setLoading(true);
-      const response = await axios.put(BACKEND_API_URL+"/api/Quiz/upload/updateAttempts/"+userId+"/"+quizId);
+      const response = await axios.put(BACKEND_API_URL+"/api/Quiz/upload/updateAttempts/user/"+userId+"/quiz/"+quizId,config);
       if(response.data){
         console.log("quiz attempt uploaded",response.data);
         }
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      return Alert.alert("Error Occurred!","Something went wrong");
+      console.log("Error Occurred : "+error)
+      return Alert.alert("Error Occurred!","Something went wrong"+error);
  
     }
   }

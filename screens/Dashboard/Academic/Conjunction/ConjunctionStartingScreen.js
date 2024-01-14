@@ -15,7 +15,9 @@ import {
   import { useNavigation } from "@react-navigation/native";
   import BoldTextHelper from "../utils/BoldText"
   import CoordinatingConjunction from "./CoordinatingConjunction";
-  import SubordinatingConjunction from "./SubordinatingConjunction"
+  import SubordinatingConjunction from "./SubordinatingConjunction";
+  import CorelativeConjunction from "./CorelativeConjunction";
+  import CompoundConjunction from "./CompoundConjunction";
   function StartingScreen() {
     const navigation = useNavigation();
     return (
@@ -133,7 +135,7 @@ import {
         />
         <Drawer.Screen
           name="Correlative"
-          component={CorrelativeConjunction}
+          component={CorelativeConjunction}
           options={{ headerTitle: "Correlative Conjunction" }}
         />
         

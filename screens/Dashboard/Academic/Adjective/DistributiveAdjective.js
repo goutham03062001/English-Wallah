@@ -29,13 +29,13 @@ const DistributiveAdjective = () => {
   Adverbs of affirmation are words which declare that a given statement or fact is true, or positive.
   </Text> */}
     
-  <Text style={{fontSize:16}}>1. Each boy was awarded a diploma.</Text>
-  <Text style={{fontSize:16}}>2. Every Indian is entitled to adult franchise.</Text>
-  <Text style={{fontSize:16}}>3. Every citizen should love his mother land.</Text>
-  <Text style={{fontSize:16}}>4. Neither party has got majority in the recent elections.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="Each"/> boy was awarded a diploma.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="Every"/> Indian is entitled to adult franchise.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. <BoldTextHelper text="Every"/> citizen should love his mother land.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. <BoldTextHelper text="Neither"/> party has got majority in the recent elections.</Text>
 
-<Text style={{fontSize:16}}>5. Neither country accepted the treaty.</Text>
-<Text style={{fontSize:16}}>6. You can take either road, this or that.</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. <BoldTextHelper text="Neither"/> country accepted the treaty.</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. You can take <BoldTextHelper text="either"/> road, this or that.</Text>
 
 
 

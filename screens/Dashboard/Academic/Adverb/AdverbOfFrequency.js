@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
 import BoldTextHelper from '../utils/BoldText'
 const AdverbOfFrequency = () => {
   return (
     <>
+     <ScrollView>
      <View style={{paddingHorizontal:7}}>
       <View>
         {/* collective noun */}
@@ -19,15 +20,16 @@ const AdverbOfFrequency = () => {
         </Text>
 
 
-        <Text style={{fontSize:16}}>1. They talked to each other again.</Text>
-        <Text style={{fontSize:16}}>2. I just saw him at the gate.</Text>
-        <Text style={{fontSize:16}}>3. He has already finished his home work.</Text>
-        <Text style={{fontSize:16}}>4. He has rarely been coming to me.</Text>
-        <Text style={{fontSize:16}}>5. We usually go there.	</Text>
-        <Text style={{fontSize:16}}>6. We visited Thirupathi twice.</Text>
-        <Text style={{fontSize:16}}>7. They never go to films.</Text>        
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. They talked to each other <BoldTextHelper text="again"/>.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. I <BoldTextHelper text="just"/> saw him at the gate.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. He has <BoldTextHelper text="already"/> finished his home work.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. He has <BoldTextHelper text="rarely"/> been coming to me.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. We <BoldTextHelper text="usually"/> go there.	</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. We visited Thirupathi <BoldTextHelper text="twice"/>.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>7. They <BoldTextHelper text="never"/> go to films.</Text>        
       </View>
     </View> 
+     </ScrollView>
     </>
   )
 }

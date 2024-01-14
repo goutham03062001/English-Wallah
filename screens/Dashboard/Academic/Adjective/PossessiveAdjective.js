@@ -8,8 +8,8 @@ const PossessiveAdjective = () => {
   <View>
     {/* collective noun */}
 
-    <Text style={{fontSize:16,marginVertical:15}}>An adjective used to talk about ownership or possession is known as Possessive adjective.</Text>
-    <Text style={{fontSize:16,marginVertical:15}}>Possessive adjectives show relationships. They are my, our, your, his, her, its, their. In Attributive form they are used before the nouns they qualify. As – my book/ books, your book/ books, our house/ houses, its wings.
+    <Text style={{fontSize:16,marginVertical:15,textAlign:"justify",lineHeight:25}}>An adjective used to talk about ownership or possession is known as Possessive adjective.</Text>
+    <Text style={{fontSize:16,marginVertical:15,lineHeight:29,textAlign:"justify"}}>Possessive adjectives show relationships. They are my, our, your, his, her, its, their. In Attributive form they are used before the nouns they qualify. As – my book/ books, your book/ books, our house/ houses, its wings.
 
 </Text>
     
@@ -28,15 +28,15 @@ const PossessiveAdjective = () => {
   Adverbs of affirmation are words which declare that a given statement or fact is true, or positive.
   </Text> */}
     
-  <Text style={{fontSize:16}}>1. My mother is a teacher.</Text>
-  <Text style={{fontSize:16}}>2. Our country is India.</Text>
-  <Text style={{fontSize:16}}>3. His wealth was lost.</Text>
-  <Text style={{fontSize:16}}>4. Her husband died in an accident.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="My"/> mother is a teacher.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="our"/> country is India.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. <BoldTextHelper text="His"/> wealth was lost.</Text>
+  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. <BoldTextHelper text="Her"/> husband died in an accident.</Text>
 
-<Text style={{fontSize:16}}>5. All their daughters were married last year.</Text>
-<Text style={{fontSize:16}}>6. Your child is not doing well in the school.</Text>
-<Text style={{fontSize:16}}>7. Her thoughts are too complex.</Text>
-<Text style={{fontSize:16}}>8. Stop messing with my hair.</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. All <BoldTextHelper text="their"/> daughters were married last year.</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. <BoldTextHelper text="Your"/> child is not doing well in the school.</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>7. <BoldTextHelper text="Her"/> thoughts are too complex.</Text>
+<Text style={{fontSize:16,marginVertical:8,color:"green"}}>8. Stop messing with <BoldTextHelper text="my"/> hair.</Text>
 
 
 

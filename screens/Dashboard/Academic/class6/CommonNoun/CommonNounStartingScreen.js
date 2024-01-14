@@ -2,7 +2,7 @@ import { StyleSheet, Text, View,Dimensions ,Image} from 'react-native'
 import React from 'react'
 import { Card } from 'react-native-paper';
 import BoldText from "../../utils/BoldText";
-import UnderlineTextHelper from '../../Adverb/UnderlineTextHelper';
+import UnderlineTextHelper from '../../utils/BoldText';
 import { ScrollView } from 'react-native-gesture-handler';
 const CommonNounStartingScreen = () => {
   return (
@@ -22,107 +22,110 @@ const CommonNounStartingScreen = () => {
         <Text style={{fontSize:16,lineHeight:25}}>8. Srimukhi has <UnderlineTextHelper text="courage"/></Text>
       </View>
 
-      <View>
+      <View style={{marginVertical:10}}>
         <Text style={{fontSize:17,marginBottom:20}}>Types of Common Nouns: (Based on form)</Text>
         <Text style={{fontSize:16,marginBottom:20}}>Based on form, common nouns are classified into two categories:</Text>
 
-      <Text style={{lineHeight:27,fontSize:16}}>  <BoldText text="1. Countable Nouns" fontSize={16}/></Text>
-      <Text style={{lineHeight:27,fontSize:16}}>  <BoldText text="2. Uncountable Nouns" fontSize={16}/></Text>
+      <Text style={{lineHeight:27,fontSize:16}}>  <BoldText text="1. Countable Nouns" fontSize={18} styling = {{padding:8,marginVertical:10}}/></Text>
+      <Text style={{lineHeight:27,fontSize:16}}>  <BoldText text="2. Uncountable Nouns" fontSize={18} styling = {{padding:8,marginVertical:10}}/></Text>
      
       </View>
 
-      <View>
-        <Text style={{fontSize:17,marginBottom:20}}>Countable Nouns</Text>
+      <View style={{marginVertical:30}}>
+        <Text style={{fontSize:17,marginBottom:20,color:"#610C9F",fontWeight:"500"}}>**Countable Nouns**</Text>
         <Text style={{fontSize:16}}>Countable nouns have singular and plural forms</Text>
 
-        <Text style={{fontSize:16,marginVertical:15}}>Examples</Text>
-        <Text style={{fontSize:16}}>man - men</Text>
-        <Text style={{fontSize:16}}>foot – feet</Text>
-        <Text style={{fontSize:16}}>woman – women</Text>
-        <Text style={{fontSize:16}}>mouse – mice</Text>
-        <Text style={{fontSize:16}}>girl – girls</Text>
-        <Text style={{fontSize:16}}>tooth – teeth</Text>
+        <Text style={{fontSize:16,marginVertical:20,color:"blue",fontSize:17}}>Examples</Text>
+        <Text style={{fontSize:16,color:"green"}}>man - men</Text>
+        <Text style={{fontSize:16,color:"green"}}>foot – feet</Text>
+        <Text style={{fontSize:16,color:"green"}}>woman – women</Text>
+        <Text style={{fontSize:16,color:"green"}}>mouse – mice</Text>
+        <Text style={{fontSize:16,color:"green"}}>girl – girls</Text>
+        <Text style={{fontSize:16,color:"green"}}>tooth – teeth</Text>
       </View>
 
       <View>
-        <Text style={{fontSize:17,marginBottom:20}}>Uncountable Nouns</Text>
+      <Text style={{fontSize:17,marginBottom:20,color:"#610C9F",fontWeight:"500"}}>**Uncountable Nouns**</Text>
         <Text style={{fontSize:16}}>Uncountable nouns have no plural forms</Text>
 
-        <Text style={{fontSize:16,marginVertical:15}}>Examples</Text>
-        <Text style={{fontSize:16}}>rice</Text>
-        <Text style={{fontSize:16}}>sand</Text>
-        <Text style={{fontSize:16}}>oil</Text>
-        <Text style={{fontSize:16}}>water</Text>
-        <Text style={{fontSize:16}}>milk</Text>
+        <Text style={{fontSize:16,marginVertical:20,color:"blue",fontSize:17}}>Examples</Text>
+        <Text style={{fontSize:16,color:"green"}}>rice</Text>
+        <Text style={{fontSize:16,color:"green"}}>sand</Text>
+        <Text style={{fontSize:16,color:"green"}}>oil</Text>
+        <Text style={{fontSize:16,color:"green"}}>water</Text>
+        <Text style={{fontSize:16,color:"green"}}>milk</Text>
         
       </View>
       <View style={{marginVertical:20}}>
-      <Text style={{fontSize:17,marginBottom:20}}>Types of Common Nouns: (Based on meaning)</Text>
+      <Text style={{fontSize:17,marginBottom:20,color:"#610C9F",fontWeight:"500"}}>**Types of Common Nouns: (Based on meaning)**</Text>
       <Text style={{fontSize:16,marginBottom:20}}>Based on the meaning, common nouns are classified into four categories</Text>
 
       <View style={{marginVertical:20}}>
         {/* Concrete noun */}
-        <Text style={{fontSize:16}}>A concrete noun is a name of the thing that can be touched, seen, heard, tasted or smelled.</Text>
-        <Text style={{marginTop:20,fontSize:16}}>1.There is a table.</Text>
-        <Text style={{fontSize:16}}>2.The sun is very hot today.</Text>
-        <Text style={{fontSize:16}}>3.Blow the horn please.</Text>
-        <Text style={{fontSize:16}}>4.Have a coffee.</Text>
-        <Text style={{fontSize:16}}>5.I like laddu.</Text>
+        <Text style={{fontSize:16}}>A concrete noun is a name of the thing that can be  
+          <Text>
+            <BoldText text=" touched, seen, heard, tasted or smelled."/>
+          </Text>
+        </Text>
+        <Text style={{marginTop:20,fontSize:16,color:"green"}}>1.There is a <BoldText text="table"/>.</Text>
+        <Text style={{marginTop:20,fontSize:16,color:"green"}}>2.The sun is very <BoldText text="hot"/> today.</Text>
+        <Text style={{marginTop:20,fontSize:16,color:"green"}}>3.Blow the <BoldText text="horn"/> please.</Text>
+        <Text style={{marginTop:20,fontSize:16,color:"green"}}>4.Have a <BoldText text="coffee"/>.</Text>
+        <Text style={{marginTop:20,fontSize:16,color:"green"}}>5.I like <BoldText text="laddu"/>.</Text>
       </View>
 
       <View>
         {/* Abstract Noun */}
-        <Text style={{fontSize:17,marginBottom:20}}>Abstract Noun</Text>
+        <Text style={{fontSize:17,marginBottom:20,color:"#610C9F",fontWeight:"500"}}>**Abstract Noun**</Text>
 
         <Text style={{fontSize:16,marginVertical:15}}>An abstract noun is a name of the thing that can not be touched, seen, heard, smelled or tasted.</Text>
 
-        <Text style={{fontSize:16,marginVertical:15}}>1. Death is inevitable.</Text>
-        <Text style={{fontSize:16}}>2. Love is blind.</Text>
-        <Text style={{fontSize:16}}>3. I have great faith in you.</Text>
-        <Text style={{fontSize:16}}>4. They laughed at my idea.</Text>
-        <Text style={{fontSize:16}}>5. Luck is the lost door to be opened by itself.</Text>
-        <Text style={{fontSize:16}}>6. He struggled to find happiness in his life.</Text>
-        <Text style={{fontSize:16}}>7. He was blessed with vivid imagination.</Text>
-        <Text style={{fontSize:16}}>8. Are you suffering from pain?</Text>
-        <Text style={{fontSize:16}}>9. We don’t have much sympathy for them.</Text>
-        <Text style={{fontSize:16}}>10. Strength is life, weakness is death.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>1. <BoldText text="Death"/> is inevitable.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>2. <BoldText text="Love"/> is blind.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>3. I have great <BoldText text="faith"/> in you.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>4. They laughed at my <BoldText text="idea"/>.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>5. <BoldText text="Luck"/> is the lost door to be opened by itself.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>6. He struggled to find <BoldText text="happiness"/> in his life.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>7. He was blessed with vivid <BoldText text="imagination"/>.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>8. Are you suffering from <BoldText text="pain?"/></Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>9. We don’t have much <BoldText text="sympathy"/> for them.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>10. <BoldText text="Strength"/> is life, <BoldText text="weakness"/> is <BoldText text="death"/>.</Text>
         
      
       </View>
 
       <View>
         {/* material noun */}
-        <Text style={{fontSize:17,marginVertical:20}}>Material  Noun</Text>
+        <Text style={{fontSize:17,marginVertical:30,color:"#610C9F",fontWeight:"500"}}>**Material  Noun**</Text>
 
         <Text style={{fontSize:16,marginVertical:15}}>A material Noun is the name of a material or substance out which things are made.</Text>
 
-        <Text style={{fontSize:16,marginVertical:15}}>1. I have a cricket bat. (made of wood from the tree)</Text>
-        <Text style={{fontSize:16}}>2. My brother has a mobile phone. (made of plastic and metal)</Text>
-        <Text style={{fontSize:16}}>3. Your shirt has a button short.</Text>
-        <Text style={{fontSize:16}}>4. The pen is out of ink.</Text>
-        <Text style={{fontSize:16}}>5. This bottle is made of glass.</Text>
-        <Text style={{fontSize:16}}>6. This sweater is made of wool.</Text>
-        <Text style={{fontSize:16}}>7. He was blessed with vivid imagination.</Text>
-        <Text style={{fontSize:16}}>8. A huge amount of meat is required for the wedding.</Text>
-        <Text style={{fontSize:16}}>9. That nose pin is made of gold.</Text>
-        <Text style={{fontSize:16}}>10. She spilled the milk by mistake. </Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>1. I have a cricket <BoldText text="bat"/>. (made of wood from the tree)</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>2. My brother has a <BoldText text="mobile phone"/> (made of plastic and metal)</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>3. Your shirt has a <BoldText text="button"/> short.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>4. The pen is out of <BoldText text="ink"/>.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>5. This bottle is made of <BoldText text="glass"/>.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>6. This sweater is made of <BoldText text="wool"/>.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>7. A huge amount of <BoldText text="meat"/> is required for the wedding.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>8. That nose pin is made of <BoldText text="gold"/>.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>9. She spilled the <BoldText text="milk"/> by mistake. </Text>
         
       </View>
 
       <View>
       <View>
         {/* collective noun */}
-        <Text style={{fontSize:17,marginVertical:20}}>Collective  Noun</Text>
+        <Text style={{fontSize:17,marginVertical:30,color:"#610C9F",fontWeight:"500"}}>**Collective  Noun**</Text>
 
         <Text style={{fontSize:16,marginVertical:15}}>A collective noun is the name of the collection of things or persons.</Text>
 
-        <Text style={{fontSize:16,marginVertical:15}}>1. He ate a full bunch of grapes.</Text>
-        <Text style={{fontSize:16}}>2. A huge crowd attended the concert</Text>
-        <Text style={{fontSize:16}}>3. A flock of sheep is approaching.</Text>
-        <Text style={{fontSize:16}}>4. A herd of elephants crossed the road.</Text>
-        <Text style={{fontSize:16}}>5. We’re taking the whole brood to the movie tonight.</Text>
-        <Text style={{fontSize:16}}>6. There was an angry mob outside the court</Text>
-        <Text style={{fontSize:16}}>7. A pack of journalists was waiting outside.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>1. He ate a full <BoldText text="bunch"/> of grapes.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>2. A huge <BoldText text="crowd"/> attended the concert</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>3. A <BoldText text="flock"/> of sheep is approaching.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>4. A <BoldText text="herd"/> of elephants crossed the road.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>5. We’re taking the <BoldText text="whole"/> brood to the movie tonight.</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>6. There was an angry <BoldText text="mob"/> outside the court</Text>
+        <Text style={{fontSize:16,marginVertical:5,color:"green"}}>7. A <BoldText text="pack"/> of journalists was waiting outside.</Text>
  
         
       </View>
@@ -131,35 +134,31 @@ const CommonNounStartingScreen = () => {
       </View>
 
 
-
+{/* 
       <Card style={[{backgroundColor:"#22092C"},styles.cardStyle]}>
         <Card.Content style={styles.contentStyle}>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Concrete Noun</Text>
 
-            {/* <Image source={{uri:"https://img.icons8.com/ios-glyphs/30/FFFFFF/arrow.png"}} style={{width:20,height:16}}/> */}
         </Card.Content>
       </Card>
       <Card style={[{backgroundColor:"#22092C"},styles.cardStyle]}>
         <Card.Content style={styles.contentStyle}>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Abstract Noun</Text>
-            {/* <Image source={{uri:"https://img.icons8.com/color/48/000000/long-arrow-right.png"}} style={{width:30,height:20}}/> */}
 
         </Card.Content>
       </Card>
       <Card style={[{backgroundColor:"#22092C"},styles.cardStyle]}>
         <Card.Content style={styles.contentStyle}>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Material Noun</Text>
-            {/* <Image source={{uri:"https://img.icons8.com/color/48/000000/long-arrow-right.png"}} style={{width:30,height:20}}/> */}
 
         </Card.Content>
       </Card>
       <Card style={[{backgroundColor:"#22092C"},styles.cardStyle]}>
         <Card.Content style={styles.contentStyle}>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Collective Noun</Text>
-            {/* <Image source={{uri:"https://img.icons8.com/color/48/000000/long-arrow-right.png"}} style={{width:30,height:20}}/> */}
 
         </Card.Content>
-      </Card>
+      </Card> */}
     </ScrollView>
   )
 }

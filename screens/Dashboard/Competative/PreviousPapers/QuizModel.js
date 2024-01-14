@@ -1,5 +1,5 @@
 // src/QuizApp.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Button ,Image, Alert} from 'react-native';
 import { BACKEND_API_URL } from '../../../../utils/Constants';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -8,6 +8,7 @@ import { Pressable } from 'react-native';
 import QuizReview from './QuizReview';
 import { useNavigation } from '@react-navigation/native';
 import QuizOverView from "./QuizOverView"
+import { AuthContext } from '../../../../context/AuthContext';
 const QuizApp = ({quizId}) => {
   const navigation = useNavigation();
   const [quizData, setQuizData] = useState(null);
@@ -18,6 +19,7 @@ const QuizApp = ({quizId}) => {
   const[viewAnalytics,setViewAnalytics] = useState(false);
   const[index,setIndex] = useState(0);
 
+  const authContext = useContext(AuthContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -105,8 +107,10 @@ const QuizApp = ({quizId}) => {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       //update the attempt count
+      authContext.updateQuizAttempt(quizData._id);
       setQuizCompleted(true);
       // navigation.navigate("Quiz Overview",{userAnswers:userAnswers})
+      
       
     }
   };

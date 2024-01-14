@@ -19,22 +19,22 @@ const AdverbsOfManner = () => {
       </Text>
 
 
-      <Text style={{fontSize:16}}>1. She wrote it well.</Text>
-      <Text style={{fontSize:16}}>2. He fought bravely.</Text>
-      <Text style={{fontSize:16}}>3. She is seriously ill.</Text>
-      <Text style={{fontSize:16}}>4. I told him thus.</Text>
-      <Text style={{fontSize:16}}>5. Rani smiles beautifully.</Text>
-      <Text style={{fontSize:16}}>6. Do you think so?</Text>
-      <Text style={{fontSize:16}}>7. She spent happily.</Text>
-      <Text style={{fontSize:16}}>8. He reads clearly.</Text>
-      <Text style={{fontSize:16}}>9. The story is well written.</Text>
-      <Text style={{fontSize:16}}>10. The child slept soundly.</Text>
-      <Text style={{fontSize:16}}>11. Is that so?</Text>
-      <Text style={{fontSize:16}}>12. The boy works hard.</Text>
-      <Text style={{fontSize:16}}>13. Thus only, you will succeed.	</Text>
-      <Text style={{fontSize:16}}>14. She is extremely angry with me.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. She wrote it <BoldTextHelper text="well"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. He fought <BoldTextHelper text="bravely"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. She is <BoldTextHelper text="seriously"/> ill.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. I told him <BoldTextHelper text="thus"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. Rani smiles <BoldTextHelper text="beautifully"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. Do you think <BoldTextHelper text="so?"/></Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>7. She spent <BoldTextHelper text="happily"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>8. He reads <BoldTextHelper text="clearly"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>9. The story is <BoldTextHelper text="well"/> written.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>10. The child slept <BoldTextHelper text="soundly"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>11. Is that <BoldTextHelper text="so?"/></Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>12. The boy works <BoldTextHelper text="hard"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>13. <BoldTextHelper text="Thus"/> only, you will succeed.	</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>14. She is <BoldTextHelper text="extremely"/> angry with me.</Text>
 
-      <Text style={{fontSize:16}}>
+      <Text style={{fontSize:16,lineHeight:29}}>
       NOTE: This class includes nearly all those Adverbs which are derived from Adjectives and end in   _”ly”.
       </Text>
     </View>

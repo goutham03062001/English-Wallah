@@ -17,9 +17,9 @@ const AdverbOfReason = () => {
         </Text>
 
 
-        <Text style={{fontSize:16}}>1. Due to bad weather, the match has been postponed.</Text>
-        <Text style={{fontSize:16}}>2. Hence I request you to allow me to go home.</Text>
-        <Text style={{fontSize:16}}>3. It was raining heavily; therefore, we stayed in the house.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="Due to"/> bad weather, the match has been postponed.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="Hence"/> I request you to allow me to go home.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. It was raining heavily; <BoldTextHelper text="therefore"/>, we stayed in the house.</Text>
         
         
       </View>
