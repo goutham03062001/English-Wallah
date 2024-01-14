@@ -68,6 +68,12 @@ const StripeApp = ()=>{
       const {clientSecret,error} = await fetchPaymentIntentClientSecret();
       console.log("client secret - ",clientSecret);
       setLoading(false);
+      function delayFun(){
+        setTimeout(()=>{
+          console.log("Waiting for 2 seconds")
+        },2000);
+      }
+      
       if(error){
         Alert.alert("Error ","error occurred while fetching payment intent")
       }else{
@@ -84,10 +90,14 @@ const StripeApp = ()=>{
     //     }
 
         const initSheet = await initPaymentSheet({paymentIntentClientSecret:clientSecret,merchantDisplayName:"EnglishWallah"});
+          console.log("InitPayment Sheet Called")
         if(initSheet.error){
           return Alert.alert("Error",initSheet.error.message)
         }
+        delayFun();
         const presentSheet = await presentPaymentSheet({clientSecret});
+        console.log("PresentPayment Sheet Called")
+
         if(presentSheet.error){
           return Alert.alert("Error",presentSheet.error.message)
         }else{
