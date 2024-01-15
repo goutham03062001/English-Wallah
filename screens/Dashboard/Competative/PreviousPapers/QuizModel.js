@@ -9,6 +9,7 @@ import QuizReview from './QuizReview';
 import { useNavigation } from '@react-navigation/native';
 import QuizOverView from "./QuizOverView"
 import { AuthContext } from '../../../../context/AuthContext';
+import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper';
 const QuizApp = ({quizId}) => {
   const navigation = useNavigation();
   const [quizData, setQuizData] = useState(null);
@@ -18,6 +19,8 @@ const QuizApp = ({quizId}) => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const[viewAnalytics,setViewAnalytics] = useState(false);
   const[index,setIndex] = useState(0);
+  const [minutes, setMinutes] = useState(11);
+  const [seconds, setSeconds] = useState(0);
 
   const authContext = useContext(AuthContext);
   useEffect(() => {
@@ -34,6 +37,28 @@ const QuizApp = ({quizId}) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (minutes === 0 && seconds === 0) {
+        // Timer has reached 0, handle quiz completion or timeout
+        clearInterval(timer);
+        // Add your logic for quiz completion or timeout here
+        setQuizCompleted(true);
+      } else {
+        // Update the timer every second
+        if (seconds === 0) {
+          setMinutes((prevMinutes) => prevMinutes - 1);
+          setSeconds(59);
+        } else {
+          setSeconds((prevSeconds) => prevSeconds - 1);
+        }
+      }
+    }, 1000);
+
+    // Clear the interval when the component is unmounted
+    return () => clearInterval(timer);
+  }, [minutes, seconds]);
+  const formatTime = (value) => (value < 10 ? `0${value}` : value);
  const nextBtn = ()=>{
   return setIndex(index+1);
  }
@@ -57,7 +82,7 @@ const QuizApp = ({quizId}) => {
     if (currentQuestion === 0) {
       return (
         <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-          <Text style={{color:"white"}}>Next <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:30,height:16}}/></Text>
+          <Text style={{color:"white",fontFamily:PoppinsRegular}}>Next <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:20,height:10}}/></Text>
         </TouchableOpacity>
       );
     } else if (currentQuestion === quizData.Questions.length - 1) {
@@ -66,7 +91,7 @@ const QuizApp = ({quizId}) => {
         <>
          <View style={styles.buttonStyle}>
          <TouchableOpacity style={styles.prevButton} onPress={handlePrevQuestion}>
-            <Text>Previous</Text>
+            <Text style={{fontFamily:PoppinsRegular}}>Previous</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
           <Text style={{color:"white"}}>Finish Quiz  <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
@@ -80,11 +105,11 @@ const QuizApp = ({quizId}) => {
       return (
         <View style={styles.buttonStyle}>
           <Pressable style={styles.prevButton} onPress={handlePrevQuestion}>
-          <Text style={{color:"white"}}><Image source={{uri:"https://img.icons8.com/ios/50/left--v1.png"}} style={{width:20,height:16}}/> Previous</Text>
+          <Text style={{color:"white",fontFamily:PoppinsRegular}}><Image source={{uri:"https://img.icons8.com/ios/50/left--v1.png"}} style={{width:20,height:16}}/> Previous</Text>
 
           </Pressable>
           <Pressable style={styles.nextButton} onPress={handleNextQuestion}>
-          <Text style={{color:"white"}}>Next  <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
+          <Text style={{color:"white",fontFamily:PoppinsRegular}}>Next  <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
 
           </Pressable>
         </View>
@@ -242,7 +267,7 @@ const QuizApp = ({quizId}) => {
         onPress={() => handleOptionPress(key)}
         disabled={quizCompleted}
       >
-        <Text style={selectedOption === key ? styles.selectedOptionText : styles.optionText}>
+        <Text style={[selectedOption === key ? styles.selectedOptionText : styles.optionText,{fontFamily:PoppinsRegular}]}>
           {/* {value === answer ? "true":value} */}
           {value}
         </Text>
@@ -263,7 +288,7 @@ const QuizApp = ({quizId}) => {
   }
   if (quizCompleted) {
     const score = calculateScore();
-    console.log("quiz answers - ",userAnswers)
+    // console.log("quiz answers - ",userAnswers)
     return (
      <>
          <View style={styles.container}>
@@ -283,9 +308,14 @@ const QuizApp = ({quizId}) => {
   } else {
     const currentQuestionData = quizData.Questions[currentQuestion];
     return (
-      <View style={styles.container}>
+    <ScrollView>
+        <View style={styles.container}>
        <View style={styles.questionContainer}>
        {/* <Text>{timer}</Text> */}
+      <View style={styles.timerContainer}>
+      <Text style={{marginRight:"70%",fontSize:18,backgroundColor:"black",width:35,height:25,color:"white",textAlign:"center"}}>{currentQuestion+1}</Text>
+      <Text style={{fontSize:24,fontFamily:"Poppins-Light"}}>{`${formatTime(minutes)}:${formatTime(seconds)}`}</Text>
+      </View>
        <Text style={styles.question}>{currentQuestionData.questionName}</Text>
         
        </View>
@@ -296,6 +326,7 @@ const QuizApp = ({quizId}) => {
           <Text>{currentQuestion + 1 < quizData.Questions.length ? 'Next Question' : 'Finish Quiz'}</Text>
         </TouchableOpacity> */}
       </View>
+    </ScrollView>
     );
   }
 };
@@ -313,9 +344,10 @@ const styles = StyleSheet.create({
     },
     question:{
       fontSize: 18,
-      fontWeight: 'bold',
+      // fontWeight: 'bold',
       marginBottom: 45,
-      marginVertical:14
+      marginVertical:14,
+      fontFamily:"Poppins-Regular"
     },
     option: {
       borderWidth: 1,
@@ -359,8 +391,20 @@ const styles = StyleSheet.create({
     selectedOptionText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white', // Highlight the selected option text
+        color: 'white', // Highlight the selected option text,
+        fontFamily:PoppinsRegular
       },
+      timerContainer:{
+        width:"100%",
+        height:50,
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"flex-end",
+        paddingRight:8,
+        
+
+       
+      }
   });
 
 export default QuizApp;

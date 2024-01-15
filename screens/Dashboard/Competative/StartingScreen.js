@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { AuthContext } from "../../../context/AuthContext";
 import ModelPaperStartingScreen from "./ModelPapers/ModelPaperStartingScreen";
 import PreviousPaperStartingScreen from "./PreviousPapers/StartingScreen"
+import QuizOverView from "./PreviousPapers/QuizOverView";
 const Stack = createStackNavigator();
 const RoutingScreen = () => {
   const navigation = useNavigation();
@@ -54,6 +55,7 @@ const StartingScreen = () => {
         />
         <Stack.Screen name="Model Papers" component={ModelPaperStartingScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Previous Papers" component={PreviousPaperStartingScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Quiz Review" component={QuizOverView}/>
       </Stack.Navigator>
     </>
   );

@@ -2,45 +2,94 @@ import { Dimensions, StyleSheet, Text, View ,Image} from "react-native";
 import React, { useState ,useEffect} from "react";
 import { Button, Dialog,Card } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
-const QuizOverView = ({ userAnswers, quizData, finishQuizOverView }) => {
+const QuizOverView = ({ route }) => {
+
+  const {userAnswers,quizData} = route.params;
   const [currIndex, setCurrIndex] = useState(0);
   const[trueCount,setTrueCount] = useState(0);
   const[wrongCount,setWrongCount] = useState(0);
   const[skippedCount,setSkippedCount] = useState(0);
   console.log("Insided Quiz Overview - ", userAnswers);
   // userAnswers[currIndex].selectedOption[userAnswers[currIndex].selectedOption.length - 1] == quizData.Questions[currIndex].answer[0]
-
-  useEffect(() => {
-    quizData.Questions.forEach((question, currIndex) => {
-      setTrueCount((prevTrueCount) =>
-        userAnswers[currIndex].selectedOption[
-          userAnswers[currIndex].selectedOption.length - 1
-        ] === quizData.Questions[currIndex].answer[0]
-          ? prevTrueCount + 1
-          : prevTrueCount
-      );
+  const calculateCorrectAnswer = () => {
+    if (!quizData || !quizData.Questions || !Array.isArray(quizData.Questions) || quizData.Questions.length === 0) {
+      console.error('Invalid or empty questions array');
+      return 0;
+    }
   
-      setWrongCount((prevWrongCount) =>
-        userAnswers[currIndex].selectedOption[
-          userAnswers[currIndex].selectedOption.length - 1
-        ] !== quizData.Questions[currIndex].answer[0]
-          ? prevWrongCount + 1
-          : prevWrongCount
-      );
+    const correctAnswers = userAnswers.filter(answer => {
+      const questionId = answer.questionId - 1;
+      const question = quizData.Questions[questionId];
   
-      setSkippedCount((prevSkippedCount) =>
-        userAnswers[currIndex].selectedOption === ""
-          ? prevSkippedCount + 1
-          : prevSkippedCount
-      );
+      // Check if the question and its answer property exist
+      if (!question || typeof question.answer !== 'string') {
+        console.error('Invalid question or answer property');
+        return false;
+      }
+      
+      return question.options[answer.selectedOption] === question.answer;
     });
-  }, [userAnswers, quizData.Questions]);
+    if(correctAnswers.length>=0){
+      return setTrueCount(correctAnswers.length);
+    }
+    return (correctAnswers.length / quizData.Questions.length) * 100;
+  };
+
+  const calculateWrongAnswers = () => {
+    if (!quizData || !quizData.Questions || !Array.isArray(quizData.Questions) || quizData.Questions.length === 0) {
+      console.error('Invalid or empty questions array');
+      return 0;
+    }
+  
+    const wrongAnswers = userAnswers.filter(answer => {
+      const questionId = answer.questionId - 1;
+      const question = quizData.Questions[questionId];
+  
+      // Check if the question and its answer property exist
+      if (!question || typeof question.answer !== 'string') {
+        console.error('Invalid question or answer property');
+        return false;
+      }
+      
+      return answer.selectedOption!==null && question.options[answer.selectedOption] !== question.answer;
+    });
+    if(wrongAnswers.length>=0){
+      return setWrongCount(wrongAnswers.length);
+    }
+    return (wrongAnswers.length / quizData.Questions.length) * 100;
+  };
+
+  // const calculateSkippedQuestions = async () => {
+  //   if (!quizData || !quizData.Questions || !Array.isArray(quizData.Questions) || quizData.Questions.length === 0) {
+  //     console.error('Invalid or empty questions array');
+  //     return 0;
+  //   }
+  
+  //   const skippedQuestions = userAnswers.filter(answer => console.log("answer - ",answer));
+  
+  //   setSkippedCount(prevSkippedCount => prevSkippedCount + skippedQuestions.length);
+  // };
+  
+  useEffect(() => {
+    calculateCorrectAnswer();
+    calculateWrongAnswers();
+    // calculateSkippedQuestions();
+    
+    // quizData.Questions.forEach((question, currIndex) => {
+    //   console.log("User chosen option - ",userAnswers[currIndex].selectedOption) 
+    //   setSkippedCount((prevSkippedCount) =>
+    //     userAnswers[currIndex].selectedOption === null
+    //       ? prevSkippedCount + 1
+    //       : prevSkippedCount
+    //   );
+    // });
+  }, []);
 
   
 
   function finish() {
     console.log("finish is clicked");
-    return finishQuizOverView;
+    
   }
   return (
     <>
@@ -73,7 +122,7 @@ const QuizOverView = ({ userAnswers, quizData, finishQuizOverView }) => {
           />
           <Text style={{fontWeight:"400",fontSize:16}}>Skipped Questions</Text>
          </View>
-         <Text>{skippedCount}</Text>
+         <Text>{quizData && quizData.Questions.length - (trueCount+wrongCount)}</Text>
           </View>
         </Card.Content>
       </Card>
@@ -81,7 +130,7 @@ const QuizOverView = ({ userAnswers, quizData, finishQuizOverView }) => {
       <View style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginVertical:20}}>
       <Image source={require("../../../../assets/done.png")} style={{width:80,height:80}}/>
       </View>
-      <Button onPress={finishQuizOverView}>Review Completed </Button>
+      <Button >Review Completed </Button>
     </>
   );
 };

@@ -150,6 +150,7 @@ function App() {
     async function loadFonts() {
       await Font.loadAsync({
         'Poppins-Light': require('./assets/fonts/Poppins-Light.ttf'),
+        'Poppins-Regular':require('./assets/fonts/Poppins-Regular.ttf')
         // Add more fonts as needed
       });
     }
