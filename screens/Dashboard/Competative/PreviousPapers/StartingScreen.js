@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,ScrollView,Dimensions,Image,Pressable } from 'react-native'
-import React,{useContext,useEffect} from 'react';
+import React,{useContext,useEffect,useState} from 'react';
 import { Card,ActivityIndicator, Button } from 'react-native-paper';
 import { AuthContext } from '../../../../context/AuthContext';
 import QuizModel from './QuizModel';
@@ -20,8 +20,34 @@ const QuizExam = ({route})=>{
 const DisplayQuizNames = ()=>{
   const authContext = useContext(AuthContext);
   const navigation = useNavigation();
+  const [quizScore, setQuizScore] = useState([]);
+  const[maxScore,setMaxScore] = useState(0);
+  // const quizScore = [];
+  let maxScore1 = 0;
+ 
+
   useEffect(()=>{
     authContext.getAllQuizzes();
+    authContext.loadCurrentPersonDetails();
+    if (authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts) {
+      authContext.currentLoggedPerson.quizAttempts.forEach((attempt) => {
+        let intVal = parseInt(attempt.score);
+        quizScore.push(intVal);
+        console.log("Score - ", attempt.score);
+      });
+      setQuizScore(quizScore)
+      // Calculate maxScore
+      quizScore.forEach((currentScore) => {
+        if (currentScore > maxScore1) {
+          maxScore1 = currentScore;
+        }
+      });
+      setMaxScore(maxScore1);
+      console.log("quizScore", quizScore);
+      console.log("length - ",quizScore.length);
+      console.log("type - ",typeof(quizScore));
+      console.log("isArr - ",Array.isArray(quizScore))
+    }
   },[])
   return (
     <>
@@ -44,10 +70,10 @@ const DisplayQuizNames = ()=>{
           <View style={styles.dayCardStyle}>
           <Text style={{fontWeight:"bold"}}>
           <Image source={AttemptImage} style={{width:20,height:20}}/>
-          Attempts - 1</Text>
+          Attempts - {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts && authContext.currentLoggedPerson.quizAttempts.length}</Text>
           <Text style={{fontWeight:"bold"}}>
           <Image source={BestScoreImage} style={{width:20,height:20}}/>
-           Best Score - 9/10
+           Best Score - {maxScore}/10
           </Text>
           </View>
           </View>

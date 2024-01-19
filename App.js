@@ -142,6 +142,7 @@ function NavigationComponent() {
 }
 
 function App() {
+  const authContext = useContext(AuthContext)
   const [loading, setLoading] = useState(false);
   setTimeout(() => {
     setLoading(true);
@@ -156,6 +157,7 @@ function App() {
     }
 
     loadFonts();
+    authContext.loadCurrentPersonDetails();
   }, []);
   return (
     <>

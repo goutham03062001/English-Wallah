@@ -12,20 +12,21 @@ export const AuthContext = createContext({
   removeAuthenticate: () => {},
   getDetails: (inputData) => {},
   loading: false,
-  currentLoggedInStudent: {},
+  currentLoggedPerson: {},
   currentLoggedInStatus: "",
   currentLoggedInId: "",
   updateCurrentStatus: (role) => {},
   getPersonalDetails: (id) => {},
   getAllQuizzes:()=>{},
-  updateQuizAttempt:(userId,quizId)=>{},
-  quizExamsArr : []
+  updateQuizAttempt:(userId,quizId,score)=>{},
+  quizExamsArr : [],
+  loadCurrentPersonDetails:()=>{}
 });
 
 export default function AuthContextProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
   const [isAdmissionFound, setIsAdmissionFound] = useState(false);
-  const [currStudentDetails, setCurrStudentDetails] = useState([{}]);
+  const [currentLoggedInPerson, setCurrentLoggedInPerson] = useState({});
   const [loading, setLoading] = useState(false);
   const [sentLetter, setSentLetter] = useState(false);
   const [homeWorksArr, setHomeWorksArr] = useState([{}]);
@@ -87,6 +88,9 @@ export default function AuthContextProvider({ children }) {
         if (data.data._id) {
           console.log("Authenticated user");
           //isAuthenticated -> isAuthorized
+          setCurrentLoggedInPerson(data.data);
+          console.log("signup person in data - ",data.data)
+
           setLocalItem(data.data._id,mobile,name,email,address,data.data.isAuthenticated);
           setAuthenticated(true);
           setLoading(false);
@@ -122,6 +126,7 @@ export default function AuthContextProvider({ children }) {
         console.log(data.data);
         if (data.data === "Either mobile number or password is wrong") {
           setLoading(false);
+          
           return Alert.alert("Login Failed", JSON.stringify(data.data));
         }
         if (
@@ -137,6 +142,9 @@ export default function AuthContextProvider({ children }) {
           let idx = 0;
           setLocalItem(data.data._id,mobile,data.data.name,data.data.email,data.data.address,data.data.isAuthenticated);
           setLoading(false);
+          setCurrentLoggedInPerson(data.data);
+          console.log("logged person in data - ",data.data);
+          getAllQuizzes();
           return Alert.alert("Login Success !", "You are now logged in");
         }
       })
@@ -276,17 +284,19 @@ export default function AuthContextProvider({ children }) {
     }
   }
 
-  async function updateQuizAttempt(quizId){
+  async function updateQuizAttempt(quizId,score){
     const config = {
       headers: {
         "Content-Type": "application/json",
       }
     }
+    const body = {score};
+    console.log("Quiz Score - ",body.score);
     try {
       let userId = await AsyncStorage.getItem("userId");
       console.log("userId - "+userId+" quizId - "+quizId)
       setLoading(true);
-      const response = await axios.put(BACKEND_API_URL+"/api/Quiz/upload/updateAttempts/user/"+userId+"/quiz/"+quizId,config);
+      const response = await axios.put(BACKEND_API_URL+"/api/Quiz/upload/updateAttempts/user/"+userId+"/quiz/"+quizId,body,config);
       if(response.data){
         console.log("quiz attempt uploaded",response.data);
         }
@@ -298,7 +308,24 @@ export default function AuthContextProvider({ children }) {
  
     }
   }
-
+  async function loadCurrentPersonDetails(){
+    const userId = await AsyncStorage.getItem("userId");
+    try {
+      setLoading(true);
+      const data = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+userId);
+      if(data.data._id){
+        setLoading(false);
+        return setCurrentLoggedInPerson(data.data);
+      }else{
+        setLoading(false);
+        return Alert.alert("No user found with current id");
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Occurred : "+error)
+      return Alert.alert("Error Occurred!","Something went wrong"+error);
+    }
+  }
   const values = {
     signup: signup,
     studentLogin: studentLogin,
@@ -308,7 +335,7 @@ export default function AuthContextProvider({ children }) {
     removeAuthenticate: removeAuthenticate,
     getDetails: getDetails,
     loading: loading,
-    currentLoggedInStudent: currStudentDetails,
+    currentLoggedPerson: currentLoggedInPerson,
     sentLetter: sentLetter,
     homeWorksArr: homeWorksArr,
     facultySignup: facultySignup,
@@ -325,7 +352,8 @@ export default function AuthContextProvider({ children }) {
     currentWeekExamsArr: currentWeekExamsArr,
     getAllQuizzes:getAllQuizzes,
     quizExamsArr:quizExamsArr,
-    updateQuizAttempt:updateQuizAttempt
+    updateQuizAttempt:updateQuizAttempt,
+    loadCurrentPersonDetails:loadCurrentPersonDetails
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

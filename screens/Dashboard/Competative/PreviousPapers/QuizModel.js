@@ -18,10 +18,11 @@ const QuizApp = ({quizId}) => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const[viewAnalytics,setViewAnalytics] = useState(false);
+  const[myScore,setMyScore] = useState(0);
   const[index,setIndex] = useState(0);
   const [minutes, setMinutes] = useState(11);
   const [seconds, setSeconds] = useState(0);
-
+  const [selectedOptionsByQuestion, setSelectedOptionsByQuestion] = useState({});
   const authContext = useContext(AuthContext);
   useEffect(() => {
     const fetchData = async () => {
@@ -73,9 +74,16 @@ const QuizApp = ({quizId}) => {
         setCurrentQuestion(currentQuestion - 1);
   
         // Retrieve the user's selected option for the previous question
-        const prevAnswer = userAnswers.find(answer => answer.questionId === currentQuestion);
-        setSelectedOption(prevAnswer ? prevAnswer.selectedOption : null);
+        // const prevAnswer = userAnswers.find(answer => answer.questionId === currentQuestion);
+        // setSelectedOption(prevAnswer ? prevAnswer.selectedOption : null);
+
+        const prevAnswer = userAnswers.find((answer) => answer.questionId === currentQuestion);
+        setSelectedOption(
+          prevAnswer ? prevAnswer.selectedOption : selectedOptionsByQuestion[currentQuestion - 1]
+        );
       }
+      // setSelectedOption(null);
+
   };
 
   const renderButtons = () => {
@@ -117,26 +125,27 @@ const QuizApp = ({quizId}) => {
     }
   };
 
-  function finishQuizOverView(){
-    
-  }
+  function finishQuizOverView(){}
   const handleOptionPress = (option) => {
     setSelectedOption(option);
   };
 
   const handleNextQuestion = () => {
     setUserAnswers([...userAnswers, { questionId: currentQuestion + 1, selectedOption }]);
+    setSelectedOptionsByQuestion({
+      ...selectedOptionsByQuestion,
+      [currentQuestion]: selectedOption,
+    });
     setSelectedOption(null);
-
     if (currentQuestion + 1 < quizData.Questions.length) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      //update the attempt count
-      authContext.updateQuizAttempt(quizData._id);
+      let myScore1 = calculateScore();
+      console.log("Your quiz Score is - ",myScore1)
       setQuizCompleted(true);
+      authContext.updateQuizAttempt(quizData._id,myScore1);
       // navigation.navigate("Quiz Overview",{userAnswers:userAnswers})
-      
-      
+     
     }
   };
 
@@ -166,7 +175,7 @@ const QuizApp = ({quizId}) => {
     
   }
 
-  const calculateScore = () => {
+  const calculateScore =  () => {
     if (!quizData || !quizData.Questions || !Array.isArray(quizData.Questions) || quizData.Questions.length === 0) {
       console.error('Invalid or empty questions array');
       return 0;
@@ -184,8 +193,10 @@ const QuizApp = ({quizId}) => {
   
       return question.options[answer.selectedOption] === question.answer;
     });
-  
-    return (correctAnswers.length / quizData.Questions.length) * 100;
+    console.log("Correct answer - ",correctAnswers.length);
+    const TotalScore = correctAnswers.length;
+     setMyScore(TotalScore);
+    return TotalScore;
   };
 
   const renderOptions1 = (options,answer,selectedOption) => {
@@ -287,7 +298,7 @@ const QuizApp = ({quizId}) => {
     return <QuizOverView userAnswers={userAnswers} quizData = {quizData}/>
   }
   if (quizCompleted) {
-    const score = calculateScore();
+    // const score = calculateScore();
     // console.log("quiz answers - ",userAnswers)
     return (
      <>

@@ -20,14 +20,17 @@ const QuizOverView = ({ route }) => {
     const correctAnswers = userAnswers.filter(answer => {
       const questionId = answer.questionId - 1;
       const question = quizData.Questions[questionId];
-  
+      console.log("user selected option - ",answer.selectedOption[6]);
+      console.log("actual answer - ",question.answer[0] + " "+question.answer[0]);
+      console.log("user option type - "+typeof(answer.selectedOption[6]) + "actual answer type - "+typeof(question.answer[0]))
+      console.log("both are true - ",answer.selectedOption[6]==question.answer[0])
       // Check if the question and its answer property exist
       if (!question || typeof question.answer !== 'string') {
         console.error('Invalid question or answer property');
         return false;
       }
       
-      return question.options[answer.selectedOption] === question.answer;
+      return answer.selectedOption[6] === question.answer[0];
     });
     if(correctAnswers.length>=0){
       return setTrueCount(correctAnswers.length);
@@ -51,7 +54,7 @@ const QuizOverView = ({ route }) => {
         return false;
       }
       
-      return answer.selectedOption!==null && question.options[answer.selectedOption] !== question.answer;
+      return answer.selectedOption!==null && answer.selectedOption[6] != question.answer[0];
     });
     if(wrongAnswers.length>=0){
       return setWrongCount(wrongAnswers.length);
