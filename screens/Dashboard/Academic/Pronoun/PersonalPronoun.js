@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-
+import BoldTextHelper from '../utils/BoldText'
 const PersonalPronoun = () => {
   return (
-    <View>
-      <Text>PersonalPronoun</Text>
+    <View style={{padding:10}}>
+      <Text></Text>
+      <BoldTextHelper text="I, we, you, he, she, it, they" fontSize={16}/>
     </View>
   )
 }

@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const RelativePronoun = () => {
+const IfClauseStarting = () => {
   return (
     <View>
-      <Text>RelativePronoun</Text>
+      <Text>IfClauseStarting</Text>
     </View>
   )
 }
 
-export default RelativePronoun
+export default IfClauseStarting
 
 const styles = StyleSheet.create({})

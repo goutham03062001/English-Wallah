@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const RelativePronoun = () => {
+const PostModifiers = () => {
   return (
     <View>
-      <Text>RelativePronoun</Text>
+      <Text>PostModifiers</Text>
     </View>
   )
 }
 
-export default RelativePronoun
+export default PostModifiers
 
 const styles = StyleSheet.create({})

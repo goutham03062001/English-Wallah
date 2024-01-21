@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const RelativePronoun = () => {
+const TensesAndTime = () => {
   return (
     <View>
-      <Text>RelativePronoun</Text>
+      <Text>TensesAndTime</Text>
     </View>
   )
 }
 
-export default RelativePronoun
+export default TensesAndTime
 
 const styles = StyleSheet.create({})

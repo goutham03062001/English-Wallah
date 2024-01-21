@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import ModelPaperExam from './ModelPaperExam';
 import ModelPaperReview from "./ModelPaperReview"
 import { PoppinsRegular } from '../../../../utils/FontHelper';
+import { ScrollView } from 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 
 const ModelPaperExam1 = ({route})=>{
@@ -22,14 +23,13 @@ const ModelPaperStartingScreen = () => {
     authContext.getAllModelPapers();
   },[])
   return (
-    <View style={styles.rootContainer}>
-      {/* <Text>ModelPaperStartingScreen</Text> */}
-      {authContext.loading ? <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+   <ScrollView>
+     <View style={styles.rootContainer}>
+      {/* {authContext.loading ? <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
         <ActivityIndicator animating={true} color="black" size={35}/>
       </View>:<>
       <>
         {authContext.quizExamsArr && authContext.quizExamsArr.length >0 ? <>
-            {/* <Text>{authContext.quizExamsArr.length}</Text> */}
            {authContext.quizExamsArr.map((exam,index)=>{
             return(<>
               <View key={index} style={{marginTop:10}}>
@@ -55,8 +55,367 @@ const ModelPaperStartingScreen = () => {
           <Text>No model paper found</Text>
         </>}
       </>
-      </>}
+      </>} */}
+
+     
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 9,
+    // iOS
+    shadowColor: 'red',
+        shadowOffset: { width: 10, height: 21 },
+    shadowOpacity: 0.8,
+    shadowRadius: 10,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Noun"/>
+          </Card.Content>
+        </Card>
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Pronoun"/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Adverbs"/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Prepositions"/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Conjunctions"/>
+          </Card.Content>
+        </Card>
+
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Adjectives"/>
+          </Card.Content>
+        </Card>
+
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Verbs"/>
+          </Card.Content>
+        </Card>
+
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Non-finite Verbs"/>
+          </Card.Content>
+        </Card>
+
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Degrees of Comparison"/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Question Tags"/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Subject-Verb Agreement "/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Active Voice Passive Voice "/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Direct and Indirect Speech"/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Conditional Clause / If Clause:"/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Subject and Predicate "/>
+          </Card.Content>
+        </Card>
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Tense and Time "/>
+          </Card.Content>
+        </Card>
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Phrase"/>
+          </Card.Content>
+        </Card>
+   
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Clause"/>
+          </Card.Content>
+        </Card>
+   
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Simple, Compound and Complex"/>
+          </Card.Content>
+        </Card>
+   
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Figures of Speech"/>
+          </Card.Content>
+        </Card>
+   
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Odd Sound Out"/>
+          </Card.Content>
+        </Card>
+   
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Syllables"/>
+          </Card.Content>
+        </Card>
+   
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Phonetic Transcription"/>
+          </Card.Content>
+        </Card>
+   
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Silent Letters"/>
+          </Card.Content>
+        </Card>
+   
+
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Worngly Spelt Word"/>
+          </Card.Content>
+        </Card>
+   
     </View>
+   </ScrollView>
   )
 }
 const StartingScreen = ()=>{

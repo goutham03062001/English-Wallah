@@ -19,6 +19,10 @@ import ActiveAndPassiveStartingScreen from './Academic/ActiveAndPassive/ActiveAn
 import PrepositionStartingScreen from './Academic/Preposition/PrepositionStartingScreen';
 import ArticlesStartingScreen from "./Academic/Articles/ArticlesStartingScreen";
 import ModifiersStartingScreen from './Academic/Modifiers/ModifiersStartingScreen';
+import NonFiniteVerbsStartingScreen from './Academic/NonFiniteVerbs/NonFiniteVerbsStartingScreen';
+import QuestionTagsStartingScreen from './Academic/QuestionTags/QuestionTagsStartingScreen';
+import DirectAndIndirectStarting from './Academic/DirectAndIndirect/DirectAndIndirectStarting';
+import IfClauseStarting from './Academic/IfClause/IfClauseStarting';
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
@@ -37,6 +41,10 @@ const DashboardHandler = () => {
     <Stack.Screen name = "Preposition" component={PrepositionStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Articles" component={ArticlesStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Modifiers" component={ModifiersStartingScreen} options={{headerShown:false}}/>
+    <Stack.Screen name = "Non-Finite Verbs" component={NonFiniteVerbsStartingScreen} options={{headerShown:false}}/>
+    <Stack.Screen name = "QuestionTags" component={QuestionTagsStartingScreen} options={{headerShown:false}}/>
+    <Stack.Screen name = "Direct and Indirect Speech" component={DirectAndIndirectStarting} options={{headerShown:false}}/>
+    <Stack.Screen name = "IfClause" component={IfClauseStarting} options={{headerShown:false}}/>
     
     </Stack.Navigator>
   )

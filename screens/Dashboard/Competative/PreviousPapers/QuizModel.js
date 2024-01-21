@@ -24,18 +24,28 @@ const QuizApp = ({quizId}) => {
   const [seconds, setSeconds] = useState(0);
   const [selectedOptionsByQuestion, setSelectedOptionsByQuestion] = useState({});
   const authContext = useContext(AuthContext);
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(BACKEND_API_URL+"/api/Quiz/upload/getQuizDetails/"+quizId);
         const data = await response.json();
+       
         setQuizData(data);
+
       } catch (error) {
         console.error('Error fetching quiz data:', error);
       }
     };
 
     fetchData();
+    console.log("Quiz ",quizData)
   }, []);
 
   useEffect(() => {
@@ -317,7 +327,7 @@ const QuizApp = ({quizId}) => {
      </>
     );
   } else {
-    const currentQuestionData = quizData.Questions[currentQuestion];
+    const currentQuestionData = quizData && quizData.Questions && quizData.Questions[currentQuestion];
     return (
     <ScrollView>
         <View style={styles.container}>

@@ -67,17 +67,21 @@ const Classes = () => {
       </Card>
       </Pressable>
 
+      <Pressable onPress={()=>navigation.navigate("Non-Finite Verbs")}>
       <Card style={{backgroundColor:"#594545"}}>
         <Card.Content>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Non-Finite Verbs</Text>
         </Card.Content>
       </Card>
+      </Pressable>
 
+      <Pressable onPress={()=>navigation.navigate("QuestionTags")}>
       <Card style={{backgroundColor:"#40514E"}}>
         <Card.Content>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Question Tags</Text>
         </Card.Content>
       </Card>
+      </Pressable>
 
       <Card style={{backgroundColor:"#2B2E4A"}}>
         <Card.Content>
@@ -114,18 +118,67 @@ const Classes = () => {
         </Card.Content>
       </Card>
      </Pressable>
-      <Card style={{backgroundColor:"#610C9F"}}>
-        <Card.Content>
-            <Text style={{color:"white",textAlign:"center",fontSize:16}}>Question Tags</Text>
-        </Card.Content>
-      </Card>
+      
 
-      <Card style={{backgroundColor:"#435585"}}>
+     <Pressable onPress={()=>navigation.navigate("Direct and Indirect Speech")}>
+     <Card style={{backgroundColor:"#435585"}}>
         <Card.Content>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Direct and Indirect Speech</Text>
         </Card.Content>
       </Card>
+     </Pressable>
 
+     <Pressable onPress={()=>navigation.navigate("IfClause")}>
+     <Card style={{backgroundColor:"#00ADB5"}}>
+        <Card.Content>
+            <Text style={{color:"white",textAlign:"center",fontSize:16}}>IfClause</Text>
+        </Card.Content>
+      </Card>
+     </Pressable>
+
+
+     <Pressable onPress={()=>navigation.navigate("IfClause")}>
+     <Card style={{backgroundColor:"#6A2C70"}}>
+        <Card.Content>
+            <Text style={{color:"white",textAlign:"center",fontSize:16}}>Tenses And Time</Text>
+        </Card.Content>
+      </Card>
+     </Pressable>
+
+     <Pressable onPress={()=>navigation.navigate("IfClause")}>
+     <Card style={{backgroundColor:"#594545"}}>
+        <Card.Content>
+            <Text style={{color:"white",textAlign:"center",fontSize:16}}>Phrase</Text>
+        </Card.Content>
+      </Card>
+     </Pressable>
+
+
+     <Pressable onPress={()=>navigation.navigate("IfClause")}>
+     <Card style={{backgroundColor:"#40514E"}}>
+        <Card.Content>
+            <Text style={{color:"white",textAlign:"center",fontSize:16}}>Clause</Text>
+        </Card.Content>
+      </Card>
+     </Pressable>
+
+     <Pressable onPress={()=>navigation.navigate("IfClause")}>
+     <Card style={{backgroundColor:"#903749"}}>
+        <Card.Content>
+            <Text style={{color:"white",textAlign:"center",fontSize:16}}>Simple Compound Complex</Text>
+        </Card.Content>
+      </Card>
+     </Pressable>
+
+     <Pressable onPress={()=>navigation.navigate("IfClause")}>
+     <Card style={{backgroundColor:"#2B2E4A"}}>
+        <Card.Content>
+            <Text style={{color:"white",textAlign:"center",fontSize:16}}>Formation Of Sentence</Text>
+        </Card.Content>
+      </Card>
+     </Pressable>
+
+     
     </View>
        
     </View>

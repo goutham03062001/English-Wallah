@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const RelativePronoun = () => {
+const SimpleCompundComplexStartingScreen = () => {
   return (
     <View>
-      <Text>RelativePronoun</Text>
+      <Text>SimpleCompundComplexStartingScreen</Text>
     </View>
   )
 }
 
-export default RelativePronoun
+export default SimpleCompundComplexStartingScreen
 
 const styles = StyleSheet.create({})
