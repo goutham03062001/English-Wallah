@@ -5,12 +5,13 @@ import { BACKEND_API_URL } from '../../../../utils/Constants';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Dimensions } from 'react-native';
 import { Pressable } from 'react-native';
-import QuizReview from './QuizReview';
+import QuizReview from "./ModelPaperReview"
 import { useNavigation } from '@react-navigation/native';
-import QuizOverView from "./QuizOverView"
+import QuizOverView from "./ModelPaperOverView"
 import { AuthContext } from '../../../../context/AuthContext';
 import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper';
-const QuizApp = ({quizId}) => {
+const ModelPaperExam = ({ModelPaperId}) => {
+  // console.log('data - ',route.param);
   const navigation = useNavigation();
   const [quizData, setQuizData] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -26,9 +27,13 @@ const QuizApp = ({quizId}) => {
   const authContext = useContext(AuthContext);
   useEffect(() => {
     const fetchData = async () => {
+        
+      console.log("Quiz Id - ",ModelPaperId)
       try {
-        const response = await fetch(BACKEND_API_URL+"/api/Quiz/upload/getQuizDetails/"+quizId);
+        console.log("Loading Model Papers")
+        const response = await fetch(BACKEND_API_URL+"/api/Quiz/upload/modelPaper/getAllModelPapers/"+ModelPaperId);
         const data = await response.json();
+        console.log("Model Paper data - ",data);
         setQuizData(data);
       } catch (error) {
         console.error('Error fetching quiz data:', error);
@@ -102,7 +107,7 @@ const QuizApp = ({quizId}) => {
             <Text style={{fontFamily:PoppinsRegular}}>Previous</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-          <Text style={{color:"white"}}>Finish Quiz  <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
+          <Text style={{color:"white"}}>Submit <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
 
           </TouchableOpacity>
          </View>
@@ -264,9 +269,9 @@ const QuizApp = ({quizId}) => {
      <>
      {index ===0 ? <>
       <View  style={{width:"100%",display:"flex",flexDirection:"row-reverse",justifyContent:"flex-start",marginLeft:35}}>
-      <Text style={{marginRight:0,marginVertical:5,backgroundColor:"#0275d8",color:"white",paddingHorizontal:10,paddingVertical:3}}>
+      {/* <Text style={{marginRight:0,marginVertical:5,backgroundColor:"#0275d8",color:"white",paddingHorizontal:10,paddingVertical:3}}>
         {year}
-        </Text>
+        </Text> */}
       </View>
      </> : <></>}
        <TouchableOpacity
@@ -418,4 +423,4 @@ const styles = StyleSheet.create({
       }
   });
 
-export default QuizApp;
+export default ModelPaperExam;

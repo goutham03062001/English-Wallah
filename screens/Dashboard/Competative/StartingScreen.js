@@ -53,7 +53,7 @@ const StartingScreen = () => {
           component={RoutingScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Model Papers" component={ModelPaperStartingScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Model Papers" component={ModelPaperStartingScreen} />
         <Stack.Screen name="Previous Papers" component={PreviousPaperStartingScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Quiz Review" component={QuizOverView}/>
       </Stack.Navigator>

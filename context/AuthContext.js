@@ -20,7 +20,8 @@ export const AuthContext = createContext({
   getAllQuizzes:()=>{},
   updateQuizAttempt:(userId,quizId,score)=>{},
   quizExamsArr : [],
-  loadCurrentPersonDetails:()=>{}
+  loadCurrentPersonDetails:()=>{},
+  getAllModelPapers:()=>{}
 });
 
 export default function AuthContextProvider({ children }) {
@@ -170,7 +171,7 @@ export default function AuthContextProvider({ children }) {
   }
   async function getDetails(inputData) {
     setLoading(true);
-    setCurrStudentDetails(inputData);
+    // setCurrStudentDetails(inputData);
     console.log("Fee Details");
     console.log(inputData.className);
     setLoading(false);
@@ -257,7 +258,7 @@ export default function AuthContextProvider({ children }) {
       .then((data) => {
         console.log("Loading current student details");
         console.log(data.data);
-        setCurrStudentDetails(data.data);
+        // setCurrStudentDetails(data.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -326,6 +327,23 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred!","Something went wrong"+error);
     }
   }
+  async function getAllModelPapers(){
+    try {
+      setLoading(true);
+      console.log("Loading Model Papers")
+      const response = await axios.get(BACKEND_API_URL+'/api/Quiz/upload/modelPaper/getAllModelPapers');
+      if(response.data){
+        // setQuiz
+        setQuizExamsArr(response.data);
+        setLoading(false);
+        console.log(response.data)
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Occurred : "+error)
+      return Alert.alert("Error Occurred!","Something went wrong"+error);
+    }
+  }
   const values = {
     signup: signup,
     studentLogin: studentLogin,
@@ -353,7 +371,8 @@ export default function AuthContextProvider({ children }) {
     getAllQuizzes:getAllQuizzes,
     quizExamsArr:quizExamsArr,
     updateQuizAttempt:updateQuizAttempt,
-    loadCurrentPersonDetails:loadCurrentPersonDetails
+    loadCurrentPersonDetails:loadCurrentPersonDetails,
+    getAllModelPapers:getAllModelPapers
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

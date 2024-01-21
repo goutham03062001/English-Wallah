@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AttemptImage from "../../../../assets/Attempt.png";
 import BestScoreImage from "../../../../assets/bestscore.png"
 import QuizOverView from './QuizOverView';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createStackNavigator();
 const QuizExam = ({route})=>{
   const navigation = useNavigation();
@@ -24,8 +25,11 @@ const DisplayQuizNames = ()=>{
   const[maxScore,setMaxScore] = useState(0);
   // const quizScore = [];
   let maxScore1 = 0;
- 
-
+  let userId=""
+ async function getCurrentPersonDetails(){
+  userId = await  AsyncStorage.getItem("userId")
+ }
+ getCurrentPersonDetails()
   useEffect(()=>{
     authContext.getAllQuizzes();
     authContext.loadCurrentPersonDetails();
@@ -54,7 +58,7 @@ const DisplayQuizNames = ()=>{
  
     {authContext && authContext.loading ? 
     <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
-    <ActivityIndicator animating={true} color="black" />
+    <ActivityIndicator animating={true} color="black" size={35}/>
 
     </View> : <>
     
@@ -73,8 +77,9 @@ const DisplayQuizNames = ()=>{
           Attempts - {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts && authContext.currentLoggedPerson.quizAttempts.length}</Text>
           <Text style={{fontWeight:"bold"}}>
           <Image source={BestScoreImage} style={{width:20,height:20}}/>
-           Best Score - {maxScore}/10
+           Best Score - {maxScore}/10 
           </Text>
+          <Text>{userId}</Text>
           </View>
           </View>
         </Pressable>)}

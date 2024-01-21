@@ -1,268 +1,101 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Dimensions,
-  Image,
-  Alert,
-} from "react-native";
-import React, { useState } from "react";
-import { Card } from "react-native-paper";
-import { Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import Noun from "./Noun";
-import Pronoun from "./Pronoun";
-import Verb from "./Verb";
-import Adverb from "./Adverb";
-import Adjective from "./Adjective";
-
+import { Dimensions, StyleSheet, Text, View ,Image,Pressable} from 'react-native'
+import React,{useEffect,useContext} from 'react'
+import { AuthContext } from '../../../../context/AuthContext'
+import { Card,ActivityIndicator,Button } from 'react-native-paper';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import ModelPaperExam from './ModelPaperExam';
+import ModelPaperReview from "./ModelPaperReview"
+import { PoppinsRegular } from '../../../../utils/FontHelper';
 const Stack = createStackNavigator();
-const StartingScreen1 = () => {
-  const [authorized, setAuthorized] = useState(true);
+
+const ModelPaperExam1 = ({route})=>{
+  return(<>
+  <ModelPaperExam ModelPaperId={route.params.data}/>
+  </>)
+}
+
+const ModelPaperStartingScreen = () => {
+  const authContext = useContext(AuthContext);
   const navigation = useNavigation();
+  useEffect(()=>{
+    authContext.getAllModelPapers();
+  },[])
   return (
-    <ScrollView>
-      <Pressable
-        onPress={() => {
-          authorized
-            ? navigation.navigate("Noun")
-            : Alert.alert("Access Denied!", "You don't have any access");
-        }}
-      >
-        <Card style={[{ backgroundColor: "#DED0B6" }, styles.cardStyle]}>
-          <Card.Content style={styles.contentStyle}>
-            <Text
-              style={{
-                color: "black",
-                fontSize: 16,
-                textAlign: "center",
-                textAlign: "center",
-              }}
-            >
-              Noun{" "}
-              {authorized ? (
-                <>
-                  {/* <Image source={{uri:"https://img.icons8.com/ios/50/approval--v1.png"}} style={{width:25,height:25}}/> */}
-                </>
-              ) : (
-                <>
-                  <Image
-                    source={{
-                      uri: "https://img.icons8.com/color/48/lock--v1.png",
-                    }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                </>
-              )}
-            </Text>
-          </Card.Content>
-        </Card>
-      </Pressable>
-      <Pressable
-        onPress={() => {
-          authorized
-            ? navigation.navigate("Pronoun")
-            : Alert.alert("Access Denied!", "You don't have any access");
-        }}
-      >
-        <Card style={[{ backgroundColor: "#FFDE7D" }, styles.cardStyle]}>
-          <Card.Content style={styles.contentStyle}>
-            <Text
-              style={{
-                color: "black",
-                fontSize: 16,
-                textAlign: "center",
-                textAlign: "center",
-              }}
-            >
-              Pronoun{" "}
-              {authorized ? (
-                <>
-                  {/* <Image source={{uri:"https://img.icons8.com/ios/50/approval--v1.png"}} style={{width:25,height:25}}/> */}
-                </>
-              ) : (
-                <>
-                  <Image
-                    source={{
-                      uri: "https://img.icons8.com/color/48/lock--v1.png",
-                    }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                </>
-              )}
-            </Text>
-          </Card.Content>
-        </Card>
-      </Pressable>
+    <View style={styles.rootContainer}>
+      {/* <Text>ModelPaperStartingScreen</Text> */}
+      {authContext.loading ? <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+        <ActivityIndicator animating={true} color="black" size={35}/>
+      </View>:<>
+      <>
+        {authContext.quizExamsArr && authContext.quizExamsArr.length >0 ? <>
+            {/* <Text>{authContext.quizExamsArr.length}</Text> */}
+           {authContext.quizExamsArr.map((exam,index)=>{
+            return(<>
+              <View key={index} style={{marginTop:10}}>
+              <Pressable onPress={()=>navigation.navigate("Model Exam",{data : exam._id})}>
+              <Card style={{width:Dimensions.get("screen").width-20,borderRadius:3,paddingVertical:8}}>
+                <Card.Content>
+                 <View style={styles.cardContentFlex1}>
+                 <Text style={{fontSize:18, fontFamily:PoppinsRegular}}>Model Paper - {index+1}</Text>
+                  <Button mode="outlined" style={{borderRadius:1,height:39}}><Text style={{fontFamily:PoppinsRegular}}>Attempt</Text></Button>
+                 </View>
+                  <View style={styles.cardContentFlex}>
+                    <Text style={{color:"brown",fontFamily:PoppinsRegular}}>Attempts - 0</Text>
+                    <Text style={{color:"green",fontFamily:PoppinsRegular}}>Best Score - 0/10</Text>
+                  </View>
+                </Card.Content>
+              </Card>
+              </Pressable>
+            </View>
 
-      <Pressable
-        onPress={() => {
-          authorized
-            ? navigation.navigate("Verb")
-            : Alert.alert("Access Denied!", "You don't have any access");
-        }}
-      >
-        <Card style={[{ backgroundColor: "#A084E8" }, styles.cardStyle]}>
-          <Card.Content style={styles.contentStyle}>
-            <Text
-              style={{
-                color: "white",
-                fontSize: 16,
-                textAlign: "center",
-                textAlign: "center",
-              }}
-            >
-              Verb{" "}
-              {authorized ? (
-                <>
-                  {/* <Image source={{uri:"https://img.icons8.com/ios/50/approval--v1.png"}} style={{width:25,height:25}}/> */}
-                </>
-              ) : (
-                <>
-                  <Image
-                    source={{
-                      uri: "https://img.icons8.com/color/48/lock--v1.png",
-                    }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                </>
-              )}
-            </Text>
-          </Card.Content>
-        </Card>
-      </Pressable>
-
-      <Pressable
-        onPress={() => {
-          authorized
-            ? navigation.navigate("Adverb")
-            : Alert.alert("Access Denied!", "You don't have any access");
-        }}
-      >
-        <Card style={[{ backgroundColor: "#00ADB5" }, styles.cardStyle]}>
-          <Card.Content style={styles.contentStyle}>
-            <Text
-              style={{
-                color: "black",
-                fontSize: 16,
-                textAlign: "center",
-                textAlign: "center",
-              }}
-            >
-              Adverb{" "}
-              {authorized ? (
-                <>
-                  {/* <Image source={{uri:"https://img.icons8.com/ios/50/approval--v1.png"}} style={{width:25,height:25}}/> */}
-                </>
-              ) : (
-                <>
-                  <Image
-                    source={{
-                      uri: "https://img.icons8.com/color/48/lock--v1.png",
-                    }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                </>
-              )}
-            </Text>
-          </Card.Content>
-        </Card>
-      </Pressable>
-
-      <Pressable
-        onPress={() => {
-          authorized
-            ? navigation.navigate("Adjective")
-            : Alert.alert("Access Denied!", "You don't have any access");
-        }}
-      >
-        <Card style={[{ backgroundColor: "#6C5B7B" }, styles.cardStyle]}>
-          <Card.Content style={styles.contentStyle}>
-            <Text
-              style={{
-                color: "white",
-                fontSize: 16,
-                textAlign: "center",
-                textAlign: "center",
-              }}
-            >
-              Adjective{" "}
-              {authorized ? (
-                <>
-                  {/* <Image source={{uri:"https://img.icons8.com/ios/50/approval--v1.png"}} style={{width:25,height:25}}/> */}
-                </>
-              ) : (
-                <>
-                  <Image
-                    source={{
-                      uri: "https://img.icons8.com/color/48/lock--v1.png",
-                    }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                </>
-              )}
-            </Text>
-          </Card.Content>
-        </Card>
-      </Pressable>
-    </ScrollView>
-  );
-};
-
-const StartingScreen = () => {
-  return (
-    <>
-      <Stack.Navigator>
+            </>)
+           })}
+        </>:<>
+          <Text>No model paper found</Text>
+        </>}
+      </>
+      </>}
+    </View>
+  )
+}
+const StartingScreen = ()=>{
+  return(<>
+  <Stack.Navigator> 
         <Stack.Screen
           name="Model Paper"
-          component={StartingScreen1}
-          options={{ headerTitle: "Model Papers" }}
+          component={ModelPaperStartingScreen}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Noun"
-          component={Noun}
-          options={{ headerTitle: "Noun" }}
-        />
-        <Stack.Screen
-          name="Pronoun"
-          component={Pronoun}
-          options={{ headerTitle: "Pronoun" }}
-        />
-        <Stack.Screen
-          name="Verb"
-          component={Verb}
-          options={{ headerTitle: "Verb" }}
-        />
-        <Stack.Screen
-          name="Adverb"
-          component={Adverb}
-          options={{ headerTitle: "Adverb" }}
-        />
-        <Stack.Screen
-          name="Adjective"
-          component={Adjective}
-          options={{ headerTitle: "Adjective" }}
-        />
+        <Stack.Screen name="Model Exam" component={ModelPaperExam1} options={{headerShown:false}}/>
+        <Stack.Screen name = "Model Paper Review" component={ModelPaperReview}/>
+        {/* <Stack.Screen name="Quiz Overview" component={QuizOverView}/> */}
       </Stack.Navigator>
-    </>
-  );
-};
-
-export default StartingScreen;
+  </>)
+}
+export default StartingScreen
 
 const styles = StyleSheet.create({
-  cardStyle: {
-    marginVertical: 10,
-    width: "95%",
-    marginHorizontal: Dimensions.get("screen").width / 50,
-    borderRadius: 10,
-    elevation: 5,
+  rootContainer:{
+    flex:1,
+    flexDirection:"column",
+    justifyContent: 'flex-start',
+    alignItems:'flex-start',
+    padding:10,
   },
-  contentStyle: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "center",
+  cardContentFlex:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-between",
+    alignItems:"center",
+    marginLeft:1
   },
-});
+  cardContentFlex1:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-between",
+    alignItems:"center",
+    marginVertical:15
+    // marginLeft:14
+  }
+})

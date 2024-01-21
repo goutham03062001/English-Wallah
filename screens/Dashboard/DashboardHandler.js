@@ -8,12 +8,12 @@ import Dashboard from './Dashboard';
 import { AuthContext } from '../../context/AuthContext';
 import Classes from './Academic/AcademicStartingScreen';
 import StartingScreen from './Competative/StartingScreen';
-import NounsStartingScreen from "./Academic/class6/NounsStartingScreen";
+import NounsStartingScreen from "./Academic/Noun/NounsStartingScreen";
 import PronounStartingScreen from './Academic/Pronoun/PronounStartingScreen';
 import AdjectiveStartingScreen from './Academic/Adjective/AdjectiveStartingScreen';
 import AdverbStartingScreen from './Academic/Adverb/AdverbStartingScreen';
 import ConjunctionStartingScreen from './Academic/Conjunction/ConjunctionStartingScreen';
-import Verb from './Competative/ModelPapers/Verb';
+// import Verb from './Competative/ModelPapers/Verb';
 import VerbStartingScreen from './Academic/Verb/VerbStartingScreen';
 import ActiveAndPassiveStartingScreen from './Academic/ActiveAndPassive/ActiveAndPassiveStartingScreen';
 import PrepositionStartingScreen from './Academic/Preposition/PrepositionStartingScreen';
@@ -25,7 +25,7 @@ const DashboardHandler = () => {
     <Stack.Navigator>
     <Stack.Screen name = "Dashboard" component={Dashboard} options={{ headerRight: ()=><Button
     onPress= {authCtx.logout}>Logout</Button>}}/>
-    <Stack.Screen name="Academic" component={Classes}/>
+    <Stack.Screen name="Academic" component={Classes} />
     <Stack.Screen name="Competitive" component={StartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Noun's" component={NounsStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Pronoun" component={PronounStartingScreen} options={{headerShown:false}}/>
