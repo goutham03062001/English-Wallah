@@ -10,8 +10,9 @@ import { useNavigation } from '@react-navigation/native';
 import QuizOverView from "./ModelPaperOverView"
 import { AuthContext } from '../../../../context/AuthContext';
 import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper';
-const ModelPaperExam = ({ModelPaperId}) => {
-  // console.log('data - ',route.param);
+import axios from "axios"
+const ModelPaperExam = ({ModelPaperType}) => {
+  // console.log("model paper type - ",ModelPaperType);
   const navigation = useNavigation();
   const [quizData, setQuizData] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -28,20 +29,36 @@ const ModelPaperExam = ({ModelPaperId}) => {
   useEffect(() => {
     const fetchData = async () => {
         
-      console.log("Quiz Id - ",ModelPaperId)
+      console.log("Quiz Id - ",ModelPaperType)
       try {
-        console.log("Loading Model Papers")
-        const response = await fetch(BACKEND_API_URL+"/api/Quiz/upload/modelPaper/getAllModelPapers/"+ModelPaperId);
-        const data = await response.json();
-        console.log("Model Paper data - ",data);
-        setQuizData(data);
+        console.log("Loading Model Papers");
+        const response = await axios.get(BACKEND_API_URL + "/api/Quiz/upload/modelPaper/getAllModelPapers/"+ModelPaperType);
+        const data = response.data;
+  
+        // Verify the structure of the data received
+        if (Array.isArray(data) && data.length > 0) {
+          // Assuming the first item in the array contains the desired quiz data
+          const quizData = data[0];
+  
+          if (quizData && quizData.Questions) {
+            setQuizData(quizData);
+          } else {
+            console.error('Invalid quiz data structure:', quizData);
+            setQuizData(null)
+          }
+        } else {
+          console.error('Invalid response structure:', data);
+          setQuizData(null)
+        }
       } catch (error) {
-        console.error('Error fetching quiz data:', error);
+        console.error('Error fetching quiz data:', error.message);
+        setQuizData(null)
       }
     };
 
     fetchData();
-  }, []);
+    console.log("Data - ",quizData)
+  }, [ModelPaperType]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -98,14 +115,30 @@ const ModelPaperExam = ({ModelPaperId}) => {
           <Text style={{color:"white",fontFamily:PoppinsRegular}}>Next <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:20,height:10}}/></Text>
         </TouchableOpacity>
       );
-    } else if (currentQuestion === quizData.Questions.length - 1) {
+    } 
+    if(userAnswers.length<1){
+      let isAllSkipped = false;
+      // 
+    for(let i =0; i<userAnswers.length;i++){
+      if(userAnswers[i].selectedOption!==null){
+        isAllSkipped = true;
+        break;
+      }
+    }
+    if(isAllSkipped){
+      return Alert.alert("Skipped All Questions","please attempt atleast one question in order to submit the quiz");
+    }
+    }
+    else if (currentQuestion === quizData.Questions.length - 1) {
       // Show "Previous" and "Finish Quiz" buttons on the last question
+     
       return (
         <>
          <View style={styles.buttonStyle}>
          <TouchableOpacity style={styles.prevButton} onPress={handlePrevQuestion}>
             <Text style={{fontFamily:PoppinsRegular}}>Previous</Text>
           </TouchableOpacity>
+          <Text>{userAnswers.length}</Text>
           <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
           <Text style={{color:"white"}}>Submit <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
 
@@ -181,7 +214,7 @@ const ModelPaperExam = ({ModelPaperId}) => {
   }
 
   const calculateScore =  () => {
-    if (!quizData || !quizData.Questions || !Array.isArray(quizData.Questions) || quizData.Questions.length === 0) {
+    if (!quizData || !quizData.Questions || !Array.isArray(quizData.Questions) || quizData && quizData.Questions && quizData.Questions.length === 0) {
       console.error('Invalid or empty questions array');
       return 0;
     }
@@ -298,6 +331,13 @@ const ModelPaperExam = ({ModelPaperId}) => {
         <Text>Loading quiz data...</Text>
       </View>
     );
+  }
+  if(quizData === null){
+    return(<>
+      <View style={styles.container}>
+        <Text>No Tests Found</Text>
+      </View>
+    </>)
   }
   if(viewAnalytics){
     return <QuizOverView userAnswers={userAnswers} quizData = {quizData}/>

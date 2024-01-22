@@ -2,8 +2,9 @@ import { Dimensions, StyleSheet, Text, View ,Image} from "react-native";
 import React, { useState ,useEffect} from "react";
 import { Button, Dialog,Card } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 const QuizOverView = ({ route }) => {
-
+  const navigation = useNavigation();
   const {userAnswers,quizData} = route.params;
   const [currIndex, setCurrIndex] = useState(0);
   const[trueCount,setTrueCount] = useState(0);
@@ -133,7 +134,11 @@ const QuizOverView = ({ route }) => {
       <View style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginVertical:20}}>
       <Image source={require("../../../../assets/done.png")} style={{width:80,height:80}}/>
       </View>
-      <Button >Review Completed </Button>
+      <View style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",gap:15}}>
+      <Text>Review Completed!</Text>
+      <Button onPress={()=>navigation.navigate("Model Paper")}
+      mode="contained" style={{borderRadius:2,elevation:5,width:300,height:40}}> <Image source={require('../../../../assets/LeftArrow.png')} style={{width:30,height:20}}/>  <Text style={{fontSize:15}}>Go back</Text></Button>
+      </View>
     </>
   );
 };

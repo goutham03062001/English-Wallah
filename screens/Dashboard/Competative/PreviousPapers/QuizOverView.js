@@ -134,7 +134,11 @@ const QuizOverView = ({ route }) => {
       <View style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginVertical:20}}>
       <Image source={require("../../../../assets/done.png")} style={{width:80,height:80}}/>
       </View>
-      <Button onPress={()=>navigation.navigate("Previous Paper")}>Review Completed </Button>
+      <View style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",gap:15}}>
+      <Text>Review Completed!</Text>
+      <Button onPress={()=>navigation.navigate("Previous Paper")}
+      mode="contained" style={{borderRadius:2,elevation:5,width:300,height:40}}> <Image source={require('../../../../assets/LeftArrow.png')} style={{width:30,height:20}}/>  <Text style={{fontSize:15}}>Go back</Text></Button>
+      </View>
     </>
   );
 };

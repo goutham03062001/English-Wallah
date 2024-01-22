@@ -8,20 +8,22 @@ import ModelPaperExam from './ModelPaperExam';
 import ModelPaperReview from "./ModelPaperReview"
 import { PoppinsRegular } from '../../../../utils/FontHelper';
 import { ScrollView } from 'react-native-gesture-handler';
+import ModelPaperOverView from "./ModelPaperOverView"
 const Stack = createStackNavigator();
 
 const ModelPaperExam1 = ({route})=>{
+  // console.log("model paper type1 - ",route.params.data);
   return(<>
-  <ModelPaperExam ModelPaperId={route.params.data}/>
+  <ModelPaperExam ModelPaperType={route.params.data}/>
   </>)
 }
 
 const ModelPaperStartingScreen = () => {
   const authContext = useContext(AuthContext);
   const navigation = useNavigation();
-  useEffect(()=>{
-    authContext.getAllModelPapers();
-  },[])
+  // useEffect(()=>{
+  //   // authContext.getAllModelPapers();
+  // },[])
   return (
    <ScrollView>
      <View style={styles.rootContainer}>
@@ -58,7 +60,8 @@ const ModelPaperStartingScreen = () => {
       </>} */}
 
      
-        <Card 
+       <Pressable onPress={()=>navigation.navigate("Model Exam",{data : "noun"})}>
+       <Card 
         style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 9,
     // iOS
     shadowColor: 'red',
@@ -70,8 +73,10 @@ const ModelPaperStartingScreen = () => {
             <Card.Title title="Noun"/>
           </Card.Content>
         </Card>
+       </Pressable>
 
-        <Card 
+       <Pressable onPress={()=>navigation.navigate("Model Exam",{data:"pronoun"})}>
+       <Card 
         style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
     // iOS
     shadowColor: 'red',
@@ -83,6 +88,7 @@ const ModelPaperStartingScreen = () => {
             <Card.Title title="Pronoun"/>
           </Card.Content>
         </Card>
+       </Pressable>
 
 
         <Card 
@@ -410,10 +416,34 @@ const ModelPaperStartingScreen = () => {
     shadowRadius: 4,}}
         >
           <Card.Content style={{display:"flex",justifyContent:"center"}}>
-            <Card.Title title="Worngly Spelt Word"/>
+            <Card.Title title="Wrongly Spelt Words"/>
           </Card.Content>
         </Card>
-   
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Correction of Sentences"/>
+          </Card.Content>
+        </Card>
+
+        <Card 
+        style={{width:Dimensions.get("screen").width-30,height:70,marginTop:10,borderRadius:2,elevation: 5,
+    // iOS
+    shadowColor: 'red',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,}}
+        >
+          <Card.Content style={{display:"flex",justifyContent:"center"}}>
+            <Card.Title title="Parts of Speech"/>
+          </Card.Content>
+        </Card>
     </View>
    </ScrollView>
   )
@@ -427,7 +457,8 @@ const StartingScreen = ()=>{
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Model Exam" component={ModelPaperExam1} options={{headerShown:false}}/>
-        <Stack.Screen name = "Model Paper Review" component={ModelPaperReview}/>
+        <Stack.Screen name = "Model Paper Review" component={ModelPaperReview} options={{headerShown:false}}/>
+        <Stack.Screen name="Overview" component={ModelPaperOverView} options={{headerShown:false}}/>
         {/* <Stack.Screen name="Quiz Overview" component={QuizOverView}/> */}
       </Stack.Navigator>
   </>)

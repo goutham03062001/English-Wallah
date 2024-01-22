@@ -320,7 +320,7 @@ import {
           {currIndex === quizData.Questions.length - 1 ? (
             <>
            
-              <Pressable style={styles.finishBtn} onPress={()=>{return navigation.navigate("Quiz Review",{quizData:quizData,userAnswers:userAnswers})}}>
+              <Pressable style={styles.finishBtn} onPress={()=>{return navigation.navigate("Overview",{quizData:quizData,userAnswers:userAnswers})}}>
                 <Text style={{ color: "white", fontFamily: PoppinsRegular }}>
                   
                   Finish Review
