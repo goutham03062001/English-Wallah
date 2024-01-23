@@ -11,8 +11,10 @@ import QuizOverView from "./ModelPaperOverView"
 import { AuthContext } from '../../../../context/AuthContext';
 import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper';
 import axios from "axios"
-const ModelPaperExam = ({ModelPaperType}) => {
-  // console.log("model paper type - ",ModelPaperType);
+const ModelPaperExam = ({route}) => {
+  // console.log("model paper type - ",ModelPaperId);
+  const ModelPaperId = route.params.data;
+  console.log("Current Model Paper Id - ",ModelPaperId)
   const navigation = useNavigation();
   const [quizData, setQuizData] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -29,27 +31,28 @@ const ModelPaperExam = ({ModelPaperType}) => {
   useEffect(() => {
     const fetchData = async () => {
         
-      console.log("Quiz Id - ",ModelPaperType)
+      console.log("Quiz Id - ",ModelPaperId)
       try {
         console.log("Loading Model Papers");
-        const response = await axios.get(BACKEND_API_URL + "/api/Quiz/upload/modelPaper/getAllModelPapers/"+ModelPaperType);
+        const response = await axios.get(BACKEND_API_URL + "/api/Quiz/upload/modelPaper/getAllModelPapers/id/"+ModelPaperId);
         const data = response.data;
+        console.log("current quiz data - ",response);
+        setQuizData(data);
+        // // Verify the structure of the data received
+        // if (Array.isArray(data) && data.length > 0) {
+        //   // Assuming the first item in the array contains the desired quiz data
+        //   const quizData = data[0];
   
-        // Verify the structure of the data received
-        if (Array.isArray(data) && data.length > 0) {
-          // Assuming the first item in the array contains the desired quiz data
-          const quizData = data[0];
-  
-          if (quizData && quizData.Questions) {
-            setQuizData(quizData);
-          } else {
-            console.error('Invalid quiz data structure:', quizData);
-            setQuizData(null)
-          }
-        } else {
-          console.error('Invalid response structure:', data);
-          setQuizData(null)
-        }
+        //   if (quizData && quizData.Questions) {
+        //     setQuizData(quizData);
+        //   } else {
+        //     console.error('Invalid quiz data structure:', quizData);
+        //     setQuizData(null)
+        //   }
+        // } else {
+        //   console.error('Invalid response structure:', data);
+        //   setQuizData(null)
+        // }
       } catch (error) {
         console.error('Error fetching quiz data:', error.message);
         setQuizData(null)
@@ -58,7 +61,7 @@ const ModelPaperExam = ({ModelPaperType}) => {
 
     fetchData();
     console.log("Data - ",quizData)
-  }, [ModelPaperType]);
+  }, [ModelPaperId]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -138,7 +141,7 @@ const ModelPaperExam = ({ModelPaperType}) => {
          <TouchableOpacity style={styles.prevButton} onPress={handlePrevQuestion}>
             <Text style={{fontFamily:PoppinsRegular}}>Previous</Text>
           </TouchableOpacity>
-          <Text>{userAnswers.length}</Text>
+          {/* <Text>{userAnswers.length}</Text> */}
           <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
           <Text style={{color:"white"}}>Submit <Image source={{uri:"https://img.icons8.com/ios/50/right--v1.png"}} style={{width:24,height:16}}/></Text>
 

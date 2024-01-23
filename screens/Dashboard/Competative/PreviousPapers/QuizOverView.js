@@ -34,6 +34,7 @@ const QuizOverView = ({ route }) => {
       return answer.selectedOption[6] === question.answer[0];
     });
     if(correctAnswers.length>=0){
+      console.log("Correct Answer array length is - ",correctAnswers.length)
       return setTrueCount(correctAnswers.length);
     }
     return (correctAnswers.length / quizData.Questions.length) * 100;
@@ -58,6 +59,8 @@ const QuizOverView = ({ route }) => {
       return answer.selectedOption!==null && answer.selectedOption[6] != question.answer[0];
     });
     if(wrongAnswers.length>=0){
+      console.log("Wrong Answer array length is - ",wrongAnswers.length)
+
       return setWrongCount(wrongAnswers.length);
     }
     return (wrongAnswers.length / quizData.Questions.length) * 100;

@@ -204,9 +204,9 @@ const QuizApp = ({quizId}) => {
       return answer.selectedOption[6] === question.answer[0];
     });
     console.log("Correct answer - ",correctAnswers.length);
-    const TotalScore = correctAnswers.length;
-     setMyScore(TotalScore);
-    return TotalScore;
+    const TotalScore1 = correctAnswers.length;
+     setMyScore(TotalScore1);
+    return TotalScore1;
   };
 
   const renderOptions1 = (options,answer,selectedOption) => {

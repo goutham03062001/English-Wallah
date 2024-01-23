@@ -21,7 +21,7 @@ export const AuthContext = createContext({
   updateQuizAttempt:(userId,quizId,score)=>{},
   quizExamsArr : [],
   loadCurrentPersonDetails:()=>{},
-  getAllModelPapers:()=>{}
+  getAllModelPapersByType:()=>{}
 });
 
 export default function AuthContextProvider({ children }) {
@@ -327,15 +327,16 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred!","Something went wrong"+error);
     }
   }
-  async function getAllModelPapers(){
+  async function getAllModelPapersByType(ModelPaperType){
     try {
       setLoading(true);
       console.log("Loading Model Papers")
-      const response = await axios.get(BACKEND_API_URL+'/api/Quiz/upload/modelPaper/getAllModelPapers');
+      const response = await axios.get(BACKEND_API_URL+'/api/Quiz/upload/modelPaper/getAllModelPapers/'+ModelPaperType);
       if(response.data){
         // setQuiz
         setQuizExamsArr(response.data);
         setLoading(false);
+        console.log("Model papers by type "+ModelPaperType);
         console.log(response.data)
       }
     } catch (error) {
@@ -372,7 +373,7 @@ export default function AuthContextProvider({ children }) {
     quizExamsArr:quizExamsArr,
     updateQuizAttempt:updateQuizAttempt,
     loadCurrentPersonDetails:loadCurrentPersonDetails,
-    getAllModelPapers:getAllModelPapers
+    getAllModelPapersByType:getAllModelPapersByType
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

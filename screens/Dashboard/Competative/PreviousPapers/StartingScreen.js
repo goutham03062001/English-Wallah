@@ -10,6 +10,7 @@ import AttemptImage from "../../../../assets/Attempt.png";
 import BestScoreImage from "../../../../assets/bestscore.png"
 import QuizOverView from './QuizOverView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AttemptsCount from './AttemptsCount';
 const Stack = createStackNavigator();
 const QuizExam = ({route})=>{
   const navigation = useNavigation();
@@ -69,17 +70,18 @@ const DisplayQuizNames = ()=>{
           <View style={styles.dayCard}>
           <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <Text key={index} style={{fontSize:16}}>Day - {index+1}</Text>
-          <Button mode='outlined' style={{borderRadius:1}}>Reattempt</Button>
+          <Button mode='outlined' style={{borderRadius:1}}><AttemptsCount currentQuizId={exam._id} isButton={true}/></Button>
           </View>
           <View style={styles.dayCardStyle}>
           <Text style={{fontWeight:"bold"}}>
           <Image source={AttemptImage} style={{width:20,height:20}}/>
-          Attempts - {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts && authContext.currentLoggedPerson.quizAttempts.length}</Text>
+          Attempts - <AttemptsCount currentQuizId ={exam._id} isButton={false}/>
+          {/* {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts && authContext.currentLoggedPerson.quizAttempts.length} */}
+          </Text>
           <Text style={{fontWeight:"bold"}}>
           <Image source={BestScoreImage} style={{width:20,height:20}}/>
-           Best Score - {maxScore}/10 
+           Best Score - <AttemptsCount isBestScore={true} currentQuizId={exam._id}/>/10 
           </Text>
-          <Text>{userId}</Text>
           </View>
           </View>
         </Pressable>)}
