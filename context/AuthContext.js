@@ -19,6 +19,7 @@ export const AuthContext = createContext({
   getPersonalDetails: (id) => {},
   getAllQuizzes:()=>{},
   updateQuizAttempt:(userId,quizId,score)=>{},
+  updateModelPaperAttempt:(quizId,score)=>{},
   quizExamsArr : [],
   loadCurrentPersonDetails:()=>{},
   getAllModelPapersByType:()=>{}
@@ -273,7 +274,7 @@ export default function AuthContextProvider({ children }) {
         console.log("Loading Quizzes")
         const response = await axios.get(BACKEND_API_URL+"/api/Quiz/upload/getQuizDetails");
         if(response.data){
-            console.log("All quiz",response.data);
+            // console.log("All quiz",response.data);
             setQuizExamsArr(response.data)
         setLoading(false);
 
@@ -336,9 +337,31 @@ export default function AuthContextProvider({ children }) {
         // setQuiz
         setQuizExamsArr(response.data);
         setLoading(false);
-        console.log("Model papers by type "+ModelPaperType);
+        // console.log("Model papers by type "+ModelPaperType);
         console.log(response.data)
       }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Occurred : "+error)
+      return Alert.alert("Error Occurred!","Something went wrong"+error);
+    }
+  }
+  async function updateModelPaperAttempt(ModelPaperId,score){
+      setLoading(true);
+      const body = {score}
+      const config = {
+        headers:{
+          "Content-Type":"application/json"
+        }
+      }
+    try {
+      let userId = await AsyncStorage.getItem("userId");
+        const response = await axios.put(BACKEND_API_URL+"/api/Quiz/upload/modelPaper/id/"+ModelPaperId+"/user/"+userId,body);
+        if(response.data){
+          setLoading(false);
+          setQuizExamsArr(response.data);
+          console.log("Model Paper Updated");
+        }
     } catch (error) {
       setLoading(false);
       console.log("Error Occurred : "+error)
@@ -373,7 +396,8 @@ export default function AuthContextProvider({ children }) {
     quizExamsArr:quizExamsArr,
     updateQuizAttempt:updateQuizAttempt,
     loadCurrentPersonDetails:loadCurrentPersonDetails,
-    getAllModelPapersByType:getAllModelPapersByType
+    getAllModelPapersByType:getAllModelPapersByType,
+    updateModelPaperAttempt:updateModelPaperAttempt
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

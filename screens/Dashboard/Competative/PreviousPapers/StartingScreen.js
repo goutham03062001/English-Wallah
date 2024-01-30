@@ -49,7 +49,7 @@ const DisplayQuizNames = ()=>{
       });
       setMaxScore(maxScore1);
       console.log("quizScore", quizScore);
-      console.log("length - ",quizScore.length);
+      // console.log("length - ",quizScore.length);
       console.log("type - ",typeof(quizScore));
       console.log("isArr - ",Array.isArray(quizScore))
     }

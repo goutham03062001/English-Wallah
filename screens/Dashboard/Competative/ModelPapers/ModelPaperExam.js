@@ -184,9 +184,9 @@ const ModelPaperExam = ({route}) => {
       let myScore1 = calculateScore();
       console.log("Your quiz Score is - ",myScore1)
       setQuizCompleted(true);
-      authContext.updateQuizAttempt(quizData._id,myScore1);
+      // authContext.updateQuizAttempt(quizData._id,myScore1);
       // navigation.navigate("Quiz Overview",{userAnswers:userAnswers})
-     
+     authContext.updateModelPaperAttempt(ModelPaperId,myScore1);
     }
   };
 
@@ -375,7 +375,7 @@ const ModelPaperExam = ({route}) => {
       <Text style={{marginRight:"70%",fontSize:18,backgroundColor:"black",width:35,height:25,color:"white",textAlign:"center"}}>{currentQuestion+1}</Text>
       <Text style={{fontSize:24,fontFamily:"Poppins-Light"}}>{`${formatTime(minutes)}:${formatTime(seconds)}`}</Text>
       </View>
-       <Text style={styles.question}>{currentQuestionData.questionName}</Text>
+       <Text style={styles.question}>{currentQuestionData.questionName.richText && currentQuestionData.questionName.richText[0].text}</Text>
         
        </View>
         {renderOptions(currentQuestionData.options,currentQuestionData.year)}

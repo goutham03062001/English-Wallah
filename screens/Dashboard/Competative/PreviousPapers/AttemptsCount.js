@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React,{useContext} from 'react'
 import { AuthContext } from '../../../../context/AuthContext';
-const AttemptsCount = ({isButton,currentQuizId,isBestScore}) => {
+const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper}) => {
     const authContext = useContext(AuthContext)
     let attemptCount = 0;
     let bestScore = 0;

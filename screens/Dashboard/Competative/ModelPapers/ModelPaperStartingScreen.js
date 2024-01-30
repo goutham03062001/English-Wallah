@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Pressable,
+  ScrollView
 } from "react-native";
 import React, { useEffect, useContext } from "react";
 import { AuthContext } from "../../../../context/AuthContext";
@@ -14,7 +15,6 @@ import { useNavigation } from "@react-navigation/native";
 import ModelPaperExam from "./ModelPaperExam";
 import ModelPaperReview from "./ModelPaperReview";
 import { PoppinsRegular } from "../../../../utils/FontHelper";
-import { ScrollView } from "react-native-gesture-handler";
 import ModelPaperOverView from "./ModelPaperOverView";
 const Stack = createStackNavigator();
 const ModelPaperExam1 = ({ route }) => {
@@ -30,7 +30,9 @@ const ModelPaperExam1 = ({ route }) => {
     return inputString.charAt(0).toUpperCase() + inputString.slice(1).toLowerCase();
   }
   return (
-    <View style={{marginTop:10}}>
+  <>
+    
+     <View style={{marginTop:10}}>
       {/* <ModelPaperExam ModelPaperType={route.params.data} /> */}
       {/* {authContext && authContext.quizExamsArr && <Text>{authContext.quizExamsArr.length}</Text>} */}
       <Text style={{textAlign:"center",fontSize:20,color:"green",fontFamily:PoppinsRegular}}>{capitalizeString(ModelPaperType)}</Text>
@@ -43,9 +45,13 @@ const ModelPaperExam1 = ({ route }) => {
         {authContext && authContext.quizExamsArr.length<=0 ? <>
           <Text>No Model Paper Found</Text>
         </> : <>
-        {authContext && authContext.quizExamsArr && authContext.quizExamsArr.map((currentModelPaper,index)=>{
-          return(<>
-           <Pressable onPress={()=>navigation.navigate("Model Exam",{data : currentModelPaper._id})}>
+ 
+        {
+          authContext && authContext.quizExamsArr && (
+            <ScrollView showsVerticalScrollIndicator={false}>
+            {authContext && authContext.quizExamsArr && authContext.quizExamsArr.map((currentModelPaper,index)=>(<>
+              {currentModelPaper && (<>
+                <Pressable onPress={()=>navigation.navigate("Model Exam",{data : currentModelPaper._id})} style={{marginVertical:5}}>
            <Card key={index} style={{width:Dimensions.get("screen").width-20,borderRadius:10,height:120,position:"relative"}}>
           <Card.Content style={{position:"relative",width:"100%",height:'100%'}}>
             <View style={{width:"100%",height:40,display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
@@ -66,13 +72,18 @@ const ModelPaperExam1 = ({ route }) => {
           </Card.Content>
         </Card>
            </Pressable>
-          </>)
-        })}
+              </>)}
+             </>))}
+            </ScrollView>
+          )
+        }
         </>}
        </>}
 
       </View>
     </View>
+   </>
+  
   );
 };
 

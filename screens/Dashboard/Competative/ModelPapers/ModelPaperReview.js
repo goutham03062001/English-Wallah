@@ -308,7 +308,7 @@ import {
         <Text
           style={{ marginVertical: 17, fontSize: 16, fontFamily: PoppinsLight }}
         >
-          {quizData.Questions[currIndex].questionName}
+          {quizData.Questions[currIndex].questionName.richText && quizData.Questions[currIndex].questionName.richText[0].text}
         </Text>
         {renderOptions(
           quizData.Questions[currIndex].options,
