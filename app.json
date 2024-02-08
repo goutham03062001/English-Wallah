@@ -2,7 +2,7 @@
   "expo": {
     "name": "English Wallah",
     "slug": "EnglishWallah",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -14,7 +14,6 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.goutham0306.EnglishWallah"
@@ -37,6 +36,9 @@
       "eas": {
         "projectId": "dabe5212-a35e-4cf1-9b4b-2c7467fec893"
       }
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

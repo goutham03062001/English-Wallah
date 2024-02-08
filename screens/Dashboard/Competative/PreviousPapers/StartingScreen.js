@@ -70,7 +70,7 @@ const DisplayQuizNames = ()=>{
           <View style={styles.dayCard}>
           <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <Text key={index} style={{fontSize:16}}>Day - {index+1}</Text>
-          <Button mode='outlined' style={{borderRadius:1}}><AttemptsCount currentQuizId={exam._id} isButton={true}/></Button>
+          <Button mode='outlined' style={{borderRadius:1}}><AttemptsCount currentQuizId={exam._id} isButton={true} isModelPaper={false}/></Button>
           </View>
           <View style={styles.dayCardStyle}>
           <Text style={{fontWeight:"bold"}}>

@@ -22,7 +22,9 @@ export const AuthContext = createContext({
   updateModelPaperAttempt:(quizId,score)=>{},
   quizExamsArr : [],
   loadCurrentPersonDetails:()=>{},
-  getAllModelPapersByType:()=>{}
+  getAllModelPapersByType:()=>{},
+  getAllBlankPapersByType : ()=>{}
+
 });
 
 export default function AuthContextProvider({ children }) {
@@ -281,7 +283,7 @@ export default function AuthContextProvider({ children }) {
         }
     } catch (error) {
         setLoading(false);
-        return Alert.alert("Error Occurred!","Something went wrong");
+        return Alert.alert("Error Occurred!","Something went wrong",error.message);
 
     }
   }
@@ -356,16 +358,31 @@ export default function AuthContextProvider({ children }) {
       }
     try {
       let userId = await AsyncStorage.getItem("userId");
-        const response = await axios.put(BACKEND_API_URL+"/api/Quiz/upload/modelPaper/id/"+ModelPaperId+"/user/"+userId,body);
+      console.log("Updating model paper with id - ",ModelPaperId)
+        const response = await axios.put(BACKEND_API_URL+"/api/Quiz/upload/modelPaper/updateModelPaper/id/"+ModelPaperId+"/user/"+userId,body);
         if(response.data){
           setLoading(false);
-          setQuizExamsArr(response.data);
+          // setQuizExamsArr(response.data);
           console.log("Model Paper Updated");
         }
     } catch (error) {
       setLoading(false);
       console.log("Error Occurred : "+error)
-      return Alert.alert("Error Occurred!","Something went wrong"+error);
+      return Alert.alert("Error Occurred! while updating the model paper attempt","Something went wrong"+error);
+    }
+  }
+  async function getAllBlankPapersByType(BlankPaperType){
+    setLoading(true)
+    try {
+      const response = await axios.get(BACKEND_API_URL+"/api/blanks/allBlanks/"+BlankPaperType);
+      if(response.data){
+        setLoading(false);
+        setQuizExamsArr(response.data);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Occurred !"+error.message);
+      return Alert.alert("Error Occurred!","Something went wrong "+error.message)
     }
   }
   const values = {
@@ -397,7 +414,8 @@ export default function AuthContextProvider({ children }) {
     updateQuizAttempt:updateQuizAttempt,
     loadCurrentPersonDetails:loadCurrentPersonDetails,
     getAllModelPapersByType:getAllModelPapersByType,
-    updateModelPaperAttempt:updateModelPaperAttempt
+    updateModelPaperAttempt:updateModelPaperAttempt,
+    getAllBlankPapersByType:getAllBlankPapersByType
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

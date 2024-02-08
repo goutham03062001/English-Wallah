@@ -16,6 +16,8 @@ import ModelPaperExam from "./ModelPaperExam";
 import ModelPaperReview from "./ModelPaperReview";
 import { PoppinsRegular } from "../../../../utils/FontHelper";
 import ModelPaperOverView from "./ModelPaperOverView";
+import AttemptsCount from "./AttemptsCount";
+import FillIntheBlanks from "./FillIntheBlanks";
 const Stack = createStackNavigator();
 const ModelPaperExam1 = ({ route }) => {
   const authContext = useContext(AuthContext);
@@ -32,9 +34,7 @@ const ModelPaperExam1 = ({ route }) => {
   return (
   <>
     
-     <View style={{marginTop:10}}>
-      {/* <ModelPaperExam ModelPaperType={route.params.data} /> */}
-      {/* {authContext && authContext.quizExamsArr && <Text>{authContext.quizExamsArr.length}</Text>} */}
+     <View style={{marginTop:10,marginBottom:70}}>
       <Text style={{textAlign:"center",fontSize:20,color:"green",fontFamily:PoppinsRegular}}>{capitalizeString(ModelPaperType)}</Text>
       <View style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",gap:10,marginTop:10}}>
         
@@ -56,17 +56,19 @@ const ModelPaperExam1 = ({ route }) => {
           <Card.Content style={{position:"relative",width:"100%",height:'100%'}}>
             <View style={{width:"100%",height:40,display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
             <Text style={{fontSize:17,fontFamily:PoppinsRegular}}>Model Paper - {index+1}</Text>
-            <Button mode="contained" style={{borderRadius:8, width:100}}>Attempt</Button>
+            <Text style={{fontSize:10}}>{currentModelPaper._id}</Text>
+            <Button mode="contained" style={{borderRadius:8, width:130}}> 
+            Attempt 
+             </Button>
             </View>
             <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between",position:"absolute",bottom:20,right:15}}>
             <View>
-              <Text style={{fontSize:14,fontFamily:PoppinsRegular}}>Best Score - 0/10</Text>
+              <Text style={{fontSize:14,fontFamily:PoppinsRegular}}>Best Score - <AttemptsCount isBestScore={true} currentQuizId={currentModelPaper._id} isModelPaper={true}/></Text>
             </View>
             </View>
 
             <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between",position:"absolute",bottom:20,left:15}}>
             <View>
-              <Text style={{fontSize:14,fontFamily:PoppinsRegular}}>Attempts - 0</Text>
             </View>
             </View>
           </Card.Content>
@@ -87,11 +89,314 @@ const ModelPaperExam1 = ({ route }) => {
   );
 };
 
-const CardHelperComponent = ({title,data})=>{
+const BlanksHelper = ()=>{
+
+  const StartingScreen = ()=>{
+  const navigation = useNavigation();
+
+    return(<>
+    <View style={styles.rootContainer}>
+    <ScrollView showsVerticalScrollIndicator={false}>
+    <Pressable
+          onPress={() => navigation.navigate("Parts of Speech",{data : "Parts of Speech"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Parts Of Speech"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+        <Pressable
+          onPress={() => navigation.navigate("Articles",{data : "Articles"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Articles"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+        <Pressable
+          onPress={() => navigation.navigate("Prepositions",{data : "prepositions"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Prepositions"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+        <Pressable
+          onPress={() => navigation.navigate("Tenses",{data : "tenses"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Tenses"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+
+        <Pressable
+          onPress={() => navigation.navigate("Rewrite as Directed",{data : "rewrite as directed"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Rewrite as Directed"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+
+
+        <Pressable
+          onPress={() => navigation.navigate("Correction of Sentences",{data  : "correction of sentences"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Correction of Sentences"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+
+
+        <Pressable
+          onPress={() => navigation.navigate("Missing Letters",{data : "missing letters"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Missing Letters"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+
+
+        <Pressable
+          onPress={() => navigation.navigate("Silent Letters",{data : "silent letters"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Silent Letters"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+
+        <Pressable
+          onPress={() => navigation.navigate("Transcriptions - English Words",{data : "transcriptions - english words"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Transcriptions - English Words"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+
+        <Pressable
+          onPress={() => navigation.navigate("Odd Sounds",{data : "odd sounds"})}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Odd Sounds"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+
+        <Pressable
+          onPress={() => navigation.navigate("Syllables",{data : "syllables"})}
+          style={{marginBottom:3}}
+        >
+          <Card
+            style={{
+              width: Dimensions.get("screen").width - 20,
+              height: 70,
+              marginTop: 10,
+              borderRadius: 5,
+              elevation: 9,
+              // iOS
+              shadowColor: "red",
+              shadowOffset: { width: 10, height: 21 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+
+            }}
+          >
+            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Title title="Syllables"/>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+
+</ScrollView>
+  
+  </View>
+    </>)
+  }
+
+  return (<>
+  
+  
+
+  <Stack.Navigator>
+    <Stack.Screen name = "startingScreen" component={StartingScreen} options={{headerShown:false}}/>
+    <Stack.Screen name = "Parts of Speech" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Articles" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Prepositions" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Tenses" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Rewrite as Directed" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Correction of Sentences" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Missing Letters" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Silent Letters" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Transcriptions - English Words" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Odd Sounds" component={FillIntheBlanks} options={{headerShown:false}}/>
+    <Stack.Screen name = "Syllables" component={FillIntheBlanks} options={{headerShown:false}}/>
+    {/* <Stack.Screen name = "startingScreen" component={}/> */}
+  </Stack.Navigator>
+  </>)
+}
+
+const CardHelperComponent = ({title,data,modelPaper})=>{
   const navigation = useNavigation();
   return(<>
-    <Pressable
-          onPress={() => navigation.navigate("Model Exam1", { data: data })}
+ {title === "Fill in the blanks"?<>
+ <Pressable
+          onPress={() => navigation.navigate("Fill in the blanks", { data: data })}
         >
           <Card
             style={{
@@ -112,24 +417,17 @@ const CardHelperComponent = ({title,data})=>{
             </Card.Content>
           </Card>
         </Pressable>
-  </>)
-}
 
-const ModelPaperStartingScreen = () => {
-  const authContext = useContext(AuthContext);
-  const navigation = useNavigation();
-  return (
-    <ScrollView>
-      <View style={styles.rootContainer}>
-        {/* <Pressable
-          onPress={() => navigation.navigate("Model Exam1", { data: "noun" })}
+ </> : <>
+ <Pressable
+          onPress={() => navigation.navigate("Model Exam1", { data: data })}
         >
           <Card
             style={{
-              width: Dimensions.get("screen").width - 30,
+              width: Dimensions.get("screen").width - 20,
               height: 70,
               marginTop: 10,
-              borderRadius: 2,
+              borderRadius: 5,
               elevation: 9,
               // iOS
               shadowColor: "red",
@@ -139,10 +437,20 @@ const ModelPaperStartingScreen = () => {
             }}
           >
             <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-              <Card.Title title="Noun" />
+              <Card.Title title={title}/>
             </Card.Content>
           </Card>
-        </Pressable> */}
+        </Pressable></>}
+  </>)
+}
+
+const ModelPaperStartingScreen = () => {
+  const authContext = useContext(AuthContext);
+  const navigation = useNavigation();
+  return (
+    <ScrollView>
+      <View style={styles.rootContainer}>
+        
 
         <CardHelperComponent title="Noun" data="noun"/>
         <CardHelperComponent title="Pronoun" data="pronoun"/>
@@ -170,508 +478,9 @@ const ModelPaperStartingScreen = () => {
         <CardHelperComponent title="Silent Letters" data="silent letters"/>
         <CardHelperComponent title="Wrongly Spelt Word" data="wrongly spelt word"/>
         <CardHelperComponent title="Correction of Sentences" data="correction of sentences"/>
+        <CardHelperComponent title="Fill in the blanks" data="Fill in the blanks"/>
 
-        {/* <Pressable
-          onPress={() => navigation.navigate("Model Exam", { data: "pronoun" })}
-        >
-          <Card
-            style={{
-              width: Dimensions.get("screen").width - 30,
-              height: 70,
-              marginTop: 10,
-              borderRadius: 2,
-              elevation: 5,
-              // iOS
-              shadowColor: "red",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.3,
-              shadowRadius: 4,
-            }}
-          >
-            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-              <Card.Title title="Pronoun" />
-            </Card.Content>
-          </Card>
-        </Pressable> */}
-{/* 
-        <Pressable onPress={()=>navigation.navigate("Model Paper",{data : "adverb"})}>
-        <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Adverbs" />
-          </Card.Content>
-        </Card>
-        </Pressable> */}
-
-          {/* <Pressable onPress={()=>navigation.navigate("Model Paper",{data : "prepositions"})}>
-          <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Prepositions" />
-          </Card.Content>
-        </Card>
-          </Pressable> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Conjunctions" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Adjectives" />
-          </Card.Content>
-        </Card> */}
-{/* 
-        <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Verbs" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Non-finite Verbs" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Degrees of Comparison" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Question Tags" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Subject-Verb Agreement " />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Active Voice Passive Voice " />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Direct and Indirect Speech" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Conditional Clause / If Clause:" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Subject and Predicate " />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Tense and Time " />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Phrase" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Clause" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Simple, Compound and Complex" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Figures of Speech" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Odd Sound Out" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Syllables" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Phonetic Transcription" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Silent Letters" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Wrongly Spelt Words" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Correction of Sentences" />
-          </Card.Content>
-        </Card> */}
-
-        {/* <Card
-          style={{
-            width: Dimensions.get("screen").width - 30,
-            height: 70,
-            marginTop: 10,
-            borderRadius: 2,
-            elevation: 5,
-            // iOS
-            shadowColor: "red",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-          }}
-        >
-          <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-            <Card.Title title="Parts of Speech" />
-          </Card.Content>
-        </Card> */}
+  
         
       </View>
     </ScrollView>
@@ -706,6 +515,11 @@ const StartingScreen = () => {
           component={ModelPaperOverView}
           options={{ headerShown: false }}
         />
+          <Stack.Screen
+          name="Fill in the blanks"
+          component={BlanksHelper}
+          options={{ headerShown: false }}
+        />
         {/* <Stack.Screen name="Quiz Overview" component={QuizOverView}/> */}
       </Stack.Navigator>
     </>
@@ -720,6 +534,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     padding: 10,
+   
   },
   cardContentFlex: {
     display: "flex",
