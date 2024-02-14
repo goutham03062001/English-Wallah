@@ -1,10 +1,28 @@
-import { Dimensions, StyleSheet, Text, View ,TextInput, Alert,Image} from 'react-native'
+import { Dimensions, StyleSheet, Text, View ,TextInput, Alert,Image, Pressable} from 'react-native'
 import React,{useState} from 'react'
 import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper';
 import { Button} from 'react-native-paper';
+
 const QuestionComponent = ({currQuestion,incomingIndex,data,nextQuestion,prevQuestion})=>{
   const[userInput,setUserInput] = useState('');
   const[btnClicked,setBtnClicked] = useState(false)
+  const[showAnswer,handleShowAnswer] = useState(false);
+  function inputFun(e){
+    let inputText = e.toLowerCase();
+    setUserInput(inputText);
+  }
+
+  function setPressHandler(){
+
+    handleShowAnswer(!showAnswer);
+    function setTimeFun(){
+      setTimeout(()=>{
+        handleShowAnswer(false)
+      },3000)
+    }
+    setTimeFun();
+  }
+
   const checkAnswer = ()=>{
     if(userInput.length<1){
       return Alert.alert("Warning","Your answer must be non-empty, write something")
@@ -20,9 +38,33 @@ const QuestionComponent = ({currQuestion,incomingIndex,data,nextQuestion,prevQue
   return(<>
           <View>
             {/* Question area */}
-            <View style={{height:100}}>
+            <View style={{display:"flex",width:"90%",height:100,flexDirection:"row-reverse",justifyContent:'space-between', alignItems:"center",position:"relative"}}>
+             
+            <Pressable onPress={setPressHandler}>
+
+            {showAnswer ? <>
+              <Image source={require("../../../../assets/view.png")} style={{width:30,height:30}}
+             
+             />
+            </> : <>
+            <Image source={require("../../../../assets/view60.png")} style={{width:30,height:30}}
+             
+             />
+            </>}
+            </Pressable>
+              <Text></Text>
+           {showAnswer ? <>
+            <View style={{position:"absolute",marginRight:100}}>
+
+<Text style={{fontSize:18,color:"green"}}>Answer : {data.Questions[incomingIndex].answer}</Text>
+</View>
+           </>: <></>}
+             
+             </View>
+            <View style={{height:90}}>
               {/* <Text>{currQuestion && currQuestion.questionName.richText[0].text}</Text> */}
              {/* <Text>{data && data.Questions[incomingIndex].questionName.richText[0].text}</Text> */}
+            
              <View style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
                   <>{userInput.length>0 && btnClicked && userInput === data.Questions[incomingIndex].answer ? <>
               <View style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
@@ -51,7 +93,7 @@ const QuestionComponent = ({currQuestion,incomingIndex,data,nextQuestion,prevQue
              
              <TextInput placeholder='Enter your answer' style={[styles.inputContainer,{fontSize:18}]}
              
-             onChangeText={(e)=>setUserInput(e)}/>
+             onChangeText={e=>inputFun(e)}/>
             
             </View>  
            {/* status areas */}
@@ -133,7 +175,7 @@ const styles = StyleSheet.create({
     flex:1,
     // justifyContent: 'center',
 
-    marginTop:150
+    marginTop:50
   },
   inputContainer:{
     width:"90%",

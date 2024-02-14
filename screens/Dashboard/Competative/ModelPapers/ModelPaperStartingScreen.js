@@ -56,15 +56,12 @@ const ModelPaperExam1 = ({ route }) => {
           <Card.Content style={{position:"relative",width:"100%",height:'100%'}}>
             <View style={{width:"100%",height:40,display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
             <Text style={{fontSize:17,fontFamily:PoppinsRegular}}>Model Paper - {index+1}</Text>
-            <Text style={{fontSize:10}}>{currentModelPaper._id}</Text>
             <Button mode="contained" style={{borderRadius:8, width:130}}> 
             Attempt 
              </Button>
             </View>
             <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between",position:"absolute",bottom:20,right:15}}>
-            <View>
-              <Text style={{fontSize:14,fontFamily:PoppinsRegular}}>Best Score - <AttemptsCount isBestScore={true} currentQuizId={currentModelPaper._id} isModelPaper={true}/></Text>
-            </View>
+            
             </View>
 
             <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between",position:"absolute",bottom:20,left:15}}>
