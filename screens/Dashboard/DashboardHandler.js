@@ -23,6 +23,7 @@ import NonFiniteVerbsStartingScreen from './Academic/NonFiniteVerbs/NonFiniteVer
 import QuestionTagsStartingScreen from './Academic/QuestionTags/QuestionTagsStartingScreen';
 import DirectAndIndirectStarting from './Academic/DirectAndIndirect/DirectAndIndirectStarting';
 import IfClauseStarting from './Academic/IfClause/IfClauseStarting';
+import SubjectVerbAgreement from "./Academic/SubjectVerbAgreement/SubjectVerbAgreement"
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
@@ -45,6 +46,7 @@ const DashboardHandler = () => {
     <Stack.Screen name = "QuestionTags" component={QuestionTagsStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Direct and Indirect Speech" component={DirectAndIndirectStarting} options={{headerShown:false}}/>
     <Stack.Screen name = "IfClause" component={IfClauseStarting} options={{headerShown:false}}/>
+    <Stack.Screen name = "Subject-Verb Agreement" component={SubjectVerbAgreement} options={{headerShown:false}}/>
     
     </Stack.Navigator>
   )

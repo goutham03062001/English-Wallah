@@ -8,6 +8,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import ModelPaperStartingScreen from "./ModelPapers/ModelPaperStartingScreen";
 import PreviousPaperStartingScreen from "./PreviousPapers/StartingScreen"
 import QuizOverView from "./PreviousPapers/QuizOverView";
+import FillInTheBlanksStartingScreen from "./FillInTheBlanks.js/FillInTheBlanksStartingScreen";
 const Stack = createStackNavigator();
 const RoutingScreen = () => {
   const navigation = useNavigation();
@@ -34,7 +35,13 @@ const RoutingScreen = () => {
             </Card>
           </Pressable>
 
-         
+          <Pressable onPress={()=>navigation.navigate("Fill In The Blanks")}>
+            <Card style={[styles.cardStyle, { backgroundColor: "#0C2D57" }]}>
+              <Text style={{ color: "#ECEE81", fontSize: 18 }}>
+                Fill In The Blanks
+              </Text>
+            </Card>
+          </Pressable>
         </View>
       </View>
     </>
@@ -56,6 +63,7 @@ const StartingScreen = () => {
         <Stack.Screen name="Model Papers" component={ModelPaperStartingScreen} />
         <Stack.Screen name="Previous Papers" component={PreviousPaperStartingScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Quiz Review" component={QuizOverView}/>
+        <Stack.Screen name="Fill In The Blanks" component={FillInTheBlanksStartingScreen}/>
       </Stack.Navigator>
     </>
   );

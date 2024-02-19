@@ -2,15 +2,16 @@ import { StyleSheet, Text, View,TextInput ,Pressable} from 'react-native'
 import React,{useState,useEffect,useContext} from 'react';
 import { Button ,Card,ActivityIndicator} from 'react-native-paper';
 import { AuthContext } from '../../../../context/AuthContext';
-import { BACKEND_API_URL } from '../../../../utils/Constants';
 import FillInTheBlanksExams from './FillInTheBlanksExams';
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { ScrollView } from 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 const StartingScreen = ({route})=>{
 
     const FillIntheBlanks = () => {
         const {data} = route.params;
+        console.log("current blank type - ",data);
         const authContext = useContext(AuthContext)
         const navigation = useNavigation();
         const[userAnswer,setUserAnswer] = useState("");
@@ -38,21 +39,21 @@ const StartingScreen = ({route})=>{
             {authContext.loading ? <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <ActivityIndicator animating={true} color="black" size={35}/>
                 <Text style={{marginTop:15}}>Loading...</Text>
-            </View> : <>
+            </View> : <ScrollView>
             {
                 authContext.quizExamsArr && authContext.quizExamsArr.map((currBlank,index)=>{
                     return(<View style={{marginTop:5}}>
                         {/* <FillInTheBlanksExams data = {currBlank}/> */}
-                        <Pressable onPress={()=>navigation.navigate("FB Exam",{data : currBlank})}>
+                        <Pressable onPress={()=>navigation.navigate("FB Exam",{data : currBlank,currentBlankType : data})}>
                         <Card>
                             <Card.Content>
-                                <Card.Title title={`Preposition ${index+1}`}/>
+                                <Card.Title title={`${data} ${index+1}`}/>
                             </Card.Content>
                         </Card>
                         </Pressable>
                     </View>)
                 })
-            }</>}
+            }</ScrollView>}
            
         </View>
       )
@@ -61,6 +62,7 @@ const StartingScreen = ({route})=>{
     return(<>
         <Stack.Navigator>
             <Stack.Screen name ="Fill In the blanks starting" component={FillIntheBlanks} options={{headerShown:false}}/>
+            <Stack.Screen name = "Show All Blanks Papers" component={FillIntheBlanks} options={{headerShown:false}}/>
             <Stack.Screen name = "FB Exam" component={FillInTheBlanksExams} options={{headerShown:false}}/>
         </Stack.Navigator>
     </>)
