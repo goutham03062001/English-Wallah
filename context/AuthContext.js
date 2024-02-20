@@ -396,7 +396,7 @@ export default function AuthContextProvider({ children }) {
     }
    }
     try {
-      const response = await axios.post(BACKEND_API_URL+"/api/razorpay/getData",body,config);
+      const response = await axios.put(BACKEND_API_URL+"/api/razorpay/getData",body,config);
       if(response.data!==null){
         setLoading(false);
         Alert.alert("Payment Success","you have successfully done your payment.");

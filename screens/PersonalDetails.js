@@ -45,8 +45,8 @@ const PersonalDetails =  () => {
   const thresholdAmount = 1000;
 async function paymentFunction(){
   var options = {
-    description: 'App Subscription',
-    image: 'https://i.imgur.com/3g7nmJC.jpg',
+    description: 'English Wallah App Subscription',
+    image: require("../assets/icon.png"),
     currency: 'INR',
     key: 'rzp_live_J89zrEvhSQ2i1m',
     amount: thresholdAmount*100,

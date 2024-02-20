@@ -65,7 +65,7 @@ const BlanksHelper = ()=>{
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized==="true"?navigation.navigate("Articles",{data : "articles"}):Alert.alert("Unauthorized","")}
+            onPress={() => personalDetails.userIsAuthorized==="true"?navigation.navigate("Articles",{data : "articles"}):Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -91,7 +91,7 @@ const BlanksHelper = ()=>{
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Prepositions",{data : "prepositions"}) : Alert.alert("")}
+            onPress={() => personalDetails.userIsAuthorized==="true" ? navigation.navigate("Prepositions",{data : "prepositions"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -117,7 +117,7 @@ const BlanksHelper = ()=>{
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Tenses",{data : "tenses"}) : Alert.alert("")}
+            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Tenses",{data : "tenses"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -144,7 +144,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Rewrite as Directed",{data : "rewrite as directed"}) : Alert.alert()}
+            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Rewrite as Directed",{data : "rewrite as directed"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -172,7 +172,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Correction of Sentences",{data  : "correction of sentences"}) : Alert.alert()}
+            onPress={() => personalDetails.userIsAuthorized ==="true" ? navigation.navigate("Correction of Sentences",{data  : "correction of sentences"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -200,7 +200,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Missing Letters",{data : "missing letters"}) : Alert.alert("")}
+            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Missing Letters",{data : "missing letters"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -228,7 +228,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Silent Letters",{data : "silent letters"}) : Alert.alert("")}
+            onPress={() => personalDetails.userIsAuthorized ==="true" ? navigation.navigate("Silent Letters",{data : "silent letters"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -255,7 +255,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Transcriptions - English Words",{data : "transcriptions"}) : Alert.alert("")}
+            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Transcriptions - English Words",{data : "transcriptions"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -282,7 +282,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Odd Sounds",{data : "odd sounds"}) : Alert.alert("")}
+            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Odd Sounds",{data : "odd sounds"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -309,7 +309,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Syllables",{data : "syllables"}) : Alert.alert("")}
+            onPress={() => personalDetails.userIsAuthorized ==="true" ? navigation.navigate("Syllables",{data : "syllables"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
             style={{marginBottom:3}}
           >
             <Card
