@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,ScrollView,Dimensions,Image,Pressable } from 'react-native'
+import { StyleSheet, Text, View,ScrollView,Dimensions,Image,Pressable, Alert } from 'react-native'
 import React,{useContext,useEffect,useState} from 'react';
 import { Card,ActivityIndicator, Button } from 'react-native-paper';
 import { AuthContext } from '../../../../context/AuthContext';
@@ -31,6 +31,33 @@ const DisplayQuizNames = ()=>{
   userId = await  AsyncStorage.getItem("userId")
  }
  getCurrentPersonDetails()
+
+ const [personalDetails,setPersonalDetails] = useState({
+  userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
+})
+useEffect(()=>{
+  var isAuthenticated,name,email,isAuthorized,mobile,address
+  async function getDetails(){
+     isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
+     name = await AsyncStorage.getItem("name");
+     email = await AsyncStorage.getItem("email");
+     isAuthorized = await AsyncStorage.getItem("isAuthorized");
+     mobile = await AsyncStorage.getItem("mobile");
+     address = await AsyncStorage.getItem("address");
+     setTimeoutFun();
+     updateDetails();
+  }
+  getDetails();
+  function setTimeoutFun(){
+    setTimeout(()=>{},2000)
+  }
+  
+  function updateDetails(){
+    setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address})
+  }
+},[])
+
+
   useEffect(()=>{
     authContext.getAllQuizzes();
     authContext.loadCurrentPersonDetails();
@@ -53,7 +80,21 @@ const DisplayQuizNames = ()=>{
       console.log("type - ",typeof(quizScore));
       console.log("isArr - ",Array.isArray(quizScore))
     }
-  },[])
+  },[]);
+  function checkIsAuthorized(exam,index){
+    if(personalDetails.userIsAuthorized=="true"){
+     return  navigation.navigate("Quiz",{data : exam._id})
+    }
+    else{
+      if(index===0){
+        return navigation.navigate("Quiz",{data : exam._id})
+
+      }
+      else{
+        Alert.alert("Unauthorized","Complete your payment to unlock")
+      }
+    }
+  }
   return (
     <>
  
@@ -66,7 +107,7 @@ const DisplayQuizNames = ()=>{
     {authContext && authContext.quizExamsArr && (
       <ScrollView>
        {authContext && authContext.quizExamsArr && authContext.quizExamsArr.map((exam,index)=>(<>
-        {exam && (<Pressable key={index} style={styles.cardStyle} onPress={()=>{navigation.navigate("Quiz",{data : exam._id})}}>
+        {exam && (<Pressable key={index} style={styles.cardStyle} onPress={()=>{checkIsAuthorized(exam,index)}}>
           <View style={styles.dayCard}>
           <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <Text key={index} style={{fontSize:16}}>Day - {index+1}</Text>
@@ -75,7 +116,7 @@ const DisplayQuizNames = ()=>{
           <View style={styles.dayCardStyle}>
           <Text style={{fontWeight:"bold"}}>
           <Image source={AttemptImage} style={{width:20,height:20}}/>
-          Attempts - <AttemptsCount currentQuizId ={exam._id} isButton={false}/>
+          Attempts - <AttemptsCount currentQuizId ={exam._id} isButton={false} isAuthorize={personalDetails.userIsAuthorized}/>
           {/* {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts && authContext.currentLoggedPerson.quizAttempts.length} */}
           </Text>
           <Text style={{fontWeight:"bold"}}>

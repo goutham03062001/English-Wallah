@@ -1,10 +1,36 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React,{useContext} from 'react'
+import { StyleSheet, Text, View ,Image} from 'react-native'
+import React,{useContext,useEffect,useState} from 'react'
 import { AuthContext } from '../../../../context/AuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper}) => {
-    const authContext = useContext(AuthContext)
+    const authContext = useContext(AuthContext);
+    const [personalDetails,setPersonalDetails] = useState({
+      userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
+    })
     let attemptCount = 0;
     let bestScore = 0;
+  
+    useEffect(()=>{
+      var isAuthenticated,name,email,isAuthorized,mobile,address
+      async function getDetails(){
+         isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
+         name = await AsyncStorage.getItem("name");
+         email = await AsyncStorage.getItem("email");
+         isAuthorized = await AsyncStorage.getItem("isAuthorized");
+         mobile = await AsyncStorage.getItem("mobile");
+         address = await AsyncStorage.getItem("address");
+         setTimeoutFun();
+         updateDetails();
+      }
+      getDetails();
+      function setTimeoutFun(){
+        setTimeout(()=>{},2000)
+      }
+      
+      function updateDetails(){
+        setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address})
+      }
+    },[])
     // {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts.map((currentQuiz,index)=>{return currentQuiz.quiz.quizId === exam._id ? currentQuiz.quiz.count : ''})}
     if(authContext.currentLoggedPerson){
       if(authContext.currentLoggedPerson.quizAttempts){
@@ -24,7 +50,10 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper}) => {
   return (
     
       <>
-        {isButton? <>{attemptCount>0 ? "Reattempt":"Attempt"}</> : isBestScore ? <>{bestScore}</> : <Text> {attemptCount}</Text>}
+        {isButton? <>{attemptCount >7? "7 attempts only":<Text>
+          <Text>{attemptCount>0 ? "Reattempt":"Attempt"}</Text>
+          <Image source={require("../../../../assets/lock.png")} style={{width:20,height:20}}/>
+          </Text>}</> : isBestScore ? <>{bestScore}</> : <Text> {attemptCount}</Text>}
       </>
    
   )

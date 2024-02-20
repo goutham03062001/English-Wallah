@@ -5,11 +5,12 @@ import {
   View,
   Image,
   Pressable,
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext ,useState} from "react";
 import { AuthContext } from "../../../../context/AuthContext";
-import { Card, ActivityIndicator, Button } from "react-native-paper";
+import { Card, ActivityIndicator, Button,TouchableRipple } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 import ModelPaperExam from "./ModelPaperExam";
@@ -18,6 +19,8 @@ import { PoppinsRegular } from "../../../../utils/FontHelper";
 import ModelPaperOverView from "./ModelPaperOverView";
 import AttemptsCount from "./AttemptsCount";
 import FillIntheBlanks from "./FillIntheBlanks";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Stack = createStackNavigator();
 const ModelPaperExam1 = ({ route }) => {
   const authContext = useContext(AuthContext);
@@ -388,36 +391,45 @@ const BlanksHelper = ()=>{
   </>)
 }
 
-const CardHelperComponent = ({title,data,modelPaper})=>{
+const CardHelperComponent = ({title,data})=>{
+//  navigation.navigate("Model Exam1", { data: data })
   const navigation = useNavigation();
-  return(<>
- {title === "Fill in the blanks"?<>
+  const [personalDetails,setPersonalDetails] = useState({
+    userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
+  })
+  useEffect(()=>{
+    var isAuthenticated,name,email,isAuthorized,mobile,address
+    async function getDetails(){
+       isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
+       name = await AsyncStorage.getItem("name");
+       email = await AsyncStorage.getItem("email");
+       isAuthorized = await AsyncStorage.getItem("isAuthorized");
+       mobile = await AsyncStorage.getItem("mobile");
+       address = await AsyncStorage.getItem("address");
+       setTimeoutFun();
+       updateDetails();
+    }
+    getDetails();
+    function setTimeoutFun(){
+      setTimeout(()=>{},2000)
+    }
+    
+    function updateDetails(){
+      setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address})
+    }
+  },[])
+  function checkIsAuthorized(){
+    if(personalDetails.userIsAuthorized==="true"){ 
+      return navigation.navigate("Model Exam1", { data: data })
+    }
+    else{
+      return Alert.alert("Unauthorized","Please complete your payment to unlock")
+    }
+  }
+  return( <>
+ <TouchableRipple rippleColor="rgba(0, 0, 0, .32)">
  <Pressable
-          onPress={() => navigation.navigate("Fill in the blanks", { data: data })}
-        >
-          <Card
-            style={{
-              width: Dimensions.get("screen").width - 30,
-              height: 70,
-              marginTop: 10,
-              borderRadius: 2,
-              elevation: 9,
-              // iOS
-              shadowColor: "red",
-              shadowOffset: { width: 10, height: 21 },
-              shadowOpacity: 0.8,
-              shadowRadius: 10,
-            }}
-          >
-            <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-              <Card.Title title={title}/>
-            </Card.Content>
-          </Card>
-        </Pressable>
-
- </> : <>
- <Pressable
-          onPress={() => navigation.navigate("Model Exam1", { data: data })}
+          onPress={checkIsAuthorized}
         >
           <Card
             style={{
@@ -434,16 +446,21 @@ const CardHelperComponent = ({title,data,modelPaper})=>{
             }}
           >
             <Card.Content style={{ display: "flex", justifyContent: "center" }}>
-              <Card.Title title={title}/>
+              <Card.Title title={title}
+              right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+              />
             </Card.Content>
           </Card>
-        </Pressable></>}
-  </>)
+        </Pressable>
+ </TouchableRipple>
+        </>)
+  
 }
 
 const ModelPaperStartingScreen = () => {
   const authContext = useContext(AuthContext);
   const navigation = useNavigation();
+
   return (
     <ScrollView>
       <View style={styles.rootContainer}>
@@ -471,7 +488,6 @@ const ModelPaperStartingScreen = () => {
         <CardHelperComponent title="Figures of Speech" data="figures of speech"/>
         <CardHelperComponent title="Odd Sound Out" data="odd sound out"/>
         <CardHelperComponent title="Syllables" data="syllables"/>
-        <CardHelperComponent title="Phonetic Transcription" data="phonetic transcription"/>
         <CardHelperComponent title="Silent Letters" data="silent letters"/>
         <CardHelperComponent title="Wrongly Spelt Word" data="wrongly spelt word"/>
         <CardHelperComponent title="Correction of Sentences" data="correction of sentences"/>

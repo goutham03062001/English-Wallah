@@ -23,7 +23,8 @@ export const AuthContext = createContext({
   quizExamsArr : [],
   loadCurrentPersonDetails:()=>{},
   getAllModelPapersByType:()=>{},
-  getAllBlankPapersByType : ()=>{}
+  getAllBlankPapersByType : ()=>{},
+  updateAuthorization:(paymentId,userEmail,userId,userMobile,data)=>{}
 
 });
 
@@ -51,11 +52,11 @@ export default function AuthContextProvider({ children }) {
   }
 
   async function setLocalItem(id,mobile,name,email,address,isAuthorized) {
-    let isAuthorizedValue = "";
-    if(isAuthorized===false){
-      isAuthorizedValue="false";
+    var isAuthorizedValue = "";
+    if(isAuthorized){
+      isAuthorizedValue="true";
     }else{
-      isAuthorizedValue="true"
+      isAuthorizedValue="false"
     }
     await AsyncStorage.setItem("userId",id);
     await AsyncStorage.setItem("isAuthenticated", "true");
@@ -149,7 +150,7 @@ export default function AuthContextProvider({ children }) {
           setCurrentLoggedInPerson(data.data);
           console.log("logged person in data - ",data.data);
           getAllQuizzes();
-          return Alert.alert("Login Success !", "You are now logged in");
+          return Alert.alert("Login Success !", "You are now logged in"+data.data.isAuthenticated);
         }
       })
       .catch((err) => {
@@ -385,6 +386,33 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred!","Something went wrong "+error.message)
     }
   }
+
+  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData){
+    setLoading(true);
+    const body = {paymentId,userEmail,userMobile,successData,userId};
+   const config = {
+   headers :{
+      "Content-Type":"application/json"
+    }
+   }
+    try {
+      const response = await axios.post(BACKEND_API_URL+"/api/razorpay/getData",body,config);
+      if(response.data!==null){
+        setLoading(false);
+        Alert.alert("Payment Success","you have successfully done your payment.");
+        return;
+      }else{
+        setLoading(false);
+        Alert.alert("Not Verified","Something went happen! While Processing your payment");
+        return;
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Occurred !"+error.message);
+      return Alert.alert("Error Occurred!","Something went wrong "+error.message)
+    }
+  }
+
   const values = {
     signup: signup,
     studentLogin: studentLogin,
@@ -415,7 +443,8 @@ export default function AuthContextProvider({ children }) {
     loadCurrentPersonDetails:loadCurrentPersonDetails,
     getAllModelPapersByType:getAllModelPapersByType,
     updateModelPaperAttempt:updateModelPaperAttempt,
-    getAllBlankPapersByType:getAllBlankPapersByType
+    getAllBlankPapersByType:getAllBlankPapersByType,
+    updateAuthorization:updateAuthorization
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

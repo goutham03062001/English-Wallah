@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, Text, View,Image,Alert,TouchableOpacity } from 'react-native'
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserImage from "../assets/user.png";
 import MobileImage from "../assets/phone.png";
@@ -7,18 +7,21 @@ import AddressImage from "../assets/address.png";
 import EmailImage from "../assets/email.png";
 import BestScore from "../assets/bestscore.png";
 import {StripeProvider,CardField,useConfirmPayment,useStripe} from "@stripe/stripe-react-native"
-import { Button, Card, TextInput } from 'react-native-paper';
+import { Button, Card, TextInput ,TouchableRipple} from 'react-native-paper';
 import { BACKEND_API_URL } from '../utils/Constants';
 import RazorpayCheckout from 'react-native-razorpay';
 import { PoppinsLight,PoppinsRegular } from '../utils/FontHelper';
 import { List,Avatar ,Chip} from 'react-native-paper';
+import { AuthContext } from '../context/AuthContext';
 const PersonalDetails =  () => {  
+  const authContext = useContext(AuthContext);
   const [personalDetails,setPersonalDetails] = useState({
-    userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
+    userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
   })
   useEffect(()=>{
-    var isAuthenticated,name,email,isAuthorized,mobile,address
+    var isAuthenticated,name,email,isAuthorized,mobile,address,currentUserId;
     async function getDetails(){
+      currentUserId = await AsyncStorage.getItem("userId");
        isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
        name = await AsyncStorage.getItem("name");
        email = await AsyncStorage.getItem("email");
@@ -34,45 +37,63 @@ const PersonalDetails =  () => {
     }
     
     function updateDetails(){
-      setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthenticated,userAddress:address})
+      setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address,userId:currentUserId})
     }
-  },[])
-  return (
-    // <StripeProvider publishableKey='pk_live_51OUQghSGAfyPJpXo7TJcz8AUl5bhSg6lW5eoEnbxauwYse0pGej2ZxAl3bLOHbsViDeSdynPA4CPpzHlbtJhiN5h002CyoHHni'>
-    //   <StripeApp/>
-    // </StripeProvider>
-    <View>
+  },[]);
 
-{/* <TouchableOpacity onPress={() => {
-    var options = {
-    description: 'Credits towards consultation',
+  //razorpay payment integration
+  const thresholdAmount = 1000;
+async function paymentFunction(){
+  var options = {
+    description: 'App Subscription',
     image: 'https://i.imgur.com/3g7nmJC.jpg',
     currency: 'INR',
-    key: 'rzp_test_OeY0kwhCdi2emB',
-    amount: '5000',
-    name: 'Acme Corp',
+    key: 'rzp_live_J89zrEvhSQ2i1m',
+    amount: thresholdAmount*100,
+    name: 'English Wallah | Xenicx',
     order_id: '',//Replace this with an order_id created using Orders API.
     prefill: {
-      email: 'gaurav.kumar@example.com',
-      contact: '9191919191',
-      name: 'Gaurav Kumar'
+      email:personalDetails.userEmail,
+      contact: personalDetails.userMobile,
+      name: personalDetails.userName,
+      address : personalDetails.userAddress
     },
     theme: {color: '#53a20e'}
   }
   RazorpayCheckout.open(options).then((data) => {
     // handle success
     alert(`Success: ${data.razorpay_payment_id}`);
+    //send this payment id to backend to store
+    authContext.updateAuthorization(data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,data)
   }).catch((error) => {
     // handle failure
     Alert.alert("Error ",error.message)
 
   });
-}}>
-<Text>Click</Text>
-</TouchableOpacity> */}
+}
+  return (
+    // <StripeProvider publishableKey='pk_live_51OUQghSGAfyPJpXo7TJcz8AUl5bhSg6lW5eoEnbxauwYse0pGej2ZxAl3bLOHbsViDeSdynPA4CPpzHlbtJhiN5h002CyoHHni'>
+    //   <StripeApp/>
+    // </StripeProvider>
+    <View>
+
+
 
   <View style={styles.topContainer}>
-  <Image source={require("../assets/avatar.png")} style={{width:50,height:50}}/>
+    <View style={{position:"absolute",top:0,right:0}}>
+      <TouchableOpacity 
+      
+      style={{display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center",backgroundColor:"black",borderRadius:2}}>
+       {personalDetails.userIsAuthorized==="false" ? <>
+       <Image source={require("../assets/subscription.png")} style={{width:30,height:30}}/>
+        <Text style={{color:"white"}}>Free Account</Text></> : <>
+        <>
+       <Image source={require("../assets/premium.png")} style={{width:30,height:30}}/>
+        <Text style={{color:"white"}}>Premium</Text></>
+        </>}
+      </TouchableOpacity>
+    </View>
+  <Image source={require("../assets/avatar.png")} style={{width:50,height:50,marginTop:20}}/>
   <Text style={{marginTop:10,fontSize:18,fontFamily:PoppinsLight}}>
     <Text>Hey, </Text>
     <Text>{personalDetails.userName}</Text>
@@ -95,12 +116,28 @@ const PersonalDetails =  () => {
         <Text style={styles.text}>Email - {personalDetails.userEmail}</Text>
         <Text style={styles.text}>Mobile - {personalDetails.userMobile}</Text>
         <Text style={styles.text}>Address - {personalDetails.userAddress}</Text>
+        {/* <Text style={styles.text}>Authorized - {personalDetails.userIsAuthorized}</Text> */}
       </Card.Content>
 
       <Card.Content>
     
       </Card.Content>
     </Card>
+  </View>
+
+  <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+  <TouchableRipple
+    onPress={() => paymentFunction()}
+    rippleColor="rgba(21,21,12,29)"
+  >
+    <Button mode='elevated' icon={require("../assets/rupee.png")}
+    style={{borderRadius:2,marginBottom:10}}
+    buttonColor='gold'
+    >
+      Paynow
+    </Button>
+  </TouchableRipple>
+    <Text style={styles.text}>Pay now to unlock all the features</Text>
   </View>
     </View>
   )
@@ -234,7 +271,8 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center",
     marginLeft:5,
-    borderRadius:5
+    borderRadius:5,
+    position:"relative"
 
   },
   bottomContainer:{
@@ -273,3 +311,10 @@ const styles = StyleSheet.create({
   //   marginVertical:20
   // }
 })
+
+
+{/* <TouchableOpacity onPress={() => {
+
+  }}>
+  <Text>Click</Text>
+  </TouchableOpacity> */}
