@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext ,useEffect} from "react";
 import {
   View,
   StyleSheet,
@@ -14,6 +14,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { Button as PaperButton, ActivityIndicator } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
+import * as Device from 'expo-device';
+
 const Signup = () => {
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -21,10 +23,48 @@ const Signup = () => {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const navigation = useNavigation();
+  const [deviceInfo, setDeviceInfo] = useState(null);
   const authContext = useContext(AuthContext);
+  useEffect(() => {
+
+    // ...
+    
+    const getDeviceInfo = async () => {
+      try {
+        // Get the device ID
+        // const deviceId = await Device.getDeviceIdAsync();
+        // console.log('Device ID:', deviceId);
+    
+        // You can also retrieve other device information
+        const brand = Device.brand;
+        // const modelId = Device.modelId;
+        const modelName = Device.modelName;
+        const deviceType = Device.deviceType;
+    
+        console.log('Brand:', brand);
+        console.log('Model Name:', modelName);
+        console.log('Device Type:', deviceType);
+
+        function setTimeOutFunction(){
+          setTimeout(()=>{},2000);
+        }
+        setTimeOutFunction();
+       let deviceObj = { 
+        brand:brand,modelName:modelName,deviceType:deviceType
+       }
+        setDeviceInfo(deviceObj)
+      } catch (error) {
+        console.error('Error fetching device information:', error);
+      }
+    };
+    
+    // Call the function to get device information
+    getDeviceInfo();
+    
+  }, []);
 
   async function signupHandler() {
-    authContext.signup(name, email, password, address, mobile);
+    authContext.signup(name, email, password, address, mobile,deviceInfo);
   }
   function LoginComponentHandler() {
     navigation.navigate("Login");

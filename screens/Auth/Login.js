@@ -1,22 +1,61 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import {View, StyleSheet,Text,TextInput,Button,Alert,Image,Dimensions} from 'react-native';
 import { AuthContext } from '../../context/AuthContext';
 import {Button as PaperButton,ActivityIndicator} from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from "@react-native-picker/picker";
+import { Device } from 'expo';
 
 const Login = () => {
     const[mobile,setMobile] = useState('');
     const[admissionNumber,setAdmissionNumber] = useState('');
     const[password,setPassword] = useState('');
   const [role, setRole] = useState("Student");
+  const [deviceInfo, setDeviceInfo] = useState(null);
 
     const navigation = useNavigation();
     const authContext = useContext(AuthContext);
+    useEffect(() => {
 
+        // ...
+        
+        const getDeviceInfo = async () => {
+          try {
+            // Get the device ID
+            const deviceId = await Device.getDeviceIdAsync();
+            console.log('Device ID:', deviceId);
+        
+            // You can also retrieve other device information
+            const brand = Device.brand;
+            const modelId = Device.modelId;
+            const modelName = Device.modelName;
+            const deviceType = Device.deviceType;
+        
+            console.log('Brand:', brand);
+            console.log('Model ID:', modelId);
+            console.log('Model Name:', modelName);
+            console.log('Device Type:', deviceType);
+    
+            function setTimeOutFunction(){
+              setTimeout(()=>{},2000);
+            }
+            setTimeOutFunction();
+           let deviceObj = { 
+            brand:brand,modelId:modelId,modelName:modelName,deviceType:deviceType
+           }
+            setDeviceInfo(deviceObj)
+          } catch (error) {
+            console.error('Error fetching device information:', error);
+          }
+        };
+        
+        // Call the function to get device information
+        getDeviceInfo();
+        
+      }, []);
    async function loginHandler(){
       
-            authContext.studentLogin(admissionNumber,password,role);
+            authContext.studentLogin(admissionNumber,password,role,deviceInfo);
         
        
      

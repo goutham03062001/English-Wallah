@@ -24,7 +24,8 @@ export const AuthContext = createContext({
   loadCurrentPersonDetails:()=>{},
   getAllModelPapersByType:()=>{},
   getAllBlankPapersByType : ()=>{},
-  updateAuthorization:(paymentId,userEmail,userId,userMobile,data)=>{}
+  updateAuthorization:(paymentId,userEmail,userId,userMobile,data)=>{},
+ 
 
 });
 
@@ -66,14 +67,14 @@ export default function AuthContextProvider({ children }) {
     await AsyncStorage.setItem("mobile",mobile);
     await AsyncStorage.setItem("address",address);
   }
-  async function signup(name,email,password,address,mobile) {
+  async function signup(name,email,password,address,mobile,deviceInfo) {
     setLoading(true);
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    const body = { name,email,password,address,mobile };
+    const body = { name,email,password,address,mobile, deviceInfo};
     const response = await axios
       .post(BACKEND_API_URL + "/Auth/Signup", body, config)
       .then((data) => {
@@ -115,7 +116,7 @@ export default function AuthContextProvider({ children }) {
         );
       });
   }
-  async function studentLogin(mobile,password) {
+  async function studentLogin(mobile,password,deviceInfo) {
     // await AsyncStorage.setItem("isAuthenticated","true");
     // setAuthenticated(true);
     setLoading(true);
@@ -124,7 +125,7 @@ export default function AuthContextProvider({ children }) {
         "Content-Type": "application/json",
       },
     };
-    const body = { mobile, password };
+    const body = { mobile, password,deviceInfo };
     const response = await axios
       .post(BACKEND_API_URL + "/Auth/Login", body, config)
       .then((data) => {
@@ -142,6 +143,9 @@ export default function AuthContextProvider({ children }) {
             "Login Failed",
           JSON.stringify(data.data)
           );
+        }
+        if(data.data === "Permission Denied"){
+          return Alert.alert("Permission Denied","You cannot access this account!");
         }
         if (data.data._id) {
           let idx = 0;
@@ -387,9 +391,9 @@ export default function AuthContextProvider({ children }) {
     }
   }
 
-  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData){
+  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData,userName){
     setLoading(true);
-    const body = {paymentId,userEmail,userMobile,successData,userId};
+    const body = {paymentId,userEmail,userMobile,successData,userId,userName};
    const config = {
    headers :{
       "Content-Type":"application/json"
@@ -397,9 +401,17 @@ export default function AuthContextProvider({ children }) {
    }
     try {
       const response = await axios.put(BACKEND_API_URL+"/api/razorpay/getData",body,config);
-      if(response.data!==null){
+      if(response.data==="Payment Successful"){
         setLoading(false);
         Alert.alert("Payment Success","you have successfully done your payment.");
+        await AsyncStorage.setItem("isAuthorized","true");
+        function setTimeOutFunction(){
+          setTimeout(()=>{
+            setLoading(true);
+          },2000)
+        }
+        setTimeOutFunction();
+        setLoading(false)
         return;
       }else{
         setLoading(false);
@@ -444,7 +456,7 @@ export default function AuthContextProvider({ children }) {
     getAllModelPapersByType:getAllModelPapersByType,
     updateModelPaperAttempt:updateModelPaperAttempt,
     getAllBlankPapersByType:getAllBlankPapersByType,
-    updateAuthorization:updateAuthorization
+    updateAuthorization:updateAuthorization,
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

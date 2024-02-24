@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, View,Image,Alert,TouchableOpacity } from 'react-native'
+import { Dimensions, StyleSheet, Text, View,Image,Alert,TouchableOpacity ,ScrollView} from 'react-native'
 import React,{useState,useEffect,useContext} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserImage from "../assets/user.png";
@@ -13,6 +13,7 @@ import RazorpayCheckout from 'react-native-razorpay';
 import { PoppinsLight,PoppinsRegular } from '../utils/FontHelper';
 import { List,Avatar ,Chip} from 'react-native-paper';
 import { AuthContext } from '../context/AuthContext';
+import { Appbar } from 'react-native-paper';
 const PersonalDetails =  () => {  
   const authContext = useContext(AuthContext);
   const [personalDetails,setPersonalDetails] = useState({
@@ -64,7 +65,7 @@ async function paymentFunction(){
     // handle success
     alert(`Success: ${data.razorpay_payment_id}`);
     //send this payment id to backend to store
-    authContext.updateAuthorization(data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,data)
+    authContext.updateAuthorization(data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,data,personalDetails.userName)
   }).catch((error) => {
     // handle failure
     Alert.alert("Error ",error.message)
@@ -76,10 +77,11 @@ async function paymentFunction(){
     //   <StripeApp/>
     // </StripeProvider>
     <View>
+<ScrollView>
+  
 
 
-
-  <View style={styles.topContainer}>
+<View style={styles.topContainer}>
     <View style={{position:"absolute",top:0,right:0}}>
       <TouchableOpacity 
       
@@ -116,7 +118,6 @@ async function paymentFunction(){
         <Text style={styles.text}>Email - {personalDetails.userEmail}</Text>
         <Text style={styles.text}>Mobile - {personalDetails.userMobile}</Text>
         <Text style={styles.text}>Address - {personalDetails.userAddress}</Text>
-        {/* <Text style={styles.text}>Authorized - {personalDetails.userIsAuthorized}</Text> */}
       </Card.Content>
 
       <Card.Content>
@@ -125,7 +126,10 @@ async function paymentFunction(){
     </Card>
   </View>
 
-  <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+{personalDetails.userIsAuthorized==="false"?  
+<>
+
+<View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
   <TouchableRipple
     onPress={() => paymentFunction()}
     rippleColor="rgba(21,21,12,29)"
@@ -134,11 +138,34 @@ async function paymentFunction(){
     style={{borderRadius:2,marginBottom:10}}
     buttonColor='gold'
     >
-      Paynow
+      Pay now
     </Button>
   </TouchableRipple>
     <Text style={styles.text}>Pay now to unlock all the features</Text>
   </View>
+
+{/* Payment Details */}
+  <View>
+
+
+  </View>
+</>
+: <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+  <TouchableRipple
+    onPress={() => paymentFunction()}
+    rippleColor="rgba(21,21,12,29)"
+  >
+    <Button mode='elevated' icon={require("../assets/logout.png")}
+    style={{borderRadius:2,marginBottom:10}}
+    buttonColor='red'
+    textColor='white'
+    >
+     Sign out
+    </Button>
+  </TouchableRipple>
+
+  </View>}
+</ScrollView>
     </View>
   )
 }
