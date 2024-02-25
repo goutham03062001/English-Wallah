@@ -4,7 +4,8 @@ import { AuthContext } from '../../context/AuthContext';
 import {Button as PaperButton,ActivityIndicator} from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from "@react-native-picker/picker";
-import { Device } from 'expo';
+
+import * as Device from 'expo-device';
 
 const Login = () => {
     const[mobile,setMobile] = useState('');
@@ -17,42 +18,41 @@ const Login = () => {
     const authContext = useContext(AuthContext);
     useEffect(() => {
 
-        // ...
-        
-        const getDeviceInfo = async () => {
-          try {
-            // Get the device ID
-            const deviceId = await Device.getDeviceIdAsync();
-            console.log('Device ID:', deviceId);
-        
-            // You can also retrieve other device information
-            const brand = Device.brand;
-            const modelId = Device.modelId;
-            const modelName = Device.modelName;
-            const deviceType = Device.deviceType;
-        
-            console.log('Brand:', brand);
-            console.log('Model ID:', modelId);
-            console.log('Model Name:', modelName);
-            console.log('Device Type:', deviceType);
-    
-            function setTimeOutFunction(){
-              setTimeout(()=>{},2000);
-            }
-            setTimeOutFunction();
-           let deviceObj = { 
-            brand:brand,modelId:modelId,modelName:modelName,deviceType:deviceType
-           }
-            setDeviceInfo(deviceObj)
-          } catch (error) {
-            console.error('Error fetching device information:', error);
+      // ...
+      
+      const getDeviceInfo = async () => {
+        try {
+          // Get the device ID
+          // const deviceId = await Device.getDeviceIdAsync();
+          // console.log('Device ID:', deviceId);
+      
+          // You can also retrieve other device information
+          const brand = Device.brand;
+          // const modelId = Device.modelId;
+          const modelName = Device.modelName;
+          const deviceType = Device.deviceType;
+      
+          console.log('Brand:', brand);
+          console.log('Model Name:', modelName);
+          console.log('Device Type:', deviceType);
+  
+          function setTimeOutFunction(){
+            setTimeout(()=>{},2000);
           }
-        };
-        
-        // Call the function to get device information
-        getDeviceInfo();
-        
-      }, []);
+          setTimeOutFunction();
+         let deviceObj = { 
+          brand:brand,modelName:modelName,deviceType:deviceType
+         }
+          setDeviceInfo(deviceObj)
+        } catch (error) {
+          console.error('Error fetching device information:', error);
+        }
+      };
+      
+      // Call the function to get device information
+      getDeviceInfo();
+      
+    }, []);
    async function loginHandler(){
       
             authContext.studentLogin(admissionNumber,password,role,deviceInfo);
