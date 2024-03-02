@@ -135,9 +135,7 @@ export default function AuthContextProvider({ children }) {
           
           return Alert.alert("Login Failed", JSON.stringify(data.data));
         }
-        if (
-          data.data === "This mobile number is not yet registered!"
-        ) {
+        if (data.data === "This mobile number is not yet registered!") {
           setLoading(false);
           return Alert.alert(
             "Login Failed",

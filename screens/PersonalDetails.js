@@ -43,14 +43,15 @@ const PersonalDetails =  () => {
   },[]);
 
   //razorpay payment integration
-  const thresholdAmount = 1000;
+  const thresholdAmount = 1;
+  const payableAmount = thresholdAmount*1;
 async function paymentFunction(){
   var options = {
     description: 'English Wallah App Subscription',
     image: require("../assets/icon.png"),
     currency: 'INR',
     key: 'rzp_live_J89zrEvhSQ2i1m',
-    amount: thresholdAmount*100,
+    amount: thresholdAmount*1,
     name: 'English Wallah | Xenicx',
     order_id: '',//Replace this with an order_id created using Orders API.
     prefill: {
@@ -138,7 +139,7 @@ async function paymentFunction(){
     style={{borderRadius:2,marginBottom:10}}
     buttonColor='gold'
     >
-      Pay now
+      Pay now {payableAmount}
     </Button>
   </TouchableRipple>
     <Text style={styles.text}>Pay now to unlock all the features</Text>
