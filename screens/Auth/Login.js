@@ -35,7 +35,7 @@ const Login = () => {
           console.log('Brand:', brand);
           console.log('Model Name:', modelName);
           console.log('Device Type:', deviceType);
-  
+          console.log("Device Type typo - ",typeof(deviceType))
           function setTimeOutFunction(){
             setTimeout(()=>{},2000);
           }
@@ -51,11 +51,12 @@ const Login = () => {
       
       // Call the function to get device information
       getDeviceInfo();
-      
+      console.log("Device Info",deviceInfo)
     }, []);
    async function loginHandler(){
-      
-            authContext.studentLogin(admissionNumber,password,role,deviceInfo);
+      console.log("Login handler function ");
+      console.log(deviceInfo);
+            authContext.studentLogin(mobile,password,deviceInfo);
         
        
      

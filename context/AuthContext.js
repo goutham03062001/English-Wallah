@@ -119,6 +119,8 @@ export default function AuthContextProvider({ children }) {
   async function studentLogin(mobile,password,deviceInfo) {
     // await AsyncStorage.setItem("isAuthenticated","true");
     // setAuthenticated(true);
+    console.log("Inside Login Fun");
+    console.log("Brand Name - "+deviceInfo.brand + " "+" Model Name - "+deviceInfo.modelName + " "+"Device Type - "+deviceInfo.deviceType)
     setLoading(true);
     const config = {
       headers: {
@@ -143,6 +145,7 @@ export default function AuthContextProvider({ children }) {
           );
         }
         if(data.data === "Permission Denied"){
+          setLoading(false)
           return Alert.alert("Permission Denied","You cannot access this account!");
         }
         if (data.data._id) {
@@ -152,7 +155,7 @@ export default function AuthContextProvider({ children }) {
           setCurrentLoggedInPerson(data.data);
           console.log("logged person in data - ",data.data);
           getAllQuizzes();
-          return Alert.alert("Login Success !", "You are now logged in"+data.data.isAuthenticated);
+          return Alert.alert("Login Success !", "You are now logged in");
         }
       })
       .catch((err) => {
@@ -402,7 +405,16 @@ export default function AuthContextProvider({ children }) {
       if(response.data==="Payment Successful"){
         setLoading(false);
         Alert.alert("Payment Success","you have successfully done your payment.");
-        await AsyncStorage.setItem("isAuthorized","true");
+        await AsyncStorage.removeItem("isAuthorized");
+         function delayFunction(){
+          async function execute(){
+            await AsyncStorage.setItem("isAuthorized","true");
+          }
+          setTimeout(()=>{
+            execute();
+          },2000)
+        }
+        delayFunction();
         function setTimeOutFunction(){
           setTimeout(()=>{
             setLoading(true);

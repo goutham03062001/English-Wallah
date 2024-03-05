@@ -9,18 +9,26 @@ import ModelPaperStartingScreen from "./ModelPapers/ModelPaperStartingScreen";
 import PreviousPaperStartingScreen from "./PreviousPapers/StartingScreen"
 import QuizOverView from "./PreviousPapers/QuizOverView";
 import FillInTheBlanksStartingScreen from "./FillInTheBlanks.js/FillInTheBlanksStartingScreen";
+import EnglishMethodsStartingScreen from "./Methods/StartingScreen";
+import { PoppinsLight,PoppinsRegular } from "../../../utils/FontHelper";
+import { TouchableRipple } from "react-native-paper";
 const Stack = createStackNavigator();
 const RoutingScreen = () => {
   const navigation = useNavigation();
 
   return (
     <>
+    
       <View style={{ flex: 1, backgroundColor: "white" }}>
+      <View style={{width:Dimensions.get("screen").width-30,display:"flex",justifyContent:"flex-start",marginTop:50,paddingHorizontal:20}}>
+      <Text style={{fontSize:18,fontFamily:PoppinsLight}}>Competitive</Text>
+    </View>
         <View style={styles.rootContainer}>
+       
           <Pressable onPress={()=>navigation.navigate("Model Papers")}>
             <Card style={[styles.cardStyle, { backgroundColor: "#31304D" }]}>
               <Text
-                style={{ color: "#ECEE81", fontWeight: "600", fontSize: 18 }}
+                style={{ color: "#ECEE81", fontWeight: "600", fontSize: 18 ,fontFamily:PoppinsRegular}}
               >
                 Model Papers
               </Text>
@@ -29,7 +37,7 @@ const RoutingScreen = () => {
 
           <Pressable onPress={()=>navigation.navigate("Previous Papers")}>
             <Card style={[styles.cardStyle, { backgroundColor: "#5F6F52" }]}>
-              <Text style={{ color: "#ECEE81", fontSize: 18 }}>
+              <Text style={{ color: "#ECEE81", fontSize: 18 ,fontFamily:PoppinsRegular}}>
                 Previous Papers
               </Text>
             </Card>
@@ -37,8 +45,18 @@ const RoutingScreen = () => {
 
           <Pressable onPress={()=>navigation.navigate("Fill In The Blanks")}>
             <Card style={[styles.cardStyle, { backgroundColor: "#0C2D57" }]}>
-              <Text style={{ color: "#ECEE81", fontSize: 18 }}>
+              <Text style={{ color: "#ECEE81", fontSize: 18,fontFamily:PoppinsRegular }}>
                 Fill In The Blanks
+              </Text>
+            </Card>
+          </Pressable>
+
+          <Pressable 
+          android_ripple={{color:"#C3DDDD"}}
+          onPress={()=>navigation.navigate("English Methods")}>
+            <Card style={[styles.cardStyle, { backgroundColor: "#AD88C6" }]}>
+              <Text style={{ color: "#ffff", fontSize: 18 ,fontFamily:PoppinsRegular}}>
+               English Methods
               </Text>
             </Card>
           </Pressable>
@@ -64,6 +82,7 @@ const StartingScreen = () => {
         <Stack.Screen name="Previous Papers" component={PreviousPaperStartingScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Quiz Review" component={QuizOverView}/>
         <Stack.Screen name="Fill In The Blanks" component={FillInTheBlanksStartingScreen}/>
+        <Stack.Screen name="English Methods" component={EnglishMethodsStartingScreen}/>
       </Stack.Navigator>
     </>
   );
@@ -82,9 +101,10 @@ const styles = StyleSheet.create({
   },
   cardStyle: {
     width: Dimensions.get("window").width / 1.08,
-    height: 150,
+    height: 100,
     padding: 10,
     justifyContent: "center",
     alignItems: "center",
+    borderRadius:5
   },
 });
