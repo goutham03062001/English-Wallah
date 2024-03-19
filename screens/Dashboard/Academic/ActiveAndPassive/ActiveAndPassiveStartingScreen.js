@@ -9,7 +9,7 @@ import ImperativeSentence from "./ImperativeSentence";
 import InterrogativeSentence from "./InterrogativeSentence";
 import AdvancedPoints from "./AdvancedPoints";
 const SentenceComponent = ({first ,second})=>{
-    return(<View style={{marginTop:6}}>
+    return(<View style={{marginVertical:16}}>
         <BoldTextHelper text={first} fontSize={16}/>
         <Text style={{fontSize:16}}> {second}</Text>
     </View>)
@@ -31,16 +31,18 @@ const SimplifiedComponent = ({ sentence }) => {
             <></>
           ) : (
             <>
-              <Text>
+              <View>
                 {index % 2 !== 1 ? (
                   <>
-                    <BoldTextHelper text={sen[index]} fontSize={16} />
-                    
+                    {/* <BoldTextHelper text={sen[index]} fontSize={16} /> */}
+                    <Text style={{ fontSize: 16,marginTop:10 }}>{sen[index]}</Text>
                   </>
                 ) : (
-                  <Text style={{ fontSize: 16 }}>{sen[index]}</Text>
+                    <BoldTextHelper text={sen[index]} fontSize={16}
+                    inputStyle={{paddingBottom:-10}} />
+                 
                 )}
-              </Text>
+              </View>
             </>
           )}
         </View>

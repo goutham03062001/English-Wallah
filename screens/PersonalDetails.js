@@ -43,7 +43,7 @@ const PersonalDetails =  () => {
   },[]);
 
   //razorpay payment integration
-  const thresholdAmount = 1;
+  const thresholdAmount = 1000;
   const payableAmount = thresholdAmount*1;
 async function paymentFunction(){
   var options = {
@@ -51,7 +51,7 @@ async function paymentFunction(){
     image: require("../assets/icon.png"),
     currency: 'INR',
     key: 'rzp_live_J89zrEvhSQ2i1m',
-    amount: thresholdAmount*1,
+    amount: thresholdAmount*100,
     name: 'English Wallah | Xenicx',
     order_id: '',//Replace this with an order_id created using Orders API.
     prefill: {
@@ -115,10 +115,28 @@ async function paymentFunction(){
     onPress={() => console.log('Pressed')}>Personal Info</Chip>
 
       <Card.Content style={styles.cardContent}>
-        <Text style={styles.text}>Name - {personalDetails.userName}</Text>
-        <Text style={styles.text}>Email - {personalDetails.userEmail}</Text>
-        <Text style={styles.text}>Mobile - {personalDetails.userMobile}</Text>
-        <Text style={styles.text}>Address - {personalDetails.userAddress}</Text>
+        <Text style={styles.text}>
+        <Image source={require("../assets/Name.png")}/>
+        <Text> Name  - {personalDetails.userName}</Text>
+        </Text>
+        <Text style={styles.text}>
+        <Image source={require("../assets/email.png")} style={{width:25,height:25}}/>
+          <Text> Email - {personalDetails.userEmail}</Text>
+        </Text>
+        <Text style={styles.text}>
+        <Image source={require("../assets/Mobile.png")} style={{width:25,height:25}}/>
+        
+        <Text> Mobile - {personalDetails.userMobile}</Text>
+        </Text>
+        <Text style={styles.text}>
+        <Image source={require("../assets/address.png")} style={{width:25,height:25}}/>
+        
+        <Text> Address - {personalDetails.userAddress}</Text></Text>
+
+        <Button mode="contained" onPress={()=>authContext.logout()}>
+          <Text>LOGOUT   </Text>
+          <Image source={require("../assets/logout.png")} style={{width:25,height:25}}/>
+        </Button>
       </Card.Content>
 
       <Card.Content>
@@ -136,13 +154,13 @@ async function paymentFunction(){
     rippleColor="rgba(21,21,12,29)"
   >
     <Button mode='elevated' icon={require("../assets/rupee.png")}
-    style={{borderRadius:2,marginBottom:10}}
+    style={{borderRadius:2,}}
     buttonColor='gold'
     >
       Pay now {payableAmount}
     </Button>
   </TouchableRipple>
-    <Text style={styles.text}>Pay now to unlock all the features</Text>
+    <Text style={[styles.text,{marginTop:10}]}>Pay now to unlock all the features</Text>
   </View>
 
 {/* Payment Details */}
@@ -152,7 +170,7 @@ async function paymentFunction(){
   </View>
 </>
 : <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-  <TouchableRipple
+  {/* <TouchableRipple
     onPress={() => paymentFunction()}
     rippleColor="rgba(21,21,12,29)"
   >
@@ -163,7 +181,7 @@ async function paymentFunction(){
     >
      Sign out
     </Button>
-  </TouchableRipple>
+  </TouchableRipple> */}
 
   </View>}
 </ScrollView>
@@ -304,7 +322,7 @@ const styles = StyleSheet.create({
 
   },
   bottomContainer:{
-    height:300,
+    height:350,
     paddingHorizontal:5,
     gap:10,
     marginTop:30

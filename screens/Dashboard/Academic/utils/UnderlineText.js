@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-
-const UnderlineTextHelper = ({text,fontSize}) => {
+import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper'
+const UnderlineTextHelper = ({text,inputStyle}) => {
   return (
    
-      <Text style={{textDecorationLine:"underline",fontWeight:"bold"}}>{text}</Text>
+      <Text style={[{textDecorationLine:"underline",color:"green"},inputStyle,{fontFamily:PoppinsRegular}]}>{text}</Text>
  
   )
 }

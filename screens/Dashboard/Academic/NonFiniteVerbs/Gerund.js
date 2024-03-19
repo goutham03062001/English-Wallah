@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import BoldTextHelper from "../utils/BoldText";
+import { PoppinsLight,PoppinsRegular } from "../../../../utils/FontHelper";
 import { ScrollView } from "react-native-gesture-handler";
 
 const Gerund = () => {
@@ -37,8 +38,7 @@ const Gerund = () => {
             <BoldTextHelper text="Note--" />
           </Text>
           <Text style={styles.text}>
-            It may be remembered in this connection that in form the Present
-            Participle is also Verb + ing. But the functions of Gerund and
+            It may be remembered in this connection that in form the <BoldTextHelper text="Present  Participle"/> is also <BoldTextHelper tex="Verb+ing"/> But the functions of Gerund and
             Present Participle are quite different.
           </Text>
 
@@ -76,7 +76,7 @@ const Gerund = () => {
                 alignItems: "center",
               }}
             >
-              <Text style={[styles.text, { fontWeight: "bold" }]}>Tense</Text>
+              <Text style={[styles.text, { fontWeight: "bold" ,width:100}]}>Tense</Text>
               <Text style={[styles.text, { fontWeight: "bold" }]}>
                 Active Voice
               </Text>
@@ -93,8 +93,8 @@ const Gerund = () => {
                 alignItems: "center",
               }}
             >
-              <Text style={[styles.text, { fontWeight: "bold" }]}>
-                Present or Continuous{" "}
+              <Text style={[styles.text, { fontWeight: "bold" ,width:100}]}>
+                Present/Continuous
               </Text>
               <Text style={styles.text}>Loving </Text>
               <Text style={styles.text}>Being loved</Text>
@@ -108,7 +108,7 @@ const Gerund = () => {
                 alignItems: "center",
               }}
             >
-              <Text style={[styles.text, { fontWeight: "bold" }]}>
+              <Text style={[styles.text, { fontWeight: "bold" ,width:100}]}>
                 Perfect{" "}
               </Text>
               <Text style={styles.text}>Having loved </Text>
@@ -120,8 +120,8 @@ const Gerund = () => {
         <View style={styles.view}>
           <Text style={styles.sideHeading}>Gerund and Noun-Infinitive</Text>
           <Text style={styles.text}>
-            As we have said above the function of Gerund is Verb + Noun. The
-            function of Noun Infinitive is also Verb + Noun. Therefore in most
+            As we have said above the function of Gerund is <BoldTextHelper text="Verb+Noun."/> The
+            function of Noun Infinitive is also <BoldTextHelper text="Verb+Noun."/> Therefore in most
             sentences either Gerund or Noun Infinitive can be used without any
             change in meaning.
           </Text>
@@ -264,38 +264,39 @@ const Gerund = () => {
           </Text>
 
           <View>
-            <Text>
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+
               The Noun or Pronoun coming before Gerund must be used in
               Possessive case. As—
             </Text>
             <Text style={styles.text}>
-              1. I am sorry for my being late. (not “for me / I being late”)
+              1. I am sorry for <BoldTextHelper text="my being"/> late. (not “for me / I being late”)
             </Text>
             <Text style={styles.text}>
-              2. I am glad at your reaching here in time. (not “at you
+              2. I am glad at <BoldTextHelper text="your reaching"/> here in time. (not “at you
               reaching”)
             </Text>
             <Text style={styles.text}>
-              3. Please excuse me for my coming late. (not “me / I coming late”)
+              3. Please excuse me for <BoldTextHelper text="my coming"/> late. (not “me / I coming late”)
             </Text>
             <Text style={styles.text}>
-              4. Nobody can prevent my going there. (not “me going there”)
+              4. Nobody can prevent <BoldTextHelper text="my going"/> there. (not “me going there”)
             </Text>
           </View>
 
           <View style={styles.view}>
             <Text style={styles.text}>
               <BoldTextHelper text="Note—" />
-              --(i) If the Noun coming before Gerund is a lifeless thing, it
-              should not be used in the Possessive case. As—
+              --(i) If the Noun coming before Gerund is a <BoldTextHelper text="lifeless thing"/>, it should
+              <BoldTextHelper text="not be"/> be used in the <BoldTextHelper text="Possessive case."/>  As—
             </Text>
 
             <Text style={styles.text}>
-              1. There is a chance of the milk turning sour. (not “milk’s
+              1. There is a chance of the <BoldTextHelper text="milk turning"/> sour. (not “milk’s
               turning”)
             </Text>
             <Text style={styles.text}>
-              2. There is danger of the roof falling in rains. (not “roof’s
+              2. There is danger of the <BoldTextHelper text="roof falling"/> in rains. (not “roof’s
               falling”)
             </Text>
           </View>
@@ -303,8 +304,8 @@ const Gerund = () => {
           <View style={styles.view}>
             <Text style={styles.text}>
               (ii) In the same way, Possessive case should not be made of Plural
-              Nouns ending in – s, or of Demonstrative Pronouns (this / that /
-              these / those).
+              Nouns ending in – s, or of Demonstrative Pronouns <BoldTextHelper text="(this / that /
+              these / those)."/>
             </Text>
           </View>
 
@@ -314,21 +315,21 @@ const Gerund = () => {
                   </Text>
 
                   <Text style={styles.text}>
-                  These Verbs are : Feel, mind, avoid, consider, enjoy, excuse, finish, miss, can’t help, look forward, to give up, go on, it is no good, it is no use.As—
+                  These Verbs are : <BoldTextHelper text=" Feel, mind, avoid, consider, enjoy, excuse, finish, miss, can’t help, look forward, to give up, go on, it is no good, it is no use."/> As—
 </Text>
                 </View>
                 <View>
            
             <Text style={styles.text}>
-            1. I avoid going there. 				(not “avoid to go”)
+            1. I avoid <BoldTextHelper text="going"/> there. 				(not “avoid to go”)
             </Text>
             <Text style={styles.text}>
-            2. I can’t help rejecting your application.		(not “can’t help to reject”)
+            2. I can’t help <BoldTextHelper text="rejecting"/> your application.		(not “can’t help to reject”)
             </Text>
             <Text style={styles.text}>
-            3. We just missed catching the train. 		(not “missed to catch”)            </Text>
+            3. We just missed <BoldTextHelper text="catching"/> the train. 		(not “missed to catch”)            </Text>
             <Text style={styles.text}>
-            4. Would you mind leaving me alone. 		(not “mind to leave”)
+            4. Would you mind <BoldTextHelper text="leaving"/> me alone. 		(not “mind to leave”)
             </Text>
           </View>
 
@@ -339,7 +340,7 @@ const Gerund = () => {
                   </Text>
 
                   <Text style={styles.text}>
-                  The following compound Nouns have Verb + ing as one part of their form. This Verb + ing part is called its Gerund. As— Walking-stick, writing-table, frying-pan, hunting-whip, sitting-room, inking-pad, etc.
+                  The following compound Nouns have <BoldTextHelper text="Verb+ing"/> as one part of their form. This <BoldTextHelper text="Verb+ing"/> part is called its Gerund. As— <BoldTextHelper text="Walking-stick, writing-table, frying-pan, hunting-whip, sitting-room, inking-pad,"/> etc.
 </Text>
                 </View>
                 <View>
@@ -358,21 +359,21 @@ const Gerund = () => {
                   </Text>
 
                   <Text style={styles.text}>
-                  Sometimes Gerunds can be formed by using Past Participle form of the Verb after Having or Being. They are called Compound Gerunds.                  </Text>
+                  Sometimes Gerunds can be formed by using Past Participle form of the Verb after <BoldTextHelper text="Having"/> or Being. They are called <BoldTextHelper text="Compound Gerunds."/> </Text>
                 </View>
                 <View>
            
             <Text style={styles.text}>
-            1. He is fond of being praised.
+            1. He is fond of <BoldTextHelper text="being praised."/>
            </Text>
            <Text style={styles.text}>
-           2. He is afraid of being punished.
+           2. He is afraid of <BoldTextHelper text="being punished."/>
            </Text>
            <Text style={styles.text}>
-           3. We hear of his having won a reward.
+           3. We hear of his <BoldTextHelper text="having own"/> a reward.
            </Text>
            <Text style={styles.text}>
-           4. He is guilty of having deceived a friend.
+           4. He is guilty of <BoldTextHelper text="having deceived"/> a friend.
            </Text>
            
           </View>
@@ -385,20 +386,20 @@ const Gerund = () => {
                   </Text>
 
                   <Text style={styles.text}>
-                  Sometimes Gerunds can be used as pure ordinary Nouns. They have ‘The before them and ‘of’ after them.
+                  Sometimes Gerunds can be used as pure <BoldTextHelper text="ordinary Nouns."/> They have <BoldTextHelper text="'The"/> before them and ‘of’ after them.
                   </Text>
                  </View>
                 <View>
            
             <Text style={styles.text}>
-            1. Now there remains only the signing of the treaty.
+            1. Now there remains only <BoldTextHelper text="the signing of"/> the treaty.
            </Text>
            <Text style={styles.text}>
-           2. From here we can watch the setting of the sun.           </Text>
+           2. From here we can watch <BoldTextHelper text="the setting of"/> the sun.           </Text>
            <Text style={styles.text}>
-           3. Let us now begin the singing of the hymns.           </Text>
+           3. Let us now begin <BoldTextHelper text="the singing"/> of the hymns.           </Text>
            <Text style={styles.text}>
-           4. This is no time for the playing of cards.           </Text>
+           4. This is no time for <BoldTextHelper text="the playing"/> of cards.           </Text>
            
           </View>
 

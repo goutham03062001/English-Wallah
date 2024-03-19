@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
-
+import BoldTextHelper from '../utils/BoldText'
 const Advanced = () => {
   return (
     <View style={styles.rootContainer}>
@@ -72,7 +72,7 @@ const Advanced = () => {
         <Text style={styles.text}>
         Sentences beginning with ‘Let’ express the sense of order, wish, proposal, imagining, condition, etc. They are converted into Indirect Narration according to their sense. The reporting verb is changed into order, requested, proposed, wished, supposed, etc. according to the sense. In all such sentences ‘Let’ is removed and connective ‘that’ is used. Other changes are made according to normal rules.
         </Text>
-        <Text>A) LET : Order :     Sometimes Let suggests order. In such sentences ordered, asked, or directed are used for the reporting Verb. In the place of Let we use should.Connective that is used.</Text>
+        <Text style={styles.text}>A) LET : Order :     Sometimes Let suggests order. In such sentences ordered, asked, or directed are used for the reporting Verb. In the place of Let we use should.Connective that is used.</Text>
 
        <Helper first="1. The Principal said, “Let no student stand here.”" second="The principal ordered that no student should stand there."/>
 
@@ -102,7 +102,9 @@ export default Advanced;
 const Helper = ({first,second})=>{
   return(<>
 <View style={styles.view}>
-  <Text style={styles.text}>{first}</Text>
+  <Text style={styles.text}>
+    <BoldTextHelper text={first}/>
+  </Text>
   <Text style={styles.text}>{second}</Text>
 </View>
   </>)

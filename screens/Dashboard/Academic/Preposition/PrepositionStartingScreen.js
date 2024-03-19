@@ -94,7 +94,7 @@ function  PrepositionStartingScreen() {
     <Drawer.Navigator>
       <Drawer.Screen name="Prepositions" component={StartingScreen} />
       <Drawer.Screen name="Forms Of Preposition" component={FormsOfPreposition} />
-      <Drawer.Screen name="Use Of Pronoun" component={UseOfPreposition} />
+      <Drawer.Screen name="Use of Preposition" component={UseOfPreposition} />
       <Drawer.Screen name="Functional Types of Prepositions" component={FunctionalTypesOfPreposition} />
       <Drawer.Screen name="Omission of Preposition" component={OmissionOfPreposition} />
       <Drawer.Screen name="Wrong Use of Prepositions" component={WrongUseOfPreposition} />

@@ -11,7 +11,8 @@ import PersonalDetails from "./screens/PersonalDetails";
 import { AuthContext } from "./context/AuthContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import ForgotPassword from "./screens/Auth/ForgotPassword";
+import ResetPassword from "./screens/Auth/ResetPassword";
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 import {
@@ -31,6 +32,8 @@ function AuthStack() {
       <Stack.Navigator>
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Forgot" component={ForgotPassword} options={{headerShown:false}}/>
+        <Stack.Screen name="Reset" component={ResetPassword} options={{headerShown:false}}/>
       </Stack.Navigator>
     </>
   );

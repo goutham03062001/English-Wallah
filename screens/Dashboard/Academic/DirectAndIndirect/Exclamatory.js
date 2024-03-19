@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View ,ScrollView} from 'react-native'
 import React from 'react'
+import BoldTextHelper from '../utils/BoldText'
 
 const Exclamatory = () => {
   return (
@@ -49,8 +50,10 @@ export default Exclamatory;
 const Helper = ({first,second})=>{
   return(<>
 <View style={styles.view}>
-  <Text style={styles.text}>{first}</Text>
-  <Text style={styles.text}>{second}</Text>
+  <Text style={styles.text}>
+    <BoldTextHelper text={first}/>
+  </Text>
+  <Text style={[styles.text,{paddingBottom:-20}]}>{second}</Text>
 </View>
   </>)
 }
@@ -75,5 +78,8 @@ const styles = StyleSheet.create({
   mainHeading:{
     textAlign:"center",
     fontSize:20
+  },
+  view:{
+    marginVertical:10
   }
 })

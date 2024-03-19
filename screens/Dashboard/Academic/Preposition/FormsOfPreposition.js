@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react';
+import BoldTextHelper from '../utils/BoldText';
 const SimplifiedComponent = ({sentence})=>{
   const sen = sentence.split(",");
 
@@ -18,31 +19,49 @@ const FormsOfPreposition = () => {
       <Text style={{fontSize:16,marginVertical:10}}>A Preposition has the following forms—</Text>
 
       <Text style={{fontSize:16,lineHeight:24}}>
-      A. Simple Prepositions—Prepositions of one word are called Simple Prepositions. As— 
+      <BoldTextHelper 
+      inputStyle={{color:"green"}}
+      text="A. Simple Prepositions"/>—Prepositions of one word are called <BoldTextHelper text="Simple Prepositions."
+      inputStyle={{color:"green"}}
+
+      /> As— 
       </Text>
       <Text style={{fontSize:16,lineHeight:24,marginVertical:10}}>
-Ex: In, of, to, at, by, for, from, off, on, out, through, till, up, with, down.
+<BoldTextHelper text="Ex: "
+      inputStyle={{color:"blue"}}
+
+/>In, of, to, at, by, for, from, off, on, out, through, till, up, with, down.
 
       </Text>
 
 
 
       <Text style={{fontSize:16,lineHeight:24}}>
-      B. Compound Prepositions—Prepositions formed by adding a Prefix to a Noun, Adjective or Adverb are called Compound Prepositions. Outwardly they look like one-word Prepositions, but in fact they are compound words. As— 
+     <BoldTextHelper text=" B. Compound Prepositions—" 
+      inputStyle={{color:"green"}}
+
+     />Prepositions formed by adding a Prefix to a Noun, Adjective or Adverb are called Compound Prepositions. Outwardly they look like one-word Prepositions, but in fact they are compound words. As— 
       </Text>
       <Text style={{fontSize:16,lineHeight:24,marginVertical:10}}>
-      Ex: About, above, across, along, amidst, among, amongst, around, before, behind, below, beneath, beside, between, beyond, inside, outside, underneath, within, without.
+      <BoldTextHelper text="Ex: "
+      inputStyle={{color:"blue"}}
+
+      /> About, above, across, along, amidst, among, amongst, around, before, behind, below, beneath, beside, between, beyond, inside, outside, underneath, within, without.
       </Text>
 
 
 
       
       <Text style={{fontSize:16,lineHeight:24}}>
-      C. Phrase Prepositions—Some Phrases also serve as Single Prepositions. As—
+      <BoldTextHelper text="C. Phrase Prepositions"
+      inputStyle={{color:"green"}}
+
+      />—Some Phrases also serve as Single Prepositions. As—
       </Text>
       <View style={{marginTop:8}}>
+      <BoldTextHelper text="Ex:" fontSize={16} inputStyle={{color:"blue"}}/>
       <SimplifiedComponent
-        sentence=" Ex: According to, 
+        sentence="According to, 
 in consequence of,
 agreeably to ,
 in course of,
@@ -82,7 +101,10 @@ with regard to"
       </View>
 
       <Text style={{fontSize:16,lineHeight:24,marginVertical:10}}>
-      4. Participle Prepositions—Some Present Participles are also used as Prepositions. As—
+      <BoldTextHelper text="4. Participle Prepositions"
+              inputStyle={{color:"green"}}
+
+      />—Some Present Participles are also used as Prepositions. As—
 Concerning, considering, barring, during, notwithstanding, pending, regarding, respecting, touching.
 
       </Text>

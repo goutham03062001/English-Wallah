@@ -25,8 +25,9 @@ export const AuthContext = createContext({
   getAllModelPapersByType:()=>{},
   getAllBlankPapersByType : ()=>{},
   updateAuthorization:(paymentId,userEmail,userId,userMobile,data)=>{},
- 
-
+  sendEmailOTP:(userEmail)=>{},
+  currentOTP:Number,
+  resetPassword:(currentPassword)=>{}
 });
 
 export default function AuthContextProvider({ children }) {
@@ -45,6 +46,7 @@ export default function AuthContextProvider({ children }) {
   const [quizExamLink, setQuizExamLink] = useState([]);
   const [currentWeekExamsArr, setCurrentWeekExamsArr] = useState([]);
   const[quizExamsArr,setQuizExamsArr] = useState([])
+  const[currentOTP,setCurrentOTP] = useState(Number);
   async function updateCurrentStatus(email,isAuthorized) {
  let curremail =  await AsyncStorage.getItem("email");
  let currmobile =  await AsyncStorage.getItem("mobile");
@@ -435,6 +437,52 @@ export default function AuthContextProvider({ children }) {
     }
   }
 
+  async function sendEmailOTP(userEmail){
+    try {
+      setLoading(true);
+      const config = {
+        headers:{
+          "Content-Type":"application/json"
+        }
+      }
+      const body = {userEmail}
+      const response = await axios.post(BACKEND_API_URL+"/Auth/forgotPassword",body,config);
+      if(response.data.message==="OTP Sent Successfully"){
+      setLoading(false);
+
+        setCurrentOTP(response.data.OTP);
+        return Alert.alert("OTP Sent","An Email Containing OTP to reset your password sent to your email")
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Occurred !"+error.message);
+      return Alert.alert("Error Occurred!","Something went wrong "+error.message)
+    }
+  }
+  async function resetPassword(currentPassword){
+    try {
+      setLoading(true);
+      const config = {
+        headers:{
+          "Content-Type":"application/json"
+        }
+      }
+      const currentEmail = await AsyncStorage.getItem("email");
+      const body = {currentPassword,currentEmail}
+      const response = await axios.post(BACKEND_API_URL+"/Auth/resetPassword",body,config);
+      if(response.data==="Password has updated"){
+        setLoading(false);
+        return Alert.alert("Password has Updated","Please login with new password");
+      }else{
+        setLoading(false);
+        return Alert.alert("Something went happen",response.data)
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Occurred !"+error.message);
+      return Alert.alert("Error Occurred!","Something went wrong "+error.message)
+    }
+  }
   const values = {
     signup: signup,
     studentLogin: studentLogin,
@@ -467,6 +515,9 @@ export default function AuthContextProvider({ children }) {
     updateModelPaperAttempt:updateModelPaperAttempt,
     getAllBlankPapersByType:getAllBlankPapersByType,
     updateAuthorization:updateAuthorization,
+    sendEmailOTP:sendEmailOTP,
+    currentOTP:currentOTP,
+    resetPassword:resetPassword
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

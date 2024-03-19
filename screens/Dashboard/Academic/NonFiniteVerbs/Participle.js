@@ -2,6 +2,7 @@ import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
 import BoldTextHelper from '../utils/BoldText'
 import UnderlineTextHelper from '../utils/UnderlineText'
+import { PoppinsRegular } from '../../../../utils/FontHelper'
 const Participle = () => {
   return (
     <View style={styles.rootContainer}>
@@ -25,7 +26,7 @@ const Participle = () => {
 
       <View>
         <Text style={[styles.text,{fontWeight:"bold"}]}>What is the difference between a gerund and a present participle?</Text>
-        <Text style={styles.text}>A gerund is a noun whereas a present participle acts like a verb or an adjective.</Text>
+        <Text style={styles.text}>A gerund is a <UnderlineTextHelper text="noun"/> whereas a <UnderlineTextHelper text="present participle"/> acts like a verb or an adjective.</Text>
         
       </View>
 
@@ -39,11 +40,11 @@ const Participle = () => {
       <View>
         <Text style={[styles.text,{fontWeight:"bold"}]}>For example</Text>
     
-        <Text style={styles.text}>( 1 ) Crying loudly, he went home.</Text>
-        <Text style={styles.text}>( 2 ) I have been working since last night.</Text>
-        <Text style={styles.text}>( 3 ) Abhishek is beating him.</Text>
-        <Text style={styles.text}>( 4 ) I saw Shivani scolding her daughter.</Text>
-        <Text style={styles.text}>( 5 ) Many workers are trapped inside the burning factory.</Text>
+        <Text style={styles.text}>( 1 ) <BoldTextHelper text="Crying"/> loudly, he went home.</Text>
+        <Text style={styles.text}>( 2 ) I have been <BoldTextHelper text="working"/> since last night.</Text>
+        <Text style={styles.text}>( 3 ) Abhishek is <BoldTextHelper text="beating"/> him.</Text>
+        <Text style={styles.text}>( 4 ) I saw Shivani <BoldTextHelper text="scolding"/> her daughter.</Text>
+        <Text style={styles.text}>( 5 ) Many workers are trapped inside <BoldTextHelper text="the burning"/> factory.</Text>
         <Text style={styles.text}>
         Where <BoldTextHelper text="crying, working, beating, scolding and burning are present participle"/> examples.
         </Text>
@@ -124,20 +125,20 @@ const Participle = () => {
               <View>
                 <Text style={styles.sideHeading}>I. Attributive Use :</Text>
 
-                <Text style={styles.text}>1. He jumped off a running train.</Text>
-                <Text style={styles.text}>2. The river has flowing water.</Text>
-                <Text style={styles.text}>3. The tired horse could run no farther.</Text>
-                <Text style={styles.text}>4. The wounded soldier was carried to the camp.</Text>
+                <Text style={styles.text}>1. He jumped off <BoldTextHelper text="a"/> <UnderlineTextHelper text="running"/> <BoldTextHelper text="train"/>.</Text>
+                <Text style={styles.text}>2. The river has <UnderlineTextHelper text="flowing"/> <BoldTextHelper text="water"/>.</Text>
+                <Text style={styles.text}>3. <BoldTextHelper text="The"/> <UnderlineTextHelper text="tired"/> <BoldTextHelper text="horse"/> could run no farther.</Text>
+                <Text style={styles.text}>4. <BoldTextHelper text="The"/> <UnderlineTextHelper text="train"/> <BoldTextHelper text="solider"/> was carried to the camp.</Text>
               </View>
 
 
               <View>
                 <Text style={styles.sideHeading}>II. Predicative Use :</Text>
 
-                <Text style={styles.text}>1. I had to keep waiting.</Text>
-                <Text style={styles.text}>2. He felt completely exhausted.</Text>
-                <Text style={styles.text}>3. He came running.</Text>
-                <Text style={styles.text}>4. He seems much worried.</Text>
+                <Text style={styles.text}>1. I had to keep <UnderlineTextHelper text="waiting"/>.</Text>
+                <Text style={styles.text}>2. He felt completely <UnderlineTextHelper text="exhausted"/>.</Text>
+                <Text style={styles.text}>3. He came <UnderlineTextHelper text="running"/>.</Text>
+                <Text style={styles.text}>4. He seems much <UnderlineTextHelper text="worried"/>.</Text>
               </View>
 
 
@@ -145,10 +146,10 @@ const Participle = () => {
               <View>
                 <Text style={styles.sideHeading}>III. Absolute Use (with a noun or pronoun going before)</Text>
 
-                <Text style={styles.text}>1. The day being hot, we did not go out.</Text>
-                <Text style={styles.text}>2. Time permitting, I will surely come.</Text>
-                <Text style={styles.text}>3. God willing, we shall win the match.</Text>
-                <Text style={styles.text}>4. The sun having set, nothing could be seen.</Text>
+                <Text style={styles.text}>1. The day <UnderlineTextHelper text="being hot,"/> we did not go out.</Text>
+                <Text style={styles.text}>2. Time <UnderlineTextHelper text="permitting"/>, I will surely come.</Text>
+                <Text style={styles.text}>3. God <UnderlineTextHelper text="willing"/>, we shall win the match.</Text>
+                <Text style={styles.text}>4. The sun <UnderlineTextHelper text="having set,"/> nothing could be seen.</Text>
 
                 <Text style={styles.text}><BoldTextHelper text="Note—"/> Under the Absolute use, the part containing the Participle is quite independent of the main part.</Text>
             
@@ -171,11 +172,11 @@ There are a lot of ways of using present participles. You can see some examples 
               
               <Text style={styles.sideHeading}>For Example</Text>
 
-                <Text style={styles.text}>( 1 ) Rahul fell asleep listening to music.</Text>
-                <Text style={styles.text}>( 2 ) He went into the rain running.</Text>
+                <Text style={styles.text}>( 1 ) Rahul fell asleep <UnderlineTextHelper text="listening"/> to music.</Text>
+                <Text style={styles.text}>( 2 ) He went into the rain <UnderlineTextHelper text="running"/>.</Text>
               
               <Text style={styles.text}>
-              Where listening and running are present participle examples.
+              Where <BoldTextHelper text="listening"/> and <UnderlineTextHelper text="running"/> are present participle examples.
               </Text>
 
               <Text style={[styles.text,{backgroundColor:"blue",color:"white",paddingHorizontal:4}]}>
@@ -185,20 +186,20 @@ There are a lot of ways of using present participles. You can see some examples 
               <Text style={styles.sideHeading}>For Example</Text>
 
                 <Text style={styles.text}>
-              ( 1 ) Throwing the bag, he went to the cinema.
+              ( 1 ) <UnderlineTextHelper text="Throwing"/> the bag, he went to the cinema.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 2 ) Getting off the clothes, he took a bath.
+                ( 2 ) <UnderlineTextHelper text="Getting"/> off the clothes, he took a bath.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 3 ) Seeing his mother, he touched her feet.
+                ( 3 ) <UnderlineTextHelper text="Seeing"/> his mother, he touched her feet.
 
                 </Text>
 
                 <Text style={styles.text}>
-                Where throwing, getting and seeing are present participle examples.
+                Where <UnderlineTextHelper text="throwing, getting"/> and <UnderlineTextHelper text="seeing"/> are <UnderlineTextHelper text="present participle"/> examples.
                 </Text>
 
                 <Text style={styles.text}>
@@ -211,24 +212,24 @@ There are a lot of ways of using present participles. You can see some examples 
                 <Text style={styles.sideHeading}>For Example</Text>
 
                 <Text style={styles.text}>
-                ( 1 ) Kavita wore a fascinating dress at the function.
+                ( 1 ) Kavita wore <BoldTextHelper text="a"/> <UnderlineTextHelper text="fascinating"/> <BoldTextHelper text="dress"/> at the function.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 2 ) He has an amazing bike.
+                ( 2 ) He has <BoldTextHelper text="an"/> <UnderlineTextHelper text="amazing"/> <BoldTextHelper text="bike"/>.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 3 ) I with my family watched an interesting movie.
+                ( 3 ) I with my family watched <BoldTextHelper text="an"/> <UnderlineTextHelper text="interesting"/> <BoldTextHelper text="movie"/>.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 4 ) That flying bird is on the verge of extinction.                </Text>
+                ( 4 ) <BoldTextHelper text="That"/> <UnderlineTextHelper text="flying"/> <BoldTextHelper text="bird"/> is on the verge of extinction.                </Text>
 
                 <Text style={styles.text}>
-                ( 5 ) Many workers are inside the burning factory.                </Text>
+                ( 5 ) Many workers are inside <BoldTextHelper text="the"/> <UnderlineTextHelper text="burning"/> factory.                </Text>
                 <Text style={styles.text}>
-                Where fascinating, amazing, interesting, flying and burning are present participle examples as well as adjectives.
+                Where <BoldTextHelper text="fascinating, amazing, interesting, flying"/> and <BoldTextHelper text="burning"/> are present participle examples as well as <BoldTextHelper text="adjectives"/>.
                 </Text>
               </View>
 
@@ -243,29 +244,29 @@ There are a lot of ways of using present participles. You can see some examples 
                 
 
                 <Text style={styles.text}>
-                ( 1 ) Knowing that his father is now medically fit, he distributed the sweets.
+                ( 1 ) <UnderlineTextHelper text="Knowing"/> that his father is now medically fit, he distributed the sweets.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 2 ) Seeing the ice cream, my nephew determined to eat it.                </Text>
+                ( 2 ) <UnderlineTextHelper text="Seeing"/> the ice cream, my nephew determined to eat it.                </Text>
 
                 <Text style={styles.text}>
-                ( 3 ) Being dirty, he didn’t enter the temple.                </Text>
+                ( 3 ) <UnderlineTextHelper text="Being"/> dirty, he didn’t enter the temple.                </Text>
 
                 <Text style={styles.text}>
-                ( 4 ) Thinking that the policeman is not outside, he came out of the house.      </Text>
+                ( 4 ) <UnderlineTextHelper text="Thinking"/> that the policeman is not outside, he came out of the house.      </Text>
 
                 <Text style={styles.text}>
-                ( 5 ) Asking a question, he cleared all his doubts.              </Text>
+                ( 5 ) <UnderlineTextHelper text="Asking"/> a question, he cleared all his doubts.              </Text>
                 <Text style={styles.text}>
-                Where knowing, seeing, being, thinking and asking are present participle examples.
+                Where <UnderlineTextHelper text="knowing, seeing, being, thinking"/> and asking are <UnderlineTextHelper text="present participle"/> examples.
                 </Text>
               </View>
 
               <View>
                 <Text style={styles.sideHeading}>Rule 4—Past Participle and Passive Voice </Text>
 
-                <Text style={styles.text}>Most Past Participles are used in Passive Voice. Therefore they are used after the Noun. As—</Text>
+                <Text style={styles.text}>Most Past Participles are used in <BoldTextHelper text="Passive Voice."/> Therefore they are used <UnderlineTextHelper text="after the Noun."/> As—</Text>
                 
                 <Text style={styles.text}>
                 1. Remember the <BoldTextHelper text="lessons"/>  <Text style={{textDecorationLine:"underline"}}>taught</Text> by him.             
@@ -283,29 +284,31 @@ There are a lot of ways of using present participles. You can see some examples 
                   </Text>
                 
 
+                <View>
+              <Text>
+              <BoldTextHelper text = "Note—"/>
+                 <Text style={styles.text}>
+                 But there are some Past Participles which can be used <BoldTextHelper text="both as Verbs and Adjectives."/> 
+They are—<BoldTextHelper text="Torn, written, born, broken, fallen, given, spoken, stolen."/> As—
+                </Text>
+              </Text>
+
                 <Text style={styles.text}>
-                <BoldTextHelper text = "Note—"/>
-                <Text style={styles.text}>
-                But there are some Past Participles which can be used both as Verbs and Adjectives. 
-They are—Torn, written, born, broken, fallen, given, spoken, stolen. As—
+                1. Here is <BoldTextHelper text="the"/> <UnderlineTextHelper text="broken"/> <BoldTextHelper text="window"/>.
                 </Text>
 
                 <Text style={styles.text}>
-                1. Here is the broken window.
+                2. Where is <BoldTextHelper text="the"/> <UnderlineTextHelper text="window"/> <BoldTextHelper text="broken"/> by the thief? (verb)
                 </Text>
 
                 <Text style={styles.text}>
-                2. Where is the window broken by the thief? (verb)
+                3. I want <BoldTextHelper text="a"/> <UnderlineTextHelper text="written"/> <BoldTextHelper text="statement"/>.
                 </Text>
 
                 <Text style={styles.text}>
-                3. I want a written statement.
+                4. This is <BoldTextHelper text="the letter"/> <UnderlineTextHelper text="written"/> by me.(verb)
                 </Text>
-
-                <Text style={styles.text}>
-                4. This is the letter written by me.(verb)
-                </Text>
-                </Text>
+                </View>
                 
             </View>
               
@@ -318,12 +321,10 @@ They are—Torn, written, born, broken, fallen, given, spoken, stolen. As—
                 Present Participles are mostly used in Active Voice before the Noun. As—
                 </Text>
 
-                <Text style={styles.text}>1. This is <BoldTextHelper text="our"/> <Text style={{textDecorationLine:"underline"}}>reading</Text> room.</Text>
-                <Text style={styles.text}>2. There is <BoldTextHelper text=" no"/> <Text style={{textDecorationLine:"underline"}}>
-                drinking
-                </Text> water.</Text>
-                <Text style={styles.text}>3. Hawk is <BoldTextHelper text="a"/> <Text style={{textDecorationLine:"underline"}}>hunting</Text> bird.</Text>
-                <Text style={styles.text}>4. Don’t get down <BoldTextHelper text="a"/> <Text style={{textDecorationLine:"underline"}}>running</Text> bus.</Text>
+                <Text style={styles.text}>1. This is <BoldTextHelper text="our"/> <UnderlineTextHelper text="reading"/> room.</Text>
+                <Text style={styles.text}>2. There is <BoldTextHelper text=" no"/> <UnderlineTextHelper text="drinking"/> water.</Text>
+                <Text style={styles.text}>3. Hawk is <BoldTextHelper text="a"/> <UnderlineTextHelper text="hunting"/> bird.</Text>
+                <Text style={styles.text}>4. Don’t get down <BoldTextHelper text="a"/> <UnderlineTextHelper text="running"/> bus.</Text>
               </View>
 
 
@@ -388,36 +389,96 @@ They are—Torn, written, born, broken, fallen, given, spoken, stolen. As—
                 <Text style={styles.text}>
                 Examples of present participle sentences
                 </Text>
-              <ExampleHelper text="( 1 ) Rohan’s grandfather was sitting in his bed reading a newspaper."/>
-              <ExampleHelper text="( 2 ) His younger brother took over all the studios belonging to Ranjit Singh."/>
-              <ExampleHelper text="( 3 ) A beautiful girl wearing a white dress announced the results."/>
-              <ExampleHelper text="( 4 ) Regretting his mistake, the director said sorry."/>
-              <ExampleHelper text="( 5 ) Being blind, he fell down."/>
-              <ExampleHelper text="( 6 ) He went to school eating pies and cakes."/>
-              <ExampleHelper text="( 7 ) I saw a van carrying newspapers."/>
-              <ExampleHelper text="( 8 ) Seeing the clouds, the cricketers lay on the ground."/>
-              <ExampleHelper text="( 9 ) Abhishek went running towards his pet."/>
-              <ExampleHelper text="( 10 ) Love is the biggest booming beat."/>
-              <ExampleHelper text="( 11 ) All the existing policies will be considered."/>
-              <ExampleHelper text="( 12 ) Sometimes, I felt that the ground was moving."/>
-              <ExampleHelper text="( 13 ) The operating system is completely useless."/>
-              <ExampleHelper text="( 14 ) I saw a burning house."/>
-              <ExampleHelper text="( 15 ) When I entered the house, I heard someone abusing me."/>
-              <ExampleHelper text="( 16 ) An old man was walking along the road."/>
-              <ExampleHelper text="( 17 ) I saw some birds flying over the roof."/>
-              <ExampleHelper text="( 18 ) Buying that house, I made a blunder."/>
-              <ExampleHelper text="( 19 ) I caught him red-handed stealing my books."/>
-              <ExampleHelper text="( 20 ) Drinking alcohol, he was dancing."/>
-              <ExampleHelper text="( 21 ) Diagnosing the illness, I sent him to the related doctor."/>
-              <ExampleHelper text="( 22 ) When I turned back, I heard someone calling for help."/>
-              <ExampleHelper text="( 23 ) Arriving soon, I felt that there was no party."/>
-              <ExampleHelper text="( 24 ) I heard the people talking about Narendra Modi."/>
-              <ExampleHelper text="( 25 ) Kapil bought new jogging shoes."/>
-              <ExampleHelper text="( 26 ) Standing in the sunlight, I fixed the TV signal."/>
-              <ExampleHelper text="( 27 ) Painting the picture, he was talking to me."/>
-              <ExampleHelper text="( 28 ) Please bring that glowing marble."/>
-              <ExampleHelper text="( 29 ) The principal always creates a confusing situation."/>
-              <ExampleHelper text="( 30 ) A sixth-grade student gave an inspiring speech."/>
+              <ExampleHelper text="( 1 ) Rohan’s grandfather was sitting in his bed reading a newspaper."
+                target="sitting"
+              />
+              <ExampleHelper 
+              target="belonging"
+              text="( 2 ) His younger brother took over all the studios belonging to Ranjit Singh."/>
+              <ExampleHelper
+              target="wearing"
+               text="( 3 ) A beautiful girl wearing a white dress announced the results."/>
+              <ExampleHelper
+              target="Regretting"
+               text="( 4 ) Regretting his mistake, the director said sorry."/>
+              <ExampleHelper
+              target="Being"
+               text="( 5 ) Being blind, he fell down."/>
+              <ExampleHelper 
+                target="eating"
+              text="( 6 ) He went to school eating pies and cakes."/>
+              <ExampleHelper  
+              target="carrying"
+               text="( 7 ) I saw a van carrying newspapers."/>
+              <ExampleHelper
+              target="Seeing"
+               text="( 8 ) Seeing the clouds, the cricketers lay on the ground."/>
+              <ExampleHelper
+              target="running"
+               text="( 9 ) Abhishek went running towards his pet."/>
+              <ExampleHelper
+              target="booming"
+               text="( 10 ) Love is the biggest booming beat."/>
+              <ExampleHelper 
+              target="existing"
+              text="( 11 ) All the existing policies will be considered."/>
+              <ExampleHelper 
+              target="moving"
+              text="( 12 ) Sometimes, I felt that the ground was moving."/>
+              <ExampleHelper
+                target="operating"
+               text="( 13 ) The operating system is completely useless."/>
+              <ExampleHelper
+              target="burning"
+               text="( 14 ) I saw a burning house."/>
+              <ExampleHelper 
+              target="abusing"
+              text="( 15 ) When I entered the house, I heard someone abusing me."/>
+              <ExampleHelper 
+              target="walking"
+              text="( 16 ) An old man was walking along the road."/>
+              <ExampleHelper 
+              target="flying"
+              text="( 17 ) I saw some birds flying over the roof."/>
+              <ExampleHelper
+                target="Buying"
+               text="( 18 ) Buying that house, I made a blunder."/>
+              <ExampleHelper 
+              target="stealing"
+              text="( 19 ) I caught him red-handed stealing my books."/>
+              <ExampleHelper
+              target="Drinking"
+               text="( 20 ) Drinking alcohol, he was dancing."/>
+              <ExampleHelper 
+              target="Diagnosing"
+              text="( 21 ) Diagnosing the illness, I sent him to the related doctor."/>
+              <ExampleHelper 
+              target="calling"
+              text="( 22 ) When I turned back, I heard someone calling for help."/>
+              <ExampleHelper 
+              target="Arriving"
+              text="( 23 ) Arriving soon, I felt that there was no party."/>
+              <ExampleHelper 
+              target="talking"
+              text="( 24 ) I heard the people talking about Narendra Modi."/>
+              <ExampleHelper
+              target="jogging"
+               text="( 25 ) Kapil bought new jogging shoes."/>
+              <ExampleHelper 
+              target="Standing"
+              text="( 26 ) Standing in the sunlight, I fixed the TV signal."/>
+              <ExampleHelper
+              target="Painting"
+               text="( 27 ) Painting the picture, he was talking to me."/>
+              <ExampleHelper
+              target="glowing"
+               text="( 28 ) Please bring that glowing marble."/>
+              <ExampleHelper 
+              target="confusing"
+              text="( 29 ) The principal always creates a confusing situation."/>
+              <ExampleHelper 
+              target="inspiring"
+              text="( 30 ) A sixth-grade student gave an inspiring speech."/>
              
                 <View>
                 </View>
@@ -430,14 +491,24 @@ They are—Torn, written, born, broken, fallen, given, spoken, stolen. As—
     </View>
   )
 }
-const ExampleHelper = ({text})=>{
-  return(<>
-                  <Text style={styles.text}>
-{text}
-                  </Text>
+const ExampleHelper = ({text,target})=>{
 
-  </>)
+  const words = text.split(' ');
+  
+  return (
+      <Text>
+          {words.map((word, index) => {
+              const shouldHighlight = target && target.includes(word.replace(/[.,]/g, ''));
+              return (
+                  <Text key={index} style={{ fontFamily: shouldHighlight ? PoppinsRegular : 'normal',fontSize:16 ,color:shouldHighlight?"green":"black",lineHeight:29,marginVertical:6}}>
+                      {word}{index !== words.length - 1 && ' '}
+                  </Text>
+              );
+          })}
+      </Text>
+  );
 }
+
 export default Participle
 
 const styles = StyleSheet.create({

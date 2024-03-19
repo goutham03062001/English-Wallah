@@ -1,16 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper'
 
-const BoldTextHelper = ({text,fontSize,styling,color}) => {
+const BoldTextHelper = ({text,fontSize,styling,color,inputStyle}) => {
   return (
     
      <>
      {styling ? <>
       <View style={styling}>
-        <Text style={{fontWeight:"bold",fontSize:fontSize}}>{text}</Text>
+        <Text style={{fontSize:fontSize,color:"green",fontFamily:PoppinsRegular}}>{text}</Text>
       </View>
      </> : <>
-     <Text style={[{fontWeight:"600",fontSize:fontSize,textAlign:"justify",color:"#000",lineHeight:28}]}>{text}</Text>
+     <Text style={[{fontWeight:"600",fontSize:fontSize,textAlign:"justify",color:"green",lineHeight:28,fontFamily:PoppinsRegular},inputStyle]}>{text}</Text>
 
      </>}
      </>

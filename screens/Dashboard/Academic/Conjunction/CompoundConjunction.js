@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React from "react";
 import BoldTextHelper from "../utils/BoldText";
-import UnderlineTextHelper from "../Adverb/UnderlineTextHelper";
+import UnderlineTextHelper from "../utils/UnderlineText";
 import { Divider } from "react-native-paper";
 const CompoundConjunction = () => {
   return (
@@ -77,75 +77,13 @@ const CompoundConjunction = () => {
               11. I can lend you the money on <UnderlineTextHelper text="condition that"/> you return it in a month.
               </Text>
             </Text>
-            <Text style={{ fontSize: 16 }}>
-              <Text>
-                12. She had <UnderlineTextHelper text="scarcely " /> returned
-                home when someone knocked at the door.
-              </Text>
-            </Text>
-            <Text style={{ fontSize: 16 }}>
-              <Text>
-                13. We had <UnderlineTextHelper text="no sooner" /> started for
-                Hyderabad than our uncle arrived.
-              </Text>
-            </Text>
-            <Text style={{ fontSize: 16 }}>
-              <Text>
-                14. <UnderlineTextHelper text="Though" /> he tried to convince
-                his wife, (yet) she was not happy with his words.
-              </Text>
-            </Text>
-          </View>
-        </View>
-
-        <Divider />
-        <View style={{ marginVertical: 35 }}>
-          {/* Cumulative or Copulative Conjunctions */}
-          <Text style={{ fontSize: 17, fontWeight: "bold" }}>
-            Note: Position of Correlatives:
-          </Text>
-          <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
-            If the first part of the pair is used before a{" "}
-            <Text style={{ fontWeight: "bold" }}>noun </Text>, the second part
-            should also be used before a{" "}
-            <Text style={{ fontWeight: "bold" }}>noun</Text>, not before a verb,
-            adjective or adverb.
-          </Text>
-
-          {/* <Text style={{textAlign:"center",marginVertical:10}}>Or</Text>
-
-      <Text style={{fontSize:16}}>
-      Conjunctions which are used to join statements are known as Cumulative or Copulative conjunctions.
-      </Text> */}
-
-          <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
-          Likewise, if the first part is used before a <Text style={{ fontWeight: "bold" }}>verb</Text>, <Text style={{ fontWeight: "bold" }}>adjective</Text> or <Text style={{ fontWeight: "bold" }}>adverb</Text>, the second part should also be used accordingly.
-          </Text>
-
-          <View style={{ marginVertical: 8 }}>
-            <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
-                1. <>
-                        <BoldTextHelper text="Either" fontSize={16}/>
-                    </> my father <BoldTextHelper text="or" fontSize={16}/> my brother, <BoldTextHelper text="or" fontSize={16}/> my uncle will help me in my hour of need.
-                
-                 </Text>
-            <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
-              <Text>
-              2. He is <BoldTextHelper text="neither" fontSize={16}/> strong <BoldTextHelper text="nor" fontSize={16}/> courageous.
-              </Text>
-            </Text>
-            <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
-              <Text>
-              3. I shall <BoldTextHelper text="either" fontSize={16}/> read <BoldTextHelper text="or" fontSize={16}/> write a story.  
-              </Text>
-            </Text>
-            <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
-              4. He will <BoldTextHelper text="not only" fontSize={16}/> encourage you but also help you.
-            </Text>
             
+          
+           
           </View>
         </View>
 
+     
         
       </View>
     </ScrollView>

@@ -2,11 +2,13 @@ import React from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 import RenderHTML from "react-native-render-html";
 import BoldText from "../utils/BoldText";
+import { PoppinsLight,PoppinsRegular } from "../../../../utils/FontHelper";
+import BoldTextHelper from "../utils/BoldText";
 const YourComponent = () => {
   const wordContent = `
   <div class="mainDiv">
   <div class="">
-  <h3 class="mainHeading">Infinitive</h3>
+  <p class="mainHeading">Infinitive</p>
   </div>
 <div class="row">
 <p class="sideHeading">Kinds of Infinitive—</p><p class="text">Infinitives are of two kinds :</p>
@@ -185,15 +187,16 @@ will not have ‘to’ with it. As—</p>
       textAlign: "center",
       fontSize: 20,
       color: "red",
+      fontFamily:PoppinsRegular
     },
-    sideHeading: { fontWeight: "bold", fontSize: 17 },
+    sideHeading: {  fontSize: 17 ,fontFamily:PoppinsRegular},
     row: {
       display: "flex",
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
     },
-    text: { fontSize: 16, lineHeight: 26 },
+    text: { fontSize: 16, lineHeight: 26 ,fontFamily:PoppinsRegular,lineHeight:29},
     div: { marginVertical: 10 },
 
     // Add more styles for other classes if needed
@@ -210,7 +213,7 @@ will not have ‘to’ with it. As—</p>
       />
 
       <View style={styles.rootContainer}>
-        <Text style={styles.heading}>
+        <Text style={[styles.heading,{fontFamily:PoppinsRegular,color:"red"}]}>
           Functions of the Gerundial Infinitive
         </Text>
         <Text style={{ fontSize: 16 }}>
@@ -218,40 +221,40 @@ will not have ‘to’ with it. As—</p>
         </Text>
 
         <View style={styles.section}>
-          <Text style={[styles.text, { textDecorationLine: "underline" }]}>
-            1. To qualify a Noun:
+          <Text style={[styles.text, { textDecorationLine: "underline",color:"green",fontFamily:PoppinsRegular }]}>
+            1.To qualify a Noun:
           </Text>
-          <Text style={styles.text}>There is no book to read.</Text>
-          <Text style={styles.text}>I have no time to waste.</Text>
-          <Text style={styles.text}>He is not a man to be respected.</Text>
-          <Text style={styles.text}>I have a horse to sell.</Text>
+          <Text style={styles.text}>There is no book <BoldTextHelper text="to read."/></Text>
+          <Text style={styles.text}>I have no time <BoldTextHelper text="to waste."/></Text>
+          <Text style={styles.text}>He is not a man <BoldTextHelper text="to be respected."/></Text>
+          <Text style={styles.text}>I have a horse <BoldTextHelper text="to sell."/></Text>
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.text, { textDecorationLine: "underline" }]}>
-            2. To qualify an Adjective:
+          <Text style={[styles.text, { textDecorationLine: "underline",color:"green",fontFamily:PoppinsRegular }]}>
+            2.To qualify an Adjective:
           </Text>
-          <Text style={styles.text}>This book is good to read.</Text>
-          <Text style={styles.text}>Mangoes are sweet to eat.</Text>
-          <Text style={styles.text}>I am eager to go.</Text>
-          <Text style={styles.text}>The weather is pleasant to enjoy.</Text>
+          <Text style={styles.text}>This book is good <BoldTextHelper text="to read."/></Text>
+          <Text style={styles.text}>Mangoes are sweet <BoldTextHelper text="to eat."/></Text>
+          <Text style={styles.text}>I am eager <BoldTextHelper text="to go."/></Text>
+          <Text style={styles.text}>The weather is pleasant <BoldTextHelper text="to enjoy."/></Text>
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.text, { textDecorationLine: "underline" }]}>
-            3. To qualify a Verb (to express a purpose):
+          <Text style={[styles.text, { textDecorationLine: "underline",color:"green",fontFamily:PoppinsRegular }]}>
+            3.To qualify a Verb (to express a purpose):
           </Text>
-          <Text style={styles.text}>He came to seek my permission.</Text>
-          <Text style={styles.text}>We earn to live comfortably.</Text>
-          <Text style={styles.text}>We work to make a living.</Text>
-          <Text style={styles.text}>He went to meet his friend.</Text>
+          <Text style={styles.text}>He came <BoldTextHelper text="to seek"/> my permission.</Text>
+          <Text style={styles.text}>We earn <BoldTextHelper text="to live"/> comfortably.</Text>
+          <Text style={styles.text}>We work <BoldTextHelper text="to make"/> a living.</Text>
+          <Text style={styles.text}>He went <BoldTextHelper text="to meet"/> his friend.</Text>
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.text, { textDecorationLine: "underline" }]}>
+          <Text style={[styles.text, { textDecorationLine: "underline",color:"green",fontFamily:PoppinsRegular }]}>
             4. To qualify a sentence:
           </Text>
-          <Text style={styles.text}>To tell the truth, I am very tired.</Text>
+          <Text style={styles.text}><BoldTextHelper text="To tell"/> the truth, I am very tired.</Text>
           <Text style={styles.text}>
             He was, so to speak, pierced to the heart.
           </Text>
@@ -259,7 +262,7 @@ will not have ‘to’ with it. As—</p>
       </View>
 
       <View style={styles.rootContainer}>
-        <Text style={styles.heading}>Other Uses of Infinitives</Text>
+        <Text style={[styles.heading,{color:"red",fontFamily:PoppinsRegular}]}>Other Uses of Infinitives</Text>
         <Text style={{ fontSize: 17, fontWeight: "bold" }}>
           Rule 1—How + Infinitive
         </Text>
@@ -267,10 +270,10 @@ will not have ‘to’ with it. As—</p>
         <View style={styles.section}>
           {/* <Text style={[styles.text,{textDecorationLine:"underline"}]}>1. To qualify a Noun:</Text> */}
           <Text style={styles.text}>
-            If an Infinitive is used as the object of the following verbs, how
-            is used before the Infinitive. These verbs are : know, see, learn,
+            If an Infinitive is used as the object of the following verbs, <BoldTextHelper text="how "/> 
+             is used before the Infinitive. These verbs are : <BoldTextHelper text="know, see, learn,
             observe, forget, discover, decide, teach, show, wonder, ask,
-            enquire, explain, tell. As—
+            enquire, explain, tell. As—"/>
           </Text>
 
           <Text style={styles.text}>
@@ -294,18 +297,18 @@ will not have ‘to’ with it. As—</p>
             Rule 2—Verb + Infinitive
           </Text>
 
-          <Text style={styles.text}>
-            Some Verbs when joined with an Infinitive show the occurrence of an
-            action. They also carry the sense of sudden occurrence of the action
-            concerned. These Verbs are : happen, seem, chance, appear. As—
+          <Text style={[styles.text,{lineHeight:29}]}>
+            Some <BoldTextHelper text="Verbs"/> when joined with an <BoldTextHelper text="Infinitive"/> show the <BoldTextHelper text="occurrence"/> of an
+            action. They also carry the sense of <BoldTextHelper text="sudden occurrence"/> of the action
+            concerned. These Verbs are : <BoldTextHelper text="happen, seem, chance, appear. As—"/>
           </Text>
 
-          <Text style={styles.text}>1. I happened to see a snake.</Text>
-          <Text style={styles.text}>2. He seemed to have forgotten me.</Text>
+          <Text style={styles.text}>1. <BoldTextHelper text="happened to see"/> a snake.</Text>
+          <Text style={styles.text}>2. He <BoldTextHelper text="seemed to have forgotten"/> me.</Text>
           <Text style={styles.text}>
-            3. I chanced to meet him in the market.
+            3. I <BoldTextHelper text="chanced to meet"/>him in the market.
           </Text>
-          <Text style={styles.text}>4. He appeared to recognize me.</Text>
+          <Text style={styles.text}>4. He <BoldTextHelper text="appeared to recognize"/> me.</Text>
         </View>
 
         <View style={styles.section}>
@@ -313,23 +316,23 @@ will not have ‘to’ with it. As—</p>
             Rule 3—Noun / Adjective + Infinitive
           </Text>
 
-          <Text style={styles.text}>
-            In some sentences an Infinitive is used after a Noun or an
-            Adjective. This Infinitive qualifies the Noun or the Adjective
-            concerned. As—
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+            In some sentences an <BoldTextHelper text="Infinitive"/> is used after a <BoldTextHelper text="Noun"/> or an
+            <BoldTextHelper text="Adjective"/>. This Infinitive qualifies the <BoldTextHelper text="Noun"/> or the <BoldTextHelper text="Adjective"/>
+            concerned. <BoldTextHelper text="As—"/>
           </Text>
 
-          <Text style={styles.text}>1. The problem is easy to solve.</Text>
-          <Text style={styles.text}>2. He has a horse to sell.</Text>
-          <Text style={styles.text}>3. I have a house to furnish.</Text>
-          <Text style={styles.text}>4. He is hard to please.</Text>
-          <Text style={styles.text}>5. These mangoes are sweet to eat.</Text>
+          <Text style={styles.text}>1. The problem is <BoldTextHelper text="easy to solve."/></Text>
+          <Text style={styles.text}>2. He has a <BoldTextHelper text="horse to sell."/></Text>
+          <Text style={styles.text}>3. I have a <BoldTextHelper text="house to furnish."/></Text>
+          <Text style={styles.text}>4. He is <BoldTextHelper text="hard to please."/></Text>
+          <Text style={styles.text}>5. These mangoes are <BoldTextHelper text="sweet to eat."/></Text>
 
           <View style={{ marginVertical: 10 }}>
-            <Text style={styles.text}>
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+
               <BoldText text="Note---" />
-              In such sentences the Infinitive is used only in Active Voice, not
-              in Passive Voice. Therefore we cannot write the following
+              In such sentences the Infinitive is used only in <BoldTextHelper text="Active Voice, not in Passive Voice."/> Therefore we <BoldTextHelper text="cannot write"/> the following
               sentences:
             </Text>
 
@@ -356,10 +359,11 @@ will not have ‘to’ with it. As—</p>
             Rule 4—Noun / Infinitive + Preposition
           </Text>
 
-          <Text style={styles.text}>
-            In some sentences an Infinitive comes after the Noun and at the end
-            of the sentence comes a Preposition. In such sentences the Noun
-            functions as the agent or instrument to a purpose. As—
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+
+            In some sentences an <BoldTextHelper text="Infinitive"/> comes <BoldTextHelper text="after the Noun"/> and at the end
+            of the sentence comes a <BoldTextHelper text="Preposition"/>. In such sentences the <BoldTextHelper text="Noun"/>
+            functions as the agent or instrument to a <BoldTextHelper text="purpose"/>. As—
           </Text>
 
           <Text style={styles.text}>
@@ -381,10 +385,11 @@ will not have ‘to’ with it. As—</p>
             Rule 5—Verb + Object + Infinitive
           </Text>
 
-          <Text style={styles.text}>
-            There are some Transitive Verbs which take an Object after them, and
-            after the object an Infinitive. These verbs are : Allow, permit,
-            order, advise, tell, request, force, invite, remind. As—
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+
+            There are some <BoldTextHelper text="Transitive Verbs"/>  which take an <BoldTextHelper text="Object"/> after them, and
+            after the object an <BoldTextHelper text="Infinitive"/>. These verbs are : <BoldTextHelper text="Allow, permit,
+            order, advise, tell, request, force, invite, remind."/> As—
           </Text>
 
           <Text style={styles.text}>
@@ -404,11 +409,10 @@ will not have ‘to’ with it. As—</p>
         <View style={styles.section}>
           <Text style={{ fontSize: 17, fontWeight: "bold" }}>Rule 6</Text>
 
-          <Text style={styles.text}>
-            There are some Verbs and some Adjectives after which only an
-            Infinitive is used, not a Gerund (verb + ‘ing’). These Verbs
-            are—Agree, desire, hope, expect, want, wish, promise, refuse, dare,
-            decide, fail, glad, happy, eager, anxious, easy, hard, able, ready.
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+
+            There are some <BoldTextHelper text="Verbs"/> and some <BoldTextHelper text="Adjectives"/> after which <BoldTextHelper text="only an Infinitive"/> is used, not a <BoldTextHelper text="Gerund"/> (verb + ‘ing’). These Verbs
+            <BoldTextHelper text="Agree, desire, hope, expect, want, wish, promise, refuse, dare, decide, fail, glad, happy, eager, anxious, easy, hard, able, ready."/>
             As—
           </Text>
 
@@ -434,16 +438,18 @@ will not have ‘to’ with it. As—</p>
             Rule 7—Subject + Verb + Infinitive / Gerund
           </Text>
 
-          <Text style={styles.text}>
-            There are some Verbs after which either Infinitve or Gerund (verb +
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+
+            There are some <BoldTextHelper text="Verbs"/> after which either <BoldTextHelper text="Infinitive"/> or <BoldTextHelper text="Gerund"/> (verb +
             ‘ing’) can be used. But then their meanings change.
           </Text>
 
-          <Text style={styles.text}>
-            ‘Verb + Gerund’ show that an action is being done in the normal
-            course, while Verb + Infinitive show that an action is being done
-            under some special situation or on a particular occasion. These
-            Verbs are : like, dislike, stop, begin. As—
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+
+          <BoldTextHelper text="‘Verb + Gerund’"/> show that an action is being done in the normal
+            course, while <BoldTextHelper text="Verb + Infinitive"/> show that an action is being done
+            under some <BoldTextHelper text="special situation"/> or on a <BoldTextHelper text="particular occasion"/>. These
+            Verbs are : <BoldTextHelper text="like, dislike, stop, begin."/> As—
           </Text>
 
           <Text style={styles.text}>
@@ -468,12 +474,13 @@ will not have ‘to’ with it. As—</p>
 
         <View style={styles.section}>
           <Text style={{ fontSize: 17, fontWeight: "bold" }}>
-            Infinitive of Purpose / Result
+          Rule 8—Infinitive of Purpose / Result 
           </Text>
 
-          <Text style={styles.text}>
-            Some Infinitives come after the Verb and they carry the sense of
-            some special purpose or result. As—
+          <Text style={[styles.text,{lineHeight:29,textAlign:"justify"}]}>
+
+            Some <BoldTextHelper text="Infinitives"/> come <BoldTextHelper text="after the Verb"/> and they carry the sense of
+            some <BoldTextHelper text="special purpose or result. As—"/>
           </Text>
 
           <Text style={styles.text}>
@@ -496,7 +503,7 @@ will not have ‘to’ with it. As—</p>
 const styles = StyleSheet.create({
   heading: { fontSize: 20, textAlign: "center", marginVertical: 20 },
   rootContainer: { paddingHorizontal: 8 },
-  text: { fontSize: 17, marginTop: 10, lineHeight: 28, textAlign: "justify" },
+  text: { fontSize: 17, marginTop: 10, lineHeight: 28, },
   section: { marginVertical: 20 },
 });
 export default YourComponent;

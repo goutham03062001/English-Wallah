@@ -9,13 +9,15 @@ import * as Device from 'expo-device';
 
 const Login = () => {
     const[mobile,setMobile] = useState('');
-    const[admissionNumber,setAdmissionNumber] = useState('');
     const[password,setPassword] = useState('');
   const [role, setRole] = useState("Student");
   const [deviceInfo, setDeviceInfo] = useState(null);
 
     const navigation = useNavigation();
     const authContext = useContext(AuthContext);
+    function RestPasswordFunctionHandler(){
+      return navigation.navigate("Forgot")
+    }
     useEffect(() => {
 
       // ...
@@ -84,7 +86,7 @@ const Login = () => {
       </Picker> */}
              {role === "Student" && <>
              <TextInput placeholder='Enter your  mobile number' style = {styles.inputContainer}
-                onChangeText={ (e)=>{setAdmissionNumber(e)}}
+                onChangeText={ (e)=>{setMobile(e)}}
                 placeholderTextColor="white"
             />
             
@@ -95,15 +97,7 @@ const Login = () => {
                 />
            
              </>}
-             {(role === "Teacher" || role==="Principal") && <>
-             <TextInput placeholder='Enter your mobile number' style = {styles.inputContainer}
-                onChangeText={ (e)=>{setMobile(e)}}
-            />
-
-            <TextInput placeholder='Enter your password' style = {styles.inputContainer}
-                onChangeText={ (e)=>{setPassword(e)}}/>
-           
-             </>}
+            
             
             <View style={styles.btn}>
             {
@@ -112,7 +106,14 @@ const Login = () => {
         }
             </View>
 
-            <View style={{marginVertical:18,flexDirection:"row", justifyContent:"center",alignItems:"center"}}>
+            <View style={{marginVertical:2,flexDirection:"row", justifyContent:"center",alignItems:"center"}}>
+                <View>
+                    <Text>Forgot Password?</Text>
+                </View>
+                <PaperButton onPress= {RestPasswordFunctionHandler}>Reset now</PaperButton>
+            </View>
+
+            <View style={{marginVertical:2,flexDirection:"row", justifyContent:"center",alignItems:"center"}}>
                 <View>
                     <Text>Don't have an account ?</Text>
                 </View>

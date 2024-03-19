@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
+import BoldTextHelper from '../utils/BoldText'
 
 const Imperative = () => {
   return (
@@ -51,7 +52,9 @@ const Imperative = () => {
 const Helper = ({first,second})=>{
   return(<>
 <View style={styles.view}>
-  <Text style={styles.text}>{first}</Text>
+  <Text style={styles.text}>
+    <BoldTextHelper text={first}/>
+  </Text>
   <Text style={styles.text}>{second}</Text>
 </View>
   </>)
@@ -67,6 +70,7 @@ const styles = StyleSheet.create({
   },
   text:{
     fontSize:17,
-    lineHeight:28
+    lineHeight:28,
+    textAlign:"justify"
   }
 });

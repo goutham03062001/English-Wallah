@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React from "react";
 import BoldTextHelper from "../utils/BoldText";
-import UnderlineTextHelper from "../Adverb/UnderlineTextHelper";
+import UnderlineTextHelper from "../utils/UnderlineText";
 import { Divider } from "react-native-paper";
+import { PoppinsLight,PoppinsRegular } from "../../../../utils/FontHelper";
 const CorelativeConjunction = () => {
   return (
     <ScrollView>
       <View style={{ paddingHorizontal: 8, marginTop: 9 }}>
         <Text style={{ lineHeight: 22, fontSize: 16 }}>
-          Conjunctions which are used in pairs are known as correlative
+          <UnderlineTextHelper text="Conjunctions which are used in pairs"/> are known as correlative
           conjunctions.
         </Text>
 
@@ -35,12 +36,15 @@ const CorelativeConjunction = () => {
         "
             fontSize={16}
             styling={{ padding: 4, marginVertical: 8 }}
+            inputStyle={{color:"green"}}
           />
 
           <View style={{ marginVertical: 8, gap: 10, marginBottom: 30 }}>
             <Text style={{ fontSize: 17 }}>
               <Text>
-                1. Madavi is <UnderlineTextHelper text="either" /> a typist{" "}
+                1. Madavi is <UnderlineTextHelper text="either" 
+                  inputStyle={{color:"green"}}
+                /> a typist{" "}
                 <UnderlineTextHelper text="or" /> a teacher.
               </Text>
             </Text>
@@ -128,14 +132,14 @@ const CorelativeConjunction = () => {
         <Divider />
         <View style={{ marginVertical: 35 }}>
           {/* Cumulative or Copulative Conjunctions */}
-          <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+          <Text style={{ fontSize: 17, color:"green",fontFamily:PoppinsRegular,fontWeight:600}}>
             Note: Position of Correlatives:
           </Text>
           <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
             If the first part of the pair is used before a{" "}
-            <Text style={{ fontWeight: "bold" }}>noun </Text>, the second part
+            <Text style={{ fontFamily:PoppinsRegular,color:"green"}}>noun </Text>, the second part
             should also be used before a{" "}
-            <Text style={{ fontWeight: "bold" }}>noun</Text>, not before a verb,
+            <Text style={{ fontFamily:PoppinsRegular,color:"green" }}>noun</Text>, not before a verb,
             adjective or adverb.
           </Text>
 
@@ -146,7 +150,7 @@ const CorelativeConjunction = () => {
       </Text> */}
 
           <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
-          Likewise, if the first part is used before a <Text style={{ fontWeight: "bold" }}>verb</Text>, <Text style={{ fontWeight: "bold" }}>adjective</Text> or <Text style={{ fontWeight: "bold" }}>adverb</Text>, the second part should also be used accordingly.
+          Likewise, if the first part is used before a <Text style={{ fontFamily:PoppinsRegular,color:"green"}}>verb</Text>, <Text style={{ fontFamily:PoppinsRegular,color:"green"}}>adjective</Text> or <Text style={{ fontFamily:PoppinsRegular,color:"green"}}>adverb</Text>, the second part should also be used accordingly.
           </Text>
 
           <View style={{ marginVertical: 8 }}>

@@ -28,13 +28,15 @@ import {
         </Text>
         <Text style={{fontSize:16,textAlign:"center"}}>Or</Text>
         <Text style={{fontSize:16,marginTop:8,paddingHorizontal:8}}>
-        Conjunction joins two words or sentences. They have no other function except joining.
+        Conjunction joins two words or sentences. <BoldTextHelper text="They have no other function except joining."/>
         </Text>
             <View style={{paddingHorizontal:7}}>
       <View>
         {/* collective noun */}
   
-        <Text style={{fontSize:18,marginVertical:15}}>Kinds of conjunctions:</Text>
+        <Text style={{fontSize:18,marginVertical:15}}>
+          <BoldTextHelper text="Kinds of conjunctions:"/>
+        </Text>
         
         <Text style={{fontSize:16,marginVertical:15}}>
         Conjunctions are divided into four kinds, namely.

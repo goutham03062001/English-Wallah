@@ -1,12 +1,13 @@
 import {View,StyleSheet,Dimensions,Pressable} from "react-native"
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Text } from 'react-native-paper';
-import BoldTextHelper from "../utils/BoldText";
+
 import { useNavigation } from "@react-navigation/native";
 import TransitiveVerbs from "./TransitiveVerbs";
 import IntransitiveVerbs from "./IntransitiveVerbs";
 import AuxiliaryVerbs from "./AuxiliaryVerbs";
-import VerbForms from "./VerbForms"
+import VerbForms from "./VerbForms";
+import { PoppinsLight,PoppinsRegular } from "../../../../utils/FontHelper";
 const Drawer = createDrawerNavigator();
 
 // import PartsofSpeechStartingScreen from './CommonNoun/QuizModel';

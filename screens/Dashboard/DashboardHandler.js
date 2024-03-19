@@ -23,7 +23,12 @@ import NonFiniteVerbsStartingScreen from './Academic/NonFiniteVerbs/NonFiniteVer
 import QuestionTagsStartingScreen from './Academic/QuestionTags/QuestionTagsStartingScreen';
 import DirectAndIndirectStarting from './Academic/DirectAndIndirect/DirectAndIndirectStarting';
 import IfClauseStarting from './Academic/IfClause/IfClauseStarting';
-import SubjectVerbAgreement from "./Academic/SubjectVerbAgreement/SubjectVerbAgreement"
+import SubjectVerbAgreement from "./Academic/SubjectVerbAgreement/SubjectVerbAgreement";
+import Phrase from "./Academic/Phrases/PhrasesStarting"
+import ClausesStarting from './Academic/Clauses/ClausesStarting';
+import FormationOfSentence from './Academic/FormationOfSentence/FormationOfSentence';
+import SimpleCompoundComplex from "./Academic/SimpleCompoundComplex/SimpleCompundComplexStartingScreen";
+import TensesAndTime from './Academic/TensesAndTime/TensesAndTime';
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
@@ -47,6 +52,11 @@ const DashboardHandler = () => {
     <Stack.Screen name = "Direct and Indirect Speech" component={DirectAndIndirectStarting} options={{headerShown:false}}/>
     <Stack.Screen name = "IfClause" component={IfClauseStarting} options={{headerShown:false}}/>
     <Stack.Screen name = "Subject-Verb Agreement" component={SubjectVerbAgreement} options={{headerShown:false}}/>
+    <Stack.Screen name = "Phrase" component={Phrase} options={{headerShown:false}}/>
+    <Stack.Screen name = "Clause" component={ClausesStarting} options={{headerShown:false}}/>
+    <Stack.Screen name = "Formation of Sentence" component={FormationOfSentence} options={{headerShown:false}}/>
+    <Stack.Screen name = "Simple Compound Complex" component={SimpleCompoundComplex} options={{headerShown:false}}/>
+    <Stack.Screen name = "Tenses And Time" component={TensesAndTime} options={{headerShown:false}}/>
     
     </Stack.Navigator>
   )
