@@ -13,12 +13,11 @@ function StartingScreen(){
     return(<>
       <View style={{padding:2}}>
       <View style={{height:"10%"}}>
-        <Text style={{textAlign:'center',fontSize:18,color:"red"}}>Reading</Text>
       </View>
 
       <View style={{padding:3,justifyContent:"flex-start",alignContent:"stretch"}}>
         <Text style={{fontSize:16,lineHeight:26}}>
-            <Text>A word used to name a <BoldTextHelper text="person"/>, <BoldTextHelper text="animal"/>, <BoldTextHelper text="thing"/>, <BoldTextHelper text="place"/>,etc and an <BoldTextHelper text="idea"/> or a <BoldTextHelper text="quality of mind"/> is called a noun
+            <Text>A word used to name a <BoldTextHelper inputStyle={{color:"#0165E1"}} text="person"/>, <BoldTextHelper inputStyle={{color:"#0165E1"}} text="animal"/>, <BoldTextHelper inputStyle={{color:"#0165E1"}} text="thing"/>, <BoldTextHelper inputStyle={{color:"#0165E1"}} text="place"/>,etc and an <BoldTextHelper inputStyle={{color:"#0165E1"}} text="idea"/> or a <BoldTextHelper inputStyle={{color:"#0165E1"}} text="quality of mind"/> is called a noun
             </Text>
         </Text>
 

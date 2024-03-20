@@ -6,7 +6,9 @@ const EmphaticPronoun = () => {
     <View style={styles.rootContainer}>
     <Text style={{fontSize:16,textAlign:"justify",lineHeight:27,marginVertical:10}}>
     A pronoun used for the sake of emphasis is known as Emphatic Pronoun.      </Text>
-    <BoldTextHelper text="EX: Myself, ourselves, yourself, yourselves, himself, herself, itself, themselves." fontSize={17} style={{padding:10,marginTop:10}}/>
+    <BoldTextHelper 
+    inputStyle={{color:"#0165E1"}}
+    text="EX: Myself, ourselves, yourself, yourselves, himself, herself, itself, themselves." fontSize={17} style={{padding:10,marginTop:10}}/>
 
     <Text style={{fontSize:17,marginTop:19}}>1.I my <BoldTextHelper text="myself"/> showed you the way.</Text>
     <Text style={{fontSize:17}}>2. You <BoldTextHelper text="yourself "/>can explain it to me.</Text>

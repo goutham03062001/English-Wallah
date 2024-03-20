@@ -8,7 +8,9 @@ const IndefinitePronoun = () => {
       <View style={styles.rootContainer}>
     <Text style={{fontSize:16,textAlign:"justify",lineHeight:27,marginVertical:10}}>
     A pronoun is used to talk about a person or thing indefinitely is known as Indefinite Pronoun.    </Text>
-    <BoldTextHelper text="EX: one, everyone, everybody, someone. Somebody, anyone, anybody, no one, nobody, none, everything, something, nothing, anything, some, many, several, other, any, no other, no, few, both, few, all, another." fontSize={17} style={{padding:10,marginTop:10}}/>
+    <BoldTextHelper
+      inputStyle={{color:"#0165E1"}}   
+     text="EX: one, everyone, everybody, someone. Somebody, anyone, anybody, no one, nobody, none, everything, something, nothing, anything, some, many, several, other, any, no other, no, few, both, few, all, another." fontSize={17} style={{padding:10,marginTop:10}}/>
 
     <View style={{marginTop:15}}>
       <BoldTextHelper text="One" fontSize={18}/>
@@ -20,24 +22,24 @@ const IndefinitePronoun = () => {
     <View style={{marginTop:15}}>
       <BoldTextHelper text="None" fontSize={18}/>
       <Text>It means not one. It is used with a singular or plural verb but singular is commoner.</Text>
-      <Text style={{fontSize:17,marginTop:19}}>1. None of my parents is (or are) educated.</Text>
-    <Text style={{fontSize:17}}>2. None of my sister is (or are) beautiful.</Text>
+      <Text style={{fontSize:17,marginTop:19}}>1. <BoldTextHelper text="None"/> of my parents is (or are) educated.</Text>
+    <Text style={{fontSize:17}}>2. <BoldTextHelper text="None"/> of my sister is (or are) beautiful.</Text>
     {/* <Text style={{fontSize:17}}>3. <BoldTextHelper text="One"/> of my sisters is very beautiful.</Text> */}
     </View>
 
     <View style={{marginTop:15}}>
       <BoldTextHelper text="Nobody" fontSize={18}/>
       <Text>It means not one. And it is used with a singular verb.</Text>
-      <Text style={{fontSize:17,marginTop:19}}>1. Nobody helped me.</Text>
-    <Text style={{fontSize:17}}>2. Nobody can be perfect in anything.</Text>
+      <Text style={{fontSize:17,marginTop:19}}>1. <BoldTextHelper text="Nobody"/> helped me.</Text>
+    <Text style={{fontSize:17}}>2. <BoldTextHelper text="Nobody"/> can be perfect in anything.</Text>
     </View>
 
     <View style={{marginTop:15}}>
       <BoldTextHelper text="Nothing" fontSize={18}/>
       <Text>It means not anything and it is used with a singular Verb. </Text>
-      <Text style={{fontSize:17,marginTop:19}}>1. Nothing is as sweet as honey.</Text>
-    <Text style={{fontSize:17}}>2. Nothing has been written about his early life.</Text>
-    <Text style={{fontSize:17}}>3. Nothing can be achieved without a strong desire.</Text>
+      <Text style={{fontSize:17,marginTop:19}}>1. <BoldTextHelper text="Nobody"/> is as sweet as honey.</Text>
+    <Text style={{fontSize:17}}>2. <BoldTextHelper text="Nobody"/> has been written about his early life.</Text>
+    <Text style={{fontSize:17}}>3. <BoldTextHelper text="Nobody"/> can be achieved without a strong desire.</Text>
     </View>
 
     <View style={{marginTop:15}}>
