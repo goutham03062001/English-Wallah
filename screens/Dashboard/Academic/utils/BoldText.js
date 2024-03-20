@@ -8,10 +8,10 @@ const BoldTextHelper = ({text,fontSize,styling,color,inputStyle}) => {
      <>
      {styling ? <>
       <View style={styling}>
-        <Text style={{fontSize:fontSize,color:"green",fontFamily:PoppinsRegular}}>{text}</Text>
+        <Text style={{fontSize:fontSize,color:"red",fontFamily:PoppinsRegular}}>{text}</Text>
       </View>
      </> : <>
-     <Text style={[{fontWeight:"600",fontSize:fontSize,textAlign:"justify",color:"green",lineHeight:28,fontFamily:PoppinsRegular},inputStyle]}>{text}</Text>
+     <Text style={[{fontWeight:"600",fontSize:fontSize,textAlign:"justify",color:"red",lineHeight:28,fontFamily:PoppinsRegular},inputStyle]}>{text}</Text>
 
      </>}
      </>

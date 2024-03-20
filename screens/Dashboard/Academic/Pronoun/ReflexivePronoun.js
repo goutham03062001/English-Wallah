@@ -5,7 +5,8 @@ const ReflexivePronoun = () => {
   return (
     <View style={styles.rootContainer}>
       <Text style={{fontSize:16,textAlign:"justify",lineHeight:27,marginVertical:10}}>A pronoun used with self or selves to reflect the action of the very on the subject is known as a Reflexive Pronoun.</Text>
-      <BoldTextHelper text="EX: Myself, ourselves, yourself, yourselves, himself, herself, itself, themselves." fontSize={17} style={{padding:10,marginTop:10}}/>
+      <BoldTextHelper text="EX: Myself, ourselves, yourself, yourselves, himself, herself, itself, themselves." 
+      inputStyle={{color:"#0165E1"}} fontSize={17} style={{padding:10,marginTop:10}}/>
 
       <Text style={{fontSize:17,marginTop:19}}>1.I saw <BoldTextHelper text="myself"/> in the mirror.</Text>
       <Text style={{fontSize:17}}>2. We hurt <BoldTextHelper text="ourselves"/>.</Text>
