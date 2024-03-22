@@ -411,6 +411,8 @@ export default function AuthContextProvider({ children }) {
     }
    }
     try {
+      Alert.alert("Working On Update Auth","currently working on update authorization function")
+
       const response = await axios.put(BACKEND_API_URL+"/api/razorpay/getData",body,config);
       if(response.data==="Payment Successful"){
         setLoading(false);

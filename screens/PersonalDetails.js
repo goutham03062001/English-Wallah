@@ -7,7 +7,7 @@ import AddressImage from "../assets/address.png";
 import EmailImage from "../assets/email.png";
 import BestScore from "../assets/bestscore.png";
 import {StripeProvider,CardField,useConfirmPayment,useStripe} from "@stripe/stripe-react-native"
-import { Button, Card, TextInput ,TouchableRipple} from 'react-native-paper';
+import { Button, Card, TextInput ,TouchableRipple,ActivityIndicator} from 'react-native-paper';
 import { BACKEND_API_URL } from '../utils/Constants';
 import RazorpayCheckout from 'react-native-razorpay';
 import { PoppinsLight,PoppinsRegular } from '../utils/FontHelper';
@@ -43,11 +43,12 @@ const PersonalDetails =  () => {
   },[]);
 
   //razorpay payment integration
-  const thresholdAmount = 100;
+  const thresholdAmount = 10;
   const payableAmount = thresholdAmount*1;
 async function paymentFunction(){
 
   authContext.createOrder();
+  Alert.alert("Making Checkout Function","working on checkout function")
   var options = {
     description: 'English Wallah App Subscription',
     image: require("../assets/icon.png"),
@@ -88,7 +89,15 @@ async function paymentFunction(){
   
 
 
-<View style={styles.topContainer}>
+<View>
+  {authContext.loading ? <>
+    <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+    <ActivityIndicator animating={true} color="black" size={35}/>
+
+    </View> 
+  </>:<>
+
+  <View style={styles.topContainer}>
     <View style={{position:"absolute",top:0,right:0}}>
       <TouchableOpacity 
       
@@ -191,6 +200,8 @@ async function paymentFunction(){
   </TouchableRipple> */}
 
   </View>}
+  </>}
+</View>
 </ScrollView>
     </View>
   )
