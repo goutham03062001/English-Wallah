@@ -46,6 +46,8 @@ const PersonalDetails =  () => {
   const thresholdAmount = 1000;
   const payableAmount = thresholdAmount*1;
 async function paymentFunction(){
+
+  authContext.createOrder();
   var options = {
     description: 'English Wallah App Subscription',
     image: require("../assets/icon.png"),
@@ -53,7 +55,7 @@ async function paymentFunction(){
     key: 'rzp_live_J89zrEvhSQ2i1m',
     amount: thresholdAmount*100,
     name: 'English Wallah | Xenicx',
-    order_id: '',//Replace this with an order_id created using Orders API.
+    order_id: authContext.currentOrderId,//Replace this with an order_id created using Orders API.
     prefill: {
       email:personalDetails.userEmail,
       contact: personalDetails.userMobile,
@@ -66,7 +68,11 @@ async function paymentFunction(){
     // handle success
     alert(`Success: ${data.razorpay_payment_id}`);
     //send this payment id to backend to store
+   
+    setTimeout(()=>{
     authContext.updateAuthorization(data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,data,personalDetails.userName)
+
+    },2000)
   }).catch((error) => {
     // handle failure
     Alert.alert("Error ",error.message)
@@ -132,6 +138,7 @@ async function paymentFunction(){
         <Image source={require("../assets/address.png")} style={{width:25,height:25}}/>
         
         <Text> Address - {personalDetails.userAddress}</Text></Text>
+        <Text> Authorized - {personalDetails.userIsAuthorized}</Text>
 
         <Button mode="contained" onPress={()=>authContext.logout()}>
           <Text>LOGOUT   </Text>

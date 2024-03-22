@@ -2,7 +2,7 @@ import { StyleSheet, Text, View ,Image} from 'react-native'
 import React,{useContext,useEffect,useState} from 'react'
 import { AuthContext } from '../../../../context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper}) => {
+const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index}) => {
     const authContext = useContext(AuthContext);
     const [personalDetails,setPersonalDetails] = useState({
       userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
@@ -52,7 +52,7 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper}) => {
       <>
         {isButton? <>{attemptCount >7? "7 attempts only":<Text>
           <Text>{attemptCount>0 ? "Reattempt":"Attempt"}</Text>
-          <Image source={require("../../../../assets/lock.png")} style={{width:20,height:20}}/>
+          {index==0? <></>:<Image source={require("../../../../assets/lock.png")} style={{width:20,height:20}}/>}
           </Text>}</> : isBestScore ? <>{bestScore}</> : <Text> {attemptCount}</Text>}
       </>
    

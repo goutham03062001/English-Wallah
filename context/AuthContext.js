@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { BACKEND_API_URL } from "../utils/Constants";
 import { Alert } from "react-native";
+import PersonalDetails from "../screens/PersonalDetails";
 export const AuthContext = createContext({
   signup: (mobile, id) => {},
   studentLogin: () => {},
@@ -27,7 +28,9 @@ export const AuthContext = createContext({
   updateAuthorization:(paymentId,userEmail,userId,userMobile,data)=>{},
   sendEmailOTP:(userEmail)=>{},
   currentOTP:Number,
-  resetPassword:(currentPassword)=>{}
+  resetPassword:(currentPassword)=>{},
+  createOrder:()=>{},
+  currentOrderId:null
 });
 
 export default function AuthContextProvider({ children }) {
@@ -47,6 +50,7 @@ export default function AuthContextProvider({ children }) {
   const [currentWeekExamsArr, setCurrentWeekExamsArr] = useState([]);
   const[quizExamsArr,setQuizExamsArr] = useState([])
   const[currentOTP,setCurrentOTP] = useState(Number);
+  const[currentOrderId,setCurrentOrderId] = useState(null);
   async function updateCurrentStatus(email,isAuthorized) {
  let curremail =  await AsyncStorage.getItem("email");
  let currmobile =  await AsyncStorage.getItem("mobile");
@@ -356,6 +360,10 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred!","Something went wrong"+error);
     }
   }
+
+// create order api
+
+
   async function updateModelPaperAttempt(ModelPaperId,score){
       setLoading(true);
       const body = {score}
@@ -483,6 +491,33 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred!","Something went wrong "+error.message)
     }
   }
+  async function createOrder(){
+  // const body = {receiptName:}
+  const currentUserName = await AsyncStorage.getItem("name");
+  const body = {receiptName : currentUserName};
+  const config ={
+    headers:{
+      "Content-Type":"application/json"
+    }
+  }
+    try {
+    setLoading(true);
+    const response = await axios.post(BACKEND_API_URL+"/api/razorpay/makeNewPayment",body,config);
+    if(response.data.order_id){
+      function setTimeOutFunction(){
+        setTimeout(()=>{setCurrentOrderId(response.data.order_id)},2000);
+      }
+        setTimeOutFunction();
+        return;
+    }
+    else{
+      return Alert.alert("Error Occurred","Error occurred while creating payment order");
+    }
+    } catch (error) {
+      return Alert.alert("Error Occurred",error.message)
+    }
+
+  }
   const values = {
     signup: signup,
     studentLogin: studentLogin,
@@ -517,7 +552,9 @@ export default function AuthContextProvider({ children }) {
     updateAuthorization:updateAuthorization,
     sendEmailOTP:sendEmailOTP,
     currentOTP:currentOTP,
-    resetPassword:resetPassword
+    resetPassword:resetPassword,
+    createOrder:createOrder,
+    currentOrderId:currentOrderId
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }
