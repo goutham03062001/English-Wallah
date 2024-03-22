@@ -111,17 +111,20 @@ useEffect(()=>{
           <View style={styles.dayCard}>
           <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <Text key={index} style={{fontSize:16}}>Day - {index+1}</Text>
-          <Button mode='outlined' style={{borderRadius:1}}><AttemptsCount currentQuizId={exam._id} isButton={true} isModelPaper={false}/></Button>
+          <Button mode='outlined' style={{borderRadius:1}}><AttemptsCount  index={index}
+           currentQuizId={exam._id} isButton={true} isModelPaper={false}/></Button>
           </View>
           <View style={styles.dayCardStyle}>
           <Text style={{fontWeight:"bold"}}>
           <Image source={AttemptImage} style={{width:20,height:20}}/>
-          Attempts - <AttemptsCount currentQuizId ={exam._id} isButton={false} isAuthorize={personalDetails.userIsAuthorized}/>
+          Attempts - <AttemptsCount currentQuizId ={exam._id} isButton={false} isAuthorize={personalDetails.userIsAuthorized}
+            index={index}
+          />
           {/* {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts && authContext.currentLoggedPerson.quizAttempts.length} */}
           </Text>
           <Text style={{fontWeight:"bold"}}>
           <Image source={BestScoreImage} style={{width:20,height:20}}/>
-           Best Score - <AttemptsCount isBestScore={true} currentQuizId={exam._id}/>/10 
+           Best Score - <AttemptsCount isBestScore={true} currentQuizId={exam._id}  index={index}/>/10 
           </Text>
           </View>
           </View>
