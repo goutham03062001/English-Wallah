@@ -503,7 +503,7 @@ export default function AuthContextProvider({ children }) {
     try {
     setLoading(true);
     const response = await axios.post(BACKEND_API_URL+"/api/razorpay/makeNewPayment",body,config);
-    if(response.data.order_id){
+    if(response.data.id){
       function setTimeOutFunction(){
         setTimeout(()=>{setCurrentOrderId(response.data.order_id)},2000);
       }

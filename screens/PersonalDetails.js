@@ -43,7 +43,7 @@ const PersonalDetails =  () => {
   },[]);
 
   //razorpay payment integration
-  const thresholdAmount = 1000;
+  const thresholdAmount = 100;
   const payableAmount = thresholdAmount*1;
 async function paymentFunction(){
 
