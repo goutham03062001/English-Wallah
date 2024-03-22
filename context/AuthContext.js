@@ -402,9 +402,9 @@ export default function AuthContextProvider({ children }) {
     }
   }
 
-  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData,userName){
+  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData,userName,orderId){
     setLoading(true);
-    const body = {paymentId,userEmail,userMobile,successData,userId,userName};
+    const body = {paymentId,userEmail,userMobile,successData,userId,userName,orderId};
    const config = {
    headers :{
       "Content-Type":"application/json"

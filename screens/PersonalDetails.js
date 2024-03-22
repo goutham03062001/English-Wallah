@@ -16,6 +16,7 @@ import { AuthContext } from '../context/AuthContext';
 import { Appbar } from 'react-native-paper';
 const PersonalDetails =  () => {  
   const authContext = useContext(AuthContext);
+  const[successData,setSuccessData] = useState(null);
   const [personalDetails,setPersonalDetails] = useState({
     userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
   })
@@ -68,10 +69,16 @@ async function paymentFunction(){
   RazorpayCheckout.open(options).then((data) => {
     // handle success
     alert(`Success: ${data.razorpay_payment_id}`);
+    alert(`OrderId : ${data.razorpay_order_id}`)
     //send this payment id to backend to store
-   
+    function executeFunction(){
+      setTimeout(()=>{
+        setSuccessData(data);
+      },2000)
+    }
+   executeFunction();
     setTimeout(()=>{
-    authContext.updateAuthorization(data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,data,personalDetails.userName)
+    authContext.updateAuthorization(data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,successData,personalDetails.userName,data.razorpay_order_id)
 
     },2000)
   }).catch((error) => {
