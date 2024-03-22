@@ -48,7 +48,12 @@ const PersonalDetails =  () => {
   const payableAmount = thresholdAmount*1;
 async function paymentFunction(){
 
-  authContext.createOrder();
+try {
+  try {
+    authContext.createOrder();
+  } catch (error) {
+    return Alert.alert("Failed","Failed to create your order")
+  }
   Alert.alert("Making Checkout Function","working on checkout function")
   var options = {
     description: 'English Wallah App Subscription',
@@ -66,31 +71,32 @@ async function paymentFunction(){
     },
     theme: {color: '#53a20e'}
   }
-  RazorpayCheckout.open(options).then((data) => {
-    // handle success
-    alert(`Success: ${data.razorpay_payment_id}`);
-    alert(`OrderId : ${data.razorpay_order_id}`)
+ const response = await RazorpayCheckout.open(options);
+ if(response.data){
+  let currentOrderId = authContext.currentOrderId
+
+    alert(`Success: ${response.data.razorpay_payment_id}`);
+    alert(`OrderId : ${currentOrderId}`)
     //send this payment id to backend to store
     function executeFunction(){
       setTimeout(()=>{
-        setSuccessData(data);
+        setSuccessData(response.data);
       },2000)
     }
    executeFunction();
     setTimeout(()=>{
-    authContext.updateAuthorization(data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,successData,personalDetails.userName,data.razorpay_order_id)
+    authContext.updateAuthorization(response.data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,successData,personalDetails.userName,response.data.razorpay_order_id,currentOrderId)
 
     },2000)
-  }).catch((error) => {
-    // handle failure
-    Alert.alert("Error ",error.message)
-
-  });
+ }else{
+  return Alert.alert("Failed to activate","Failed to activate your subscription")
+ }
+} catch (error) {
+  return Alert.alert("Error Occurred","Error Occurred while making payment")
+}
 }
   return (
-    // <StripeProvider publishableKey='pk_live_51OUQghSGAfyPJpXo7TJcz8AUl5bhSg6lW5eoEnbxauwYse0pGej2ZxAl3bLOHbsViDeSdynPA4CPpzHlbtJhiN5h002CyoHHni'>
-    //   <StripeApp/>
-    // </StripeProvider>
+    
     <View>
 <ScrollView>
   
@@ -193,18 +199,7 @@ async function paymentFunction(){
   </View>
 </>
 : <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-  {/* <TouchableRipple
-    onPress={() => paymentFunction()}
-    rippleColor="rgba(21,21,12,29)"
-  >
-    <Button mode='elevated' icon={require("../assets/logout.png")}
-    style={{borderRadius:2,marginBottom:10}}
-    buttonColor='red'
-    textColor='white'
-    >
-     Sign out
-    </Button>
-  </TouchableRipple> */}
+
 
   </View>}
   </>}
@@ -216,113 +211,6 @@ async function paymentFunction(){
 
 
 
-// Stripe API
-// const StripeApp = ()=>{
-//   const[email,setEmail] = useState();
-//   const[cardDetails,setCardDetails] = useState();
-//   const[loading,setLoading] = useState(false);
-//   // const{confirmPayment,loading} = useConfirmPayment();
-//   const {initPaymentSheet,presentPaymentSheet} = useStripe();
-//   const fetchPaymentIntentClientSecret = async ()=>{
-
-//     try {
-//       console.log("fetch payment intent client triggered");
-//       const response = await fetch(`${BACKEND_API_URL}/api/payment/create-payment-intent`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       });
-  
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-  
-//       const { clientSecret, error } = await response.json();
-      
-//       return { clientSecret, error };
-//     } catch (error) {
-//       console.log("Error Occurred - ", error);
-//     }
-//     }
-//   async function handlePayPress(){
-  
-//     //1. customer billing information
-//     // if(!cardDetails?.complete || !email){
-//     //   return Alert.alert("Warning","please fill all the details")
-//     // }
-//     setLoading(true);
-//     const billingDetails = {
-//       email : email,
-//       name:"Goutham"
-//     }
-
-//     //2. fetch intent client and secret from backend
-//     try {
-     
-//       const {clientSecret,error} = await fetchPaymentIntentClientSecret();
-//       console.log("client secret - ",clientSecret);
-//       setLoading(false);
-//       function delayFun(){
-//         setTimeout(()=>{
-//           console.log("Waiting for 2 seconds")
-//         },2000);
-//       }
-      
-//       if(error){
-//         Alert.alert("Error ","error occurred while fetching payment intent")
-//       }else{
-//     //     const {paymentIntent,error} = await confirmPayment(clientSecret,{ paymentMethodType: "Card",paymentMethodData: {
-//     //     billingDetails:billingDetails,
-//     //   },
-    
-//     // });
-//     //     if(error){
-//     //       Alert.alert("error ","error ocurred while fetching payment intent1"+error.message);
-//     //       console.log("Error occurred while confirm payment",error);
-//     //     }else if(paymentIntent){
-//     //       console.log("payment successful - ",paymentIntent)
-//     //     }
-
-//         const initSheet = await initPaymentSheet({paymentIntentClientSecret:clientSecret,merchantDisplayName:"EnglishWallah"});
-//           console.log("InitPayment Sheet Called")
-//         if(initSheet.error){
-//           return Alert.alert("Error",initSheet.error.message)
-//         }
-//         delayFun();
-//         const presentSheet = await presentPaymentSheet({clientSecret});
-//         console.log("PresentPayment Sheet Called")
-
-//         if(presentSheet.error){
-//           return Alert.alert("Error",presentSheet.error.message)
-//         }else{
-//           const userId = await AsyncStorage.getItem("userId");
-//           const webHookResponse = await fetch(BACKEND_API_URL+`/api/payment/webhook`,{
-//             method:"POST",
-//             headers:{
-//               "Content-Type":"application/json",
-//               "userId":userId
-//             },
-            
-//           });
-//           console.log("webHookResponse",webHookResponse);
-//           //  Alert.alert("Success","Payment done successfully");
-//         }
-//       }
-//     } catch (error) {
-//       console.log("Error Occurred - ",error)
-//     }
-
-//     //3. confirm the payment with card details
-//   }
-//   return(<>
-//     <View>
-    
-
-//       <Button onPress={handlePayPress}>{loading?"Loading.. Please Wait":"Pay now"}</Button>
-//     </View>
-//   </>)
-// }
 
 export default PersonalDetails
 
@@ -357,35 +245,6 @@ const styles = StyleSheet.create({
     marginTop:15
   },
   text:{fontSize:15,fontFamily:PoppinsLight}
-  // cardContainer:{
-  //   width:Dimensions.get("screen").width-19,
-  //   height:300,
-  //   backgroundColor:"#7FC7D9",
-  //   padding:10,
-  //   gap:15,
-  //   borderRadius:10
-  // },
-  // cardInnerContainer:{
-  //   display:"flex",
-  //   flexDirection:"row",
-  //   justifyContent:"flex-start",
-  //   alignItems:"center",
-  //   gap:20,
-  //   paddingTop:10,
-  //   paddingLeft:10
-  // },
-  // card:{
-  //   backgroundColor:"#efefefef", 
-  // },
-  // CardFieldContainer:{
-  //   height:50,
-  //   marginVertical:20
-  // }
+  
 })
 
-
-{/* <TouchableOpacity onPress={() => {
-
-  }}>
-  <Text>Click</Text>
-  </TouchableOpacity> */}
