@@ -40,7 +40,7 @@ const BlanksHelper = ()=>{
       <View style={styles.rootContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
       <Pressable
-            onPress={() => personalDetails.userIsAuthorized==="true"?  navigation.navigate("Parts of Speech",{data : "parts of speech"}):Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized?  navigation.navigate("Parts of Speech",{data : "parts of speech"}):Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -58,14 +58,14 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Parts Of Speech"
-                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
                 />
               </Card.Content>
             </Card>
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized==="true"?navigation.navigate("Articles",{data : "articles"}):Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Articles",{data : "articles"}):Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -83,7 +83,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Articles"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -91,7 +91,7 @@ const BlanksHelper = ()=>{
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized==="true" ? navigation.navigate("Prepositions",{data : "prepositions"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Prepositions",{data : "prepositions"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -109,7 +109,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Prepositions"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -117,7 +117,7 @@ const BlanksHelper = ()=>{
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Tenses",{data : "tenses"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Tenses",{data : "tenses"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -135,7 +135,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Tenses"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) =>personalDetails && !personalDetails.userIsAuthorized?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -144,7 +144,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Rewrite as Directed",{data : "rewrite as directed"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Rewrite as Directed",{data : "rewrite as directed"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -162,7 +162,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Rewrite as Directed"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -172,7 +172,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ==="true" ? navigation.navigate("Correction of Sentences",{data  : "correction of sentences"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized? navigation.navigate("Correction of Sentences",{data  : "correction of sentences"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -190,7 +190,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Correction of Sentences"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -200,7 +200,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Missing Letters",{data : "missing letters"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized? navigation.navigate("Missing Letters",{data : "missing letters"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -218,7 +218,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Missing Letters"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -228,7 +228,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ==="true" ? navigation.navigate("Silent Letters",{data : "silent letters"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Silent Letters",{data : "silent letters"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -246,7 +246,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Silent Letters"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -255,7 +255,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Transcriptions - English Words",{data : "transcriptions"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Transcriptions - English Words",{data : "transcriptions"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -273,7 +273,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Transcriptions - English Words"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -282,7 +282,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ==="true"? navigation.navigate("Odd Sounds",{data : "odd sounds"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Odd Sounds",{data : "odd sounds"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
           >
             <Card
               style={{
@@ -300,7 +300,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Odd Sounds"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>
@@ -309,7 +309,7 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ==="true" ? navigation.navigate("Syllables",{data : "syllables"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Syllables",{data : "syllables"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
             style={{marginBottom:3}}
           >
             <Card
@@ -329,7 +329,7 @@ const BlanksHelper = ()=>{
             >
               <Card.Content style={{ display: "flex", justifyContent: "center" }}>
                 <Card.Title title="Syllables"
-                                right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+                                right={(props) => personalDetails && !personalDetails.userIsAuthorized?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
 
                 />
               </Card.Content>

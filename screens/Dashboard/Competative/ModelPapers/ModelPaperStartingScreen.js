@@ -419,7 +419,7 @@ const CardHelperComponent = ({title,data})=>{
     }
   },[])
   function checkIsAuthorized(){
-    if(personalDetails.userIsAuthorized==="true"){ 
+    if(personalDetails.userIsAuthorized){ 
       return navigation.navigate("Model Exam1", { data: data })
     }
     else{
@@ -447,7 +447,7 @@ const CardHelperComponent = ({title,data})=>{
           >
             <Card.Content style={{ display: "flex", justifyContent: "center" }}>
               <Card.Title title={title}
-              right={(props) => personalDetails.userIsAuthorized === "false"?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+              right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
               />
             </Card.Content>
           </Card>
