@@ -14,37 +14,98 @@ import { PoppinsLight,PoppinsRegular } from '../utils/FontHelper';
 import { List,Avatar ,Chip} from 'react-native-paper';
 import { AuthContext } from '../context/AuthContext';
 import { Appbar } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 const PersonalDetails =  () => {  
   const authContext = useContext(AuthContext);
   const[successData,setSuccessData] = useState(null);
+  const[btnClicked,setBtnClicked] = useState(false);
+  const[loading,setLoading] = useState(false);
+  const[subscriptionDetails,setSubscriptionDetails] = useState(null);
+  const navigation = useNavigation();
   const [personalDetails,setPersonalDetails] = useState({
     userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
-  })
+  });
   useEffect(()=>{
-    var isAuthenticated,name,email,isAuthorized,mobile,address,currentUserId,currentOrderId,currentOrderId1;
-    async function getDetails(){
-      currentUserId = await AsyncStorage.getItem("userId");
-       isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
-       name = await AsyncStorage.getItem("name");
-       email = await AsyncStorage.getItem("email");
-       isAuthorized = await AsyncStorage.getItem("isAuthorized");
-       mobile = await AsyncStorage.getItem("mobile");
-       address = await AsyncStorage.getItem("address");
-       currentOrderId = await AsyncStorage.getItem("currentOrderId")
-       currentOrderId1 = await AsyncStorage.getItem("currentOrderId")
-       setTimeoutFun();
-       updateDetails();
-    }
-    getDetails();
-    function setTimeoutFun(){
-      setTimeout(()=>{},2000)
-    }
-    
-    function updateDetails(){
-      setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address,userId:currentUserId})
-    }
-  },[]);
+    async function getCurrentPersonDetails(){
+      try {
+        setLoading(true);
+        console.log("Getting current person details");
+        const id = await AsyncStorage.getItem("userId");
+        const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
+        if(response.data){
+          console.log("Response data - ",response.data);
+        setLoading(false);
 
+          setTimeoutFun();
+       updateDetails();
+        }else{
+          return Alert.alert("Failed","You are not at all a subscribed person")
+        }
+
+
+        function setTimeoutFun(){
+          setTimeout(()=>{},2000)
+        }
+        
+        function updateDetails(){
+          setPersonalDetails({userName:response.data.name, userEmail:response.data.email, userMobile:response.data.mobile,userIsAuthorized:response.data.isAuthenticated,userAddress:response.data.address,userId:response.data._id})
+        }
+      } catch (error) {
+        setLoading(false);
+
+        return Alert.alert("Error Occurred","Get personal details error")
+      }
+    }
+    getCurrentPersonDetails();
+   
+  },[])
+
+  //   var isAuthenticated,name,email,isAuthorized,mobile,address,currentUserId,currentOrderId,currentOrderId1;
+  //   async function getDetails(){
+  //     currentUserId = await AsyncStorage.getItem("userId");
+  //      isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
+  //      name = await AsyncStorage.getItem("name");
+  //      email = await AsyncStorage.getItem("email");
+  //      isAuthorized = await AsyncStorage.getItem("isAuthorized");
+  //      mobile = await AsyncStorage.getItem("mobile");
+  //      address = await AsyncStorage.getItem("address");
+  //      currentOrderId = await AsyncStorage.getItem("currentOrderId")
+  //      currentOrderId1 = await AsyncStorage.getItem("currentOrderId")
+  //      setTimeoutFun();
+  //      updateDetails();
+  //   }
+  //   getDetails();
+  //   function setTimeoutFun(){
+  //     setTimeout(()=>{},2000)
+  //   }
+    
+  //   function updateDetails(){
+  //     setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address,userId:currentUserId})
+  //   }
+  // },[]);
+ //fetch person subscription details
+async function checkSubscriptionDetails(userId){
+  console.log("Button clicked")
+  try {
+    setBtnClicked(true)
+    setLoading(true);
+    console.log("Getting data")
+    const response = await axios.get(BACKEND_API_URL+"/Auth/getInfo/"+userId);
+    if(response.data){
+      console.log('response data - ',response.data);
+      setLoading(false);
+      function setTimeOutFunction(){
+        setTimeout(()=>{
+          setSubscriptionDetails(response.data)
+        },3000)
+      }
+      setTimeOutFunction();
+    }
+  } catch (error) {
+    return Alert.alert("Error Occurred ","Failed to fetch your subscription Details")
+  }
+}
   //razorpay payment integration
   const thresholdAmount = 10;
   const payableAmount = thresholdAmount*1;
@@ -61,7 +122,14 @@ const PersonalDetails =  () => {
 
 
 <View>
-  {authContext.loading ? <>
+{loading ? <>
+  <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+    <ActivityIndicator animating={true} color="black" size={35}/>
+
+    </View>
+
+</>:<>
+{loading ? <>
     <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
     <ActivityIndicator animating={true} color="black" size={35}/>
 
@@ -89,18 +157,34 @@ const PersonalDetails =  () => {
     <Image source={require("../assets/wave.png")} style={{width:30,height:20}}/>
 
   </Text>
-    {/* <Text style={{color:"white"}}>{personalDetails.userEmail}</Text>
-    <Text style={{color:"white"}}>{personalDetails.userMobile}</Text>
-    <Text style={{color:"white"}}>{personalDetails.userAddress}</Text> */}
-
+   
   </View>
   <View style={styles.bottomContainer}>
     <Card style={{borderRadius:5,backgroundColor:"white"}}>
     <Chip icon={require("../assets/list.png")} 
     textStyle={{fontFamily:PoppinsRegular}}
     onPress={() => console.log('Pressed')}>Personal Info</Chip>
+ {btnClicked?<>
+  <Card.Content style={styles.subscriptionDetails}>
+ {loading?<>
+  <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+    <ActivityIndicator animating={true} color="black" size={35}/>
 
-      <Card.Content style={styles.cardContent}>
+    </View>
+ </>:<>
+ {subscriptionDetails && (<>
+    <Text style={styles.text}>Your subscription details</Text>
+    <Text style={[styles.text,{color:"green",fontFamily:PoppinsRegular}]}>Activated - {new Date(subscriptionDetails.createdAt).toLocaleDateString()}</Text>
+    <Text style={[styles.text,{color:"red"}]}>Valid Upto - {new Date(subscriptionDetails.validUpto).toLocaleDateString()}</Text>
+    <Button onPress={()=>setBtnClicked(false)} buttonColor='black'>
+      <Text style={{color:"white"}}>Cancel</Text>
+    </Button>
+   </>)}
+ </>}
+   
+  </Card.Content>
+ </>:<>
+ <Card.Content style={styles.cardContent}>
         <Text style={styles.text}>
         <Image source={require("../assets/Name.png")}/>
         <Text> Name  - {personalDetails.userName}</Text>
@@ -118,24 +202,26 @@ const PersonalDetails =  () => {
         <Image source={require("../assets/address.png")} style={{width:25,height:25}}/>
         
         <Text> Address - {personalDetails.userAddress}</Text>
-        <Text> OrderID-1 - {personalDetails.currentOrderId1}</Text>
-        <Text> OrderID - {personalDetails.currentOrderId}</Text>
+        <Text> Address - {typeof(personalDetails.userIsAuthorized)}</Text>
+        
         </Text>
         
+    {personalDetails.userIsAuthorized ? <>
+    <Button mode="contained" buttonColor='black' style={{borderRadius:0}}
+    onPress={(e)=>checkSubscriptionDetails(personalDetails.userId)}>View Your Subscription Details</Button>
 
+    </>:<></>}
         <Button mode="contained" onPress={()=>authContext.logout()}>
           <Text>LOGOUT   </Text>
           <Image source={require("../assets/logout.png")} style={{width:25,height:25}}/>
         </Button>
       </Card.Content>
+ </>}
 
-      <Card.Content>
-    
-      </Card.Content>
     </Card>
   </View>
 
-{personalDetails.userIsAuthorized==="false"?  
+{personalDetails.userIsAuthorized==="true"?  
 <>
 
 <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
@@ -164,6 +250,7 @@ const PersonalDetails =  () => {
 
   </View>}
   </>}
+</>}
 </View>
 </ScrollView>
     </View>
@@ -196,7 +283,7 @@ const styles = StyleSheet.create({
 
   },
   bottomContainer:{
-    height:350,
+    height:400,
     paddingHorizontal:5,
     gap:10,
     marginTop:30
@@ -205,7 +292,12 @@ const styles = StyleSheet.create({
     gap:25,
     marginTop:15
   },
-  text:{fontSize:15,fontFamily:PoppinsLight}
+  text:{fontSize:15,fontFamily:PoppinsLight},
+  subscriptionDetails:{
+    height:200,
+    justifyContent:"center",
+    gap:25
+  }
   
 })
 

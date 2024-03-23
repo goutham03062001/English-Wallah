@@ -418,7 +418,7 @@ export default function AuthContextProvider({ children }) {
       const response = await axios.put(BACKEND_API_URL+"/api/razorpay/getData",body,config);
       if(response.data==="Payment Successful"){
         setLoading(false);
-        Alert.alert("Payment Success","you have successfully done your payment.");
+        Alert.alert("Payment Success","you have successfully activated your subscription.");
         await AsyncStorage.removeItem("isAuthorized");
          function delayFunction(){
           async function execute(){
@@ -426,16 +426,17 @@ export default function AuthContextProvider({ children }) {
           }
           setTimeout(()=>{
             execute();
-          },2000)
+          },5000)
         }
         delayFunction();
         function setTimeOutFunction(){
           setTimeout(()=>{
             setLoading(true);
           },2000)
+          setLoading(false)
         }
         setTimeOutFunction();
-        setLoading(false)
+        
         return;
       }else{
         setLoading(false);
@@ -508,6 +509,7 @@ export default function AuthContextProvider({ children }) {
     setLoading(true);
     const response = await axios.post(BACKEND_API_URL+"/api/razorpay/makeNewPayment",body,config);
     if(response){
+      setLoading(false);
       async function setTimeOutFunction(){
         setTimeout(()=>{
         
@@ -544,7 +546,8 @@ export default function AuthContextProvider({ children }) {
           setTimeout(()=>{
           updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id)
       
-          },2000)
+          },2000);
+          
         }).catch((error) => {
           // handle failure
           setLoading(false);
