@@ -560,7 +560,7 @@ export default function AuthContextProvider({ children }) {
           // handle success
           alert(`Success: ${data.razorpay_payment_id}`);
           //send this payment id to backend to store
-         alert("Success ",data.razorpay_order_id);
+         alert(`Success: ${data.razorpay_order_id}`);
           setTimeout(()=>{
           updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id,data.razorpay_order_id)
       
