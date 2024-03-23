@@ -4,6 +4,8 @@ import axios from "axios";
 import { BACKEND_API_URL } from "../utils/Constants";
 import { Alert } from "react-native";
 import PersonalDetails from "../screens/PersonalDetails";
+import RazorpayCheckout from 'react-native-razorpay';
+
 export const AuthContext = createContext({
   signup: (mobile, id) => {},
   studentLogin: () => {},
@@ -401,7 +403,7 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred!","Something went wrong "+error.message)
     }
   }
-
+// data.razorpay_payment_id,userEmail,userId,userMobile,data,userName
   async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData,userName,orderId,currentOrderId){
     setLoading(true);
     const body = {paymentId,userEmail,userMobile,successData,userId,userName,orderId,currentOrderId};
@@ -493,7 +495,7 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred!","Something went wrong "+error.message)
     }
   }
-  async function createOrder(){
+  async function createOrder(userName,userEmail,userMobile,userAddress,userId){
   // const body = {receiptName:}
   const currentUserName = await AsyncStorage.getItem("name");
   const body = {receiptName : currentUserName};
@@ -510,7 +512,40 @@ export default function AuthContextProvider({ children }) {
         setTimeout(()=>{setCurrentOrderId(response.data.id)},2000);
       }
         setTimeOutFunction();
-        return;
+        const thresholdAmount = 10;
+        const payableAmount = thresholdAmount*1;
+        var options = {
+          description: 'English Wallah App Subscription',
+          image: require("../assets/icon.png"),
+          currency: 'INR',
+          key: 'rzp_live_J89zrEvhSQ2i1m',
+          amount: thresholdAmount*100,
+          name: 'English Wallah | Xenicx',
+          order_id: currentOrderId,//Replace this with an order_id created using Orders API.
+          prefill: {
+            email:userEmail,
+            contact: userMobile,
+            name: userName,
+            address : userAddress
+          },
+          theme: {color: '#53a20e'}
+        }
+        RazorpayCheckout.open(options).then((data) => {
+          // handle success
+          alert(`Success: ${data.razorpay_payment_id}`);
+          alert("Order Id"+currentOrderId);
+          //send this payment id to backend to store
+         
+          setTimeout(()=>{
+          updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,currentOrderId)
+      
+          },2000)
+        }).catch((error) => {
+          // handle failure
+          setLoading(false);
+          Alert.alert("Error ","Payment Activation Canceled")
+      
+        });
     }
     else{
       return Alert.alert("Error Occurred","Error occurred while creating payment order");

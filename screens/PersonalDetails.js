@@ -46,56 +46,12 @@ const PersonalDetails =  () => {
   //razorpay payment integration
   const thresholdAmount = 10;
   const payableAmount = thresholdAmount*1;
-async function paymentFunction(){
+  async function paymentFunction(){
 
-try {
-  try {
-    authContext.createOrder();
-  } catch (error) {
-    return Alert.alert("Failed","Failed to create your order")
+    authContext.createOrder(personalDetails.userName,personalDetails.userEmail,personalDetails.userMobile,personalDetails.userAddress,personalDetails.userId);
+    
   }
-  Alert.alert("Making Checkout Function","working on checkout function")
-  var options = {
-    description: 'English Wallah App Subscription',
-    image: require("../assets/icon.png"),
-    currency: 'INR',
-    key: 'rzp_live_J89zrEvhSQ2i1m',
-    amount: thresholdAmount*100,
-    name: 'English Wallah | Xenicx',
-    order_id: authContext.currentOrderId,//Replace this with an order_id created using Orders API.
-    prefill: {
-      email:personalDetails.userEmail,
-      contact: personalDetails.userMobile,
-      name: personalDetails.userName,
-      address : personalDetails.userAddress
-    },
-    theme: {color: '#53a20e'}
-  }
- const response = await RazorpayCheckout.open(options);
- if(response.data){
-  let currentOrderId = authContext.currentOrderId
-
-    alert(`Success: ${response.data.razorpay_payment_id}`);
-    alert(`OrderId : ${currentOrderId}`)
-    //send this payment id to backend to store
-    function executeFunction(){
-      setTimeout(()=>{
-        setSuccessData(response.data);
-      },2000)
-    }
-   executeFunction();
-    setTimeout(()=>{
-    authContext.updateAuthorization(response.data.razorpay_payment_id,personalDetails.userEmail,personalDetails.userId,personalDetails.userMobile,successData,personalDetails.userName,response.data.razorpay_order_id,currentOrderId)
-
-    },2000)
- }else{
-  return Alert.alert("Failed to activate","Failed to activate your subscription")
- }
-} catch (error) {
-  return Alert.alert("Error Occurred","Error Occurred while making payment")
-}
-}
-  return (
+ return (
     
     <View>
 <ScrollView>
