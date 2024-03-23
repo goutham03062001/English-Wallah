@@ -21,7 +21,7 @@ const PersonalDetails =  () => {
     userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
   })
   useEffect(()=>{
-    var isAuthenticated,name,email,isAuthorized,mobile,address,currentUserId;
+    var isAuthenticated,name,email,isAuthorized,mobile,address,currentUserId,currentOrderId,currentOrderId1;
     async function getDetails(){
       currentUserId = await AsyncStorage.getItem("userId");
        isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
@@ -30,6 +30,8 @@ const PersonalDetails =  () => {
        isAuthorized = await AsyncStorage.getItem("isAuthorized");
        mobile = await AsyncStorage.getItem("mobile");
        address = await AsyncStorage.getItem("address");
+       currentOrderId = await AsyncStorage.getItem("currentOrderId")
+       currentOrderId1 = await AsyncStorage.getItem("currentOrderId")
        setTimeoutFun();
        updateDetails();
     }
@@ -115,8 +117,11 @@ const PersonalDetails =  () => {
         <Text style={styles.text}>
         <Image source={require("../assets/address.png")} style={{width:25,height:25}}/>
         
-        <Text> Address - {personalDetails.userAddress}</Text></Text>
-        <Text> Authorized - {personalDetails.userIsAuthorized}</Text>
+        <Text> Address - {personalDetails.userAddress}</Text>
+        <Text> OrderID-1 - {personalDetails.currentOrderId1}</Text>
+        <Text> OrderID - {personalDetails.currentOrderId}</Text>
+        </Text>
+        
 
         <Button mode="contained" onPress={()=>authContext.logout()}>
           <Text>LOGOUT   </Text>

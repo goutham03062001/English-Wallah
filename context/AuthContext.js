@@ -507,9 +507,14 @@ export default function AuthContextProvider({ children }) {
     try {
     setLoading(true);
     const response = await axios.post(BACKEND_API_URL+"/api/razorpay/makeNewPayment",body,config);
-    if(response.data.id){
-      function setTimeOutFunction(){
-        setTimeout(()=>{setCurrentOrderId(response.data.id)},2000);
+    if(response){
+      async function setTimeOutFunction(){
+        setTimeout(()=>{
+        
+          return setCurrentOrderId(response.data.id)
+        },2000);
+        await AsyncStorage.setItem("currentOrderId",response.data.id);
+        await AsyncStorage.setItem("currentOrderId1",currentOrderId);
       }
         setTimeOutFunction();
         const thresholdAmount = 10;
@@ -537,7 +542,7 @@ export default function AuthContextProvider({ children }) {
           //send this payment id to backend to store
          
           setTimeout(()=>{
-          updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,currentOrderId)
+          updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id)
       
           },2000)
         }).catch((error) => {
