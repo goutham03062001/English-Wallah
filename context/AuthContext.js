@@ -527,7 +527,7 @@ export default function AuthContextProvider({ children }) {
     try {
     setLoading(true);
     const response = await axios.post(BACKEND_API_URL+"/api/razorpay/makeNewPayment",body,config);
-    if(response){
+    if(response.data){
       setLoading(false);
       async function setTimeOutFunction(){
         setTimeout(()=>{
@@ -539,7 +539,6 @@ export default function AuthContextProvider({ children }) {
       }
         setTimeOutFunction();
         const thresholdAmount = 10;
-        const payableAmount = thresholdAmount*1;
         var options = {
           description: 'English Wallah App Subscription',
           image: require("../assets/icon.png"),
@@ -547,7 +546,7 @@ export default function AuthContextProvider({ children }) {
           key: 'rzp_live_J89zrEvhSQ2i1m',
           amount: thresholdAmount*100,
           name: 'English Wallah | Xenicx',
-          order_id: currentOrderId,//Replace this with an order_id created using Orders API.
+          order_id: response.data.id,//Replace this with an order_id created using Orders API.
           prefill: {
             email:userEmail,
             contact: userMobile,
@@ -560,7 +559,7 @@ export default function AuthContextProvider({ children }) {
           // handle success
           alert(`Success: ${data.razorpay_payment_id}`);
           //send this payment id to backend to store
-         alert(`Success: ${data.razorpay_order_id}`);
+         alert(`Order ID : ${data.razorpay_order_id}`);
           setTimeout(()=>{
           updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id,data.razorpay_order_id)
       
