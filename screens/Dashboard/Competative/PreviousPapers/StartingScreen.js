@@ -82,7 +82,7 @@ useEffect(()=>{
     }
   },[]);
   function checkIsAuthorized(exam,index){
-    if(personalDetails.userIsAuthorized=="true"){
+    if(personalDetails.userIsAuthorized){
      return  navigation.navigate("Quiz",{data : exam._id})
     }
     else{

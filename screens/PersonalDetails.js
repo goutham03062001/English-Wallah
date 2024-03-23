@@ -221,7 +221,7 @@ async function checkSubscriptionDetails(userId){
     </Card>
   </View>
 
-{personalDetails.userIsAuthorized==="true"?  
+{personalDetails && !personalDetails.userIsAuthorized?  
 <>
 
 <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>

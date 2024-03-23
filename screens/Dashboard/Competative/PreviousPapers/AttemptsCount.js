@@ -28,7 +28,7 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index,is
       }
       
       function updateDetails(){
-        setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address})
+        setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthorized:isAuthorized,userAddress:address})
       }
     },[])
     // {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts.map((currentQuiz,index)=>{return currentQuiz.quiz.quizId === exam._id ? currentQuiz.quiz.count : ''})}
@@ -53,7 +53,7 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index,is
         {isButton? <>{attemptCount >7? "7 attempts only":<Text>
           <Text>{attemptCount>0 ? "Reattempt":"Attempt"}</Text>
           {index==0? <></>:<>
-            {isAuthorized ? <></>:<>
+            {personalDetails.userIsAuthorized ? <></>:<>
             <Image source={require("../../../../assets/lock.png")} style={{width:20,height:20}}/>
             </>}
           </>}
