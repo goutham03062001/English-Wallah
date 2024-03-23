@@ -558,17 +558,15 @@ export default function AuthContextProvider({ children }) {
         RazorpayCheckout.open(options).then((data) => {
           // handle success
           alert(`Success: ${data.razorpay_payment_id}`);
-          //send this payment id to backend to store
-         alert(`Order ID : ${data.razorpay_order_id}`);
+         alert(`Order: ${data.razorpay_order_id}`);
           setTimeout(()=>{
           updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id,data.razorpay_order_id)
       
           },2000);
           
         }).catch((error) => {
-          // handle failure
           setLoading(false);
-          Alert.alert("Error ","Payment Activation Canceled")
+          Alert.alert("Error ",error.description)
       
         });
     }
