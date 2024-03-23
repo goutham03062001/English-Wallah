@@ -404,9 +404,10 @@ export default function AuthContextProvider({ children }) {
     }
   }
 // data.razorpay_payment_id,userEmail,userId,userMobile,data,userName
-  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData,userName,orderId,currentOrderId){
+// data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id,data.razorpay_order_id
+  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData,userName,orderId,razorPayOrderId){
     setLoading(true);
-    const body = {paymentId,userEmail,userMobile,successData,userId,userName,orderId,currentOrderId};
+    const body = {paymentId,userEmail,userMobile,successData,userId,userName,orderId,razorPayOrderId};
    const config = {
    headers :{
       "Content-Type":"application/json"
@@ -558,11 +559,10 @@ export default function AuthContextProvider({ children }) {
         RazorpayCheckout.open(options).then((data) => {
           // handle success
           alert(`Success: ${data.razorpay_payment_id}`);
-          alert("Order Id"+currentOrderId);
           //send this payment id to backend to store
-         
+         alert("Success ",data.razorpay_order_id);
           setTimeout(()=>{
-          updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id)
+          updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id,data.razorpay_order_id)
       
           },2000);
           

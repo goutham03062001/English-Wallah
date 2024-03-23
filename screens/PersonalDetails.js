@@ -49,7 +49,12 @@ const PersonalDetails =  () => {
         }
         
         function updateDetails(){
-          setPersonalDetails({userName:response.data.name, userEmail:response.data.email, userMobile:response.data.mobile,userIsAuthorized:response.data.isAuthenticated,userAddress:response.data.address,userId:response.data._id})
+          setPersonalDetails({userName:response.data.name, 
+            userEmail:response.data.email, 
+            userMobile:response.data.mobile,
+            userIsAuthorized:response.data.isAuthenticated,
+            userAddress:response.data.address,
+            userId:response.data._id})
         }
       } catch (error) {
         setLoading(false);
