@@ -422,7 +422,25 @@ export default function AuthContextProvider({ children }) {
         await AsyncStorage.removeItem("isAuthorized");
          function delayFunction(){
           async function execute(){
+            // await AsyncStorage.setItem("isAuthorized","true");
+          //get personal status and update the value
+          try {
+            const userId = await AsyncStorage.getItem("userId");
+            const response = await axios.get(BACKEND_API_URL+"/Auth/getInfo/"+userId);
+            if(response.data){
+              if(response.data.isAuthenticated){
             await AsyncStorage.setItem("isAuthorized","true");
+
+              }else{
+                console.log("Failed to set the value for authorization");
+                return Alert.alert("Un authorized","You are not an authorized person")
+              }
+            }else{
+              return Alert.alert("Error Occurred","Failed to fetch your subscription details")
+            }
+          } catch (error) {
+            return Alert.alert("Error Occurred","Error Occurred while getting your Subscription Status")
+          }
           }
           setTimeout(()=>{
             execute();

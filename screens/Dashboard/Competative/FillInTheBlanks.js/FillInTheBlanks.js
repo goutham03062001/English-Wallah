@@ -42,7 +42,7 @@ const StartingScreen = ({route})=>{
             </View> : <ScrollView>
             {
                 authContext.quizExamsArr && authContext.quizExamsArr.map((currBlank,index)=>{
-                    return(<View style={{marginTop:5}}>
+                    return(<View style={{marginTop:5}} key={index}>
                         {/* <FillInTheBlanksExams data = {currBlank}/> */}
                         <Pressable onPress={()=>navigation.navigate("FB Exam",{data : currBlank,currentBlankType : data})}>
                         <Card>

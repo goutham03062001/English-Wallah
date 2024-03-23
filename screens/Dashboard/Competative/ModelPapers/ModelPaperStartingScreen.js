@@ -52,7 +52,7 @@ const ModelPaperExam1 = ({ route }) => {
         {
           authContext && authContext.quizExamsArr && (
             <ScrollView showsVerticalScrollIndicator={false}>
-            {authContext && authContext.quizExamsArr && authContext.quizExamsArr.map((currentModelPaper,index)=>(<>
+            {authContext && authContext.quizExamsArr && authContext.quizExamsArr.map((currentModelPaper,index)=>(<View key={index}>
               {currentModelPaper && (<>
                 <Pressable onPress={()=>navigation.navigate("Model Exam",{data : currentModelPaper._id})} style={{marginVertical:5}}>
            <Card key={index} style={{width:Dimensions.get("screen").width-20,borderRadius:10,height:120,position:"relative"}}>
@@ -75,7 +75,7 @@ const ModelPaperExam1 = ({ route }) => {
         </Card>
            </Pressable>
               </>)}
-             </>))}
+             </View>))}
             </ScrollView>
           )
         }

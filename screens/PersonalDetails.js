@@ -141,12 +141,12 @@ async function checkSubscriptionDetails(userId){
       <TouchableOpacity 
       
       style={{display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center",backgroundColor:"black",borderRadius:2}}>
-       {personalDetails.userIsAuthorized==="false" ? <>
-       <Image source={require("../assets/subscription.png")} style={{width:30,height:30}}/>
-        <Text style={{color:"white"}}>Free Account</Text></> : <>
-        <>
+       {personalDetails.userIsAuthorized ? <>
        <Image source={require("../assets/premium.png")} style={{width:30,height:30}}/>
-        <Text style={{color:"white"}}>Premium</Text></>
+        <Text style={{color:"white"}}>Premium</Text></> : <>
+        <>
+       <Image source={require("../assets/subscription.png")} style={{width:30,height:30}}/>
+        <Text style={{color:"white"}}>Free Account</Text></>
         </>}
       </TouchableOpacity>
     </View>
@@ -202,7 +202,7 @@ async function checkSubscriptionDetails(userId){
         <Image source={require("../assets/address.png")} style={{width:25,height:25}}/>
         
         <Text> Address - {personalDetails.userAddress}</Text>
-        <Text> Address - {typeof(personalDetails.userIsAuthorized)}</Text>
+        {/* <Text> Address - {typeof(personalDetails.userIsAuthorized)}</Text> */}
         
         </Text>
         

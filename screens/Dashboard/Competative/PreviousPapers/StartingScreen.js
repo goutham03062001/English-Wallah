@@ -106,30 +106,30 @@ useEffect(()=>{
     
     {authContext && authContext.quizExamsArr && (
       <ScrollView>
-       {authContext && authContext.quizExamsArr && authContext.quizExamsArr.map((exam,index)=>(<>
+       {authContext && authContext.quizExamsArr && authContext.quizExamsArr.map((exam,index)=>(<View key={index}>
         {exam && (<Pressable key={index} style={styles.cardStyle} onPress={()=>{checkIsAuthorized(exam,index)}}>
           <View style={styles.dayCard}>
           <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <Text key={index} style={{fontSize:16}}>Day - {index+1}</Text>
           <Button mode='outlined' style={{borderRadius:1}}><AttemptsCount  index={index}
-           currentQuizId={exam._id} isButton={true} isModelPaper={false}/></Button>
+           currentQuizId={exam._id} isButton={true} isModelPaper={false} isAuthorized={personalDetails.userIsAuthorized}/></Button>
           </View>
           <View style={styles.dayCardStyle}>
           <Text style={{fontWeight:"bold"}}>
           <Image source={AttemptImage} style={{width:20,height:20}}/>
-          Attempts - <AttemptsCount currentQuizId ={exam._id} isButton={false} isAuthorize={personalDetails.userIsAuthorized}
+          Attempts - <AttemptsCount currentQuizId ={exam._id} isButton={false} isAuthorized={personalDetails.userIsAuthorized}
             index={index}
           />
           {/* {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts && authContext.currentLoggedPerson.quizAttempts.length} */}
           </Text>
           <Text style={{fontWeight:"bold"}}>
           <Image source={BestScoreImage} style={{width:20,height:20}}/>
-           Best Score - <AttemptsCount isBestScore={true} currentQuizId={exam._id}  index={index}/>/10 
+           Best Score - <AttemptsCount isBestScore={true} currentQuizId={exam._id}  index={index} isAuthorized={personalDetails.userIsAuthorized}/>/10 
           </Text>
           </View>
           </View>
         </Pressable>)}
-       </>))}
+       </View>))}
        </ScrollView>
       )}
     </>}
