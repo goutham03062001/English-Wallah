@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 import BoldTextHelper from '../utils/BoldText';
+import { HighLightColor } from '../utils/Colors';
+import { PoppinsBold,PoppinsLight,PoppinsMedium, PoppinsRegular } from '../../../../utils/FontHelper';
 const HelperComponent = ({inputText,target})=>{
 
   const words = inputText.split(' ');
@@ -11,7 +13,7 @@ const HelperComponent = ({inputText,target})=>{
           {words.map((word, index) => {
               const shouldHighlight = target && target.includes(word.replace(/[.,]/g, ''));
               return (
-                  <Text key={index} style={{ fontWeight: shouldHighlight ? 'bold' : 'normal',fontSize:16 ,color:shouldHighlight?"green":"black",lineHeight:26}}>
+                  <Text key={index} style={{ marginVertical:8,fontWeight: shouldHighlight ? '300' : 'normal',fontSize:16 ,color:shouldHighlight?"red":"black",lineHeight:26,fontFamily:shouldHighlight?PoppinsRegular:''}}>
                       {word}{index !== words.length - 1 && ' '}
                   </Text>
               );
@@ -26,7 +28,7 @@ const OmissionOfPreposition = () => {
     <ScrollView>
     <View style={{paddingHorizontal:8,marginTop:15}}>
     <Text style={{fontSize:16}}>
-    In some situations the Preposition is <BoldTextHelper text="not used"/>. There either it is <BoldTextHelper text="not required,"/> or it is <BoldTextHelper text="omitted."/>
+    In some situations the Preposition is <BoldTextHelper text="not used" inputStyle={{color:HighLightColor}}/>. There either it is <BoldTextHelper text="not required," inputStyle={{color:HighLightColor}}/> or it is <BoldTextHelper text="omitted." inputStyle={{color:HighLightColor}}/>
     </Text>
     <View style={{marginVertical:10}}>
        {/* I */}
@@ -78,7 +80,9 @@ const OmissionOfPreposition = () => {
           inputText="(III) When some expressions of Time (as morning, evening, day, night, month, year, etc.)
 have some qualifying words as this, that, next, every, last, all used before them, no Preposition is needed before them. As—"
 target="Time,morning,evening,day,night,month,year"
+
         />
+        <View style={{marginVertical:10}}></View>
         <HelperComponent 
         target="this morning."
         inputText="1. He went this morning."/>

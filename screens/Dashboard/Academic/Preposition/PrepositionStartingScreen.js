@@ -17,16 +17,9 @@ function StartingScreen(){
     const navigation = useNavigation();
     return(<>
       <View style={{padding:2}}>
-      <View style={{height:"10%"}}>
-        <Text style={{textAlign:'center',fontSize:18,color:"red"}}>Reading</Text>
-      </View>
+      
 
       <View style={{padding:3,justifyContent:"flex-start",alignContent:"stretch"}}>
-        
-
-        
-
-
         <View style={{marginVertical:18}}>
        
         <Pressable onPress={()=>navigation.navigate("Forms Of Preposition")}>

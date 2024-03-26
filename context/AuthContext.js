@@ -538,7 +538,7 @@ export default function AuthContextProvider({ children }) {
         await AsyncStorage.setItem("currentOrderId1",currentOrderId);
       }
         setTimeOutFunction();
-        const thresholdAmount = 10;
+        const thresholdAmount = 1000;
         var options = {
           description: 'English Wallah App Subscription',
           image: require("../assets/icon.png"),

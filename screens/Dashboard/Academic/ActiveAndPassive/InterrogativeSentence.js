@@ -20,11 +20,13 @@ const SimplifiedComponent = ({ sentence }) => {
                 <Text>
                   {index % 2 === 0 ? (
                     <>
-                      <BoldTextHelper text={sen[index]} fontSize={16} />
+                    <Text style={{ fontSize: 16 }}>{sen[index]}</Text>
+
                       
                     </>
                   ) : (
-                    <Text style={{ fontSize: 16 }}>{sen[index]}</Text>
+                    <BoldTextHelper text={sen[index]} fontSize={16} />
+
                   )}
                 </Text>
               </>

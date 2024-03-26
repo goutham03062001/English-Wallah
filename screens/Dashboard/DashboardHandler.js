@@ -33,8 +33,7 @@ const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
     <Stack.Navigator>
-    <Stack.Screen name = "Dashboard" component={Dashboard} options={{ headerRight: ()=><Button
-    onPress= {authCtx.logout}>Logout</Button>}}/>
+    <Stack.Screen name = "Dashboard" component={Dashboard} />
     <Stack.Screen name="Academic" component={Classes} />
     <Stack.Screen name="Competitive" component={StartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Noun's" component={NounsStartingScreen} options={{headerShown:false}}/>

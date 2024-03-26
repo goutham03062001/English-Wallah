@@ -8,10 +8,11 @@ import AssertiveSentence from "./AssertiveSentence";
 import ImperativeSentence from "./ImperativeSentence";
 import InterrogativeSentence from "./InterrogativeSentence";
 import AdvancedPoints from "./AdvancedPoints";
+import {HighLightColor,SideHeadingColor} from "../utils/Colors"
 const SentenceComponent = ({first ,second})=>{
     return(<View style={{marginVertical:16}}>
-        <BoldTextHelper text={first} fontSize={16}/>
         <Text style={{fontSize:16}}> {second}</Text>
+        <BoldTextHelper text={first} fontSize={16}/>
     </View>)
 }
 
@@ -31,15 +32,19 @@ const SimplifiedComponent = ({ sentence }) => {
             <></>
           ) : (
             <>
-              <View>
+              <View style={{display:"flex",justifyContent:"center",marginTop:8}}>
                 {index % 2 !== 1 ? (
                   <>
                     {/* <BoldTextHelper text={sen[index]} fontSize={16} /> */}
-                    <Text style={{ fontSize: 16,marginTop:10 }}>{sen[index]}</Text>
+                    <Text style={{ fontSize: 16}}>{sen[index]}</Text>
                   </>
                 ) : (
+                  <>
+                  
                     <BoldTextHelper text={sen[index]} fontSize={16}
-                    inputStyle={{paddingBottom:-10}} />
+                    inputStyle={{lineHeight:18}}
+                     />
+                  </>
                  
                 )}
               </View>
@@ -56,35 +61,24 @@ const Drawer = createDrawerNavigator();
 // import PartsofSpeechStartingScreen from './CommonNoun/QuizModel';
 // import PersonalPronoun from "./PersonalPronoun";
 import { Card } from "react-native-paper";
+import { PoppinsBold, PoppinsRegular } from "../../../../utils/FontHelper";
 function StartingScreen() {
   const navigation = useNavigation();
   return (
     <>
       <ScrollView>
         {/* This is for intro */}
-        <View>
-          <Text
-            style={{
-              fontSize: 19,
-              textAlign: "center",
-              marginBottom: 15,
-              marginTop: 3,
-              color: "red",
-            }}
-          >
-            Reading
-          </Text>
-        </View>
+    
       
 
         <View style={{ marginVertical: 20, padding: 5 }}>
-          <Text style={{textAlign:"center",fontSize:17}}>Assertive Sentence:</Text>
-          <Text style={{textAlign:"center",fontSize:17,marginTop:8}}>Single Object Sentences</Text>
+          <Text style={{textAlign:"center",fontSize:17,}}>Assertive Sentence:</Text>
+          <Text style={{textAlign:"center",fontSize:17,marginTop:8,backgroundColor:SideHeadingColor}}>Single Object Sentences</Text>
         </View>
 
 
         <View  style={{paddingHorizontal:6}}>
-            {/* sentencecomponent */}
+            
             <SentenceComponent 
             first="1. He is eating an apple."
             second="An apple is being eaten by him."
@@ -277,7 +271,7 @@ The doctor was sent by me.
         </View>
 
         <View style={{marginVertical:50,paddingHorizontal:8}}>
-        <Text style={{fontSize:17,textAlign:"center"}}>Double Object Sentences</Text>
+        <Text style={{fontSize:17,textAlign:"center",backgroundColor:SideHeadingColor}}>Double Object Sentences</Text>
           <SimplifiedComponent
             sentence="
 63) She teaches me Hindi.
@@ -301,7 +295,7 @@ He was offered a nice job by them.
         </View>
 
         <View style={{marginVertical:10,paddingHorizontal:8}}>
-            <Text style={{textAlign:"center",fontSize:17,marginBottom:49}}>Negative Sentences</Text>
+            <Text style={{textAlign:"center",fontSize:17,marginBottom:49,backgroundColor:SideHeadingColor}}>Negative Sentences</Text>
             <SimplifiedComponent
               sentence="
               71) The boy did not kill the cat.
@@ -314,40 +308,14 @@ The box cannot be lifted by this boy
             />
         </View>
        
-        <Divider />
-        <Text style={{ marginLeft: 10, marginVertical: 12, color: "blue" }}>
-          Goto
-        </Text>
-      {/* <Pressable onPress={()=>navigation.navigate("Assertive Sentence")}>
-      <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
-          <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
-              Assertive Sentence
-            </Text>
-
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
-          </Card.Content>
-        </Card>
-      </Pressable> */}
-        
 
         <Pressable onPress={()=>navigation.navigate("Imperative Sentence")}>
-        <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+        <Card style={[{ backgroundColor: "#FFDE7D" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ color: "black", fontFamily:PoppinsRegular}}>
               Imperative Sentence
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
 
@@ -355,33 +323,23 @@ The box cannot be lifted by this boy
 
 
        <Pressable onPress={()=>navigation.navigate("Interrogative Sentence")}>
-       <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+       <Card style={[{ backgroundColor: "#435585" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ color: "white", fontFamily:PoppinsRegular }}>
               Interrogative Sentence
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+          
           </Card.Content>
         </Card>
        </Pressable>
 
        <Pressable onPress={()=>navigation.navigate("Advanced Points")}>
-       <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+       <Card style={[{ backgroundColor: "#6C5B7B" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ color: "white", fontFamily:PoppinsRegular }}>
               Advanced Points
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+           
           </Card.Content>
         </Card>
        </Pressable>

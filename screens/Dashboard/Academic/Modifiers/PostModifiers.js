@@ -2,6 +2,8 @@ import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
 import BoldTextHelper from "../utils/BoldText";
 import UnderlineTextHelper from "../utils/UnderlineText"
+import { PoppinsRegular } from '../../../../utils/FontHelper';
+import { SideHeadingColor } from '../utils/Colors';
 const PostModifiers = () => {
   return (
     <View style={styles.rootContainer}>
@@ -83,10 +85,10 @@ const styles = StyleSheet.create({
   },
   sideHeading:{
     fontSize:16,
-    textDecorationLine:"underline",
-    fontWeight:"bold",
+    fontFamily:PoppinsRegular,
+    backgroundColor:SideHeadingColor,
     marginVertical:15,
-    lineHeight:28
+    lineHeight:28,
   },
   rootContainer:{
     paddingHorizontal:5

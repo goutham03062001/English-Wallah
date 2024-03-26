@@ -17,9 +17,7 @@ function StartingScreen(){
     const navigation = useNavigation();
     return(<>
       <View style={{padding:2}}>
-      <View style={{height:"10%"}}>
-        <Text style={{textAlign:'center',fontSize:18,color:"red"}}>Reading</Text>
-      </View>
+      
 
       <View style={{padding:3,justifyContent:"flex-start",alignContent:"stretch"}}>
         <Text style={{fontSize:16,lineHeight:26}}>
@@ -29,11 +27,11 @@ function StartingScreen(){
         </Text>
 
         <View style={{marginVertical:20,gap:10}}>
-            <Text style={{fontSize:16}}>
-                <Text>(1) Transitive Verbs</Text>
+            <Text>
+                <Text style={{fontSize:16,color:"green"}}>(1) Transitive Verbs</Text>
             </Text>
-                <Text style={{fontSize:16}}>(2) Intransitive Verbs</Text>
-                <Text style={{fontSize:16}}>(3) Auxiliary Verbs / Modal Verbs</Text>
+                <Text style={{fontSize:16,color:"green"}}>(2) Intransitive Verbs</Text>
+                <Text style={{fontSize:16,color:"green"}}>(3) Auxiliary Verbs / Modal Verbs</Text>
         </View>
 
 

@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import BoldTextHelper from '../utils/BoldText'
+import BoldTextHelper from '../utils/BoldText';
+import { HighLightColor } from '../utils/Colors';
+
 const InterrogativeAdverbs = () => {
   return (
     <>
@@ -14,16 +16,18 @@ const InterrogativeAdverbs = () => {
       
       <Text style={{fontSize:16,marginVertical:15}}>
       <BoldTextHelper
+            inputStyle={{color:HighLightColor}}
+
         text="When, where, why, how, how many, how long, whence, whither, wherefore, "
       />
       </Text>
 
 
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="When"/> will you go.</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="What"/> shall I know?</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. <BoldTextHelper text="Where"/> do you stay?	</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. <BoldTextHelper text="Why"/> did you do?</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. <BoldTextHelper text="How"/> long will it run?</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>1. <BoldTextHelper text="When"/> will you go.</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>2. <BoldTextHelper text="What"/> shall I know?</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>3. <BoldTextHelper text="Where"/> do you stay?	</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>4. <BoldTextHelper text="Why"/> did you do?</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>5. <BoldTextHelper text="How"/> long will it run?</Text>
       
       
     </View>

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
-import BoldTextHelper from '../utils/BoldText'
+import BoldTextHelper from '../utils/BoldText';
+import { HighLightColor } from '../utils/Colors';
 const AdverbsOfQuantityOrDegree = () => {
   return (
   <>
@@ -15,19 +16,20 @@ const AdverbsOfQuantityOrDegree = () => {
       
       <Text style={{fontSize:16,marginVertical:15}}>
       <BoldTextHelper
+      inputStyle={{color:HighLightColor}}
         text="Very, rather, fairly, quite, too, almost, hardly, fully, enough, so, no, pretty, pretty well, any, partly, much, wholly, as …. As, badly, truly, just, "
       />
       </Text>
 
 
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. He speaks English <BoldTextHelper text="fluently"/>.</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. It was <BoldTextHelper text="very"/> tragic.</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. They were <BoldTextHelper text="fully"/> prepared.</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. You are <BoldTextHelper text="partly"/> right.</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. She is <BoldTextHelper text="entirely"/> wrong.</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. He is <BoldTextHelper text="utterly"/> wrong.</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>7. It is <BoldTextHelper text="too"/> hard.	</Text>
-      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>8. These mangoes are <BoldTextHelper text="almost"/> ripe.</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>1. He speaks English <BoldTextHelper text="fluently"/>.</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>2. It was <BoldTextHelper text="very"/> tragic.</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>3. They were <BoldTextHelper text="fully"/> prepared.</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>4. You are <BoldTextHelper text="partly"/> right.</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>5. She is <BoldTextHelper text="entirely"/> wrong.</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>6. He is <BoldTextHelper text="utterly"/> wrong.</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>7. It is <BoldTextHelper text="too"/> hard.	</Text>
+      <Text style={{fontSize:16,marginVertical:8}}>8. These mangoes are <BoldTextHelper text="almost"/> ripe.</Text>
          </View>
   </View>
     </ScrollView>

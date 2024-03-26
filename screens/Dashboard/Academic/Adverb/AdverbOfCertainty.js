@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import BoldTextHelper from '../utils/BoldText'
+import BoldTextHelper from '../utils/BoldText';
+import { HighLightColor } from '../utils/Colors';
+
 const AdverbOfCertainty = () => {
   return (
    <>
@@ -15,12 +17,14 @@ const AdverbOfCertainty = () => {
         <Text style={{fontSize:16,marginVertical:15}}>
         <BoldTextHelper
           text="Ex: Certainly, surely, definitely obviously,"
+          inputStyle={{color:HighLightColor}}
+
         />
         </Text>
 
 
-        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. I shall <BoldTextHelper text="certainly"/> help you.</Text>
-        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. Ramya is <BoldTextHelper text="obviously"/> very clever.</Text>
+        <Text style={{fontSize:16,marginVertical:8}}>1. I shall <BoldTextHelper text="certainly"/> help you.</Text>
+        <Text style={{fontSize:16,marginVertical:8}}>2. Ramya is <BoldTextHelper text="obviously"/> very clever.</Text>
         
         
       </View>

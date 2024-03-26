@@ -1,8 +1,8 @@
 import { View, StyleSheet, Image, Dimensions, ScrollView,Pressable } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text, Divider } from "react-native-paper";
-import BoldTextHelper from "./BoldTextHelper";
-import UnderlineTextHelper from "./UnderlineTextHelper";
+import BoldTextHelper from "../utils/BoldText";
+import UnderlineTextHelper from "../utils/UnderlineText";
 import AdverbsOfTime from "./AdverbsOfTime";
 import { useNavigation } from "@react-navigation/native";
 import AdverbsOfPlace from "./AdverbsOfPlace";
@@ -13,7 +13,8 @@ import RelativeAdverbs from "./RelativeAdverbs";
 import AdverbsOfFrequency from "./AdverbOfFrequency";
 import AdverbsOfCertainty from "./AdverbOfCertainty";
 import AdverbsOfReason from "./AdverbOfReason";
-import AdverbOfAffirmation from "./AdverbOfAffirmation"
+import AdverbOfAffirmation from "./AdverbOfAffirmation";
+import {HighLightColor} from "../utils/Colors"
 const Drawer = createDrawerNavigator();
 // import PartsofSpeechStartingScreen from './CommonNoun/QuizModel';
 // import PersonalPronoun from "./PersonalPronoun";
@@ -25,17 +26,7 @@ function StartingScreen() {
       <ScrollView>
         {/* This is for intro */}
         <View>
-          <Text
-            style={{
-              fontSize: 19,
-              textAlign: "center",
-              marginBottom: 15,
-              marginTop: 3,
-              color: "red",
-            }}
-          >
-            Reading
-          </Text>
+          
         </View>
         <View style={{ padding: 5, gap: 13 }}>
           <Text style={{ fontSize: 16, lineHeight: 25 }}>
@@ -70,52 +61,59 @@ function StartingScreen() {
             <BoldTextHelper
               text="A word which modifies the meaning of a"
               fontSize={16}
+              inputStyle={{color:HighLightColor}}
+
             />{" "}
-            <UnderlineTextHelper text="verb" />,{" "}
-            <BoldTextHelper text="an" fontSize={16} />{" "}
-            <UnderlineTextHelper text="adjective" />{" "}
-            <BoldTextHelper text="or another" fontSize={16} />{" "}
-            <UnderlineTextHelper text="adverb" />. It tells{" "}
-            <BoldTextHelper text="how" fontSize={16} />,{" "}
-            <BoldTextHelper text="when" fontSize={16} />,{" "}
-            <BoldTextHelper text="where" fontSize={16} /> something{" "}
-            <BoldTextHelper text="why" fontSize={16} /> happens.
+            <UnderlineTextHelper inputStyle={{color:"red"}} text="verb" />,{" "}
+            <BoldTextHelper text="an" fontSize={16}  
+              inputStyle={{color:HighLightColor}}
+
+            />{" "}
+            <UnderlineTextHelper inputStyle={{color:"red"}} text="adjective" />{" "}
+            <BoldTextHelper text="or another" fontSize={16} 
+              inputStyle={{color:HighLightColor}}
+
+            />{" "}
+            <UnderlineTextHelper inputStyle={{color:"red"}} text="adverb" />. It tells{" "}
+            <BoldTextHelper text="how" fontSize={16} 
+              inputStyle={{color:HighLightColor}}
+
+            />,{" "}
+            <BoldTextHelper text="when" fontSize={16} 
+              inputStyle={{color:HighLightColor}}
+
+            />,{" "}
+            <BoldTextHelper text="where" fontSize={16} 
+              inputStyle={{color:HighLightColor}}
+
+            /> something{" "}
+            <BoldTextHelper text="why" fontSize={16} 
+              inputStyle={{color:HighLightColor}}
+
+            /> happens.
           </Text>
         </View>
-        <Divider />
-        <Text style={{ marginLeft: 10, marginVertical: 12, color: "blue" }}>
-          Goto
-        </Text>
+        
       <Pressable onPress={()=>navigation.navigate("Adverbs of Time")}>
-      <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+      <Card style={[{ backgroundColor: "#FFDE7D" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize:16,color: "black",textAlign:"center"}}>
               Adverbs of Time
             </Text>
 
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
       </Pressable>
         
 
         <Pressable onPress={()=>navigation.navigate("Adverbs of Place")}>
-        <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+        <Card style={[{ backgroundColor: "#435585" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize:16,color: "white",textAlign:"center"}}>
               Adverbs of Place
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
 
@@ -123,49 +121,34 @@ function StartingScreen() {
 
 
        <Pressable onPress={()=>navigation.navigate("Adverbs of Manner")}>
-       <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+       <Card style={[{ backgroundColor: "#6C5B7B" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize:16,color: "white",textAlign:"center"}}>
               Adverbs of Manner
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
        </Pressable>
 
        <Pressable onPress={()=>navigation.navigate("Adverbs of Quantity or Degree")}>
-       <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+       <Card style={[{ backgroundColor: "#A084E8" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize:16,color: "white",textAlign:"center"}}>
               Adverbs of Quantity or Degree
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
        </Pressable>
 
       <Pressable onPress={()=>navigation.navigate("Interrogative Adverbs")}>
-      <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+      <Card style={[{ backgroundColor: "#00ADB5" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize:16,color: "white",textAlign:"center"}}>
               Interrogative Adverbs
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
 
@@ -173,65 +156,45 @@ function StartingScreen() {
 
 
       <Pressable onPress={()=>navigation.navigate("Relative Adverbs")}>
-      <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+      <Card style={[{ backgroundColor: "#6A2C70" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize:16,color: "white",textAlign:"center"}}>
               Relative Adverbs
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
       </Pressable>
 
        <Pressable onPress={()=>navigation.navigate("Adverb of Frequency")}>
-       <Card style={[{ backgroundColor: "#FFD93D" }, styles.cardStyle]}>
+       <Card style={[{ backgroundColor: "#0F4C75" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "black", fontWeight: "500" }}>
+            <Text style={{ fontSize:16,color: "white", fontWeight: "500" }}>
               Adverb of Frequency
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
        </Pressable>
 
       <Pressable onPress={()=>navigation.navigate("Adverb of Certainty")}>
-          <Card style={[{ backgroundColor: "#3A98B9" }, styles.cardStyle]}>
+          <Card style={[{ backgroundColor: "#594545" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "500" }}>
+            <Text style={{ fontSize:16,color: "white", fontWeight: "500" }}>
               Adverb of Certainty
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
       </Pressable>
 
        <Pressable onPress={()=>navigation.navigate("Adverb of reason")}>
-       <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+       <Card style={[{ backgroundColor: "#40514E" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize:16,color: "white",fontSize:16,textAlign:"center"}}>
               Adverb of reason
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
        </Pressable>
@@ -239,15 +202,10 @@ function StartingScreen() {
         <Pressable onPress={()=>navigation.navigate("Adverb of Affirmation")}>
         <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
           <Card.Content style={styles.contentStyle}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ fontSize:16,color: "white",fontSize:16,textAlign:"center"}}>
               Adverb of Affirmation / Negation
             </Text>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-              }}
-              style={{ width: 30, height: 20 }}
-            />
+            
           </Card.Content>
         </Card>
         </Pressable>
@@ -330,7 +288,7 @@ const styles = StyleSheet.create({
   contentStyle: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     paddingHorizontal: 11,
   },
 });

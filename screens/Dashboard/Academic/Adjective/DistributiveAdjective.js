@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
-import BoldTextHelper from '../utils/BoldText'
+import BoldTextHelper from '../utils/BoldText';
+import { HighLightColor } from '../utils/Colors';
 const DistributiveAdjective = () => {
   return (
     <>
@@ -17,6 +18,8 @@ const DistributiveAdjective = () => {
     <Text style={{fontSize:16,marginVertical:15}}>
     <BoldTextHelper
       text="Ex: Each, every, either, neither, any, none, both,"
+      inputStyle={{color:HighLightColor}}
+
     />
     </Text>
  
@@ -29,13 +32,13 @@ const DistributiveAdjective = () => {
   Adverbs of affirmation are words which declare that a given statement or fact is true, or positive.
   </Text> */}
     
-  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="Each"/> boy was awarded a diploma.</Text>
-  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="Every"/> Indian is entitled to adult franchise.</Text>
-  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. <BoldTextHelper text="Every"/> citizen should love his mother land.</Text>
-  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. <BoldTextHelper text="Neither"/> party has got majority in the recent elections.</Text>
+  <Text style={{fontSize:16,marginVertical:8}}>1. <BoldTextHelper text="Each"/> boy was awarded a diploma.</Text>
+  <Text style={{fontSize:16,marginVertical:8}}>2. <BoldTextHelper text="Every"/> Indian is entitled to adult franchise.</Text>
+  <Text style={{fontSize:16,marginVertical:8}}>3. <BoldTextHelper text="Every"/> citizen should love his mother land.</Text>
+  <Text style={{fontSize:16,marginVertical:8}}>4. <BoldTextHelper text="Neither"/> party has got majority in the recent elections.</Text>
 
-<Text style={{fontSize:16,marginVertical:8,color:"green"}}>5. <BoldTextHelper text="Neither"/> country accepted the treaty.</Text>
-<Text style={{fontSize:16,marginVertical:8,color:"green"}}>6. You can take <BoldTextHelper text="either"/> road, this or that.</Text>
+<Text style={{fontSize:16,marginVertical:8}}>5. <BoldTextHelper text="Neither"/> country accepted the treaty.</Text>
+<Text style={{fontSize:16,marginVertical:8}}>6. You can take <BoldTextHelper text="either"/> road, this or that.</Text>
 
 
 

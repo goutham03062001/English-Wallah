@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
+import { HighLightColor } from '../utils/Colors';
+import { PoppinsBold,PoppinsLight,PoppinsMedium, PoppinsRegular } from '../../../../utils/FontHelper';
+import BoldTextHelper from '../utils/BoldText';
 
 const HelperComponent = ({inputText,target,avoid})=>{
   const words = inputText.split(' ');
@@ -10,7 +13,7 @@ const HelperComponent = ({inputText,target,avoid})=>{
             {words.map((word, index) => {
                 const shouldHighlight = target && target.includes(word.replace(/[.,]/g, ''));
                 return (
-                    <Text key={index} style={{ fontWeight: shouldHighlight ? 'bold' : 'normal',fontSize:16 ,color:shouldHighlight?"green":"black",lineHeight:26}}>
+                    <Text key={index} style={{ fontWeight: shouldHighlight ? '300' : 'normal',fontSize:16 ,color:shouldHighlight?"red":"black",lineHeight:26,fontFamily:shouldHighlight?PoppinsRegular:''}}>
                         {word}{index !== words.length - 1 && ' '}
                     </Text>
                 );
@@ -24,8 +27,10 @@ const WrongUseOfPreposition = () => {
       <View style={{paddingHorizontal:8}}>
       <Text style={{fontSize:16,lineHeight:25,textAlign:"justify"}}>
       There are some Verbs which take no Preposition after them. They are—
-attack, await, accompany, assist, request, investigate, inform, obey, comprise, order, reach, resemble, resist, violate.
-
+      <BoldTextHelper
+        inputStyle={{color:HighLightColor}}
+        text="attack, await, accompany, assist, request, investigate, inform, obey, comprise, order, reach, resemble, resist, violate"
+      />
       </Text>
       <Text style={{fontSize:16,lineHeight:25,textAlign:"justify"}} >
       It is wrong to use any Preposition after the above noted verbs, but this error is often committed.

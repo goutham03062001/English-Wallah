@@ -4,7 +4,9 @@ import React from 'react'
 const StartingScreen = () => {
   return (
     <View>
-      <Text>StartingScreen</Text>
+      <Text>
+        We are uploading the content very soon
+      </Text>
     </View>
   )
 }

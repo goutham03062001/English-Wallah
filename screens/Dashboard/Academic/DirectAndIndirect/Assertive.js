@@ -68,10 +68,11 @@ const Assertive = () => {
 const Helper = ({first,second})=>{
   return(<>
 <View style={styles.view}>
-  <Text style={styles.text}>
+<Text style={styles.text}>
     <BoldTextHelper text={first}/>
   </Text>
   <Text style={styles.text}>{second}</Text>
+  
 </View>
   </>)
 }

@@ -1,7 +1,14 @@
-import { StyleSheet, Text, View ,ScrollView} from 'react-native'
-import React from 'react'
-
+import { StyleSheet, Text, View ,ScrollView,Image, Alert, TouchableOpacity} from 'react-native'
+import React,{useState} from 'react'
+import {HighLightColor,SideHeadingColor} from "../utils/Colors";
+import BoldTextHelper from "../utils/BoldText";
+import UnderLineTextHelper from "../utils/UnderlineText";
+import ImageView from 'react-native-image-viewing';
+import ImageComponent from '../utils/ImageComponent';
+import { PoppinsRegular } from '../../../../utils/FontHelper';
+import UnderlineTextHelper from '../utils/UnderlineText';
 const PreModifiers = () => {
+  
   return (
     <View style={styles.rootContainer}>
       <ScrollView>
@@ -10,19 +17,19 @@ const PreModifiers = () => {
         <View>
           <Text style={styles.text}>But noun phrases can also include:</Text>
 
-            <Text style={styles.text}>•	Determiners:   Those houses are very expensive.</Text>
-            <Text style={styles.text}>• Quantifiers:   I've lived in a lot of houses.</Text>
-            <Text style={styles.text}>•	Numbers:        My brother owns two houses.</Text>
-            <Text style={styles.text}>•	Adjectives:          I love old houses.      </Text>
+            <Text style={styles.text}>•	<BoldTextHelper text="Determiners:" inputStyle={{color:HighLightColor}}/>   <UnderLineTextHelper text="Those" inputStyle={{color:'red'}}/> houses are very expensive.</Text>
+            <Text style={styles.text}>• <BoldTextHelper text="Quantifiers:" inputStyle={{color:HighLightColor}}/>   I've lived in <UnderLineTextHelper text="a lot of" inputStyle={{color:"red"}}/> houses.</Text>
+            <Text style={styles.text}>•	<BoldTextHelper text="Numbers:" inputStyle={{color:HighLightColor}}/>        My brother owns <UnderLineTextHelper text="two" inputStyle={{color:"red"}}/> houses.</Text>
+            <Text style={styles.text}>•	<BoldTextHelper text="Adjectives:" inputStyle={{color:HighLightColor}}/>           I love <UnderLineTextHelper text="old" inputStyle={{color:"red"}}/> houses.      </Text>
         <Text style={styles.text}>
-        These parts of the noun phrase are called premodifiers because they go before the noun.
+        These parts of the noun phrase are called <BoldTextHelper text="premodifiers" inputStyle={{color:HighLightColor}}/> because they go <BoldTextHelper text="before the noun" inputStyle={{color:HighLightColor}}/>.
         </Text>
 
         <Text style={styles.text}>
         We use premodifiers in this order:
         </Text>
 
-        <Text style={styles.text}>
+        <Text style={[styles.text,{backgroundColor:SideHeadingColor}]}>
         determiners and quantifiers	>	numbers	>	adjectives + NOUNS
         </Text>
 
@@ -30,58 +37,52 @@ const PreModifiers = () => {
         <Text style={styles.text}>
         For example:
         </Text>
+    <View style={{marginVertical:20,display:"flex",justifyContent:"center",alignItems:"center"}}>
+    
+    
+     <ImageComponent inputImage={require("../../../../assets/premodifiers.png")}/>
+    </View>
 
-        <Text style={styles.text}>
-       Determiners and quantifiers	Numbers	Adjectives	NOUNS
-The	six	 	children
-Our	 	Young	children
- 	Six	Young	children
-These	six	Young	children
-Some	 	Young	children
-All those	six	Young	children
-Their many	 	Young	children
-
-        </Text>
 
         </View>
 
 
         <View>
-          <Text style={{fontSize:20,textAlign:"center"}}>Determiners</Text>
+          <Text style={{fontSize:20,textAlign:"center",backgroundColor:SideHeadingColor}}>Determiners</Text>
           <Text style={styles.text}>Determiners are words we use in front of nouns. We use determiners to identify things (this book, my sister).</Text>
 
           <Text style={styles.text}>
           Determiners include the following common types:
           </Text>
 
-          <Text style={styles.text}>
-          Articles:			a, an, the
-Demonstrative Pronouns:	this, that, these, those
-Possessives:			my, your, his, her, etc.
-Quantifiers:			(a) few, some, many, etc.
-Numbers:			one, two, three, etc.
+          <View>
+          <Text style={{fontSize:16,marginVertical:5}}><BoldTextHelper text = "Articles:" inputStyle={{color:HighLightColor}}/> a, an, the</Text>
+<Text style={{fontSize:16,marginVertical:5}}> <BoldTextHelper text="Demonstrative Pronouns:" inputStyle={{color:HighLightColor}}/>	this, that, these, those</Text>
+<Text style={{fontSize:16,marginVertical:5}}><BoldTextHelper text="Possessives:	" inputStyle={{color:HighLightColor}}/>		my, your, his, her, etc.</Text>
+<Text style={{fontSize:16,marginVertical:5}}><BoldTextHelper text="Quantifiers:	" inputStyle={{color:HighLightColor}}/>		(a) few, some, many, etc.</Text>
+<Text style={{fontSize:16,marginVertical:5}}><BoldTextHelper text = "Numbers:	" inputStyle={{color:HighLightColor}}/>		one, two, three, etc.</Text>
 
-          </Text>
+          </View>
         </View>
 
     <View>
 
-    <Text style={{fontSize:20,textAlign:"center"}}>Demonstrative Pronouns</Text>
-<Text style={styles.text}>Demonstrate (verb): to show; to indicate; to point to</Text>
+    <Text style={{fontSize:20,textAlign:"center",marginVertical:20,backgroundColor:SideHeadingColor}}>Demonstrative Pronouns</Text>
+<Text style={styles.text}><BoldTextHelper text="Demonstrate (verb):" inputStyle={{color:HighLightColor}}/> to show; to indicate; to point to</Text>
 <Text style={styles.text}>A demonstrative pronoun represents a thing or things:</Text>
-<Text style={styles.text}>•	near in distance or time (this, these)</Text>
-<Text style={styles.text}>•	far in distance or time (that, those)</Text>
+<Text style={styles.text}>•	near in distance or time <BoldTextHelper text="(this, these)" inputStyle={{color:HighLightColor}}/></Text>
+<Text style={styles.text}>•	far in distance or time <BoldTextHelper text="(that, those)" inputStyle={{color:HighLightColor}}/></Text>
 
-<Text style={styles.text}>1.	This tastes good.</Text>
-<Text style={styles.text}>2.	Have you seen this?</Text>
-<Text style={styles.text}>3.	These are bad times.</Text>
-<Text style={styles.text}>4.	Do you like these?</Text>
-<Text style={styles.text}>5.	That is beautiful.   </Text>
-<Text style={styles.text}>6.	Look at that!</Text>
-<Text style={styles.text}>7.	Those were the days!</Text>
-<Text style={styles.text}>8.	Can you see those?</Text>
-<Text style={styles.text}>9.	This is heavier than that.</Text>
-<Text style={styles.text}>10.	These are bigger than those.</Text>
+<Text style={styles.text}>1.	<BoldTextHelper text="This" inputStyle={{color:"red"}}/> tastes good.</Text>
+<Text style={styles.text}>2.	Have you seen <BoldTextHelper text="this" inputStyle={{color:"red"}}/>?</Text>
+<Text style={styles.text}>3.	<BoldTextHelper text="These" inputStyle={{color:"red"}}/> are bad times.</Text>
+<Text style={styles.text}>4.	Do you like <BoldTextHelper text="these" inputStyle={{color:"red"}}s/>?</Text>
+<Text style={styles.text}>5.	<BoldTextHelper text="That" inputStyle={{color:"red"}}/> is beautiful.   </Text>
+<Text style={styles.text}>6.	Look at <BoldTextHelper text="that" inputStyle={{color:"red"}}/>!</Text>
+<Text style={styles.text}>7.	<BoldTextHelper text="Those" inputStyle={{color:"red"}}/> were the days!</Text>
+<Text style={styles.text}>8.	Can you see <BoldTextHelper text="those" inputStyle={{color:"red"}}/>?</Text>
+<Text style={styles.text}>9.	<BoldTextHelper text="This" inputStyle={{color:'red'}}/> is heavier than that.</Text>
+<Text style={styles.text}>10.	These are bigger than <BoldTextHelper text="those" inputStyle={{color:'red'}}/>.</Text>
 
 
     </View>
@@ -89,97 +90,98 @@ Numbers:			one, two, three, etc.
 
     <View>
 
-<Text style={{fontSize:20,textAlign:"center"}}>Possessives: Adjectives</Text>
-<Text style={styles.text}>
-Subject	Object	Possessive adjective
-I	me	my
-you	you	your
-he	him	his
-she	her	her
-it	it	its
-we	us	our
-they	them	their
-
-</Text>
+<Text style={{fontSize:20,textAlign:"center",marginVertical:20,backgroundColor:SideHeadingColor}}>Possessives: Adjectives</Text>
+<View>
+  <ImageComponent inputImage={require("../../../../assets/premodifiers2.png")}/>
+  <Text style={{color:"#31363F",fontSize:12,fontFamily:PoppinsRegular}}>Click view image</Text>
+</View>
 
 
 </View>
 
 
 <View>
-  <Text style={styles.sideHeading}>We use possessive adjectives:</Text>
+  <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>We use possessive adjectives:</Text>
 
-  <Text style={styles.text}>To show something belongs to somebody:</Text>
-  <Text style={styles.text}>1. That's our house.
-2. My car is very old.
+  <Text style={[styles.text,{backgroundColor:SideHeadingColor}]}>To show something belongs to somebody:</Text>
+  <Text style={styles.text}>1. That's <BoldTextHelper text="our house." inputStyle={{color:"red"}}/>
+</Text>
+<Text style={styles.text}> 
+2. <BoldTextHelper text="My car"/> is very old.
+
 </Text>
 
-<Text style={styles.sideHeading}>For relations and friends:</Text>
+<Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>For relations and friends:</Text>
   <Text style={styles.text}> 
-  1. My mother is a doctor.
-2. How old is your sister?
+  1. <BoldTextHelper text="My mother" inputStyle={{color:"red"}}/> is a doctor.
+  </Text>
+
+  <Text style={styles.text}>
+2. How old is <BoldTextHelper text="your sister?" inputStyle={{color:'red'}}/>
 
   </Text>
 
-<Text style={styles.sideHeading}>For parts of the body:</Text>
-<Text style={styles.sideHeading}>1. He's broken his arm.
-2. She's washing her hair.
-3. I need to clean my teeth.
+<Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>For parts of the body:</Text>
+<Text style={styles.text}>1. He's broken <BoldTextHelper text="his arm."/></Text>
+<Text  style={styles.text}> 2. She's washing <BoldTextHelper text="her hair."/></Text>
+<Text  style={styles.text}>
+3. I need to clean <BoldTextHelper text="my teeth."/>
+   
 </Text>
 </View>
 
 <View>
-  <Text style={{fontSize:20,textAlign:"center"}}>Quantifiers (How much / how many)</Text>
-  <Text style={{fontSize:20,textAlign:"center"}}>Level : Beginner</Text>
+  <Text style={{fontSize:20,textAlign:"center",marginVertical:20,backgroundColor:SideHeadingColor}}>Quantifiers (How much / how many)</Text>
+  <Text style={{fontSize:20,textAlign:"center",backgroundColor:SideHeadingColor}}>Level : Beginner</Text>
 
     <Text style={styles.text}>Sometimes we use a quantifier in the place of a determiner:</Text>
-    <Text style={styles.text}>1. Most children start school at the age of five.</Text>
-    <Text style={styles.text}>2. We ate some bread and butter.</Text>
-    <Text style={styles.text}>3. We saw lots of birds</Text>
+    <Text style={styles.text}>1. <BoldTextHelper text="Most children" inputStyle={{color:'red'}}/> start school at the age of five.</Text>
+    <Text style={styles.text}>2. We ate <BoldTextHelper text="some bread and butter." inputStyle={{color:"red"}}/></Text>
+    <Text style={styles.text}>3. We saw <BoldTextHelper text="lots of birds" inputStyle={{color:"red"}}/></Text>
 
 </View>
 
 <View>
   <Text style={styles.sideHeading}>Quantifiers with countable and uncountable nouns:</Text>
-  <Text style={styles.text}>We can use these quantifiers with both count and uncount nouns:</Text>
+  <Text style={styles.text}>We can use these quantifiers with both <BoldTextHelper inputStyle={{color:HighLightColor}} text="count"/> and <BoldTextHelper inputStyle={{color:HighLightColor}} text="uncount"/> nouns:</Text>
 
-  <Text style={styles.text}>
-  all	Some	more	a lot of	enough
-no	Any	most	lots of	less
+<View>
+  <ImageComponent
+    inputImage={require("../../../../assets/premodifiers3.png")}
+  />
+</View>
 
-  </Text>
-
-  <Text style={styles.text}>1. We have lots of time.</Text>
-  <Text style={styles.text}>2. Raju has lots of friends.</Text>
-  <Text style={styles.text}>3. I can't go out. I've got no money.</Text>
-  <Text style={styles.text}>4. There was a lot of food but no drinks.</Text>
+  <Text style={styles.text}>1. We have <BoldTextHelper text="lots of" inputStyle={{color:"red"}}/> <UnderlineTextHelper text="time" inputStyle={{color:"red"}}/>.</Text>
+  <Text style={styles.text}>2. Raju has <BoldTextHelper text="lots of" inputStyle={{color:"red"}}/> <UnderLineTextHelper text="friends" inputStyle={{color:"red"}}/>.</Text>
+  <Text style={styles.text}>3. I can't go out. I've got <BoldTextHelper text="no" inputStyle={{color:"red"}}/> <UnderLineTextHelper text="money" inputStyle={{color:"red"}}/>.</Text>
+  <Text style={styles.text}>4. There was a lot of food but <BoldTextHelper text="no" inputStyle={{color:"red"}}/> <UnderLineTextHelper text="drinks" inputStyle={{color:"red"}}/>.</Text>
 
 </View>
 
 <View>
-  <Text style={{fontSize:20,textAlign:"center"}}>Level: Intermediate</Text>
+  <Text style={{fontSize:20,textAlign:"center",marginVertical:30,backgroundColor:SideHeadingColor}}>Level: Intermediate</Text>
   <Text style={styles.text}>These more colloquial forms are also used with both count and uncount nouns:</Text>
   <Text style={styles.text}>plenty of	heaps of 	a load of 	loads of 	tons of</Text>
  
-  <Text style={styles.text}>1. We have loads of time.</Text>
-  <Text style={styles.text}>2. Joe has plenty of friends.</Text>
-  <Text style={styles.text}>3. There was heaps of food.</Text>
+  <Text style={styles.text}>1. We have <BoldTextHelper text="loads of" inputStyle={{color:"red"}}/> <UnderLineTextHelper text="time" inputStyle={{color:"red"}}/>.</Text>
+  <Text style={styles.text}>2. Joe has <BoldTextHelper text="plenty of" inputStyle={{color:"red"}}/> <UnderLineTextHelper text="friends" inputStyle={{color:"red"}}/>.</Text>
+  <Text style={styles.text}>3. There was <BoldTextHelper text="heaps of" inputStyle={{color:"red"}}/> <UnderLineTextHelper inputStyle={{color:"red"}} text="food"/>.</Text>
 </View>
 
 
 <View>
   <Text style={styles.sideHeading}>Some and any:</Text>
-  <Text style={styles.text}>We do not normally use the quantifier some in negative and interrogative sentences. We normally use any:</Text>
+  <Text style={styles.text}>We do not normally use the quantifier <BoldTextHelper text="some" inputStyle={{color:HighLightColor}}/> in negative and interrogative sentences. We normally use any:</Text>
  
-  <Text style={styles.text}>1. Do you have any children?</Text>
-  <Text style={styles.text}>2. Did you see any friends?</Text>
-  <Text style={styles.text}>3. We don't have any children.</Text>
-  <Text style={styles.text}>4. I didn't see any friends.</Text>
-  <Text style={styles.text}>5. We saw some lions at the zoo, but we didn't see any tigers.</Text>
+  <Text style={styles.text}>1. <BoldTextHelper text="Do" inputStyle={{color:"red"}}/> you have <BoldTextHelper text="any" inputStyle={{color:"red"}}/> children?</Text>
+  <Text style={styles.text}>2. <BoldTextHelper text="Did" inputStyle={{color:"red"}}/> you see <BoldTextHelper text="any" inputStyle={{color:"red"}}/> friends?</Text>
+  <Text style={styles.text}>3. We <BoldTextHelper text="don't" inputStyle={{color:"red"}}/> have <BoldTextHelper text="any" inputStyle={{color:"red"}}/> children.</Text>
+  <Text style={styles.text}>4. I <BoldTextHelper text="didn't" inputStyle={{color:"red"}}/> see <BoldTextHelper text="any" inputStyle={{color:"red"}}/> friends.</Text>
+  <Text style={styles.text}>5. We saw <BoldTextHelper text="some" inputStyle={{color:"red"}}/> lions at the zoo, but we <BoldTextHelper text="didn't" inputStyle={{color:"red"}}/> see <BoldTextHelper text="any" inputStyle={{color:"red"}}/> tigers.</Text>
   
   <Text style={styles.text}>But we can use some for offers and requests:</Text>
-  <Text style={styles.text}>1. Would you like some tea?</Text>
-  <Text style={styles.text}>2. I want some apples, please.</Text>
+  <Text style={styles.text}>1. Would you like <BoldTextHelper text="some" inputStyle={{color:"red"}}/> tea?</Text>
+  <Text style={styles.text}>2. I want <BoldTextHelper text="some" inputStyle={{color:"red"}}/> apples, please.</Text>
 
 
 </View>
@@ -188,21 +190,16 @@ no	Any	most	lots of	less
 <View>
   <Text style={styles.sideHeading}>Quantifiers with countable nouns:</Text>
   <Text style={styles.text}>Some quantifiers can be used only with count nouns:</Text>
-  <Text style={styles.text}>
-  (not) many	Each	either	(a) few
-Several	Both	neither	fewer 
+  <View>
+    <ImageComponent inputImage={require("../../../../assets/premodifier5.png")}/>
+  </View>
 
-  </Text>
-
-  <Text style={styles.text}>These more colloquial forms are used only with count nouns:</Text>
-  <Text style={styles.text}>
-  a couple of	hundreds of	thousands of
-  </Text>
+  
 
   <Text style={styles.text}>
-1. I’ll be back in a couple of minutes.
+1. I’ll be back <BoldTextHelper text="in a couple of minutes" inputStyle={{color:"red"}}/>.
 </Text>
-  <Text style={styles.text}>2. There were hundreds of people at the meeting.</Text>
+  <Text style={styles.text}>2. There were <BoldTextHelper text="hundreds of people" inputStyle={{color:"red"}}/> at the meeting.</Text>
 
 </View>
 
@@ -210,55 +207,45 @@ Several	Both	neither	fewer
 <View>
   <Text style={styles.sideHeading}>Quantifiers with uncount nouns:</Text>
    <Text style={styles.text}>Some quantifiers can be used only with uncount nouns:</Text> 
-    <Text style={styles.text}>
-    (not) much	a bit of	a little
-    </Text>
+    <View>
+      <ImageComponent inputImage={require("../../../../assets/premodifiers7.png")}/>
+    </View>
 
-  <Text style={styles.text}>1. Would you like a little wine?</Text>
-  <Text style={styles.text}>2. Could I have a bit of butter, please?</Text>
+  <Text style={styles.text}>1. Would you like <BoldTextHelper text="a little wine" inputStyle={{color:'red'}}/>?</Text>
+  <Text style={styles.text}>2. Could I have a <BoldTextHelper text="bit of butter" inputStyle={{color:"red"}}/>, please?</Text>
   <Text style={styles.text}>These quantifiers are used particularly with abstract nouns such as time, money and trouble:</Text>
-  <Text style={styles.text}>a great deal of	a good deal of</Text>
-  <Text style={styles.text}>1. It will probably cost a great deal of money.</Text>
+    <View>
+      <ImageComponent inputImage={require('../../../../assets/premodifiers8.png')}/>
+    </View>
+  <Text style={styles.text}>1. It will probably cost <BoldTextHelper text="a great deal of money." inputStyle={{color:'red'}}/></Text>
   <Text style={styles.text}>2. He spent a good deal of time watching television.</Text>
 
 </View>
 
 
 <View>
-  <Text style={{fontSize:20,textAlign:"center"}}>Level: Intermediate:</Text>
+  <Text style={{fontSize:20,textAlign:"center",backgroundColor:SideHeadingColor,marginVertical:20}}>Level: Intermediate:</Text>
     <Text style={styles.text}>
     We put a noun directly after a quantifier when we are talking about members of a group in general:
     </Text>
   <Text style={styles.text}>
-1. Few snakes are dangerous.</Text>
-  <Text style={styles.text}>2. Most children like chocolate.</Text>
-  <Text style={styles.text}>3. I never have enough money.</Text>
+1. <BoldTextHelper text="Few" inputStyle={{color:'red'}}/> <UnderLineTextHelper text="snakes" inputStyle={{color:'red'}}/> are dangerous.</Text>
+  <Text style={styles.text}>2. <BoldTextHelper text="Most" inputStyle={{color:'red'}}/> <UnderLineTextHelper text="children" inputStyle={{color:'red'}}/> like chocolate.</Text>
+  <Text style={styles.text}>3. I never have <BoldTextHelper text="enough" inputStyle={{color:'red'}}/> <UnderLineTextHelper text="money" inputStyle={{color:'red'}}/>.</Text>
   <Text style={styles.text}>But if we are talking about members of a specific group, we use of the as well:</Text>
 
   
-  <Text style={styles.text}>1. Few of the snakes in this zoo are dangerous.</Text>
-  <Text style={styles.text}>2. Most of the boys at my school play football.</Text>
-  <Text style={styles.text}>3. He’s spent all (of) the money that we gave him.</Text>
-  <Text style={styles.text}>4. Both (of) the chairs in my office are broken.</Text>
-  <Text style={styles.text}>Note: with all and both, we don’t need to use of. We can say all the … and both the …. Both, either and neither</Text>
+  <Text style={styles.text}>1. <BoldTextHelper text="Few of the" inputStyle={{color:'red'}}/> <UnderLineTextHelper text="snakes in this zoo" inputStyle={{color:'red'}}/> are dangerous.</Text>
+  <Text style={styles.text}>2. <BoldTextHelper text="Most of the" inputStyle={{color:'red'}}/> <UnderLineTextHelper text="boys at my school" inputStyle={{color:'red'}}/> play football.</Text>
+  <Text style={styles.text}>3. He’s spent the <BoldTextHelper inputStyle={{color:"red"}} text="all (of)"/> <UnderLineTextHelper text="money that we gave him." inputStyle={{color:"red"}}/></Text>
+  <Text style={styles.text}>4. Both (of) <BoldTextHelper text=" all (of) the2" inputStyle={{color:'red'}}/>  <UnderLineTextHelper inputStyle={{color:'red'}} text="chairs in my office"/> are broken.</Text>
+  <Text style={styles.text}>Note: with all and both, we don’t need to use of. We can say <UnderLineTextHelper text="all the"/> … and <UnderLineTextHelper text="both the"/> …. <BoldTextHelper text="Both, either and neither"/></Text>
   
-  <Text style={styles.text}>If we are talking about two people or things, we use the quantifiers both, either and neither:</Text>
-<Text style={styles.text}>
-One supermarket	Two supermarkets	More than two supermarkets
-The supermarket
-was closed.	Both the supermarkets
-were closed.	All the supermarkets
-were closed.
-The supermarket
-wasn’t open.	Neither of the supermarkets
-was open.	None of the supermarkets
-were open.
-I don’t think the supermarket
-was open.	I don’t think either of the supermarkets
-was open.	I don’t think any of the supermarkets
-were open.
+  <Text style={styles.text}>If we are talking about <BoldTextHelper text="two people or things"/>, we use the quantifiers <UnderLineTextHelper text="both, either and neither"/>:</Text>
 
-</Text>
+    <View>
+      <ImageComponent inputImage={require("../../../../assets/premodifiers9.png")}/>
+    </View>
 
 <Text style={styles.text}>Note that nouns with both have a plural verb but nouns with either and neither have a singular verb.</Text>
 
@@ -271,17 +258,17 @@ were open.
   <Text style={styles.sideHeading}>Every and each:</Text>
   <Text style={styles.text}>We use the quantifiers every and each with singular nouns to mean all:</Text>
   
-  <Text style={styles.text}>1. There was a party in every street. (= There were parties in all the streets.)</Text>
-  <Text style={styles.text}>2. Every shop was decorated with flowers. (= All the shops were decorated with flowers.)</Text>
-  <Text style={styles.text}>3. Each child was given a prize. (= All the children were given a prize.)</Text>
-  <Text style={styles.text}>4. There was a prize in each competition. (= There were prizes in all the competitions.)</Text>
-  <Text style={styles.text}>5. We often use every to talk about times like days, weeks and years:</Text>
-  <Text style={styles.text}>6. When we were children, we had holidays at our grandmother's every year.</Text>
-  <Text style={styles.text}>7. When we stayed at my grandmother's house, we went to the beach every day.</Text>
-  <Text style={styles.text}>8. We visit our daughter every Christmas.</Text>
-  <Text style={styles.text}>9. We do not use a determiner with every and each:</Text>
-  <Text style={styles.text}>10. Every shop was decorated with flowers. (NOT The every shop)</Text>
-  <Text style={styles.text}>11. Each child was given a prize. (NOT The each child)</Text>
+  <Text style={styles.text}>1. There was a party in <BoldTextHelper text="every street."/> (= There were parties in all the streets.)</Text>
+  <Text style={styles.text}>2. <BoldTextHelper text="Every shop"/> was decorated with flowers. (= All the shops were decorated with flowers.)</Text>
+  <Text style={styles.text}>3. <BoldTextHelper text="Each child"/> was given a prize. (= All the children were given a prize.)</Text>
+  <Text style={styles.text}>4. There was a prize in <BoldTextHelper text="each competition"/>. (= There were prizes in all the competitions.)</Text>
+  <Text style={styles.text}>5. We often use every to talk about times like <BoldTextHelper text="days, weeks and years:"/></Text>
+  <Text style={styles.text}>6. When we were children, we had holidays at our grandmother's <BoldTextHelper text="every year."/></Text>
+  <Text style={styles.text}>7. When we stayed at my grandmother's house, we went to the beach <BoldTextHelper text="every day."/></Text>
+  <Text style={styles.text}>8. We visit our daughter <BoldTextHelper text="every Christmas."/></Text>
+  <Text style={styles.text}>9. We do not use a determiner with <BoldTextHelper text="every and each"/>.</Text>
+  <Text style={styles.text}>10. <BoldTextHelper text="Every shop "/> was decorated with flowers. (NOT The every shop)</Text>
+  <Text style={styles.text}>11. <BoldTextHelper text="Each child"/> was given a prize. (NOT The each child)</Text>
   
 </View>
 
@@ -301,10 +288,11 @@ const styles = StyleSheet.create({
   },
   sideHeading:{
     fontSize:16,
-    textDecorationLine:"underline",
-    fontWeight:"bold",
     marginVertical:15,
-    lineHeight:28
+    lineHeight:28,
+    fontFamily:PoppinsRegular,
+    paddingLeft:5,
+    backgroundColor:SideHeadingColor
   },
   rootContainer:{
     paddingHorizontal:5

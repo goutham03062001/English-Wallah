@@ -3,7 +3,7 @@ import React from "react";
 import BoldTextHelper from "../utils/BoldText";
 import { PoppinsLight,PoppinsRegular } from "../../../../utils/FontHelper";
 import { ScrollView } from "react-native-gesture-handler";
-
+import { HighLightColor,SideHeadingColor } from "../utils/Colors";
 const Gerund = () => {
   return (
     <View style={styles.rootContainer}>
@@ -13,8 +13,8 @@ const Gerund = () => {
         </View>
 
         <View>
-          <Text style={{ fontSize: 17, textDecorationLine: "underline" }}>
-            <BoldTextHelper text="It's Form" />
+          <Text style={{ fontSize: 17}}>
+            <BoldTextHelper text="It's Form" inputStyle={{backgroundColor:SideHeadingColor,color:"black",textDecorationLine:"none"}}/>
           </Text>
           <Text style={styles.text}>
             “A Gerund is that form of the verb which ends in “ing” and has the
@@ -28,7 +28,9 @@ const Gerund = () => {
             adding ‘ing’ to a Verb, and it performs the functions of both Noun
             and Verb. The sign of recognizing a Gerund is that it is always a
             ‘Verb + ing’, as—
-            <BoldTextHelper text="running , walking, driving, reading, writing" />
+            <BoldTextHelper
+            inputStyle={{color:HighLightColor}}
+             text="running , walking, driving, reading, writing" />
             , etc.
           </Text>
         </View>
@@ -38,7 +40,7 @@ const Gerund = () => {
             <BoldTextHelper text="Note--" />
           </Text>
           <Text style={styles.text}>
-            It may be remembered in this connection that in form the <BoldTextHelper text="Present  Participle"/> is also <BoldTextHelper tex="Verb+ing"/> But the functions of Gerund and
+            It may be remembered in this connection that in form the <BoldTextHelper text="Present  Participle" inputStyle={{color:HighLightColor}}/> is also <BoldTextHelper tex="Verb+ing"/> But the functions of Gerund and
             Present Participle are quite different.
           </Text>
 
@@ -48,10 +50,10 @@ const Gerund = () => {
           </Text>
 
           <Text style={styles.text}>
-            <BoldTextHelper text="Gerund" /> = Verb + Noun (Verbal Noun)
+            <BoldTextHelper text="Gerund" inputStyle={{color:HighLightColor}}/> = Verb + Noun (Verbal Noun)
           </Text>
           <Text style={styles.text}>
-            <BoldTextHelper text="Participle" /> = Verb + Adjective (Verbal
+            <BoldTextHelper text="Participle" inputStyle={{color:HighLightColor}}/> = Verb + Adjective (Verbal
             Adjective)
           </Text>
         </View>
@@ -62,6 +64,7 @@ const Gerund = () => {
               textAlign: "center",
               fontSize: 17,
               textDecorationLine: "underline",
+              backgroundColor:SideHeadingColor
             }}
           >
             Its Different Forms
@@ -118,10 +121,10 @@ const Gerund = () => {
         </View>
 
         <View style={styles.view}>
-          <Text style={styles.sideHeading}>Gerund and Noun-Infinitive</Text>
+          <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor,textDecorationLine:"none"}]}>Gerund and Noun-Infinitive</Text>
           <Text style={styles.text}>
-            As we have said above the function of Gerund is <BoldTextHelper text="Verb+Noun."/> The
-            function of Noun Infinitive is also <BoldTextHelper text="Verb+Noun."/> Therefore in most
+            As we have said above the function of Gerund is <BoldTextHelper text="Verb+Noun." inputStyle={{color:HighLightColor}}/> The
+            function of Noun Infinitive is also <BoldTextHelper text="Verb+Noun." inputStyle={{color:HighLightColor}}/> Therefore in most
             sentences either Gerund or Noun Infinitive can be used without any
             change in meaning.
           </Text>
@@ -143,14 +146,14 @@ const Gerund = () => {
         </View>
 
         <View style={styles.view}>
-          <Text style={styles.sideHeading}>Functions of Gerund</Text>
+          <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>Functions of Gerund</Text>
           <Text style={styles.text}>
             Like Infinitive, Gerund also performs the following functions of the
             Noun :{" "}
           </Text>
 
           <View style={styles.view}>
-            <Text style={styles.sideHeading}>A. As the Subject of a Verb</Text>
+            <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>A. As the Subject of a Verb</Text>
             <Text style={styles.text}>
               1. <BoldTextHelper text="Walking" /> is good for health. (What is
               good for health? – walking)
@@ -166,7 +169,7 @@ const Gerund = () => {
           </View>
 
           <View style={styles.view}>
-            <Text style={styles.sideHeading}>B. As the object of a Verb</Text>
+            <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>B. As the object of a Verb</Text>
             <Text style={styles.text}>
               1. Stop <BoldTextHelper text="shouting" />. (Stop what? –
               shouting.)
@@ -186,7 +189,7 @@ const Gerund = () => {
           </View>
 
           <View style={styles.view}>
-            <Text style={styles.sideHeading}>
+            <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>
               C. As the object of a Preposition
             </Text>
             <Text style={styles.text}>
@@ -205,7 +208,7 @@ const Gerund = () => {
           </View>
 
           <View style={styles.view}>
-            <Text style={styles.sideHeading}>
+            <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>
               D. As the Complement of a Verb
             </Text>
             <Text style={styles.text}>
@@ -225,7 +228,7 @@ const Gerund = () => {
           </View>
 
           <View style={styles.view}>
-            <Text style={styles.sideHeading}>E. As case in Apposition</Text>
+            <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>E. As case in Apposition</Text>
             <Text style={styles.text}>
               1. It is no use <BoldTextHelper text="running" /> after shadows.
             </Text>
@@ -241,7 +244,7 @@ const Gerund = () => {
           </View>
 
           <View style={styles.view}>
-            <Text style={styles.sideHeading}>F. Absolute use </Text>
+            <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>F. Absolute use </Text>
             <Text style={styles.text}>
               <BoldTextHelper text="Hunting being hateful to him," /> we did not
               carry our guns.
@@ -258,8 +261,8 @@ const Gerund = () => {
         </View>
 
         <View style={styles.view}>
-          <Text style={{ textAlign: "center", fontSize: 20 }}>Gerund</Text>
-          <Text style={styles.sideHeading}>
+          <Text style={{ textAlign: "center", fontSize: 20 ,backgroundColor:SideHeadingColor}}>Gerund</Text>
+          <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor,marginTop:19}]}>
             Rule 1—Gerund and Possessive Case
           </Text>
 
@@ -310,12 +313,14 @@ const Gerund = () => {
           </View>
 
                 <View style={styles.view}>
-                  <Text style={[styles.sideHeading,{lineHeight:28}]}>
+                  <Text style={[styles.sideHeading,{lineHeight:28,backgroundColor:SideHeadingColor}]}>
                   * Rule 2—There are some Verbs after which only Gerund should be used (not Infinitive).
                   </Text>
 
                   <Text style={styles.text}>
-                  These Verbs are : <BoldTextHelper text=" Feel, mind, avoid, consider, enjoy, excuse, finish, miss, can’t help, look forward, to give up, go on, it is no good, it is no use."/> As—
+                  These Verbs are : <BoldTextHelper
+                  inputStyle={{color:HighLightColor}}
+                   text=" Feel, mind, avoid, consider, enjoy, excuse, finish, miss, can’t help, look forward, to give up, go on, it is no good, it is no use."/> As—
 </Text>
                 </View>
                 <View>
@@ -335,12 +340,12 @@ const Gerund = () => {
 
 
           <View style={styles.view}>
-                  <Text style={[styles.sideHeading,{lineHeight:28}]}>
+                  <Text style={[styles.sideHeading,{lineHeight:28,backgroundColor:SideHeadingColor}]}>
                   Rule 3—Compound Nouns as Gerunds
                   </Text>
 
                   <Text style={styles.text}>
-                  The following compound Nouns have <BoldTextHelper text="Verb+ing"/> as one part of their form. This <BoldTextHelper text="Verb+ing"/> part is called its Gerund. As— <BoldTextHelper text="Walking-stick, writing-table, frying-pan, hunting-whip, sitting-room, inking-pad,"/> etc.
+                  The following compound Nouns have <BoldTextHelper text="Verb+ing" inputStyle={{color:HighLightColor}}/> as one part of their form. This <BoldTextHelper text="Verb+ing" inputStyle={{color:HighLightColor}}/> part is called its Gerund. As— <BoldTextHelper text="Walking-stick, writing-table, frying-pan, hunting-whip, sitting-room, inking-pad," inputStyle={{color:HighLightColor}}/> etc.
 </Text>
                 </View>
                 <View>
@@ -354,12 +359,12 @@ const Gerund = () => {
 
 
           <View style={styles.view}>
-                  <Text style={[styles.sideHeading,{lineHeight:28}]}>
+                  <Text style={[styles.sideHeading,{lineHeight:28,backgroundColor:SideHeadingColor}]}>
                   Rule 4—Compound Gerunds
                   </Text>
 
                   <Text style={styles.text}>
-                  Sometimes Gerunds can be formed by using Past Participle form of the Verb after <BoldTextHelper text="Having"/> or Being. They are called <BoldTextHelper text="Compound Gerunds."/> </Text>
+                  Sometimes Gerunds can be formed by using Past Participle form of the Verb after <BoldTextHelper text="Having" inputStyle={{color:HighLightColor}}/> or Being. They are called <BoldTextHelper text="Compound Gerunds." inputStyle={{color:HighLightColor}}/> </Text>
                 </View>
                 <View>
            
@@ -381,12 +386,12 @@ const Gerund = () => {
 
                 
           <View style={styles.view}>
-                  <Text style={[styles.sideHeading,{lineHeight:28}]}>
+                  <Text style={[styles.sideHeading,{lineHeight:28,backgroundColor:SideHeadingColor}]}>
                   Rule 5—Gerunds as Ordinary Nouns
                   </Text>
 
                   <Text style={styles.text}>
-                  Sometimes Gerunds can be used as pure <BoldTextHelper text="ordinary Nouns."/> They have <BoldTextHelper text="'The"/> before them and ‘of’ after them.
+                  Sometimes Gerunds can be used as pure <BoldTextHelper text="ordinary Nouns." inputStyle={{color:HighLightColor}}/> They have <BoldTextHelper text="'The" inputStyle={{color:HighLightColor}}/> before them and ‘of’ after them.
                   </Text>
                  </View>
                 <View>

@@ -18,11 +18,7 @@ function StartingScreen() {
     <>
       <ScrollView>
         <View style={{ padding: 2 }}>
-          <View style={{ height: "10%" }}>
-            <Text style={{ textAlign: "center", fontSize: 18, color: "red" }}>
-              Reading
-            </Text>
-          </View>
+          
 
           <View
             style={{
@@ -33,10 +29,10 @@ function StartingScreen() {
           >
             <View style={{ marginVertical: 20, gap: 10 ,paddingLeft:10}}>
               <Text style={{ fontSize: 16 }}>
-                <Text>1.The Infinitive</Text>
+                <Text style={{color:"green"}}>1.The Infinitive</Text>
               </Text>
-              <Text style={{ fontSize: 16 }}>2. The Gerund</Text>
-              <Text style={{ fontSize: 16 }}>3. The Participle</Text>
+              <Text style={{ fontSize: 16,color:"green" }}>2. The Gerund</Text>
+              <Text style={{ fontSize: 16,color:"green" }}>3. The Participle</Text>
             </View>
 
             <View style={{ marginVertical: 20 }}>

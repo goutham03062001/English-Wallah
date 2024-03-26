@@ -34,8 +34,10 @@ import {
       <View>
         {/* collective noun */}
   
-        <Text style={{fontSize:18,marginVertical:15}}>
-          <BoldTextHelper text="Kinds of conjunctions:"/>
+        <Text style={{fontSize:18,marginVertical:15, backgroundColor: "#FFDE7D",padding:5,width:210}}>
+          <BoldTextHelper text="Kinds of conjunctions"
+            inputStyle={{color:"black"}}
+          />
         </Text>
         
         <Text style={{fontSize:16,marginVertical:15}}>
@@ -43,15 +45,15 @@ import {
         </Text>
      
   
-        <Text style={{fontSize:16}}>1. Correlative conjunctions.</Text>
-        <Text style={{fontSize:16}}>2. Compound conjunctions. </Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. Correlative conjunctions.</Text>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. Compound conjunctions. </Text>
        
        
-        <Text style={{fontSize:16}}>
+        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>
         3. Coordinating conjunctions.		
       </Text>
         
-      <Text style={{fontSize:16}}>4. Subordinating conjunctions.</Text>
+      <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. Subordinating conjunctions.</Text>
       
   
       </View>
@@ -60,15 +62,10 @@ import {
   
          <View style={{marginVertical:15}}>
          <Pressable onPress={(e) => navigation.navigate("Correlative")}>
-            <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+            <Card style={[{ backgroundColor: "#FFDE7D" }, styles.cardStyle]}>
               <Card.Content style={styles.contentStyle}>
-                <Text style={{ color: "white" }}>Correlative Conjunction</Text>
-                <Image
-                  source={{
-                    uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-                  }}
-                  style={{ width: 30, height: 20 }}
-                />
+                <Text style={{fontSize:16, color: "black" }}>Correlative Conjunction</Text>
+                
               </Card.Content>
             </Card>
           </Pressable>
@@ -76,29 +73,19 @@ import {
           <Pressable
             onPress={(e) => navigation.navigate("Compound")}
           >
-            <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+            <Card style={[{ backgroundColor: "#435585" }, styles.cardStyle]}>
               <Card.Content style={styles.contentStyle}>
-                <Text style={{ color: "white" }}>Compound Conjunction</Text>
-                <Image
-                  source={{
-                    uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-                  }}
-                  style={{ width: 30, height: 20 }}
-                />
+                <Text style={{fontSize:16, color: "white" }}>Compound Conjunction</Text>
+                
               </Card.Content>
             </Card>
           </Pressable>
   
           <Pressable onPress={(e) => navigation.navigate("Coordinating")}>
-            <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+            <Card style={[{ backgroundColor: "#6C5B7B" }, styles.cardStyle]}>
               <Card.Content style={styles.contentStyle}>
-                <Text style={{ color: "white" }}>Coordinating conjunction</Text>
-                <Image
-                  source={{
-                    uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-                  }}
-                  style={{ width: 30, height: 20 }}
-                />
+                <Text style={{fontSize:16, color: "white" }}>Coordinating conjunction</Text>
+                
               </Card.Content>
             </Card>
           </Pressable>
@@ -106,15 +93,10 @@ import {
           <Pressable
             onPress={(e) => navigation.navigate("Subordinating")}
           >
-            <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
+            <Card style={[{ backgroundColor: "#A084E8" }, styles.cardStyle]}>
               <Card.Content style={styles.contentStyle}>
-                <Text style={{ color: "white" }}>Subordinating conjunctions</Text>
-                <Image
-                  source={{
-                    uri: "https://img.icons8.com/color/48/000000/long-arrow-right.png",
-                  }}
-                  style={{ width: 30, height: 20 }}
-                />
+                <Text style={{fontSize:16, color: "white" }}>Subordinating conjunctions</Text>
+                
               </Card.Content>
             </Card>
           </Pressable>

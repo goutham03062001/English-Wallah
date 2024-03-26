@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View,ScrollView } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { SideHeadingColor,HighLightColor } from '../utils/Colors';
 import BoldTextHelper from "../utils/BoldText";
 import UnderlineTextHelper from '../utils/UnderlineText';
 import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper';
@@ -8,13 +9,13 @@ const DataComponent = ({first,second,third})=>{
     <View style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"space-between",marginTop:5,alignItems:"flex-start",marginTop:15}}>
           {/* body content */}
           <View style={{width:"28%",display:"flex",flexDirection:"row",justifyContent:"flex-start",alignItems:"flex-start"}}>
-            <Text style={{fontSize:15,fontFamily:PoppinsLight}}>{first}</Text>
+            <Text style={{fontSize:15,fontFamily:PoppinsLight,color:HighLightColor}}>{first}</Text>
           </View>
           <View style={{width:"28%",display:"flex",flexDirection:"row",justifyContent:"flex-start",alignItems:"center"}}>
-            <Text style={{fontSize:15,fontFamily:PoppinsLight}}>{second}</Text>
+            <Text style={{fontSize:15,fontFamily:PoppinsLight,color:"brown"}}>{second}</Text>
           </View>
           <View style={{width:"30%",display:"flex",flexDirection:"row",justifyContent:"flex-start",alignItems:"center"}}>
-            <Text style={{fontSize:15,fontFamily:PoppinsLight}}>{third}</Text>
+            <Text style={{fontSize:15,fontFamily:PoppinsLight,color:"red"}}>{third}</Text>
           </View>
         </View>
   </>)
@@ -23,11 +24,11 @@ const VerbForms = () => {
   return (
    <ScrollView>
      <View style={{paddingHorizontal:8,}}>
-      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular}}><BoldTextHelper text="Base"/> : Come</Text>
-      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular}}><BoldTextHelper text="Present Form"/> : Comes</Text>
-      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular}}><BoldTextHelper text="Past Form"/> : came</Text>
-      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular}}><BoldTextHelper text="Past Participle"/>  : come</Text>
-      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular}}><BoldTextHelper text="Present Participle"/>  : coming</Text>
+      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular,color:'red'}}><BoldTextHelper inputStyle={{color:HighLightColor}} text="Base" /> : Come</Text>
+      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular,color:'red'}}><BoldTextHelper inputStyle={{color:HighLightColor}} text="Present Form"/> : Comes</Text>
+      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular,color:'red'}}><BoldTextHelper inputStyle={{color:HighLightColor}} text="Past Form"/> : came</Text>
+      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular,color:'red'}}><BoldTextHelper inputStyle={{color:HighLightColor}} text="Past Participle"/>  : come</Text>
+      <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular,color:'red'}}><BoldTextHelper inputStyle={{color:HighLightColor}} text="Present Participle"/>  : coming</Text>
    
       <View>
         <Text style={{fontSize:16,marginVertical:5,fontFamily:PoppinsRegular}}>
@@ -39,9 +40,9 @@ const VerbForms = () => {
       <View style={{marginVertical:15}}>
         <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           {/* headings */}
-          <Text style={{fontSize:17,fontWeight:"500"}}>Base Form</Text>
-          <Text style={{fontSize:17,fontWeight:"500"}}>Past Form</Text>
-          <Text style={{fontSize:17,fontWeight:"500"}}>Past Participle</Text>
+          <Text style={{fontSize:17,fontWeight:"500",color:HighLightColor}}>Base Form</Text>
+          <Text style={{fontSize:17,fontWeight:"500",color:"brown"}}>Past Form</Text>
+          <Text style={{fontSize:17,fontWeight:"500",color:"red"}}>Past Participle</Text>
         </View>
 
       <DataComponent first="Arise" second="arose" third="arisen"/>
@@ -160,9 +161,9 @@ const VerbForms = () => {
 
       <View style={{marginTop:50,display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           {/* headings */}
-          <Text style={{fontSize:17,fontWeight:"500"}}>Base Form</Text>
-          <Text style={{fontSize:17,fontWeight:"500"}}>Past Form</Text>
-          <Text style={{fontSize:17,fontWeight:"500"}}>Past Participle</Text>
+          <Text style={{fontSize:17,fontWeight:"500",color:HighLightColor}}>Base Form</Text>
+          <Text style={{fontSize:17,fontWeight:"500",color:"brown"}}>Past Form</Text>
+          <Text style={{fontSize:17,fontWeight:"500",color:"red"}}>Past Participle</Text>
         </View>
       <DataComponent first="Bet" second="bet" third="bet"/>
       <DataComponent first="Burst" second="burst" third="burst"/>

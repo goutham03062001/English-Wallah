@@ -4,12 +4,15 @@ import BoldTextHelper from "../utils/BoldText";
 import UnderlineTextHelper from "../utils/UnderlineText";
 import { Divider } from "react-native-paper";
 import { PoppinsLight,PoppinsRegular } from "../../../../utils/FontHelper";
+import {HighLightColor} from "../utils/Colors"
 const CorelativeConjunction = () => {
   return (
     <ScrollView>
       <View style={{ paddingHorizontal: 8, marginTop: 9 }}>
         <Text style={{ lineHeight: 22, fontSize: 16 }}>
-          <UnderlineTextHelper text="Conjunctions which are used in pairs"/> are known as correlative
+          <UnderlineTextHelper text="Conjunctions which are used in pairs"
+            inputStyle={{color:HighLightColor}}
+          /> are known as correlative
           conjunctions.
         </Text>
 
@@ -17,6 +20,7 @@ const CorelativeConjunction = () => {
           {/* Cumulative or Copulative Conjunctions */}
 
           <BoldTextHelper
+
             text="Either – or, 
         Neither – nor, 
         Both – and, 
@@ -35,94 +39,96 @@ const CorelativeConjunction = () => {
         * Lest – should
         "
             fontSize={16}
-            styling={{ padding: 4, marginVertical: 8 }}
-            inputStyle={{color:"green"}}
+      
+            inputStyle={{color:HighLightColor,
+              padding: 4, marginVertical: 8
+            }}
           />
 
           <View style={{ marginVertical: 8, gap: 10, marginBottom: 30 }}>
             <Text style={{ fontSize: 17 }}>
               <Text>
-                1. Madavi is <UnderlineTextHelper text="either" 
-                  inputStyle={{color:"green"}}
-                /> a typist{" "}
-                <UnderlineTextHelper text="or" /> a teacher.
+                1. Madavi is <UnderlineTextHelper style={{lineHeight:29}}xtHelper text="either" 
+                  inputStyle={{color:"red"}}
+                /> a typist
+                <UnderlineTextHelper text="or" inputStyle={{color:"red"}}/> a teacher.
               </Text>
             </Text>
             <Text style={{ fontSize: 17 }}>
-              <Text>
-                2. She can speak <UnderlineTextHelper text="neither" /> English{" "}
-                <UnderlineTextHelper text="nor" /> Hindi.
+              <Text style={{lineHeight:29}}>
+                2. She can speak <UnderlineTextHelper text="neither" inputStyle ={{lineHeight:29,color:"red"}}/> English{" "}
+                <UnderlineTextHelper text="nor" inputStyle={{color:"red"}}/> Hindi.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                3. He is <UnderlineTextHelper text="as much" /> greatly as
+              <Text style={{lineHeight:29}}>
+                3. He is <UnderlineTextHelper text="as much" inputStyle={{color:"red"}}/> greatly as
                 miserable.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                4. He <UnderlineTextHelper text="not only" /> wrote but also
+              <Text style={{lineHeight:29}}>
+                4. He <UnderlineTextHelper text="not only" inputStyle={{color:"red"}}/> wrote but also
                 sang it well.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                5. <UnderlineTextHelper text="Such" /> was her reply that I
+              <Text style={{lineHeight:29}}>
+                5. <UnderlineTextHelper text="Such" inputStyle={{color:"red"}}/> was her reply that I
                 never expected.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                6. Vijaya is <UnderlineTextHelper text="as" /> beautiful{" "}
-                <UnderlineTextHelper text="as" /> her sister.
+              <Text style={{lineHeight:29}}>
+                6. Vijaya is <UnderlineTextHelper text="as" inputStyle = {{color:"red"}}/> beautiful{" "}
+                <UnderlineTextHelper text="as" inputStyle={{color:"red"}}/> her sister.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                7. <UnderlineTextHelper text="Even if" /> she is selfish, I will
+              <Text style={{lineHeight:29}}>
+                7. <UnderlineTextHelper text="Even if" inputStyle={{color:"red"}}/> she is selfish, I will
                 help her.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                8. <UnderlineTextHelper text="As" /> you work,{" "}
-                <UnderlineTextHelper text="so" /> the result is.
+              <Text style={{lineHeight:29}}>
+                8. <UnderlineTextHelper text="As" inputStyle={{color:"red"}}/> you work,{" "}
+                <UnderlineTextHelper text="so" inputStyle={{color:"red"}}/> the result is.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                9. He went to Agra <UnderlineTextHelper text="so that" /> he
+              <Text style={{lineHeight:29}}>
+                9. He went to Agra <UnderlineTextHelper text="so that" inputStyle={{color:"red"}}/> he
                 might see his sister.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                10. I had <UnderlineTextHelper text="hardly" /> reached home
+              <Text style={{lineHeight:29}}>
+                10. I had <UnderlineTextHelper text="hardly" inputStyle={{color:"red"}}/> reached home
                 when the phone began ringing.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                11. I don’t know <UnderlineTextHelper text="whether" /> she will
+              <Text style={{lineHeight:29}}>
+                11. I don’t know <UnderlineTextHelper text="whether" inputStyle={{color:"red"}}/> she will
                 marry him or continue her studies.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                12. She had <UnderlineTextHelper text="scarcely " /> returned
+              <Text style={{lineHeight:29}}>
+                12. She had <UnderlineTextHelper text="scarcely " inputStyle={{color:"red"}}/> returned
                 home when someone knocked at the door.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                13. We had <UnderlineTextHelper text="no sooner" /> started for
+              <Text style={{lineHeight:29}}>
+                13. We had <UnderlineTextHelper text="no sooner" inputStyle={{color:"red"}}/> started for
                 Hyderabad than our uncle arrived.
               </Text>
             </Text>
             <Text style={{ fontSize: 16 }}>
-              <Text>
-                14. <UnderlineTextHelper text="Though" /> he tried to convince
+              <Text style={{lineHeight:29}}>
+                14. <UnderlineTextHelper text="Though" inputStyle={{color:"red"}}/> he tried to convince
                 his wife, (yet) she was not happy with his words.
               </Text>
             </Text>
@@ -132,14 +138,14 @@ const CorelativeConjunction = () => {
         <Divider />
         <View style={{ marginVertical: 35 }}>
           {/* Cumulative or Copulative Conjunctions */}
-          <Text style={{ fontSize: 17, color:"green",fontFamily:PoppinsRegular,fontWeight:600}}>
+          <Text style={{ fontSize: 17, color:"black",backgroundColor:"#FFDE7D",paddingHorizontal:8,fontFamily:PoppinsRegular,fontWeight:600}}>
             Note: Position of Correlatives:
           </Text>
-          <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
+          <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 29 }}>
             If the first part of the pair is used before a{" "}
-            <Text style={{ fontFamily:PoppinsRegular,color:"green"}}>noun </Text>, the second part
+            <Text style={{ fontFamily:PoppinsRegular,color:HighLightColor}}>noun </Text>, the second part
             should also be used before a{" "}
-            <Text style={{ fontFamily:PoppinsRegular,color:"green" }}>noun</Text>, not before a verb,
+            <Text style={{ fontFamily:PoppinsRegular,color:HighLightColor }}>noun</Text>, not before a verb,
             adjective or adverb.
           </Text>
 
@@ -149,8 +155,8 @@ const CorelativeConjunction = () => {
       Conjunctions which are used to join statements are known as Cumulative or Copulative conjunctions.
       </Text> */}
 
-          <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 22 }}>
-          Likewise, if the first part is used before a <Text style={{ fontFamily:PoppinsRegular,color:"green"}}>verb</Text>, <Text style={{ fontFamily:PoppinsRegular,color:"green"}}>adjective</Text> or <Text style={{ fontFamily:PoppinsRegular,color:"green"}}>adverb</Text>, the second part should also be used accordingly.
+          <Text style={{ marginTop: 10, fontSize: 16, lineHeight: 29 }}>
+          Likewise, if the first part is used before a <Text style={{ fontFamily:PoppinsRegular,color:HighLightColor}}>verb</Text>, <Text style={{ fontFamily:PoppinsRegular,color:HighLightColor}}>adjective</Text> or <Text style={{ fontFamily:PoppinsRegular,color:HighLightColor}}>adverb</Text>, the second part should also be used accordingly.
           </Text>
 
           <View style={{ marginVertical: 8 }}>

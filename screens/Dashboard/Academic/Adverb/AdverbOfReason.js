@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import BoldTextHelper from '../utils/BoldText'
+import BoldTextHelper from '../utils/BoldText';
+import { HighLightColor } from '../utils/Colors';
+
 const AdverbOfReason = () => {
   return (
     <>
@@ -13,13 +15,15 @@ const AdverbOfReason = () => {
         <Text style={{fontSize:16,marginVertical:15}}>
         <BoldTextHelper
           text="Ex: Owing to, due to, consequently, hence, therefore, "
+          inputStyle={{color:HighLightColor}}
+
         />
         </Text>
 
 
-        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="Due to"/> bad weather, the match has been postponed.</Text>
-        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="Hence"/> I request you to allow me to go home.</Text>
-        <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. It was raining heavily; <BoldTextHelper text="therefore"/>, we stayed in the house.</Text>
+        <Text style={{fontSize:16,marginVertical:8}}>1. <BoldTextHelper text="Due to"/> bad weather, the match has been postponed.</Text>
+        <Text style={{fontSize:16,marginVertical:8}}>2. <BoldTextHelper text="Hence"/> I request you to allow me to go home.</Text>
+        <Text style={{fontSize:16,marginVertical:8}}>3. It was raining heavily; <BoldTextHelper text="therefore"/>, we stayed in the house.</Text>
         
         
       </View>

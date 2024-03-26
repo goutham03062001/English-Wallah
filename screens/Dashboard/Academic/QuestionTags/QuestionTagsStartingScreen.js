@@ -5,7 +5,7 @@ import BoldTextHelper from "../utils/BoldText";
 import UnderlineTextHelper from "../utils/UnderlineText"
 const Drawer = createDrawerNavigator();
 import { PoppinsLight,PoppinsRegular } from "../../../../utils/FontHelper";
-
+import { SideHeadingColor,HighLightColor } from "../utils/Colors";
 import { Card } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 function StartingScreen() {
@@ -14,7 +14,9 @@ function StartingScreen() {
       <View style={styles.rootContainer}>
         <View>
           <Text style={styles.text}>
-            It is a common practice in conversation to make a statement and <UnderlineTextHelper text="ask
+            It is a common practice in conversation to make a statement and <UnderlineTextHelper  
+            inputStyle={{color:HighLightColor}}
+            text="ask
             for conformation."/> Question tags are often placed after some
             statements, requests, proposals or commands. They are always in
             question form.
@@ -38,7 +40,9 @@ function StartingScreen() {
           <Text style={styles.sideHeading}>Negative Words: </Text>
       
           <Text style={styles.text}>
-          <BoldTextHelper text = "no, not, never, nothing, nobody, no one"/>
+          <BoldTextHelper
+            inputStyle={{color:HighLightColor}}
+           text = "no, not, never, nothing, nobody, no one"/>
           </Text>
           <Text style={styles.text}>1. You don’t love me, <BoldTextHelper text="do you ?"/></Text>
           <Text style={styles.text}>2. He never plays cricket, <BoldTextHelper text="does he?"/></Text>
@@ -47,36 +51,40 @@ function StartingScreen() {
 
         <Text style={styles.sideHeading}>Semi Negative Words:</Text>
           <Text style={styles.text}>
-          Semi-negative words As : <BoldTextHelper text="few, little, hardly, scarcely, rarely, seldom,"/> etc. Are also believed to be Negative and therefore we use Positive Question–tags after them. As :
+          Semi-negative words As : <BoldTextHelper
+            inputStyle={{color:HighLightColor}}
+          
+           text="few, little, hardly, scarcely, rarely, seldom,"/> etc. Are also believed to be Negative and therefore we use Positive Question–tags after them. As :
           </Text>
 
           <Text style={styles.text}>1. He <BoldTextHelper text="rarely"/> comes here, <BoldTextHelper text="does"/> he ?</Text>
           <Text style={styles.text}>2. <BoldTextHelper text="Few"/> people are interested in this scheme, <BoldTextHelper text="are"/> they ?</Text>
 
           <Text style={styles.text}>
-          A) If the subject of the statement is “I am” and the statement is <BoldTextHelper text="affirmative"/>, the subject of the Question Tag would be <BoldTextHelper text="“aren’t I”"/> (not, am not I).
+            
+          A) If the subject of the statement is “I am” and the statement is <BoldTextHelper text="affirmative" inputStyle={{color:HighLightColor}}/>, the subject of the Question Tag would be <BoldTextHelper text="“aren’t I”" inputStyle={{color:HighLightColor}}/> (not, am not I).
           </Text>
         <Text style={styles.text}>
-        B) But if the statement is <BoldTextHelper text="negative"/>, we use <BoldTextHelper text="am I ?"/>
+        B) But if the statement is <BoldTextHelper text="negative" inputStyle={{color:HighLightColor}}/>, we use <BoldTextHelper text="am I ?" inputStyle={{color:HighLightColor}}/>
         </Text>
 
-        <Text style={styles.text}>1. I <BoldTextHelper text="am"/> a lecturer, aren’t I?</Text>
-        <Text style={styles.text}>2. I <BoldTextHelper text="am"/> not a student, <BoldTextHelper text="am I?"/> </Text>
-        <Text style={styles.text}>3. I <BoldTextHelper text="am"/> a doctor, aren’t I?</Text>
-        <Text style={styles.text}>4. I <BoldTextHelper text="am"/> not a lawyer, <BoldTextHelper text="am I?"/> </Text>
+        <Text style={styles.text}>1. I <BoldTextHelper text="am" inputStyle={{color:"red"}}/> a lecturer, aren’t I?</Text>
+        <Text style={styles.text}>2. I <BoldTextHelper text="am" inputStyle={{color:"red"}}/> not a student, <BoldTextHelper text="am I?" inputStyle={{color:"red"}}/> </Text>
+        <Text style={styles.text}>3. I <BoldTextHelper text="am" inputStyle={{color:"red"}}/> a doctor, aren’t I?</Text>
+        <Text style={styles.text}>4. I <BoldTextHelper text="am" inputStyle={{color:"red"}}/> not a lawyer, <BoldTextHelper text="am I?" inputStyle={{color:"red"}}/> </Text>
         
           <Text style={styles.text}>
           <BoldTextHelper text="B)" inputStyle={{color:"black",fontWeight:"bold"}}/>  If the statement begins with Let, it may have two meanings, and with them two different types of Question Tags are added.
           </Text>
           <Text style={styles.text}>
-          (i) If the statement suggests <BoldTextHelper text="Proposal or Suggestion"/>, the Question Tag will have <BoldTextHelper text="Shall we ?"/>
+          (i) If the statement suggests <BoldTextHelper text="Proposal or Suggestion" inputStyle={{color:HighLightColor}}/>, the Question Tag will have <BoldTextHelper text="Shall we ?" inputStyle={{color:HighLightColor}}/>
           </Text>
 
           <Text style={styles.text}>1. Let us now go for dinner, Shall we ?</Text>
           <Text style={styles.text}>2. Let us form a society, Shall we ?</Text>
 
             <Text style={styles.text}>
-            (ii) If the statement suggests <BoldTextHelper text="Permission"/>, the Question Tag will have <BoldTextHelper text="will you?"/>
+            (ii) If the statement suggests <BoldTextHelper text="Permission" inputStyle={{color:HighLightColor}}/>, the Question Tag will have <BoldTextHelper text="will you?" inputStyle={{color:HighLightColor}}/>
             </Text>
 
             <Text style={styles.text}>
@@ -88,43 +96,43 @@ function StartingScreen() {
             </Text>   
 
         <Text style={styles.text}>
-        <BoldTextHelper text="C)" inputStyle={{color:"black",fontWeight:"bold"}}/>  For positive requests / commands, we use <BoldTextHelper text="“will you?” / “won’t you?”"/> in the question tag, but for negative requests / commands, we use only <BoldTextHelper text="“will you?”"/>
+        <BoldTextHelper text="C)" inputStyle={{color:"black",fontWeight:"bold"}}/>  For positive requests / commands, we use <BoldTextHelper text="“will you?” / “won’t you?”" inputStyle={{color:HighLightColor}}/> in the question tag, but for negative requests / commands, we use only <BoldTextHelper text="“will you?”" inputStyle={{color:HighLightColor}}/>
         </Text>
 
-        <Text style={styles.text}>1. <BoldTextHelper text="Ring"/> the bell, <UnderlineTextHelper text="will you? / won’t you?"/></Text>
-        <Text style={styles.text}>2.<BoldTextHelper text=" Don’t ring"/> the bell, <UnderlineTextHelper text="will you?"/></Text>
+        <Text style={styles.text}>1. <BoldTextHelper text="Ring"/> the bell, <UnderlineTextHelper inputStyle={{color:"red"}} text="will you? / won’t you?" /></Text>
+        <Text style={styles.text}>2.<BoldTextHelper text=" Don’t ring"/> the bell, <UnderlineTextHelper inputStyle={{color:"red"}} text="will you?" /></Text>
 
         <Text style={styles.text}>
-        <BoldTextHelper text="D)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the statement has <BoldTextHelper text="need / needs,"/> the question tag would be <UnderlineTextHelper text="“don’t / doesn’t”"/> , and with <BoldTextHelper text="“used to”"/>, we use <UnderlineTextHelper text="“didn’t”"/>.
+        <BoldTextHelper text="D)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the statement has <BoldTextHelper text="need / needs," inputStyle={{color:HighLightColor}}/> the question tag would be <UnderlineTextHelper inputStyle={{color:"red"}} text="“don’t / doesn’t”" /> , and with <BoldTextHelper text="“used to”" inputStyle={{color:HighLightColor}}/>, we use <UnderlineTextHelper inputStyle={{color:"red"}} text="“didn’t”" />.
         </Text>
 
-        <Text style={styles.text}>1. I <BoldTextHelper text="need"/> a book, <UnderlineTextHelper text="don’t I?"/></Text>
-        <Text style={styles.text}>2. He <BoldTextHelper text="needs"/> a book, <UnderlineTextHelper text="doesn’t he?"/></Text>
-        <Text style={styles.text}>3. He <BoldTextHelper text="used to"/> live here, <UnderlineTextHelper text="didn’t he?"/></Text>
-        <Text style={styles.text}>4. She <BoldTextHelper text="used to"/> be quite a good tennis player, <UnderlineTextHelper text="didn’t she?"/></Text>
+        <Text style={styles.text}>1. I <BoldTextHelper text="need"/> a book, <UnderlineTextHelper inputStyle={{color:"red"}} text="don’t I?" /></Text>
+        <Text style={styles.text}>2. He <BoldTextHelper text="needs"/> a book, <UnderlineTextHelper inputStyle={{color:"red"}} text="doesn’t he?"/></Text>
+        <Text style={styles.text}>3. He <BoldTextHelper text="used to"/> live here, <UnderlineTextHelper inputStyle={{color:"red"}} text="didn’t he?" /></Text>
+        <Text style={styles.text}>4. She <BoldTextHelper text="used to"/> be quite a good tennis player, <UnderlineTextHelper inputStyle={{color:"red"}} text="didn’t she?" /></Text>
 
         <Text style={[styles.text,{fontWeight:"bold",fontSize:17}]}>
         <BoldTextHelper text="E)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the statement has this pattern:
         </Text>
 
         <Text style={styles.text}>
-        <BoldTextHelper text="“There + Helping Verb + Subject”"/>, the question tag would be, <BoldTextHelper text="“Verb + there?”"/> (not Verb +<Text style={{textDecorationLine:"line-through"}}> Pronoun</Text>).
+        <BoldTextHelper text="“There + Helping Verb + Subject”" inputStyle={{color:HighLightColor}}/>, the question tag would be, <BoldTextHelper text="“Verb + there?”" inputStyle={{color:HighLightColor}}/> (not Verb +<Text style={{textDecorationLine:"line-through"}}> Pronoun</Text>).
         </Text>
-        <Text style={styles.text}>1. <BoldTextHelper text="There"/> is a good college, <UnderlineTextHelper text="isn’t there?"/></Text>
-        <Text style={styles.text}>2. <BoldTextHelper text="There"/> is no good college, <UnderlineTextHelper text="is there?"/></Text>
+        <Text style={styles.text}>1. <BoldTextHelper text="There"/> is a good college, <UnderlineTextHelper inputStyle={{color:"red"}} text="isn’t there?"/></Text>
+        <Text style={styles.text}>2. <BoldTextHelper text="There"/> is no good college, <UnderlineTextHelper inputStyle={{color:"red"}} text="is there?" /></Text>
 
         <Text style={styles.text}>
-        <BoldTextHelper text="F)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the subject of the statement is <BoldTextHelper text="one thing / anything / everything / something / nothing,"/> the subject of the Question Tag would be “It”. 
+        <BoldTextHelper text="F)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the subject of the statement is <BoldTextHelper text="one thing / anything / everything / something / nothing," inputStyle={{color:HighLightColor}}/> the subject of the Question Tag would be “It”. 
         </Text>
-        <Text style={styles.text}>1. <BoldTextHelper text="Everything"/> is lost, <UnderlineTextHelper text="isn’t it?"/></Text>
-        <Text style={styles.text}>2. <BoldTextHelper text="Nothing"/> is lost, <UnderlineTextHelper text="is it?"/></Text>
+        <Text style={styles.text}>1. <BoldTextHelper text="Everything"/> is lost, <UnderlineTextHelper inputStyle={{color:"red"}} text="isn’t it?" /></Text>
+        <Text style={styles.text}>2. <BoldTextHelper text="Nothing"/> is lost, <UnderlineTextHelper inputStyle={{color:"red"}} text="is it?" /></Text>
 
 
         <Text style={styles.text}>
         <BoldTextHelper text="G)" inputStyle={{color:"black",fontWeight:"bold"}}/>  
-        <Text>When the subject of the statement is</Text>
-         <BoldTextHelper text="one of you / any one of you / every one of you / some of you / most of you / none of you,"/>
-         <Text>the subject of the Question Tag would be “you”.</Text> 
+        <Text> When the subject of the statement is </Text>
+         <BoldTextHelper text="one of you / any one of you / every one of you / some of you / most of you / none of you," inputStyle={{color:HighLightColor}}/>
+         <Text> the subject of the Question Tag would be “you”.</Text> 
         </Text>
 
         <Text style={styles.text}>1. <BoldTextHelper text="All of you"/> can do it, can’t you?</Text>
@@ -132,33 +140,35 @@ function StartingScreen() {
         <Text style={styles.text}>3. <BoldTextHelper text="None of you"/> can do it, can you?</Text>
         
         <Text style={styles.text}>
-        <BoldTextHelper text="H)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the subject of the statement is <BoldTextHelper text="one of them / some of them / all of them / none of them,"/> the subject of the Question Tag would be <BoldTextHelper text="“they”."/>  
+        <BoldTextHelper text="H)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the subject of the statement is <BoldTextHelper text="one of them / some of them / all of them / none of them," inputStyle={{color:HighLightColor}}/> the subject of the Question Tag would be <BoldTextHelper text="“they”." inputStyle={{color:HighLightColor}}/>  
         </Text>
 
 
-        <Text style={styles.text}><BoldTextHelper text="1. All of them were present,"/> <UnderlineTextHelper text="weren’t they?"/></Text>
-        <Text style={styles.text}><BoldTextHelper text="2. None of them were present,"/><UnderlineTextHelper text=" were they?"/></Text>
+        <Text style={styles.text}><BoldTextHelper text="1. All of them were present," inputStyle={{color:"black"}}/> <UnderlineTextHelper inputStyle={{color:"red"}} text="weren’t they?" /></Text>
+        <Text style={styles.text}><BoldTextHelper text="2. None of them were present," inputStyle={{color:"black"}}/><UnderlineTextHelper  text=" were they?" inputStyle={{color:"red"}}/></Text>
 
         <Text style={styles.text}>
-        <BoldTextHelper text="I)" inputStyle={{color:"black",fontWeight:"bold"}}/> when the subject of the statement is <BoldTextHelper text="one of us / some of us / most of us /  most of us / all of us / none of us,"/> the subject of the Question Tag would be  <BoldTextHelper text="“We”."/>   
+        <BoldTextHelper text="I)" inputStyle={{color:"black",fontWeight:"bold"}}/> when the subject of the statement is <BoldTextHelper inputStyle={{color:HighLightColor}} text="one of us / some of us / most of us /  most of us / all of us / none of us,"/> the subject of the Question Tag would be  <BoldTextHelper text="“We”." inputStyle={{color:HighLightColor}}/>   
         </Text>
 
-        <Text style={styles.text}>1. <BoldTextHelper text="All of us"/> will go, <UnderlineTextHelper text="won’t we?"/></Text>
-        <Text style={styles.text}>2. On the return journey <BoldTextHelper text="some of us"/> lost the way, <UnderlineTextHelper text="didn’t we?"/> </Text>
-        <Text style={styles.text}>3. <BoldTextHelper text="None of us"/> has done it, <UnderlineTextHelper text="has we?"/></Text>
-        <Text style={styles.text}>4. <BoldTextHelper text="None of us"/> knew the way, <UnderlineTextHelper text="did we?"/></Text>
-        <Text style={styles.text}>5. <BoldTextHelper text="some of us"/> want to stay longer, <UnderlineTextHelper text="do we?"/></Text>
+        <Text style={styles.text}>1. <BoldTextHelper text="All of us"/> will go, <UnderlineTextHelper inputStyle={{color:"red"}} text="won’t we?" /></Text>
+        <Text style={styles.text}>2. On the return journey <BoldTextHelper text="some of us"/> lost the way, <UnderlineTextHelper  text="didn’t we?" inputStyle={{color:"red"}}/> </Text>
+        <Text style={styles.text}>3. <BoldTextHelper text="None of us"/> has done it, <UnderlineTextHelper inputStyle={{color:"red"}} text="has we?" /></Text>
+        <Text style={styles.text}>4. <BoldTextHelper text="None of us"/> knew the way, <UnderlineTextHelper  text="did we?" inputStyle={{color:"red"}}/></Text>
+        <Text style={styles.text}>5. <BoldTextHelper text="some of us"/> want to stay longer, <UnderlineTextHelper inputStyle={{color:"red"}} text="do we?" /></Text>
 
 
         <Text style={styles.text}>
-        <BoldTextHelper text="J)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the subject of the statement is <BoldTextHelper text="someone / somebody /  anyone / anybody / everyone / everybody / no one / nobody,"/> the subject of the Question Tag would be <UnderlineTextHelper text="“he” / “they”."/>      
+        <BoldTextHelper text="J)" inputStyle={{color:"black",fontWeight:"bold"}}/>  When the subject of the statement is <BoldTextHelper text="someone / somebody /  anyone / anybody / everyone / everybody / no one / nobody,"
+          inputStyle={{color:HighLightColor}}
+        /> the subject of the Question Tag would be <UnderlineTextHelper  text="“he” / “they”." inputStyle={{color:HighLightColor}}/>      
         </Text>
 
-        <Text style={styles.text}>1. <BoldTextHelper text="Anyone"/> can come, <UnderlineTextHelper text="can’t he? / can’t they?"/></Text>
-        <Text style={styles.text}>2. <BoldTextHelper text="Everybody"/> can’t come in first, <UnderlineTextHelper text="can he? / can they?"/></Text>
-        <Text style={styles.text}>3. <BoldTextHelper text="Somebody"/> cheered wildly, <UnderlineTextHelper text="didn’t he? / didn’t they? "/></Text>
-        <Text style={styles.text}>4. <BoldTextHelper text="No one"/> will come, <UnderlineTextHelper text="will he? / will they?"/></Text>
-        <Text style={styles.text}>5. <BoldTextHelper text="None"/> of the workmen arrived to time, <UnderlineTextHelper text="didn’t he? / didn’t they?"/></Text>
+        <Text style={styles.text}>1. <BoldTextHelper text="Anyone"/> can come, <UnderlineTextHelper inputStyle={{color:"red"}} text="can’t he? / can’t they?" /></Text>
+        <Text style={styles.text}>2. <BoldTextHelper text="Everybody"/> can’t come in first, <UnderlineTextHelper  text="can he? / can they?" inputStyle={{color:"red"}}/></Text>
+        <Text style={styles.text}>3. <BoldTextHelper text="Somebody"/> cheered wildly, <UnderlineTextHelper inputStyle={{color:"red"}} text="didn’t he? / didn’t they? " /></Text>
+        <Text style={styles.text}>4. <BoldTextHelper text="No one"/> will come, <UnderlineTextHelper  text="will he? / will they?" inputStyle={{color:"red"}}/></Text>
+        <Text style={styles.text}>5. <BoldTextHelper text="None"/> of the workmen arrived to time, <UnderlineTextHelper inputStyle={{color:"red"}} text="didn’t he? / didn’t they?" /></Text>
 
         <Text style={styles.text}>
         <BoldTextHelper text="K)" inputStyle={{color:"black",fontWeight:"bold"}}/>
@@ -169,43 +179,45 @@ function StartingScreen() {
         <Text style={styles.text}>
         <BoldTextHelper text="L)" inputStyle={{color:"black",fontWeight:"bold"}}/>       
  
-<BoldTextHelper text=" (i) Simple Present"/> (Subject + V1) 
+<BoldTextHelper text=" (i) Simple Present" inputStyle={{color:HighLightColor}}/> (Subject + V1) 
 (I,WE,YOU,THEY = “do” & HE,SHE,IT = “does”) 
         </Text>
         <Text style={styles.text}>
-        1. <BoldTextHelper text="I drink"/> tea, <UnderlineTextHelper text="don’t I?"/>
+        1. <BoldTextHelper text="I drink"/> tea, <UnderlineTextHelper inputStyle={{color:"red"}} text="don’t I?"/>
         </Text>
-        <Text style={styles.text}>2. We <BoldTextHelper text="do not drink"/> tea, <UnderlineTextHelper text="do I?"/></Text>
-        <Text style={styles.text}>3. He <BoldTextHelper text="sleeps"/> at 9 pm, <UnderlineTextHelper text="doesn’t he?"/></Text>
-        <Text style={styles.text}>4. She <BoldTextHelper text="does not sleep"/>  at 9 pm, <UnderlineTextHelper text="does she?"/></Text>
+        <Text style={styles.text}>2. We <BoldTextHelper text="do not drink"/> tea, <UnderlineTextHelper inputStyle={{color:"red"}} text="do I?" /></Text>
+        <Text style={styles.text}>3. He <BoldTextHelper text="sleeps"/> at 9 pm, <UnderlineTextHelper  text="doesn’t he?" inputStyle={{color:"red"}}/></Text>
+        <Text style={styles.text}>4. She <BoldTextHelper text="does not sleep"/>  at 9 pm, <UnderlineTextHelper inputStyle={{color:"red"}} text="does she?" /></Text>
        
-        <Text style={[styles.text,{marginTop:30}]}><BoldTextHelper text="(ii) Simple Past"/> (Subject + V2) = did. </Text>
+        <Text style={[styles.text,{marginTop:30}]}><BoldTextHelper text="(ii) Simple Past" inputStyle={{color:HighLightColor}}/> (Subject + V2) = did. </Text>
         <Text style={styles.text}>5. I <BoldTextHelper text="ate"/> an apple, <BoldTextHelper text="didn’t I?"/></Text>            
-        <Text style={styles.text}>6. They <BoldTextHelper text="did not eat"/> an apple, <UnderlineTextHelper text="did they?"/></Text>            
-        <Text style={styles.text}>7. You <BoldTextHelper text="asked"/> him, <UnderlineTextHelper text="didn’t you?"/></Text>            
-        <Text style={styles.text}>8. We <BoldTextHelper text="did not ask"/> him, <UnderlineTextHelper text="did we?"/></Text>            
+        <Text style={styles.text}>6. They <BoldTextHelper text="did not eat"/> an apple, <UnderlineTextHelper  text="did they?" inputStyle={{color:"red"}}/></Text>            
+        <Text style={styles.text}>7. You <BoldTextHelper text="asked"/> him, <UnderlineTextHelper inputStyle={{color:"red"}} text="didn’t you?" /></Text>            
+        <Text style={styles.text}>8. We <BoldTextHelper text="did not ask"/> him, <UnderlineTextHelper  text="did we?" inputStyle={{color:"red"}}/></Text>            
 
-        <Text style={styles.text}><UnderlineTextHelper text="NOTE: Semi Negative Words:" inputStyle={{color:"black"}}/></Text>
+        <Text style={styles.text}><UnderlineTextHelper inputStyle={{color:"red"}} text="NOTE: Semi Negative Words:" /></Text>
         <Text style={[styles.text]}>
-        <BoldTextHelper text="Few, little, hardly, scarcely, rarely, seldom,"/> etc, are believed to be <BoldTextHelper text="Negatives"/> and therefore we use <UnderlineTextHelper text="Positive Question Tags"/> after them.
+        <BoldTextHelper text="Few, little, hardly, scarcely, rarely, seldom,"
+          inputStyle={{color:HighLightColor}}
+        /> etc, are believed to be <BoldTextHelper text="Negatives" inputStyle={{color:HighLightColor}}/> and therefore we use <UnderlineTextHelper inputStyle={{color:"red"}} text="Positive Question Tags" /> after them.
         </Text>
 
-        <Text style={styles.text}>1.	<BoldTextHelper text="Few"/> people knew the answer, <UnderlineTextHelper text="did they?"/></Text>            
-        <Text style={styles.text}>2.	<BoldTextHelper text="Little"/> progress has been made, <UnderlineTextHelper text="has it?"/></Text>            
-        <Text style={styles.text}>3.	We could <BoldTextHelper text="scarcely"/> hear what he said, <UnderlineTextHelper text="could we?"/></Text>            
-        <Text style={styles.text}>4.	We <BoldTextHelper text="seldom"/> see them nowadays, <UnderlineTextHelper text="do we?"/></Text>            
-        <Text style={styles.text}>5.	He <BoldTextHelper text="rarely"/> comes here, <UnderlineTextHelper text="does he?"/></Text>            
-        <Text style={styles.text}>6.	<BoldTextHelper text="Few"/> people are interested in this scheme, <UnderlineTextHelper text="did they?"/></Text>            
+        <Text style={styles.text}>1.	<BoldTextHelper text="Few"/> people knew the answer, <UnderlineTextHelper inputStyle={{color:"red"}} text="did they?"/></Text>            
+        <Text style={styles.text}>2.	<BoldTextHelper text="Little"/> progress has been made, <UnderlineTextHelper inputStyle={{color:"red"}} text="has it?"/></Text>            
+        <Text style={styles.text}>3.	We could <BoldTextHelper text="scarcely"/> hear what he said, <UnderlineTextHelper inputStyle={{color:"red"}} text="could we?"/></Text>            
+        <Text style={styles.text}>4.	We <BoldTextHelper text="seldom"/> see them nowadays, <UnderlineTextHelper inputStyle={{color:"red"}} text="do we?"/></Text>            
+        <Text style={styles.text}>5.	He <BoldTextHelper text="rarely"/> comes here, <UnderlineTextHelper inputStyle={{color:"red"}} text="does he?"/></Text>            
+        <Text style={styles.text}>6.	<BoldTextHelper text="Few"/> people are interested in this scheme, <UnderlineTextHelper inputStyle={{color:"red"}} text="did they?"/></Text>            
 
         <Text style={styles.text}>(NOTE:
-Though <BoldTextHelper text="“few”"/> and <BoldTextHelper text="“little”"/> are <UnderlineTextHelper text="negatives"/>, <BoldTextHelper text="“a few”"/> and <BoldTextHelper text="a little"/> are <UnderlineTextHelper text="positives"/>, and therefore need <BoldTextHelper text="a negative tag."/>)
+Though <BoldTextHelper text="“few”"/> and <BoldTextHelper text="“little”"/> are <UnderlineTextHelper inputStyle={{color:"red"}} text="negatives" />, <BoldTextHelper text="“a few”"/> and <BoldTextHelper text="a little"/> are <UnderlineTextHelper inputStyle={{color:"red"}} text="positives"/>, and therefore need <BoldTextHelper text="a negative tag."/>)
 </Text>
 
-<Text style={styles.text}>7. <BoldTextHelper text="A few"/> people knew the answer, <UnderlineTextHelper text="didn't they?"/></Text>            
-<Text style={styles.text}>8. <BoldTextHelper text="A little"/> progress has been made, <UnderlineTextHelper text="hasn't it?"/></Text>            
-<Text style={styles.text}>(NOTE: The adverb <BoldTextHelper text="“Only”"/> may take either a <UnderlineTextHelper text="positive"/> or <UnderlineTextHelper text="a negative"/> tag.)</Text>            
+<Text style={styles.text}>7. <BoldTextHelper text="A few"/> people knew the answer, <UnderlineTextHelper inputStyle={{color:"red"}} text="didn't they?"/></Text>            
+<Text style={styles.text}>8. <BoldTextHelper text="A little"/> progress has been made, <UnderlineTextHelper inputStyle={{color:"red"}} text="hasn't it?"/></Text>            
+<Text style={styles.text}>(NOTE: The adverb <BoldTextHelper text="“Only”"/> may take either a <UnderlineTextHelper inputStyle={{color:"red"}} text="positive"/> or <UnderlineTextHelper inputStyle={{color:"red"}} text="a negative"/> tag.)</Text>            
 <Text style={styles.text}>9. There were <BoldTextHelper text="only"/> six people present, ___________</Text>            
-<Text style={styles.text}>10. There were <UnderlineTextHelper text="only"/> six people present, ____________
+<Text style={styles.text}>10. There were <UnderlineTextHelper inputStyle={{color:"red"}} text="only"/> six people present, ____________
 (The positive is more usual.)
 </Text>       
 
@@ -217,7 +229,7 @@ Though <BoldTextHelper text="“few”"/> and <BoldTextHelper text="“little”
 2. Raju <BoldTextHelper text="is"/> not eating an apple, <BoldTextHelper text="is he?"/>
 </Text>           
 
-<Text style={styles.text}>3. We <BoldTextHelper text="are"/> going to Metpally, <UnderlineTextHelper text="aren’t we?"/></Text> 
+<Text style={styles.text}>3. We <BoldTextHelper text="are"/> going to Metpally, <UnderlineTextHelper inputStyle={{color:"red"}} text="aren’t we?"/></Text> 
 
 <TextHelper text = "4. Raju and Rani are not going to Metpally, are they?" bold="are" underline=" are they?"/>
 <TextHelper text = "5. I was playing cricket, wasn’t I?"
@@ -308,9 +320,9 @@ text = "30. Don’t do there, will you?"/>
   bold="does" underline="does he?"
 />
 <TextHelper 
-bold="works" underline="doesn't she?"
+ underline="doesn't she?"
 text = "34.Rani works hard, doesn’t she? (work / worked / worked)"
-  bold="works" underline="doesn't she?"
+  bold="works" 
 />
 <TextHelper 
 bold="watched" underline="didn't you?"
@@ -335,7 +347,7 @@ const TextHelper = ({text,bold,underline})=>{
                     marginTop:10,
                     fontFamily: shouldHighlight ? PoppinsRegular : 'normal',
                     fontSize:16 ,
-                    color:shouldHighlight || shouldUnderline?"green":"black",
+                    color:shouldHighlight || shouldUnderline?"red":"black",
                     lineHeight:26,
                     textDecorationLine:shouldUnderline ? "underline":"none"
                     }}>

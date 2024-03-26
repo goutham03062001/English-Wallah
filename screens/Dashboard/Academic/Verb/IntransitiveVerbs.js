@@ -3,28 +3,29 @@ import React from 'react'
 import BoldTextHelper from "../utils/BoldText";
 import UnderlineText from "../utils/UnderlineText";
 import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper';
+import { HighLightColor, SideHeadingColor } from '../utils/Colors';
 const IntransitiveVerbs = () => {
   return (
    <ScrollView>
      <View style={{paddingHorizontal:8,marginTop:8}}>
-      <Text style={{fontSize:17,color:"red",fontFamily:PoppinsRegular}}>Intransitive Verbs</Text>
+      <Text style={{fontSize:17,color:"red",fontFamily:PoppinsRegular,backgroundColor:SideHeadingColor,color:"black"}}>Intransitive Verbs</Text>
       <Text style={{fontSize:16,marginVertical:10,lineHeight:29}}>
       “A Verb is Intransitive when the action stops with the agent, and does not pass from the agent to
-anything else.” <BoldTextHelper text="(Nesfield)"/>
+anything else.” <BoldTextHelper text="(Nesfield)" inputStyle={{color:HighLightColor}}/>
 
       </Text>
-      <Text style={{fontSize:16}}>I <BoldTextHelper text="sleep"/>.</Text>
+      <Text style={{fontSize:16}}>I <BoldTextHelper text="sleep" />.</Text>
 
       <Text style={{fontSize:16,marginVertical:8,lineHeight:29}}>
-      The sense of this sentence is <BoldTextHelper text="complete"/>. Its action does not pass on to any other thing. Therefore
-it needs no object. An <BoldTextHelper text="Intransitive Verb has no object."/>
+      The sense of this sentence is <BoldTextHelper text="complete" inputStyle={{color:HighLightColor}}/>. Its action does not pass on to any other thing. Therefore
+it needs no object. An <BoldTextHelper text="Intransitive Verb has no object." inputStyle={{color:HighLightColor}}/>
 
       </Text>
 
       <View>
-      <Text style={{fontSize:17,color:"red",fontFamily:PoppinsRegular}}>Transitive and Intransitive Verbs</Text>
+      <Text style={{fontSize:17,color:"red",fontFamily:PoppinsRegular,backgroundColor:SideHeadingColor,color:"black"}}>Transitive and Intransitive Verbs</Text>
       <Text style={{fontSize:16,marginVertical:10,lineHeight:29}}>
-      Regarding <BoldTextHelper text="Transitive"/> and <BoldTextHelper text="Intransitive"/> verbs it is necessary to remember that most verbs are neither Transitive nor Intransitive in themselves.
+      Regarding <BoldTextHelper inputStyle={{color:HighLightColor}} text="Transitive"/> and <BoldTextHelper inputStyle={{color:HighLightColor}} text="Intransitive"/> verbs it is necessary to remember that most verbs are neither Transitive nor Intransitive in themselves.
 
       </Text>
       <Text style={{fontSize:16,lineHeight:29}}>
@@ -40,14 +41,14 @@ it needs no object. An <BoldTextHelper text="Intransitive Verb has no object."/>
 
 
       <View>
-      <Text style={{fontSize:17,color:"red",fontFamily:PoppinsRegular}}>Transitive and Intransitive Use</Text>
+      <Text style={{fontSize:17,color:"red",fontFamily:PoppinsRegular,backgroundColor:SideHeadingColor,color:"black"}}>Transitive and Intransitive Use</Text>
       <Text style={{fontSize:16,marginVertical:10,lineHeight:29}}>
       As we have said above, most verbs can be used both as Transitive and Intransitive verbs. As—
       </Text>
-      <Text style={{fontSize:18,fontWeight:"bold"}}>
+      <Text style={{fontSize:18,fontWeight:"bold",backgroundColor:SideHeadingColor}}>
 Kinds of Verbs      </Text>
 
-      <Text style={{fontSize:17,marginVertical:10,fontWeight:700,}}>
+      <Text style={{fontSize:17,marginVertical:10,fontWeight:700,backgroundColor:SideHeadingColor}}>
       Transitive Use 
       </Text>
 
@@ -66,7 +67,7 @@ Kinds of Verbs      </Text>
 
 
 
-      <Text style={{fontSize:17,marginVertical:10,fontWeight:700,}}>
+      <Text style={{fontSize:17,marginVertical:10,fontWeight:700,backgroundColor:SideHeadingColor}}>
       Intransitive Use 
       </Text>
 

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
-import BoldTextHelper from '../utils/BoldText'
+import BoldTextHelper from '../utils/BoldText';
+import { HighLightColor } from '../utils/Colors';
 const DemonstrativeAdjective = () => {
   return (
     <ScrollView>
@@ -16,6 +17,8 @@ const DemonstrativeAdjective = () => {
     <Text style={{fontSize:16,marginVertical:15}}>
     <BoldTextHelper
       text="Ex:This, that, these, those, any, such, some"
+      inputStyle={{color:HighLightColor}}
+
     />
     </Text>
  
@@ -28,10 +31,10 @@ const DemonstrativeAdjective = () => {
   Adverbs of affirmation are words which declare that a given statement or fact is true, or positive.
   </Text> */}
     
-  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>1. <BoldTextHelper text="This"/> book is very interesting.</Text>
-  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>2. <BoldTextHelper text="That"/> girl is very beautiful.</Text>
-  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>3. <BoldTextHelper text="These"/> flowers are lovely.</Text>
-  <Text style={{fontSize:16,marginVertical:8,color:"green"}}>4. <BoldTextHelper text="Those"/> books are not mine.</Text>
+  <Text style={{fontSize:16,marginVertical:8}}>1. <BoldTextHelper text="This"/> book is very interesting.</Text>
+  <Text style={{fontSize:16,marginVertical:8}}>2. <BoldTextHelper text="That"/> girl is very beautiful.</Text>
+  <Text style={{fontSize:16,marginVertical:8}}>3. <BoldTextHelper text="These"/> flowers are lovely.</Text>
+  <Text style={{fontSize:16,marginVertical:8}}>4. <BoldTextHelper text="Those"/> books are not mine.</Text>
 
 <Text style={{fontSize:16,marginVertical:9,}}><BoldTextHelper text="Indefinite Demonstratives"/> are these – any, some, such, other, any other, a certain, etc.</Text>
 

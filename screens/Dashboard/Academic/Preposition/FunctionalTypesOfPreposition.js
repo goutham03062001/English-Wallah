@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
-import BoldTextHelper from '../utils/BoldText'
+import BoldTextHelper from '../utils/BoldText';
+import { HighLightColor } from '../utils/Colors';
+import { PoppinsBold,PoppinsMedium } from '../../../../utils/FontHelper';
 const SimpleComponent = ({first,second})=>{
   return(<>
     <View style={{marginVertical:15}}>
-      <Text style={{fontSize:16,color:'green',fontWeight:"bold"}}>{first}</Text>
-      <Text style={{fontSize:16}}>{second}</Text>
+      <Text style={{fontSize:16,color:'green',backgroundColor:"black",color:"orange",paddingVertical:8,paddingHorizontal:5,marginVertical:5}}>{first}</Text>
+      <Text style={{fontSize:16,color:HighLightColor}}>{second}</Text>
     </View>
   </>)
 }
@@ -15,7 +17,7 @@ const FunctionalTypesOfPreposition = () => {
     <ScrollView>
     <View style={{paddingHorizontal:8}}>
     <Text style={{fontSize:16,textAlign:"justify",lineHeight:26,paddingHorizontal:3}}>
-    As we have said above, Prepositions show <BoldTextHelper text="relationships" inputStyle={{color:"green"}}/>. In different forms they show relationship of <BoldTextHelper text="Place, Time, Cause, Result, Purpose, Meeting or Parting." inputStyle={{color:"green"}}/> On this basis Prepositions can be classified under the following groups—
+    As we have said above, Prepositions show <BoldTextHelper text="relationships" inputStyle={{color:HighLightColor}}/>. In different forms they show relationship of <BoldTextHelper text="Place, Time, Cause, Result, Purpose, Meeting or Parting." inputStyle={{color:HighLightColor}} /> On this basis Prepositions can be classified under the following groups—
     </Text>
       <SimpleComponent
         first="(1) Prepositions of Place"

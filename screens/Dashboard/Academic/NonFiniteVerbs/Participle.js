@@ -2,7 +2,8 @@ import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
 import BoldTextHelper from '../utils/BoldText'
 import UnderlineTextHelper from '../utils/UnderlineText'
-import { PoppinsRegular } from '../../../../utils/FontHelper'
+import { PoppinsRegular } from '../../../../utils/FontHelper';
+import { HighLightColor,SideHeadingColor } from '../utils/Colors';
 const Participle = () => {
   return (
     <View style={styles.rootContainer}>
@@ -10,7 +11,7 @@ const Participle = () => {
       <Text style={styles.mainHeading}>Present Participle</Text>
    
       <View>
-        <Text style={[styles.text,{fontWeight:"bold"}]}>What are the three uses of present participle?</Text>
+        <Text style={[styles.text,{fontWeight:"bold",backgroundColor:SideHeadingColor}]}>What are the three uses of present participle?</Text>
         <Text style={styles.text}>( a ) When two actions happen simultaneously.</Text>
         <Text style={styles.text}>( b ) As adjectives.</Text>
         <Text style={styles.text}>( c ) We also use present participles to explain a reason.</Text>
@@ -18,21 +19,21 @@ const Participle = () => {
 
       
       <View>
-        <Text style={[styles.text,{fontWeight:"bold"}]}>What are the three uses of present participle?</Text>
+        <Text style={[styles.text,{fontWeight:"bold",backgroundColor:SideHeadingColor}]}>What are the three uses of present participle?</Text>
         <Text style={styles.text}>( a ) When two actions happen simultaneously.</Text>
         <Text style={styles.text}>( b ) As adjectives.</Text>
         <Text style={styles.text}>( c ) We also use present participles to explain a reason.</Text>
       </View>
 
       <View>
-        <Text style={[styles.text,{fontWeight:"bold"}]}>What is the difference between a gerund and a present participle?</Text>
-        <Text style={styles.text}>A gerund is a <UnderlineTextHelper text="noun"/> whereas a <UnderlineTextHelper text="present participle"/> acts like a verb or an adjective.</Text>
+        <Text style={[styles.text,{fontWeight:"bold",backgroundColor:SideHeadingColor}]}>What is the difference between a gerund and a present participle?</Text>
+        <Text style={styles.text}>A gerund is a <UnderlineTextHelper text="noun" inputStyle={{color:HighLightColor}}/> whereas a <UnderlineTextHelper text="present participle" inputStyle={{color:HighLightColor}}/> acts like a verb or an adjective.</Text>
         
       </View>
 
 
       <View>
-        <Text style={[styles.text,{fontWeight:"bold"}]}>What is present participle?</Text>
+        <Text style={[styles.text,{fontWeight:"bold",backgroundColor:SideHeadingColor}]}>What is present participle?</Text>
         <Text style={styles.text}>A present participle is nothing, but it’s the form of the verb ending with ing.</Text>
         
       </View>
@@ -46,25 +47,27 @@ const Participle = () => {
         <Text style={styles.text}>( 4 ) I saw Shivani <BoldTextHelper text="scolding"/> her daughter.</Text>
         <Text style={styles.text}>( 5 ) Many workers are trapped inside <BoldTextHelper text="the burning"/> factory.</Text>
         <Text style={styles.text}>
-        Where <BoldTextHelper text="crying, working, beating, scolding and burning are present participle"/> examples.
+        Where <BoldTextHelper 
+        inputStyle={{color:HighLightColor}}
+        text="crying, working, beating, scolding and burning are present participle"/> examples.
         </Text>
       </View>
 
     <View>
-      <Text style={styles.sideHeading}>Kinds of Participle</Text>
-      <Text style={styles.text}>Participles are of three kinds—</Text>
+      <Text style={[styles.sideHeading,{backgroundColor:SideHeadingColor}]}>Kinds of Participle</Text>
+      <Text style={[styles.text]}>Participles are of three kinds—</Text>
   
       <Text style={styles.sideHeading}>1. Present Participle (Verb + ‘ing’)</Text>
-      <Text style={styles.text}>
+      <Text style={[styles.text,{color:HighLightColor}]}>
       Eg: running, dancing, singing, crying, etc.
       </Text>
     
       <Text style={styles.sideHeading}>2. Past Participle (third form of the verb usually ending in—ed, –d, –t, –en, –n)</Text>
-      <Text style={styles.text}>
+      <Text style={[styles.text,{color:HighLightColor}]}>
       Eg: tired, learned, burnt, broken, hurt, etc.      </Text>
 
       <Text style={styles.sideHeading}>3. Perfect Participle (having + Past Participle)</Text>
-      <Text style={styles.text}>
+      <Text style={[styles.text,{color:HighLightColor}]}>
       Eg: having done, having completed, having seen, etc.
       </Text>
 
@@ -125,20 +128,20 @@ const Participle = () => {
               <View>
                 <Text style={styles.sideHeading}>I. Attributive Use :</Text>
 
-                <Text style={styles.text}>1. He jumped off <BoldTextHelper text="a"/> <UnderlineTextHelper text="running"/> <BoldTextHelper text="train"/>.</Text>
-                <Text style={styles.text}>2. The river has <UnderlineTextHelper text="flowing"/> <BoldTextHelper text="water"/>.</Text>
-                <Text style={styles.text}>3. <BoldTextHelper text="The"/> <UnderlineTextHelper text="tired"/> <BoldTextHelper text="horse"/> could run no farther.</Text>
-                <Text style={styles.text}>4. <BoldTextHelper text="The"/> <UnderlineTextHelper text="train"/> <BoldTextHelper text="solider"/> was carried to the camp.</Text>
+                <Text style={styles.text}>1. He jumped off <BoldTextHelper text="a"/> <UnderlineTextHelper text="running" inputStyle={{color:"red"}}/> <BoldTextHelper text="train"/>.</Text>
+                <Text style={styles.text}>2. The river has <UnderlineTextHelper text="flowing" inputStyle={{color:"red"}}/> <BoldTextHelper text="water"/>.</Text>
+                <Text style={styles.text}>3. <BoldTextHelper text="The"/> <UnderlineTextHelper text="tired" inputStyle={{color:"red"}}/> <BoldTextHelper text="horse"/> could run no farther.</Text>
+                <Text style={styles.text}>4. <BoldTextHelper text="The"/> <UnderlineTextHelper text="train" inputStyle={{color:"red"}}/> <BoldTextHelper text="solider"/> was carried to the camp.</Text>
               </View>
 
 
               <View>
                 <Text style={styles.sideHeading}>II. Predicative Use :</Text>
 
-                <Text style={styles.text}>1. I had to keep <UnderlineTextHelper text="waiting"/>.</Text>
-                <Text style={styles.text}>2. He felt completely <UnderlineTextHelper text="exhausted"/>.</Text>
-                <Text style={styles.text}>3. He came <UnderlineTextHelper text="running"/>.</Text>
-                <Text style={styles.text}>4. He seems much <UnderlineTextHelper text="worried"/>.</Text>
+                <Text style={styles.text}>1. I had to keep <UnderlineTextHelper text="waiting" inputStyle={{color:"red"}}/>.</Text>
+                <Text style={styles.text}>2. He felt completely <UnderlineTextHelper text="exhausted" inputStyle={{color:"red"}}/>.</Text>
+                <Text style={styles.text}>3. He came <UnderlineTextHelper text="running" inputStyle={{color:"red"}}/>.</Text>
+                <Text style={styles.text}>4. He seems much <UnderlineTextHelper text="worried" inputStyle={{color:"red"}}/>.</Text>
               </View>
 
 
@@ -146,10 +149,10 @@ const Participle = () => {
               <View>
                 <Text style={styles.sideHeading}>III. Absolute Use (with a noun or pronoun going before)</Text>
 
-                <Text style={styles.text}>1. The day <UnderlineTextHelper text="being hot,"/> we did not go out.</Text>
-                <Text style={styles.text}>2. Time <UnderlineTextHelper text="permitting"/>, I will surely come.</Text>
-                <Text style={styles.text}>3. God <UnderlineTextHelper text="willing"/>, we shall win the match.</Text>
-                <Text style={styles.text}>4. The sun <UnderlineTextHelper text="having set,"/> nothing could be seen.</Text>
+                <Text style={styles.text}>1. The day <UnderlineTextHelper text="being hot," inputStyle={{color:"red"}}/> we did not go out.</Text>
+                <Text style={styles.text}>2. Time <UnderlineTextHelper text="permitting" inputStyle={{color:"red"}}/>, I will surely come.</Text>
+                <Text style={styles.text}>3. God <UnderlineTextHelper text="willing" inputStyle={{color:"red"}}/>, we shall win the match.</Text>
+                <Text style={styles.text}>4. The sun <UnderlineTextHelper text="having set," inputStyle={{color:"red"}}/> nothing could be seen.</Text>
 
                 <Text style={styles.text}><BoldTextHelper text="Note—"/> Under the Absolute use, the part containing the Participle is quite independent of the main part.</Text>
             
@@ -172,11 +175,11 @@ There are a lot of ways of using present participles. You can see some examples 
               
               <Text style={styles.sideHeading}>For Example</Text>
 
-                <Text style={styles.text}>( 1 ) Rahul fell asleep <UnderlineTextHelper text="listening"/> to music.</Text>
-                <Text style={styles.text}>( 2 ) He went into the rain <UnderlineTextHelper text="running"/>.</Text>
+                <Text style={styles.text}>( 1 ) Rahul fell asleep <UnderlineTextHelper text="listening" inputStyle={{color:"red"}}/> to music.</Text>
+                <Text style={styles.text}>( 2 ) He went into the rain <UnderlineTextHelper text="running" inputStyle={{color:"red"}}/>.</Text>
               
               <Text style={styles.text}>
-              Where <BoldTextHelper text="listening"/> and <UnderlineTextHelper text="running"/> are present participle examples.
+              Where <BoldTextHelper text="listening" inputStyle={{color:"red"}}/> and <UnderlineTextHelper text="running" inputStyle={{color:"red"}}/> are present participle examples.
               </Text>
 
               <Text style={[styles.text,{backgroundColor:"blue",color:"white",paddingHorizontal:4}]}>
@@ -186,20 +189,20 @@ There are a lot of ways of using present participles. You can see some examples 
               <Text style={styles.sideHeading}>For Example</Text>
 
                 <Text style={styles.text}>
-              ( 1 ) <UnderlineTextHelper text="Throwing"/> the bag, he went to the cinema.
+              ( 1 ) <UnderlineTextHelper text="Throwing" inputStyle={{color:"red"}}/> the bag, he went to the cinema.
+                </Text>
+
+                <Text style={styles.text}> 
+                ( 2 ) <UnderlineTextHelper text="Getting" inputStyle={{color:"red"}}/> off the clothes, he took a bath.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 2 ) <UnderlineTextHelper text="Getting"/> off the clothes, he took a bath.
-                </Text>
-
-                <Text style={styles.text}>
-                ( 3 ) <UnderlineTextHelper text="Seeing"/> his mother, he touched her feet.
+                ( 3 ) <UnderlineTextHelper text="Seeing" inputStyle={{color:"red"}}/> his mother, he touched her feet.
 
                 </Text>
 
                 <Text style={styles.text}>
-                Where <UnderlineTextHelper text="throwing, getting"/> and <UnderlineTextHelper text="seeing"/> are <UnderlineTextHelper text="present participle"/> examples.
+                Where <UnderlineTextHelper text="throwing, getting" inputStyle={{color:"red"}}/> and <UnderlineTextHelper text="seeing" inputStyle={{color:"red"}}/> are <UnderlineTextHelper text="present participle" inputStyle={{color:"red"}}/> examples.
                 </Text>
 
                 <Text style={styles.text}>
@@ -212,22 +215,22 @@ There are a lot of ways of using present participles. You can see some examples 
                 <Text style={styles.sideHeading}>For Example</Text>
 
                 <Text style={styles.text}>
-                ( 1 ) Kavita wore <BoldTextHelper text="a"/> <UnderlineTextHelper text="fascinating"/> <BoldTextHelper text="dress"/> at the function.
+                ( 1 ) Kavita wore <BoldTextHelper text="a"/> <UnderlineTextHelper text="fascinating" inputStyle={{color:"red"}}/> <BoldTextHelper text="dress"/> at the function.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 2 ) He has <BoldTextHelper text="an"/> <UnderlineTextHelper text="amazing"/> <BoldTextHelper text="bike"/>.
+                ( 2 ) He has <BoldTextHelper text="an"/> <UnderlineTextHelper text="amazing" inputStyle={{color:"red"}}/> <BoldTextHelper text="bike"/>.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 3 ) I with my family watched <BoldTextHelper text="an"/> <UnderlineTextHelper text="interesting"/> <BoldTextHelper text="movie"/>.
+                ( 3 ) I with my family watched <BoldTextHelper text="an"/> <UnderlineTextHelper text="interesting" inputStyle={{color:"red"}}/> <BoldTextHelper text="movie"/>.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 4 ) <BoldTextHelper text="That"/> <UnderlineTextHelper text="flying"/> <BoldTextHelper text="bird"/> is on the verge of extinction.                </Text>
+                ( 4 ) <BoldTextHelper text="That"/> <UnderlineTextHelper text="flying" inputStyle={{color:"red"}}/> <BoldTextHelper text="bird"/> is on the verge of extinction.                </Text>
 
                 <Text style={styles.text}>
-                ( 5 ) Many workers are inside <BoldTextHelper text="the"/> <UnderlineTextHelper text="burning"/> factory.                </Text>
+                ( 5 ) Many workers are inside <BoldTextHelper text="the"/> <UnderlineTextHelper text="burning" inputStyle={{color:"red"}}/> factory.                </Text>
                 <Text style={styles.text}>
                 Where <BoldTextHelper text="fascinating, amazing, interesting, flying"/> and <BoldTextHelper text="burning"/> are present participle examples as well as <BoldTextHelper text="adjectives"/>.
                 </Text>
@@ -235,7 +238,7 @@ There are a lot of ways of using present participles. You can see some examples 
 
 
               <View>
-              <Text style={styles.text}>Rule 3 - To explain a reason</Text>
+              <Text style={styles.sideHeading}>Rule 3 - To explain a reason</Text>
                 <Text style={styles.text}>
                 We also use present participles to explain a reason.
                 </Text>
@@ -244,43 +247,43 @@ There are a lot of ways of using present participles. You can see some examples 
                 
 
                 <Text style={styles.text}>
-                ( 1 ) <UnderlineTextHelper text="Knowing"/> that his father is now medically fit, he distributed the sweets.
+                ( 1 ) <UnderlineTextHelper text="Knowing" inputStyle={{color:"red"}}/> that his father is now medically fit, he distributed the sweets.
                 </Text>
 
                 <Text style={styles.text}>
-                ( 2 ) <UnderlineTextHelper text="Seeing"/> the ice cream, my nephew determined to eat it.                </Text>
+                ( 2 ) <UnderlineTextHelper text="Seeing" inputStyle={{color:"red"}}/> the ice cream, my nephew determined to eat it.                </Text>
+
+                <Text style={styles.text}> 
+                ( 3 ) <UnderlineTextHelper text="Being" inputStyle={{color:"red"}}/> dirty, he didn’t enter the temple.                </Text>
 
                 <Text style={styles.text}>
-                ( 3 ) <UnderlineTextHelper text="Being"/> dirty, he didn’t enter the temple.                </Text>
+                ( 4 ) <UnderlineTextHelper text="Thinking" inputStyle={{color:"red"}}/> that the policeman is not outside, he came out of the house.      </Text>
 
                 <Text style={styles.text}>
-                ( 4 ) <UnderlineTextHelper text="Thinking"/> that the policeman is not outside, he came out of the house.      </Text>
-
+                ( 5 ) <UnderlineTextHelper text="Asking" inputStyle={{color:"red"}}/> a question, he cleared all his doubts.              </Text>
                 <Text style={styles.text}>
-                ( 5 ) <UnderlineTextHelper text="Asking"/> a question, he cleared all his doubts.              </Text>
-                <Text style={styles.text}>
-                Where <UnderlineTextHelper text="knowing, seeing, being, thinking"/> and asking are <UnderlineTextHelper text="present participle"/> examples.
+                Where <UnderlineTextHelper inputStyle={{color:HighLightColor}} text="knowing, seeing, being, thinking"/> and asking are <UnderlineTextHelper text="present participle" inputStyle={{color:HighLightColor}}/> examples.
                 </Text>
               </View>
 
               <View>
                 <Text style={styles.sideHeading}>Rule 4—Past Participle and Passive Voice </Text>
 
-                <Text style={styles.text}>Most Past Participles are used in <BoldTextHelper text="Passive Voice."/> Therefore they are used <UnderlineTextHelper text="after the Noun."/> As—</Text>
+                <Text style={styles.text}>Most Past Participles are used in <BoldTextHelper text="Passive Voice." inputStyle={{color:HighLightColor}}/> Therefore they are used <UnderlineTextHelper text="after the Noun." inputStyle={{color:HighLightColor}}/> As—</Text>
                 
                 <Text style={styles.text}>
-                1. Remember the <BoldTextHelper text="lessons"/>  <Text style={{textDecorationLine:"underline"}}>taught</Text> by him.             
+                1. Remember the <BoldTextHelper text="lessons"/>  <Text style={{textDecorationLine:"underline", color:"red",fontFamily:PoppinsRegular}}>taught</Text> by him.             
                  </Text>
                 <Text style={styles.text}>
-                2. I live in the <BoldTextHelper text="house"/> <Text style={{textDecorationLine:"underline"}}>built</Text> by you.              
-                 </Text>
-                
-                <Text style={styles.text}>
-                3. Where is the <BoldTextHelper text="book"/> <Text style={{textDecorationLine:"underline"}}>written</Text> by you ?                
+                2. I live in the <BoldTextHelper text="house"/> <Text style={{textDecorationLine:"underline", color:"red",fontFamily:PoppinsRegular}}>built</Text> by you.              
                  </Text>
                 
                 <Text style={styles.text}>
-                4. I shall never forget the <BoldTextHelper text="favour"/> <Text style={{textDecorationLine:"underline"}}>shown</Text> to me.            
+                3. Where is the <BoldTextHelper text="book"/> <Text style={{textDecorationLine:"underline", color:"red",fontFamily:PoppinsRegular}}>written</Text> by you ?                
+                 </Text>
+                
+                <Text style={styles.text}>
+                4. I shall never forget the <BoldTextHelper text="favour"/> <Text style={{textDecorationLine:"underline", color:"red",fontFamily:PoppinsRegular}}>shown</Text> to me.            
                   </Text>
                 
 
@@ -288,25 +291,27 @@ There are a lot of ways of using present participles. You can see some examples 
               <Text>
               <BoldTextHelper text = "Note—"/>
                  <Text style={styles.text}>
-                 But there are some Past Participles which can be used <BoldTextHelper text="both as Verbs and Adjectives."/> 
-They are—<BoldTextHelper text="Torn, written, born, broken, fallen, given, spoken, stolen."/> As—
+                 But there are some Past Participles which can be used <BoldTextHelper text="both as Verbs and Adjectives." inputStyle={{color:HighLightColor}}/> 
+They are—<BoldTextHelper text="Torn, written, born, broken, fallen, given, spoken, stolen."
+  inputStyle={{color:HighLightColor}}
+/> As—
                 </Text>
               </Text>
 
                 <Text style={styles.text}>
-                1. Here is <BoldTextHelper text="the"/> <UnderlineTextHelper text="broken"/> <BoldTextHelper text="window"/>.
+                1. Here is <BoldTextHelper text="the"/> <UnderlineTextHelper text="broken" inputStyle={{color:"red"}}/> <BoldTextHelper text="window"/>.
                 </Text>
 
                 <Text style={styles.text}>
-                2. Where is <BoldTextHelper text="the"/> <UnderlineTextHelper text="window"/> <BoldTextHelper text="broken"/> by the thief? (verb)
+                2. Where is <BoldTextHelper text="the"/> <UnderlineTextHelper text="window" inputStyle={{color:"red"}}/> <BoldTextHelper text="broken" inputStyle={{color:"red"}}/> by the thief? (verb)
                 </Text>
 
                 <Text style={styles.text}>
-                3. I want <BoldTextHelper text="a"/> <UnderlineTextHelper text="written"/> <BoldTextHelper text="statement"/>.
+                3. I want <BoldTextHelper text="a"/> <UnderlineTextHelper text="written" inputStyle={{color:"red"}}/> <BoldTextHelper text="statement" inputStyle={{color:"red"}}/>.
                 </Text>
 
-                <Text style={styles.text}>
-                4. This is <BoldTextHelper text="the letter"/> <UnderlineTextHelper text="written"/> by me.(verb)
+                <Text style={styles.text}> 
+                4. This is <BoldTextHelper text="the letter"/> <UnderlineTextHelper text="written" inputStyle={{color:"red"}}/> by me.(verb)
                 </Text>
                 </View>
                 
@@ -321,10 +326,10 @@ They are—<BoldTextHelper text="Torn, written, born, broken, fallen, given, spo
                 Present Participles are mostly used in Active Voice before the Noun. As—
                 </Text>
 
-                <Text style={styles.text}>1. This is <BoldTextHelper text="our"/> <UnderlineTextHelper text="reading"/> room.</Text>
-                <Text style={styles.text}>2. There is <BoldTextHelper text=" no"/> <UnderlineTextHelper text="drinking"/> water.</Text>
-                <Text style={styles.text}>3. Hawk is <BoldTextHelper text="a"/> <UnderlineTextHelper text="hunting"/> bird.</Text>
-                <Text style={styles.text}>4. Don’t get down <BoldTextHelper text="a"/> <UnderlineTextHelper text="running"/> bus.</Text>
+                <Text style={styles.text}>1. This is <BoldTextHelper text="our"/> <UnderlineTextHelper text="reading" inputStyle={{color:"red"}}/> room.</Text>
+                <Text style={styles.text}>2. There is <BoldTextHelper text=" no"/> <UnderlineTextHelper text="drinking"  inputStyle={{color:"red"}}/> water.</Text>
+                <Text style={styles.text}>3. Hawk is <BoldTextHelper text="a"/> <UnderlineTextHelper text="hunting" inputStyle={{color:"red"}}/> bird.</Text>
+                <Text style={styles.text}>4. Don’t get down <BoldTextHelper text="a"/> <UnderlineTextHelper text="running" inputStyle={{color:"red"}}/> bus.</Text>
               </View>
 
 
@@ -500,7 +505,7 @@ const ExampleHelper = ({text,target})=>{
           {words.map((word, index) => {
               const shouldHighlight = target && target.includes(word.replace(/[.,]/g, ''));
               return (
-                  <Text key={index} style={{ fontFamily: shouldHighlight ? PoppinsRegular : 'normal',fontSize:16 ,color:shouldHighlight?"green":"black",lineHeight:29,marginVertical:6}}>
+                  <Text key={index} style={{ fontFamily: shouldHighlight ? PoppinsRegular : 'normal',fontSize:16 ,color:shouldHighlight?"red":"black",lineHeight:29,marginVertical:6}}>
                       {word}{index !== words.length - 1 && ' '}
                   </Text>
               );
@@ -531,6 +536,7 @@ const styles = StyleSheet.create({
     textDecorationLine:"underline",
     fontWeight:"bold",
     marginVertical:15,
-    lineHeight:28
+    lineHeight:28,
+    backgroundColor:SideHeadingColor
   }
 })
