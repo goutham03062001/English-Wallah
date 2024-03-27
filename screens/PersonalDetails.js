@@ -112,8 +112,8 @@ async function checkSubscriptionDetails(userId){
   }
 }
   //razorpay payment integration
-  const thresholdAmount = 10;
-  const payableAmount = thresholdAmount*1;
+  const thresholdAmount = 1000;
+  const payableAmount = thresholdAmount*100;
   async function paymentFunction(){
 
     authContext.createOrder(personalDetails.userName,personalDetails.userEmail,personalDetails.userMobile,personalDetails.userAddress,personalDetails.userId);
