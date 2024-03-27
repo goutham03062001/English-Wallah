@@ -113,11 +113,7 @@ async function checkSubscriptionDetails(userId){
 }
   //razorpay payment integration
   const thresholdAmount = 1000;
-<<<<<<< HEAD
   const payableAmount = thresholdAmount*100;
-=======
-  const payableAmount = thresholdAmount*1;
->>>>>>> 8e027f68cb71b669ed931c94943717ee08564270
   async function paymentFunction(){
 
     authContext.createOrder(personalDetails.userName,personalDetails.userEmail,personalDetails.userMobile,personalDetails.userAddress,personalDetails.userId);
