@@ -56,7 +56,8 @@ const RoutingScreen = () => {
           onPress={()=>navigation.navigate("English Methods")}>
             <Card style={[styles.cardStyle, { backgroundColor: "#AD88C6" }]}>
               <Text style={{ color: "#ffff", fontSize: 18 ,fontFamily:PoppinsRegular}}>
-               English Methods
+              CTET / TET
+
               </Text>
             </Card>
           </Pressable>

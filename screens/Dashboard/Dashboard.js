@@ -70,7 +70,7 @@ const Dashboard = () => {
             <Text>Your Account Status</Text>
                 <Text>Loading..</Text>
             </Text>:<>
-                <Text style={{position:"absolute",top:0,right:0}}>{personalDetails && personalDetails.userIsAuthenticated ? "":<View style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:'center'}}>
+                <Text style={{position:"absolute",top:0,right:0}}>{personalDetails && personalDetails.userIsAuthorized ? "":<View style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:'center'}}>
                 <Text style={{fontSize:16}}>Free Account</Text>
                 <Button onPress={()=>{return navigation.navigate("Personal Details")}}>Upgrade</Button>
                 </View>}</Text>

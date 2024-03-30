@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 import {Button as PaperButton,ActivityIndicator} from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from "@react-native-picker/picker";
-
+import { PoppinsLight, PoppinsRegular } from '../../utils/FontHelper';
 import * as Device from 'expo-device';
 
 const Login = () => {
@@ -85,16 +85,25 @@ const Login = () => {
       >
       </Picker> */}
              {role === "Student" && <>
+            <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"flex-start"}}>
+            <Text style={{fontSize:12,fontFamily:PoppinsLight,marginLeft:5}}>Mobile Number</Text>
              <TextInput placeholder='Enter your  mobile number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setMobile(e)}}
-                placeholderTextColor="white"
+                placeholderTextColor="#332D2D"
             />
+            </View>
+             
+             <View style={{display:"flex",flexDirection:"column",justifyContent:"center",marginTop:20}}>
+             <Text style={{fontSize:12,fontFamily:PoppinsLight,marginLeft:5}}>Password</Text>
+
             
             <TextInput placeholder='Enter your password' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setPassword(e)}}
-                placeholderTextColor="white"
+                placeholderTextColor="#332D2D"
 
                 />
+             </View>
+
            
              </>}
             
@@ -145,17 +154,18 @@ const styles = StyleSheet.create({
         height:"50%",
         padding:18
       },
-    inputContainer:{
-        width:"100%",
-        height:50,
-        backgroundColor:"#9D44C0",
-        borderWidth:1,
-        borderColor:"black",
-        marginTop:20,
-        padding:10,
-        borderRadius:10,
-        color:"yellow"
-    },
+      inputContainer: {
+        width: "100%",
+        height: 53,
+        backgroundColor: "#F5F5F5",
+        borderWidth: 1,
+        borderColor: "black",
+        marginTop: 1,
+        padding: 5,
+        borderRadius: 10,
+        fontFamily:PoppinsRegular,
+        color:"black"
+      },
     btn:{
         width:"100%",
         marginTop:25,

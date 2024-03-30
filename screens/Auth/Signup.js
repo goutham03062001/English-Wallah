@@ -15,6 +15,7 @@ import { Button as PaperButton, ActivityIndicator } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
 import * as Device from 'expo-device';
+import { PoppinsRegular,PoppinsLight } from "../../utils/FontHelper";
 
 const Signup = () => {
   const [mobile, setMobile] = useState("");
@@ -64,6 +65,8 @@ const Signup = () => {
   }, []);
 
   async function signupHandler() {
+    if(name==="" || email === "" || password === "" || address === "" || mobile === "" ){
+      return Alert.alert("Registration Failed","Please fill all the required fields");    }
     authContext.signup(name, email, password, address, mobile,deviceInfo);
   }
   function LoginComponentHandler() {
@@ -80,50 +83,72 @@ const Signup = () => {
           />
         </View>
         <View style={styles.bottomContainer}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+          
+         <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"flex-start",marginTop:8}}>
+          <Text style={{fontSize:12,fontFamily:PoppinsLight,marginLeft:5,color:"red"}}>Name</Text>
           <TextInput
             placeholder="Enter your name"
             style={styles.inputContainer}
-            placeholderTextColor="white"
+            placeholderTextColor="#332D2D"
+            
             onChangeText={(e) => {
               setName(e);
             }}
           />
+         </View>
 
-          <TextInput
+         <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"flex-start",marginTop:8}}>
+         <Text style={{fontSize:12,fontFamily:PoppinsRegular,marginLeft:5,color:"red"}}>Email</Text>
+
+         <TextInput
             placeholder="Enter your email"
             style={styles.inputContainer}
-            placeholderTextColor="white"
+            placeholderTextColor="#332D2D"
             onChangeText={(e) => {
               setEmail(e);
             }}
           />
+         </View>
+
+         <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"flex-start",marginTop:8}}>
+         <Text style={{fontSize:12,fontFamily:PoppinsLight,marginLeft:5,color:"red"}}>Mobile</Text>
 
           <TextInput
             placeholder="Enter your mobile number"
             style={styles.inputContainer}
-            placeholderTextColor="white"
+            placeholderTextColor="#332D2D"
             onChangeText={(e) => {
               setMobile(e);
             }}
           />
+          </View>
+
+          <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"flex-start",marginTop:8}}>
+          <Text style={{fontSize:12,fontFamily:PoppinsLight,marginLeft:5,color:"red"}}>Password</Text>
 
           <TextInput
             placeholder="Create your password"
             style={styles.inputContainer}
-            placeholderTextColor="white"
+            placeholderTextColor="#332D2D"
             onChangeText={(e) => {
               setPassword(e);
             }}
           />
+          </View>
+        
+          <View style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"flex-start",marginTop:8}}>
+          <Text style={{fontSize:12,fontFamily:PoppinsLight,marginLeft:5,color:"red"}}>Address</Text>
 
-          <TextInput
+         <TextInput
             placeholder="Enter your address"
             style={styles.inputContainer}
-            placeholderTextColor="white"
+            placeholderTextColor="#332D2D"
             onChangeText={(e) => {
               setAddress(e);
             }}
           />
+         </View>
 
           <View style={styles.btn}>
             {authContext.loading ? (
@@ -137,7 +162,7 @@ const Signup = () => {
 
           <View
             style={{
-              marginVertical: 18,
+              marginVertical:1,
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
@@ -150,6 +175,8 @@ const Signup = () => {
               Login here
             </PaperButton>
           </View>
+  
+          </ScrollView>
         </View>
       </View>
     </>
@@ -163,36 +190,42 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     // padding: 18,
-    backgroundColor: "#C3DDDD",
+    backgroundColor:"#C3DDDD"
   },
   topContainer: {
     width: "100%",
     height: "35%",
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF",
     borderBottomRightRadius: Dimensions.get("screen").width / 2,
   },
   bottomContainer: {
     width: "100%",
-    height: "55%",
-    padding: 18,
+    height: "65%",
+    padding: 10,
+    display:"flex",
+    justifyContent: "center",
+    alignItems:"center"
   },
   inputContainer: {
-    width: "100%",
+    width: Dimensions.get("screen").width-30,
     height: 50,
-    backgroundColor: "#9D44C0",
+    backgroundColor: "#F5F5F5",
     borderWidth: 1,
     borderColor: "black",
-    marginTop: 10,
-    padding: 5,
-    borderRadius: 5,
-    color: "yellow",
-    fontWeight: "bold",
+    marginTop: 1,
+    padding: 10,
+    borderRadius: 10,
+    fontFamily:PoppinsRegular,
+    color:"black",
+    
   },
   btn: {
     width: "100%",
-    marginTop: 20,
+    marginTop: 5,
     padding: 5,
-  },
+    borderRadius:10,
+     
+     },
 });
 
 export default Signup;
