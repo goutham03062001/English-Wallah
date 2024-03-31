@@ -36,7 +36,14 @@ const Classes = () => {
      
        <View style={styles.rootContainer}>
 
-        <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Noun's") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+        <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Noun's") : Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
         <Card style={{backgroundColor:"#FFDE7D"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}} >
             <Text style={{color:"black",fontSize:16,textAlign:"center",textAlign:"center"}}>Noun</Text>
@@ -45,7 +52,14 @@ const Classes = () => {
       </Card>
         </Pressable>
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Pronoun"):Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Pronoun"):Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#435585"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Pronoun</Text>
@@ -55,7 +69,15 @@ const Classes = () => {
       </Card>
      </Pressable>
 
-      <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Adjective") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+      <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Adjective") : 
+      Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
       <Card style={{backgroundColor:"#6C5B7B"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Adjective</Text>
@@ -65,7 +87,15 @@ const Classes = () => {
       </Card>
       </Pressable>
 
-      <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Adverb") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+      <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Adverb") : 
+      Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
       <Card style={{backgroundColor:"#A084E8"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Adverb</Text>
@@ -74,7 +104,15 @@ const Classes = () => {
         </Card.Content>
       </Card>
       </Pressable>
-<Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Preposition") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+<Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Preposition") : 
+Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
   
 <Card style={{backgroundColor:"#00ADB5"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
@@ -85,7 +123,15 @@ const Classes = () => {
       </Card>
 </Pressable>
 
-<Pressable onPress={()=>personalDetails.userIsAuthorized ==="true"? navigation.navigate("Conjunction") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+<Pressable onPress={()=>personalDetails.userIsAuthorized ==="true"? navigation.navigate("Conjunction") : 
+Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
   
 <Card style={{backgroundColor:"#6A2C70"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
@@ -96,7 +142,15 @@ const Classes = () => {
       </Card>
 </Pressable>
 
-      <Pressable onPress={()=>personalDetails.userIsAuthorized ==="true" ? navigation.navigate("Verb") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+      <Pressable onPress={()=>personalDetails.userIsAuthorized ==="true" ? navigation.navigate("Verb") : 
+      Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
       <Card style={{backgroundColor:"#0F4C75"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Verb</Text>
@@ -106,7 +160,15 @@ const Classes = () => {
       </Card>
       </Pressable>
 
-      <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Non-Finite Verbs"): Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+      <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Non-Finite Verbs"): 
+      Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
       <Card style={{backgroundColor:"#594545"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Non-Finite Verbs</Text>
@@ -116,7 +178,15 @@ const Classes = () => {
       </Card>
       </Pressable>
 
-      <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("QuestionTags") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+      <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("QuestionTags") : 
+      Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
       <Card style={{backgroundColor:"#40514E"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Question Tags</Text>
@@ -126,7 +196,15 @@ const Classes = () => {
       </Card>
       </Pressable>
 
-      <Pressable onPress={()=>personalDetails.userIsAuthorized ==="true"? navigation.navigate("Subject-Verb Agreement"): Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+      <Pressable onPress={()=>personalDetails.userIsAuthorized ==="true"? navigation.navigate("Subject-Verb Agreement"): 
+      Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
       <Card style={{backgroundColor:"#2B2E4A"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Subject-Verb Agreement</Text>
@@ -137,7 +215,15 @@ const Classes = () => {
       </Pressable>
 
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Articles") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Articles") : 
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#903749"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Articles</Text>
@@ -147,15 +233,33 @@ const Classes = () => {
       </Card>
      </Pressable>
 
-      <Card style={{backgroundColor:"#53354A"}}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Determines") : 
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
+          <Card style={{backgroundColor:"#53354A"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Determines</Text>
             <>{personalDetails.userIsAuthorized==="false" ? <Image source={require("../../../assets/lock.png")} style={{width:30,height:30}}/>:""}</>
 
         </Card.Content>
       </Card>
+     </Pressable>
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Modifiers"): Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Modifiers"): 
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#6C5B7B"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Modifiers</Text>
@@ -165,7 +269,15 @@ const Classes = () => {
       </Card>
      </Pressable>
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Active And Passive Voice"): Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Active And Passive Voice"): 
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#FFDE7D"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"black",textAlign:"center",fontSize:16}}>Active Voice Passive Voice</Text>
@@ -176,7 +288,15 @@ const Classes = () => {
      </Pressable>
       
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Direct and Indirect Speech"): Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("Direct and Indirect Speech"): 
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#435585"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Direct and Indirect Speech</Text>
@@ -186,7 +306,15 @@ const Classes = () => {
       </Card>
      </Pressable>
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("IfClause"): Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"? navigation.navigate("IfClause"): 
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#00ADB5"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>IfClause</Text>
@@ -197,7 +325,15 @@ const Classes = () => {
      </Pressable>
 
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Tenses And Time"):Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Tenses And Time"):
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#6A2C70"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Tenses And Time</Text>
@@ -207,7 +343,15 @@ const Classes = () => {
       </Card>
      </Pressable>
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Phrase") : Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Phrase") : 
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#594545"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Phrase</Text>
@@ -218,7 +362,15 @@ const Classes = () => {
      </Pressable>
 
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Clause"): Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true" ? navigation.navigate("Clause"): 
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#40514E"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Clause</Text>
@@ -228,7 +380,15 @@ const Classes = () => {
       </Card>
      </Pressable>
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Simple Compound Complex"):Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Simple Compound Complex"):
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
      <Card style={{backgroundColor:"#903749"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Simple Compound Complex</Text>
@@ -238,7 +398,15 @@ const Classes = () => {
       </Card>
      </Pressable>
 
-     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Formation of Sentence"):Alert.alert("Unauthorized","Please complete your payment to unlock")}>
+     <Pressable onPress={()=>personalDetails.userIsAuthorized==="true"?navigation.navigate("Formation of Sentence"):
+     Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
 
      <Card style={{backgroundColor:"#2B2E4A"}}>
         <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>

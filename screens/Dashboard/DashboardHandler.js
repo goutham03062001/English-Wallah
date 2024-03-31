@@ -29,6 +29,7 @@ import ClausesStarting from './Academic/Clauses/ClausesStarting';
 import FormationOfSentence from './Academic/FormationOfSentence/FormationOfSentence';
 import SimpleCompoundComplex from "./Academic/SimpleCompoundComplex/SimpleCompundComplexStartingScreen";
 import TensesAndTime from './Academic/TensesAndTime/TensesAndTime';
+import Paynow from "./Academic/Paynow"
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
@@ -56,6 +57,7 @@ const DashboardHandler = () => {
     <Stack.Screen name = "Formation of Sentence" component={FormationOfSentence} options={{headerShown:false}}/>
     <Stack.Screen name = "Simple Compound Complex" component={SimpleCompoundComplex} options={{headerShown:false}}/>
     <Stack.Screen name = "Tenses And Time" component={TensesAndTime} options={{headerShown:false}}/>
+    <Stack.Screen name = "paynow" component={Paynow} options={{headerShown:false}}/>
     
     </Stack.Navigator>
   )
