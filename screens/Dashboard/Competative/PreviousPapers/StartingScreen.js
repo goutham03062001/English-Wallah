@@ -11,6 +11,7 @@ import BestScoreImage from "../../../../assets/bestscore.png"
 import QuizOverView from './QuizOverView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AttemptsCount from './AttemptsCount';
+import Paynow from "./Paynow"
 const Stack = createStackNavigator();
 const QuizExam = ({route})=>{
   const navigation = useNavigation();
@@ -148,6 +149,7 @@ return(<>
         />
         <Stack.Screen name="Quiz" component={QuizExam}/>
         <Stack.Screen name="Quiz Overview" component={QuizOverView}/>
+        <Stack.Screen name="Paynow" component={Paynow}/>
       </Stack.Navigator>
 </>)
 }

@@ -5,42 +5,75 @@ import { Card } from 'react-native-paper';
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 import { useNavigation } from '@react-navigation/native';
-import FillIntheBlanks from "./FillInTheBlanks"
+import FillIntheBlanks from "./FillInTheBlanks";
+import axios from 'axios';
+import { BACKEND_API_URL } from '../../../../utils/Constants';
+import Paynow from "./Paynow"
 const BlanksHelper = ()=>{
 
     const StartingScreen = ()=>{
     const navigation = useNavigation();
-
+    const[loading,setLoading] = useState(false);
     const [personalDetails,setPersonalDetails] = useState({
-      userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
-    })
+      userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
+    });
     useEffect(()=>{
-      var isAuthenticated,name,email,isAuthorized,mobile,address
-      async function getDetails(){
-         isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
-         name = await AsyncStorage.getItem("name");
-         email = await AsyncStorage.getItem("email");
-         isAuthorized = await AsyncStorage.getItem("isAuthorized");
-         mobile = await AsyncStorage.getItem("mobile");
-         address = await AsyncStorage.getItem("address");
-         setTimeoutFun();
+      async function getCurrentPersonDetails(){
+        try {
+          setLoading(true);
+          console.log("Getting current person details");
+          const id = await AsyncStorage.getItem("userId");
+          const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
+          if(response.data){
+            console.log("Response data - ",response.data);
+          setLoading(false);
+  
+            setTimeoutFun();
          updateDetails();
+          }else{
+            return Alert.alert("Failed","You are not at all a subscribed person")
+          }
+  
+  
+          function setTimeoutFun(){
+            setTimeout(()=>{},3000)
+          }
+          
+          function updateDetails(){
+            console.log(
+              "USER AUTH STATUS =============================="+response.data.isAuthenticated
+            )
+            setPersonalDetails({userName:response.data.name, 
+              userEmail:response.data.email, 
+              userMobile:response.data.mobile,
+              userIsAuthorized:response.data.isAuthenticated,
+              userAddress:response.data.address,
+              userIsAuthenticated:response.data.isAuthenticated,
+              userId:response.data._id})
+          }
+        } catch (error) {
+          setLoading(false);
+  
+          return Alert.alert("Error Occurred","Get personal details error")
+        }
       }
-      getDetails();
-      function setTimeoutFun(){
-        setTimeout(()=>{},2000)
-      }
-      
-      function updateDetails(){
-        setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address})
-      }
+      getCurrentPersonDetails();
+      console.log("USER STATUS - "+personalDetails.userIsAuthorized)
+     
     },[])
   
       return(<>
       <View style={styles.rootContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
       <Pressable
-            onPress={() => personalDetails.userIsAuthorized?  navigation.navigate("Parts of Speech",{data : "parts of speech"}):Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized?  navigation.navigate("Parts of Speech",{data : "parts of speech"}):  Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -65,7 +98,15 @@ const BlanksHelper = ()=>{
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Articles",{data : "articles"}):Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Articles",{data : "articles"}):
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -91,7 +132,16 @@ const BlanksHelper = ()=>{
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Prepositions",{data : "prepositions"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Prepositions",{data : "prepositions"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])
+            }
           >
             <Card
               style={{
@@ -117,7 +167,15 @@ const BlanksHelper = ()=>{
           </Pressable>
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Tenses",{data : "tenses"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Tenses",{data : "tenses"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -144,7 +202,15 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Rewrite as Directed",{data : "rewrite as directed"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Rewrite as Directed",{data : "rewrite as directed"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -172,7 +238,15 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized? navigation.navigate("Correction of Sentences",{data  : "correction of sentences"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized? navigation.navigate("Correction of Sentences",{data  : "correction of sentences"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -200,7 +274,15 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized? navigation.navigate("Missing Letters",{data : "missing letters"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized? navigation.navigate("Missing Letters",{data : "missing letters"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -228,7 +310,15 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Silent Letters",{data : "silent letters"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Silent Letters",{data : "silent letters"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -255,7 +345,15 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Transcriptions - English Words",{data : "transcriptions"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Transcriptions - English Words",{data : "transcriptions"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -282,7 +380,15 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Odd Sounds",{data : "odd sounds"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Odd Sounds",{data : "odd sounds"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
           >
             <Card
               style={{
@@ -309,7 +415,15 @@ const BlanksHelper = ()=>{
   
   
           <Pressable
-            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Syllables",{data : "syllables"}) : Alert.alert("Unauthorized","Please complete your payment to unlock")}
+            onPress={() => personalDetails.userIsAuthorized ? navigation.navigate("Syllables",{data : "syllables"}) : 
+            Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}
             style={{marginBottom:3}}
           >
             <Card
@@ -360,6 +474,7 @@ const BlanksHelper = ()=>{
       <Stack.Screen name = "Transcriptions - English Words" component={FillIntheBlanks} options={{headerShown:false}}/>
       <Stack.Screen name = "Odd Sounds" component={FillIntheBlanks} options={{headerShown:false}}/>
       <Stack.Screen name = "Syllables" component={FillIntheBlanks} options={{headerShown:false}}/>
+      <Stack.Screen name = "paynow" component={Paynow} options={{headerShown:false}}/>
       {/* <Stack.Screen name = "startingScreen" component={}/> */}
     </Stack.Navigator>
     </>)

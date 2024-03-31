@@ -20,6 +20,9 @@ import ModelPaperOverView from "./ModelPaperOverView";
 import AttemptsCount from "./AttemptsCount";
 import FillIntheBlanks from "./FillIntheBlanks";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import Paynow from "./Paynow"
+import { BACKEND_API_URL } from '../../../../utils/Constants';
 
 const Stack = createStackNavigator();
 const ModelPaperExam1 = ({ route }) => {
@@ -394,36 +397,69 @@ const BlanksHelper = ()=>{
 const CardHelperComponent = ({title,data})=>{
 //  navigation.navigate("Model Exam1", { data: data })
   const navigation = useNavigation();
+  const[loading,setLoading] = useState(false);
+
   const [personalDetails,setPersonalDetails] = useState({
-    userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
-  })
+    userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
+  });
   useEffect(()=>{
-    var isAuthenticated,name,email,isAuthorized,mobile,address
-    async function getDetails(){
-       isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
-       name = await AsyncStorage.getItem("name");
-       email = await AsyncStorage.getItem("email");
-       isAuthorized = await AsyncStorage.getItem("isAuthorized");
-       mobile = await AsyncStorage.getItem("mobile");
-       address = await AsyncStorage.getItem("address");
-       setTimeoutFun();
+    async function getCurrentPersonDetails(){
+      try {
+        setLoading(true);
+        console.log("Getting current person details");
+        const id = await AsyncStorage.getItem("userId");
+        const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
+        if(response.data){
+          console.log("Response data - ",response.data);
+        setLoading(false);
+
+          setTimeoutFun();
        updateDetails();
+        }else{
+          return Alert.alert("Failed","You are not at all a subscribed person")
+        }
+
+
+        function setTimeoutFun(){
+          setTimeout(()=>{},3000)
+        }
+        
+        function updateDetails(){
+          console.log(
+            "USER AUTH STATUS =============================="+response.data.isAuthenticated
+          )
+          setPersonalDetails({userName:response.data.name, 
+            userEmail:response.data.email, 
+            userMobile:response.data.mobile,
+            userIsAuthorized:response.data.isAuthenticated,
+            userAddress:response.data.address,
+            userIsAuthenticated:response.data.isAuthenticated,
+            userId:response.data._id})
+        }
+      } catch (error) {
+        setLoading(false);
+
+        return Alert.alert("Error Occurred","Get personal details error")
+      }
     }
-    getDetails();
-    function setTimeoutFun(){
-      setTimeout(()=>{},2000)
-    }
-    
-    function updateDetails(){
-      setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address})
-    }
+    getCurrentPersonDetails();
+    console.log("USER STATUS - "+personalDetails.userIsAuthorized)
+   
   },[])
+
   function checkIsAuthorized(){
     if(personalDetails.userIsAuthorized){ 
       return navigation.navigate("Model Exam1", { data: data })
     }
     else{
-      return Alert.alert("Unauthorized","Please complete your payment to unlock")
+      return Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])
     }
   }
   return( <>
@@ -447,7 +483,7 @@ const CardHelperComponent = ({title,data})=>{
           >
             <Card.Content style={{ display: "flex", justifyContent: "center" }}>
               <Card.Title title={title}
-              right={(props) => personalDetails && !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
+              right={(props) => !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):<Text>Hi</Text>}
               />
             </Card.Content>
           </Card>
@@ -502,7 +538,8 @@ const ModelPaperStartingScreen = () => {
 const StartingScreen = () => {
   return (
     <>
-      <Stack.Navigator>
+      <Stack.Navigator
+      screenOptions={{headerShown:false}}>
         <Stack.Screen
           name="Model Paper"
           component={ModelPaperStartingScreen}
@@ -532,6 +569,12 @@ const StartingScreen = () => {
           name="Fill in the blanks"
           component={BlanksHelper}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="paynow"
+          component={Paynow}
+          options={{ headerShown: false }}
+
         />
         {/* <Stack.Screen name="Quiz Overview" component={QuizOverView}/> */}
       </Stack.Navigator>
