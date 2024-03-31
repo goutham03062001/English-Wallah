@@ -11,7 +11,9 @@ import BestScoreImage from "../../../../assets/bestscore.png"
 import QuizOverView from './QuizOverView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AttemptsCount from './AttemptsCount';
-import Paynow from "./Paynow"
+import Paynow from "./Paynow";
+import axios from "axios";
+import { BACKEND_API_URL } from '../../../../utils/Constants';
 const Stack = createStackNavigator();
 const QuizExam = ({route})=>{
   const navigation = useNavigation();
@@ -32,30 +34,53 @@ const DisplayQuizNames = ()=>{
   userId = await  AsyncStorage.getItem("userId")
  }
  getCurrentPersonDetails()
-
  const [personalDetails,setPersonalDetails] = useState({
-  userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
-})
+  userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
+});
+const[loading,setLoading] = useState(false);
 useEffect(()=>{
-  var isAuthenticated,name,email,isAuthorized,mobile,address
-  async function getDetails(){
-     isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
-     name = await AsyncStorage.getItem("name");
-     email = await AsyncStorage.getItem("email");
-     isAuthorized = await AsyncStorage.getItem("isAuthorized");
-     mobile = await AsyncStorage.getItem("mobile");
-     address = await AsyncStorage.getItem("address");
-     setTimeoutFun();
+  async function getCurrentPersonDetails(){
+    try {
+      setLoading(true);
+      console.log("Getting current person details");
+      const id = await AsyncStorage.getItem("userId");
+      const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
+      if(response.data){
+        console.log("Response data - ",response.data);
+      setLoading(false);
+
+        setTimeoutFun();
      updateDetails();
+      }else{
+        return Alert.alert("Failed","You are not at all a subscribed person")
+      }
+
+
+      function setTimeoutFun(){
+        setTimeout(()=>{},3000)
+      }
+      
+      function updateDetails(){
+        console.log(
+          "USER AUTH STATUS =============================="+response.data.isAuthenticated
+        )
+        setPersonalDetails({userName:response.data.name, 
+          userEmail:response.data.email, 
+          userMobile:response.data.mobile,
+          userIsAuthorized:response.data.isAuthenticated,
+          userAddress:response.data.address,
+          userIsAuthenticated:response.data.isAuthenticated,
+          userId:response.data._id})
+      }
+    } catch (error) {
+      setLoading(false);
+
+      return Alert.alert("Error Occurred","Get personal details error")
+    }
   }
-  getDetails();
-  function setTimeoutFun(){
-    setTimeout(()=>{},2000)
-  }
-  
-  function updateDetails(){
-    setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthenticated:isAuthenticated,userIsAuthorized:isAuthorized,userAddress:address})
-  }
+  getCurrentPersonDetails();
+  console.log("USER STATUS - "+personalDetails.userIsAuthorized)
+ 
 },[])
 
 
@@ -92,7 +117,14 @@ useEffect(()=>{
 
       }
       else{
-        Alert.alert("Unauthorized","Complete your payment to unlock")
+        return Alert.alert("Unauthorized","Please complete your payment to unlock",[
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+        ])
       }
     }
   }
@@ -111,7 +143,7 @@ useEffect(()=>{
         {exam && (<Pressable key={index} style={styles.cardStyle} onPress={()=>{checkIsAuthorized(exam,index)}}>
           <View style={styles.dayCard}>
           <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
-          <Text key={index} style={{fontSize:16}}>Day - {index+1}</Text>
+          <Text key={index} style={{fontSize:16}}>Day - {index+1} </Text>
           <Button mode='outlined' style={{borderRadius:1}}><AttemptsCount  index={index}
            currentQuizId={exam._id} isButton={true} isModelPaper={false} isAuthorized={personalDetails.userIsAuthorized}/></Button>
           </View>

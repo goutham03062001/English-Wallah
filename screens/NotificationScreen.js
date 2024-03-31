@@ -1,42 +1,29 @@
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import React from 'react';
-import { View, Button, Linking } from 'react-native';
-
-const App = () => {
-  const sendWhatsAppMessage = () => {
-    // Predefined message
-    const message = "Hello, this is a predefined message.";
-
-    // Predefined numbers
-    const numbers = ["+917660943343", "+916300809076"];
-
-    // Function to send message to each number sequentially
-    const sendMessageToNumber = (index) => {
-      if (index >= numbers.length) return; // Stop if all numbers are processed
-      const number = numbers[index];
-      const url = `whatsapp://send?phone=${number}&text=${message}`;
-      Linking.canOpenURL(url)
-        .then(supported => {
-          if (supported) {
-            Linking.openURL(url).then(() => {
-              // After opening, send message to the next number
-              sendMessageToNumber(index + 1);
-            });
-          } else {
-            console.log("WhatsApp is not installed.");
-          }
-        })
-        .catch(error => console.error("An error occurred", error));
-    };
-
-    // Start sending messages to numbers
-    sendMessageToNumber(0);
-  };
-
+import { PoppinsRegular } from '../utils/FontHelper';
+const NotificationScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Button title="Send WhatsApp Message" onPress={sendWhatsAppMessage} />
-    </View>
-  );
-};
+    <View style={styles.rootContainer}>
+      <Text style={{fontFamily:PoppinsRegular,fontSize:16}}>Notifications</Text>
 
-export default App;
+      <View style={styles.center}>
+        <Text>No Notifications at this moment!</Text>
+      </View>
+    </View>
+  )
+}
+
+export default NotificationScreen
+
+const styles = StyleSheet.create({
+  rootContainer:{
+    marginTop:50,
+    paddingLeft:10,
+  },
+  center:{
+    height:Dimensions.get("screen").height-150,
+    display:"flex",
+    justifyContent:"center",
+    alignItems:'center'
+  }
+})

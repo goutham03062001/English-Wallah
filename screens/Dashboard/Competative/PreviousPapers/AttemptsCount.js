@@ -1,35 +1,60 @@
-import { StyleSheet, Text, View ,Image} from 'react-native'
+import { StyleSheet, Text, View ,Image,Alert} from 'react-native'
 import React,{useContext,useEffect,useState} from 'react'
 import { AuthContext } from '../../../../context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
+import { BACKEND_API_URL } from '../../../../utils/Constants';
 const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index,isAuthorized}) => {
     const authContext = useContext(AuthContext);
-    const [personalDetails,setPersonalDetails] = useState({
-      userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:""
-    })
+    const[loading,setLoading] = useState(false)
     let attemptCount = 0;
     let bestScore = 0;
-  
+    const [personalDetails,setPersonalDetails] = useState({
+      userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
+    });
     useEffect(()=>{
-      var isAuthenticated,name,email,isAuthorized,mobile,address
-      async function getDetails(){
-         isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
-         name = await AsyncStorage.getItem("name");
-         email = await AsyncStorage.getItem("email");
-         isAuthorized = await AsyncStorage.getItem("isAuthorized");
-         mobile = await AsyncStorage.getItem("mobile");
-         address = await AsyncStorage.getItem("address");
-         setTimeoutFun();
+      async function getCurrentPersonDetails(){
+        try {
+          setLoading(true);
+          console.log("Getting current person details");
+          const id = await AsyncStorage.getItem("userId");
+          const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
+          if(response.data){
+            console.log("Response data - ",response.data);
+          setLoading(false);
+  
+            setTimeoutFun();
          updateDetails();
+          }else{
+            return Alert.alert("Failed","You are not at all a subscribed person")
+          }
+  
+  
+          function setTimeoutFun(){
+            setTimeout(()=>{},3000)
+          }
+          
+          function updateDetails(){
+            console.log(
+              "USER AUTH STATUS =============================="+response.data.isAuthenticated
+            )
+            setPersonalDetails({userName:response.data.name, 
+              userEmail:response.data.email, 
+              userMobile:response.data.mobile,
+              userIsAuthorized:response.data.isAuthenticated,
+              userAddress:response.data.address,
+              userIsAuthenticated:response.data.isAuthenticated,
+              userId:response.data._id})
+          }
+        } catch (error) {
+          setLoading(false);
+  
+          return Alert.alert("Error Occurred","Get personal details error")
+        }
       }
-      getDetails();
-      function setTimeoutFun(){
-        setTimeout(()=>{},2000)
-      }
-      
-      function updateDetails(){
-        setPersonalDetails({userName:name, userEmail:email, userMobile:mobile,userIsAuthorized:isAuthorized,userAddress:address})
-      }
+      getCurrentPersonDetails();
+      console.log("USER STATUS - "+personalDetails.userIsAuthorized)
+     
     },[])
     // {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts.map((currentQuiz,index)=>{return currentQuiz.quiz.quizId === exam._id ? currentQuiz.quiz.count : ''})}
     if(authContext.currentLoggedPerson){
