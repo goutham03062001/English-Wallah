@@ -483,7 +483,7 @@ const CardHelperComponent = ({title,data})=>{
           >
             <Card.Content style={{ display: "flex", justifyContent: "center" }}>
               <Card.Title title={title}
-              right={(props) => !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):<Text>Hi</Text>}
+              right={(props) => !personalDetails.userIsAuthorized ?(<Image source={require("../../../../assets/lock.png")} style={{width:30,height:30}}/>):""}
               />
             </Card.Content>
           </Card>
