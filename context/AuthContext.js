@@ -415,12 +415,12 @@ export default function AuthContextProvider({ children }) {
    }
     try {
       Alert.alert("Working On Update Auth","currently working on update authorization function")
+      await AsyncStorage.removeItem("isAuthorized");
 
       const response = await axios.put(BACKEND_API_URL+"/api/razorpay/getData",body,config);
       if(response.data==="Payment Successful"){
         setLoading(false);
         Alert.alert("Payment Success","you have successfully activated your subscription.");
-        await AsyncStorage.removeItem("isAuthorized");
          function delayFunction(){
           async function execute(){
             // await AsyncStorage.setItem("isAuthorized","true");
@@ -504,7 +504,7 @@ export default function AuthContextProvider({ children }) {
       const response = await axios.post(BACKEND_API_URL+"/Auth/resetPassword",body,config);
       if(response.data==="Password has updated"){
         setLoading(false);
-        return Alert.alert("Password has Updated","Please login with new password");
+        return Alert.alert("Password has been Updated","Please login with new password");
       }else{
         setLoading(false);
         return Alert.alert("Something went happen",response.data)
