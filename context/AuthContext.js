@@ -161,7 +161,7 @@ export default function AuthContextProvider({ children }) {
           setLocalItem(data.data._id,mobile,data.data.name,data.data.email,data.data.address,data.data.isAuthenticated);
           setLoading(false);
           setCurrentLoggedInPerson(data.data);
-          console.log("logged person in data - ",data.data);
+          // console.log("logged person in data - ",data.data);
           getAllQuizzes();
           return Alert.alert("Login Success !", "You are now logged in");
         }
@@ -354,7 +354,7 @@ export default function AuthContextProvider({ children }) {
         setQuizExamsArr(response.data);
         setLoading(false);
         // console.log("Model papers by type "+ModelPaperType);
-        console.log(response.data)
+        // console.log(response.data)
       }
     } catch (error) {
       setLoading(false);
@@ -434,7 +434,7 @@ export default function AuthContextProvider({ children }) {
 
               }else{
                 console.log("Failed to set the value for authorization");
-                return Alert.alert("Un authorized","You are not an authorized person")
+                return Alert.alert("Please, kindly close the app and refresh")
               }
             }else{
               return Alert.alert("Error Occurred","Failed to fetch your subscription details")

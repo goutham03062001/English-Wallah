@@ -502,32 +502,23 @@ const ModelPaperStartingScreen = () => {
       <View style={styles.rootContainer}>
         
 
-        <CardHelperComponent title="Noun" data="noun"/>
-        <CardHelperComponent title="Pronoun" data="pronoun"/>
-        <CardHelperComponent title="Adverbs" data="adverb"/>
-        <CardHelperComponent title="Prepositions" data="prepositions"/>
-        <CardHelperComponent title="Conjunctions" data="conjunction"/>
-        <CardHelperComponent title="Adjective" data="adjective"/>
-        <CardHelperComponent title="Verbs" data="verbs"/>
-        <CardHelperComponent title="Non-Finite Verbs" data="non-finite verbs"/>
-        <CardHelperComponent title="Degrees of Comparison" data="degrees of comparison"/>
-        <CardHelperComponent title="Question Tags" data="question tags"/>
-        <CardHelperComponent title="Subject-Verb Agreement " data="subject-verb agreement"/>
-        <CardHelperComponent title="Active Voice Passive Voice " data="active voice passive voice"/>
+        <CardHelperComponent title="Articles" data="articles"/>
+        <CardHelperComponent title="Active voice and Passive voice" data="active voice and passive voice"/>
         <CardHelperComponent title="Direct and Indirect Speech" data="direct and indirect speech"/>
-        <CardHelperComponent title="Conditional Clause / If Clause" data="conditional clause"/>
-        <CardHelperComponent title="Subject and Predicate" data="subject and predicate"/>
-        <CardHelperComponent title="Tense and Time" data="tense and time"/>
+        <CardHelperComponent title="Question Tags" data="question tags"/>
+        <CardHelperComponent title="Degrees of Comparison" data="degrees of comparison"/>
+        <CardHelperComponent title="Correction of Sentences" data="correction of sentences"/>
+        <CardHelperComponent title="Tenses" data="tenses"/>
+        <CardHelperComponent title="Simple, Compound and Complex" data="simple,compound and complex"/>
+        <CardHelperComponent title="Parts of Speech" data="parts of speech"/>
+        <CardHelperComponent title="Syllables" data="syllables"/>
         <CardHelperComponent title="Phrase" data="phrase"/>
         <CardHelperComponent title="Clause" data="clause"/>
-        <CardHelperComponent title="Simple, Compound and Complex" data="simple, compound and complex"/>
-        <CardHelperComponent title="Figures of Speech" data="figures of speech"/>
-        <CardHelperComponent title="Odd Sound Out" data="odd sound out"/>
-        <CardHelperComponent title="Syllables" data="syllables"/>
-        <CardHelperComponent title="Silent Letters" data="silent letters"/>
         <CardHelperComponent title="Wrongly Spelt Word" data="wrongly spelt word"/>
-        <CardHelperComponent title="Correction of Sentences" data="correction of sentences"/>
-        <CardHelperComponent title="Fill in the blanks" data="Fill in the blanks"/>
+        <CardHelperComponent title="Odd Sounds Out" data="odd sounds out"/>
+        <CardHelperComponent title="Figures of Speech" data="figures of speech"/>
+        <CardHelperComponent title="Homophones & Homonyms" data="homophones & homonyms"/>
+        <CardHelperComponent title="Spelling" data="spelling"/>
 
   
         

@@ -1,13 +1,15 @@
 import { View, Text,ScrollView,StyleSheet,Pressable, Alert,Image } from 'react-native'
-import React,{useEffect,useState} from 'react'
-import { Card } from 'react-native-paper';
+import React,{useEffect,useState,useContext} from 'react'
+import { Card ,ActivityIndicator} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import { BACKEND_API_URL } from '../../../utils/Constants';
+import { AuthContext } from '../../../context/AuthContext';
 const Classes = () => {
   
   const navigation = useNavigation();
+  const authContext = useContext(AuthContext);
   const [personalDetails,setPersonalDetails] = useState({
     userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
   });
@@ -57,7 +59,15 @@ const Classes = () => {
    
   },[])
   return (
-   <ScrollView style={{backgroundColor:"#DED0B6"}}>
+  <>
+    {authContext.loading ? <>
+      <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+    <ActivityIndicator animating={true} color="black" size={35}/>
+
+    </View>
+
+    </> : <>
+    <ScrollView style={{backgroundColor:"#DED0B6"}}>
      <View style={{flex:1,width:"100%",height:"100%",flexDirection:"column",justifyContent:"flex-start"}}>
      
        <View style={styles.rootContainer}>
@@ -240,6 +250,23 @@ Alert.alert("Unauthorized","Please complete your payment to unlock",[
       </Card>
       </Pressable>
 
+      <Pressable onPress={()=>personalDetails.userIsAuthorized ? navigation.navigate("Figures Of Speech"): 
+      Alert.alert("Unauthorized","Please complete your payment to unlock",[
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () =>{return navigation.navigate("paynow")}}
+      ])}>
+      <Card style={{backgroundColor:"#435585"}}>
+        <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:50}}>
+            <Text style={{color:"white",textAlign:"center",fontSize:16}}>Figures Of Speech</Text>
+            <>{!personalDetails.userIsAuthorized ? <Image source={require("../../../assets/lock.png")} style={{width:30,height:30}}/>:""}</>
+
+        </Card.Content>
+      </Card>
+      </Pressable>
 
      <Pressable onPress={()=>personalDetails.userIsAuthorized? navigation.navigate("Articles") : 
      Alert.alert("Unauthorized","Please complete your payment to unlock",[
@@ -448,6 +475,8 @@ Alert.alert("Unauthorized","Please complete your payment to unlock",[
        
     </View>
    </ScrollView>
+    </>}
+  </>
   )
 }
 

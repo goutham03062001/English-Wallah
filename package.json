@@ -1,6 +1,6 @@
 {
   "name": "English Wallah",
-  "version": "3.0.12",
+  "version": "3.0.13",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",

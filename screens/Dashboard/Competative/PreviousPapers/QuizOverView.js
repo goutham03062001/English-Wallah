@@ -1,11 +1,15 @@
-import { Dimensions, StyleSheet, Text, View ,Image} from "react-native";
-import React, { useState ,useEffect} from "react";
+import { Dimensions, StyleSheet, Text, View ,Image, Alert} from "react-native";
+import React, { useState ,useEffect,useContext} from "react";
 import { Button, Dialog,Card } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { BACKEND_API_URL } from "../../../../utils/Constants";
+import axios from "axios";
+import { AuthContext } from "../../../../context/AuthContext";
 const QuizOverView = ({ route }) => {
   const navigation = useNavigation();
-  const {userAnswers,quizData} = route.params;
+  const authContext = useContext(AuthContext)
+  const {userAnswers,quizData,currentQuizId} = route.params;
   const [currIndex, setCurrIndex] = useState(0);
   const[trueCount,setTrueCount] = useState(0);
   const[wrongCount,setWrongCount] = useState(0);
@@ -76,10 +80,10 @@ const QuizOverView = ({ route }) => {
   
   //   setSkippedCount(prevSkippedCount => prevSkippedCount + skippedQuestions.length);
   // };
-  
+
   useEffect(() => {
     calculateCorrectAnswer();
-    calculateWrongAnswers();
+    calculateWrongAnswers(); 
     // calculateSkippedQuestions();
     
     // quizData.Questions.forEach((question, currIndex) => {
@@ -98,11 +102,25 @@ const QuizOverView = ({ route }) => {
     console.log("finish is clicked");
     
   }
+  const GetIndex = () => {
+    let currentIndex;
+    console.log("Current Quiz Id - ", currentQuizId);
+    for (let index = 0; index < authContext.quizExamsArr.length; index++) {
+        console.log("Current Quiz Id - ", authContext.quizExamsArr[index]._id);
+        if (authContext.quizExamsArr[index]._id.toString() === currentQuizId.toString()) {
+            currentIndex = index;
+            console.log("Current Index - ", currentIndex);
+            break;
+        }
+    }
+    return (<Text>{currentIndex}</Text>)
+}
+
   return (
     <>
     <View style={styles.rootContainer}>
       <Card>
-      <Text style={{textAlign:"center",marginVertical:20}}>Your Analytics</Text>
+      <Text style={{textAlign:"center",marginVertical:20}}>Your Analytics of Test- <GetIndex/></Text>
         <Card.Content style={styles.cardContentStyle}>
           <View style={styles.cardInnerContent}>
          <View style={{width:200,height:50,display:"flex",flexDirection:"row",justifyContent:"flex-start",alignItems:"center",gap:7}}>

@@ -21,11 +21,12 @@ const QuizReview = ({
   prevBtn,
   quizData,
   finishReview,
+  currentQuizId
 }) => {
   // console.log("user answers - ", userAnswers);
   const navigation = useNavigation();
   // let isCorrect = userAnswers[index].selectedOption[userAnswers[index].selectedOption.length - 1] == quizData.Questions[index].answer[0];
-  const renderOptions = (options, currIndex, userAnswer, actualAnswer) => {
+  const renderOptions = (options, currIndex, userAnswer, actualAnswer,currentQuizId) => {
     return Object.entries(options).map(([key, value], index) => (
       <>
         <TouchableOpacity
@@ -217,6 +218,7 @@ const QuizReview = ({
           userAnswers={userAnswers}
           nextBtn={nextBtn}
           prevBtn={prevBtn}
+          currentQuizId={currentQuizId}
         />
       </View>
     </ScrollView>
@@ -230,6 +232,7 @@ const HelperComponent = ({
   userAnswers,
   nextBtn,
   prevBtn,
+  currentQuizId
 }) => {
   const navigation = useNavigation();
 
@@ -320,7 +323,7 @@ const HelperComponent = ({
         {currIndex === quizData.Questions.length - 1 ? (
           <>
          
-            <Pressable style={styles.finishBtn} onPress={()=>{return navigation.navigate("Quiz Review",{quizData:quizData,userAnswers:userAnswers})}}>
+            <Pressable style={styles.finishBtn} onPress={()=>{return navigation.navigate("Quiz Review",{quizData:quizData,userAnswers:userAnswers,currentQuizId:currentQuizId})}}>
               <Text style={{ color: "white", fontFamily: PoppinsRegular }}>
                 
                 Finish Review
