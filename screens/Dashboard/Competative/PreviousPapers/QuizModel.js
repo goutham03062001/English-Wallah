@@ -35,6 +35,7 @@ const QuizApp = ({quizId}) => {
     const fetchData = async () => {
       try {
         const response = await fetch(BACKEND_API_URL+"/api/Quiz/upload/getQuizDetails/"+quizId);
+
         const data = await response.json();
        
         setQuizData(data);
@@ -305,7 +306,7 @@ const QuizApp = ({quizId}) => {
     );
   }
   if(viewAnalytics){
-    return <QuizOverView userAnswers={userAnswers} quizData = {quizData}/>
+    return <QuizOverView userAnswers={userAnswers} quizData = {quizData} currentQuizId = {quizId}/>
   }
   if (quizCompleted) {
     // const score = calculateScore();
@@ -318,7 +319,9 @@ const QuizApp = ({quizId}) => {
                 */}
         <QuizReview index={index}  userAnswers={userAnswers} nextBtn = {nextBtn} prevBtn={prevBtn}
         finishReview={finishReview}
-        quizData={quizData}/>
+        quizData={quizData}
+          currentQuizId = {quizId}
+        />
        {index === quizData.length-1 ? <>
         <Button title="Retry Quiz" onPress={handleRetryQuiz} />
        </> : <></>}

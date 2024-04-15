@@ -1,5 +1,5 @@
 import React, { useState, useContext,useEffect } from "react";
-import { View, StyleSheet, Text, Image, Dimensions } from "react-native";
+import { View, StyleSheet, Text, Image, Dimensions ,Linking,Modal,Button } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthContextProvider from "./context/AuthContext";
@@ -15,17 +15,16 @@ import ForgotPassword from "./screens/Auth/ForgotPassword";
 import ResetPassword from "./screens/Auth/ResetPassword";
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
-import {
-  AntDesign,
-  Foundation,
-  SimpleLineIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import { Button } from "react-native-paper";
-
+import axios from "axios"
 import AnimatedSplash from "react-native-animated-splash-screen";
 import StartingScreen from "./screens/NotificationScreen";
-import { Platform } from "react-native";
+import { BACKEND_API_URL } from "./utils/Constants";
+import Constants from 'expo-constants';
+
+
+// Call the function when the app starts or at regular intervals
+
+
 function AuthStack() {
   return (
     <>
@@ -147,6 +146,38 @@ function NavigationComponent() {
 function App() {
   const authContext = useContext(AuthContext)
   const [loading, setLoading] = useState(false);
+  const [latestVersion, setLatestVersion] = useState(null);
+  const [updateAvailable, setUpdateAvailable] = useState(false);
+  useEffect(() => {
+    const checkForUpdate = async () => {
+      try {
+        const response = await axios.get(BACKEND_API_URL+"/api/appVersion/getAppVersion");
+        const data =  response;
+      const currentVersion = Constants.expoConfig.version;
+        const latestVersion = data.data[0].version;
+
+        function setTimeOutFunction(){
+          setTimeout(()=>{
+            setLatestVersion(latestVersion);
+          console.log("data",latestVersion);
+          },2000)
+        }
+        setTimeOutFunction();
+        console.log("Current Version ------------------"+currentVersion);
+        console.log("Latest Version ------------------"+latestVersion);
+        if (latestVersion !== currentVersion) {
+          setUpdateAvailable(true);
+        }
+      } catch (error) {
+        console.error('Error checking for update: ', error);
+      }
+    };
+
+    checkForUpdate();
+  }, []);
+  const handleUpdatePress = () => {
+    Linking.openURL("https://play.google.com/store/apps/details?id=com.goutham0306.EnglishWallah");
+  };
   setTimeout(() => {
     setLoading(true);
   }, 5000);
@@ -178,9 +209,25 @@ function App() {
           >
            
             <NavigationComponent />
-           
+            <Modal
+        visible={updateAvailable}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => {}}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Update Required</Text>
+            <Text style={styles.modalText}>
+              A new version of the app is available. Please update to continue using the app.
+            </Text>
+            <Button title="Update Now" onPress={handleUpdatePress} />
+          </View>
+        </View>
+      </Modal>
           </AnimatedSplash>
         </AuthContextProvider>
+
+      
       </View>
     </>
   );
@@ -193,6 +240,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    elevation: 5,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalText: {
+    marginBottom: 20,
   },
 });
 

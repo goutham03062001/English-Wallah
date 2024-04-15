@@ -46,7 +46,7 @@ useEffect(()=>{
       const id = await AsyncStorage.getItem("userId");
       const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
       if(response.data){
-        console.log("Response data - ",response.data);
+        // console.log("Response data - ",response.data);
       setLoading(false);
 
         setTimeoutFun();
@@ -91,7 +91,7 @@ useEffect(()=>{
       authContext.currentLoggedPerson.quizAttempts.forEach((attempt) => {
         let intVal = parseInt(attempt.score);
         quizScore.push(intVal);
-        console.log("Score - ", attempt.score);
+        // console.log("Score - ", attempt.score);
       });
       setQuizScore(quizScore)
       // Calculate maxScore
@@ -101,10 +101,10 @@ useEffect(()=>{
         }
       });
       setMaxScore(maxScore1);
-      console.log("quizScore", quizScore);
+      // console.log("quizScore", quizScore);
       // console.log("length - ",quizScore.length);
-      console.log("type - ",typeof(quizScore));
-      console.log("isArr - ",Array.isArray(quizScore))
+      // console.log("type - ",typeof(quizScore));
+      // console.log("isArr - ",Array.isArray(quizScore))
     }
   },[]);
   function checkIsAuthorized(exam,index){

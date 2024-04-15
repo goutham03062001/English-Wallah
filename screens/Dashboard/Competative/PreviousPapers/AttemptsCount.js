@@ -16,11 +16,11 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index,is
       async function getCurrentPersonDetails(){
         try {
           setLoading(true);
-          console.log("Getting current person details");
+          // console.log("Getting current person details");
           const id = await AsyncStorage.getItem("userId");
           const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
           if(response.data){
-            console.log("Response data - ",response.data);
+            // console.log("Response data - ",response.data);
           setLoading(false);
   
             setTimeoutFun();
@@ -35,9 +35,7 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index,is
           }
           
           function updateDetails(){
-            console.log(
-              "USER AUTH STATUS =============================="+response.data.isAuthenticated
-            )
+            
             setPersonalDetails({userName:response.data.name, 
               userEmail:response.data.email, 
               userMobile:response.data.mobile,
@@ -53,7 +51,7 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index,is
         }
       }
       getCurrentPersonDetails();
-      console.log("USER STATUS - "+personalDetails.userIsAuthorized)
+      // console.log("USER STATUS - "+personalDetails.userIsAuthorized)
      
     },[])
     // {authContext.currentLoggedPerson && authContext.currentLoggedPerson.quizAttempts.map((currentQuiz,index)=>{return currentQuiz.quiz.quizId === exam._id ? currentQuiz.quiz.count : ''})}
@@ -61,11 +59,11 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index,is
       if(authContext.currentLoggedPerson.quizAttempts){
         for(let i=0; i<authContext.currentLoggedPerson.quizAttempts.length; i++){
           if(currentQuizId === authContext.currentLoggedPerson.quizAttempts[i].quiz.quizId){
-              console.log("Current quiz attempt counts are - ",authContext.currentLoggedPerson.quizAttempts[i].quiz.count);
+              // console.log("Current quiz attempt counts are - ",authContext.currentLoggedPerson.quizAttempts[i].quiz.count);
               attemptCount = authContext.currentLoggedPerson.quizAttempts[i].quiz.count;
       
               let currentBestScore = Math.max(...authContext.currentLoggedPerson.quizAttempts[i].quiz.scoresArr);
-              console.log("current attempt best score - ",currentBestScore);
+              // console.log("current attempt best score - ",currentBestScore);
               bestScore = currentBestScore;
       
           }

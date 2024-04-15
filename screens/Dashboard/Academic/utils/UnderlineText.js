@@ -4,7 +4,7 @@ import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper'
 const UnderlineTextHelper = ({text,inputStyle}) => {
   return (
    
-      <Text style={[{textDecorationLine:"underline",color:"red"},inputStyle,{fontFamily:PoppinsRegular}]}>{text}</Text>
+      <Text style={[{textDecorationLine:"underline",color:"black"},inputStyle,{fontFamily:PoppinsRegular}]}>{text}</Text>
  
   )
 }

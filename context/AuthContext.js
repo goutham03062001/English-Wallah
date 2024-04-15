@@ -161,7 +161,7 @@ export default function AuthContextProvider({ children }) {
           setLocalItem(data.data._id,mobile,data.data.name,data.data.email,data.data.address,data.data.isAuthenticated);
           setLoading(false);
           setCurrentLoggedInPerson(data.data);
-          console.log("logged person in data - ",data.data);
+          // console.log("logged person in data - ",data.data);
           getAllQuizzes();
           return Alert.alert("Login Success !", "You are now logged in");
         }
@@ -354,7 +354,7 @@ export default function AuthContextProvider({ children }) {
         setQuizExamsArr(response.data);
         setLoading(false);
         // console.log("Model papers by type "+ModelPaperType);
-        console.log(response.data)
+        // console.log(response.data)
       }
     } catch (error) {
       setLoading(false);
@@ -415,12 +415,12 @@ export default function AuthContextProvider({ children }) {
    }
     try {
       Alert.alert("Working On Update Auth","currently working on update authorization function")
+      await AsyncStorage.removeItem("isAuthorized");
 
       const response = await axios.put(BACKEND_API_URL+"/api/razorpay/getData",body,config);
       if(response.data==="Payment Successful"){
         setLoading(false);
         Alert.alert("Payment Success","you have successfully activated your subscription.");
-        await AsyncStorage.removeItem("isAuthorized");
          function delayFunction(){
           async function execute(){
             // await AsyncStorage.setItem("isAuthorized","true");
@@ -434,7 +434,7 @@ export default function AuthContextProvider({ children }) {
 
               }else{
                 console.log("Failed to set the value for authorization");
-                return Alert.alert("Un authorized","You are not an authorized person")
+                return Alert.alert("Please, kindly close the app and refresh")
               }
             }else{
               return Alert.alert("Error Occurred","Failed to fetch your subscription details")
@@ -504,7 +504,7 @@ export default function AuthContextProvider({ children }) {
       const response = await axios.post(BACKEND_API_URL+"/Auth/resetPassword",body,config);
       if(response.data==="Password has updated"){
         setLoading(false);
-        return Alert.alert("Password has Updated","Please login with new password");
+        return Alert.alert("Password has been Updated","Please login with new password");
       }else{
         setLoading(false);
         return Alert.alert("Something went happen",response.data)
