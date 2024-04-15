@@ -151,6 +151,11 @@ function App() {
   useEffect(() => {
     const checkForUpdate = async () => {
       try {
+        // if (Constants.types.releaseChannel === 'production') {
+        //   // Production environment
+        // } else {
+        //   // Development environment
+        // }
         const response = await axios.get(BACKEND_API_URL+"/api/appVersion/getAppVersion");
         const data =  response;
       const currentVersion = Constants.expoConfig.version;
@@ -197,8 +202,8 @@ function App() {
   }, []);
   return (
     <>
-      <View style={styles.container}>
         <AuthContextProvider>
+      <View style={styles.container}>
           <AnimatedSplash
             translucent={true}
             isLoaded={loading}
@@ -221,14 +226,15 @@ function App() {
               A new version of the app is available. Please update to continue using the app.
             </Text>
             <Button title="Update Now" onPress={handleUpdatePress} />
+            
           </View>
         </View>
       </Modal>
           </AnimatedSplash>
+      </View>
         </AuthContextProvider>
 
       
-      </View>
     </>
   );
 }
