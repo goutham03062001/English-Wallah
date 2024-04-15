@@ -148,6 +148,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [latestVersion, setLatestVersion] = useState(null);
   const [updateAvailable, setUpdateAvailable] = useState(false);
+  const[showModal,setShowModal] = useState(false);
   useEffect(() => {
     const checkForUpdate = async () => {
       try {
@@ -157,21 +158,25 @@ function App() {
         //   // Development environment
         // }
         const response = await axios.get(BACKEND_API_URL+"/api/appVersion/getAppVersion");
-        const data =  response;
+        const data =  response.data;
       const currentVersion = Constants.expoConfig.version;
-        const latestVersion = data.data[0].version;
+        const latestVersion = data[0].version;
+        const shouldShow = data[0].show;
 
         function setTimeOutFunction(){
           setTimeout(()=>{
             setLatestVersion(latestVersion);
+            console.log("Is shown --- ",data[0].show);
+            setShowModal(data[0].show);
           console.log("data",latestVersion);
-          },2000)
+          },3000)
         }
         setTimeOutFunction();
         console.log("Current Version ------------------"+currentVersion);
         console.log("Latest Version ------------------"+latestVersion);
         if (latestVersion !== currentVersion) {
           setUpdateAvailable(true);
+
         }
       } catch (error) {
         console.error('Error checking for update: ', error);
@@ -215,7 +220,7 @@ function App() {
            
             <NavigationComponent />
             <Modal
-        visible={updateAvailable}
+        visible={updateAvailable && showModal}
         animationType="slide"
         transparent={true}
         onRequestClose={() => {}}>
