@@ -83,7 +83,7 @@ const StartingScreen = () => {
         <Stack.Screen name="Previous Papers" component={PreviousPaperStartingScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Quiz Review" component={QuizOverView}/>
         <Stack.Screen name="Fill In The Blanks" component={FillInTheBlanksStartingScreen}/>
-        <Stack.Screen name="English Methods" component={EnglishMethodsStartingScreen}/>
+        <Stack.Screen name="English Methods" component={EnglishMethodsStartingScreen} options={{headerShown:false}}/>
       </Stack.Navigator>
     </>
   );

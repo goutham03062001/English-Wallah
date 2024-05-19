@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, View ,TextInput, Alert,Image, Pressable} from 'react-native'
+import { Dimensions, StyleSheet, Text, View ,TextInput, Alert,Image, Pressable,ScrollView} from 'react-native'
 import React,{useState} from 'react'
 import { PoppinsLight,PoppinsRegular } from '../../../../utils/FontHelper';
 import { Button} from 'react-native-paper';
@@ -11,8 +11,13 @@ const QuestionComponent = ({currQuestion,incomingIndex,data,nextQuestion,prevQue
   const[isChecked,setIsChecked] = useState(false);
   function inputFun(e){
   
-    // let inputText = e.toLowerCase();                                                                                      
-    setUserInput(e);
+    let inputText = e.toLowerCase().trim();   
+    console.log("After lowercase - ",inputText);
+    // let currentInput = e.toLower()     
+    setTimeout(()=>{
+
+    },500)                                                                             
+    setUserInput(inputText);
   }
 
   function setPressHandler(){
@@ -72,7 +77,7 @@ const QuestionComponent = ({currQuestion,incomingIndex,data,nextQuestion,prevQue
             </Pressable>
        
            {showAnswer ? <>
-            <View style={{position:"absolute",marginRight:100}}>
+            <View style={{position:"absolute",marginRight:10,width:Dimensions.get("screen").width-50,height:150}}>
 
 <Text style={{fontSize:18,color:"green"}}>Answer : {data.Questions[incomingIndex].answer}</Text>
 </View>
@@ -83,13 +88,13 @@ const QuestionComponent = ({currQuestion,incomingIndex,data,nextQuestion,prevQue
               {/* <Text>{currQuestion && currQuestion.questionName.richText[0].text}</Text> */}
              {/* <Text>{data && data.Questions[incomingIndex].questionName.richText[0].text}</Text> */}
              <View style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
-                  <>{userInput.length>0 && btnClicked && userInput === data.Questions[incomingIndex].answer ? <>
+                  <>{userInput.length>0 && btnClicked && userInput === data.Questions[incomingIndex].answer.toLowerCase() ? <>
               <View style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
               <Text style={{fontSize:20}}>Correct</Text>
               <Image source={require("../../../../assets/True.png")} style={{width:50,height:50}}/>
               </View>
              </> : <>
-                 { userInput!==data.Questions[incomingIndex].answer && btnClicked? <>
+                 { userInput!==data.Questions[incomingIndex].answer.toLowerCase() && btnClicked? <>
                   <View style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
               <Text style={{fontSize:20}}>Wrong</Text>
               <Image source={require("../../../../assets/wrong.png")} style={{width:50,height:50}}/>
@@ -103,13 +108,17 @@ const QuestionComponent = ({currQuestion,incomingIndex,data,nextQuestion,prevQue
                
                 {currIndex === incomingIndex ?<>
                   <Text style={{paddingHorizontal:4,marginBottom:20,fontSize:18,marginLeft:6}}>{incomingIndex+1}</Text>
-                  <Text style={{fontSize:18,paddingHorizontal:4,lineHeight:26,marginBottom:20,fontFamily:PoppinsLight,marginLeft:5}}>{currentQn && currentQn.questionName.richText[0].text}</Text>
 
+<View style={{height:100}}>
+<ScrollView>
+<Text style={{fontSize:18,paddingHorizontal:4,lineHeight:26,marginBottom:20,fontFamily:PoppinsLight,marginLeft:5}}>{currentQn && currentQn.questionName.richText[0].text}</Text>
+
+</ScrollView>
+</View>
                     {/* input area */}
              <View style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
              
              <TextInput placeholder='Enter your answer' style={[styles.inputContainer,{fontSize:18}]}
-             
              onChangeText={e=>inputFun(e)}/>
             
             </View>  
@@ -121,7 +130,7 @@ const QuestionComponent = ({currQuestion,incomingIndex,data,nextQuestion,prevQue
             <View style={{width:"100%",justifyContent:"center",alignItems:"center",marginTop:30}}>
             <Button mode='contained' style={{width:150,borderRadius:1}} 
             
-            buttonColor={btnClicked ? userInput===data.Questions[incomingIndex].answer ? "green":"red":"black"} onPress={checkAnswer}>{userInput===currentQn.answer &&userInput.length >0 && btnClicked ? "Correct":userInput.length>0 && btnClicked?"Wrong":"Check Answer"}</Button>
+            buttonColor={btnClicked ? userInput===data.Questions[incomingIndex].answer.toLowerCase() ? "green":"red":"black"} onPress={checkAnswer}>{userInput===currentQn.answer.toLowerCase() &&userInput.length >0 && btnClicked ? "Correct":userInput.length>0 && btnClicked?"Wrong":"Check Answer"}</Button>
             </View>
             </View>
              {/* <Text>{currQuestion && currQuestion.answer}</Text> */}

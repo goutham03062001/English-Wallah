@@ -2,26 +2,24 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Card } from 'react-native-paper';
 import { PoppinsRegular } from '../../../../utils/FontHelper';
+import EnglishPedagogy from './EnglishPedagogy';
+import GeneralEnglish from './GeneralEnglish';
+import Home from './Home';
+import AttemptQuiz from './AttemptQuiz';
+import { createStackNavigator } from '@react-navigation/stack';
+import FinishQuiz from './FinishQuiz';
+import Results from "./Results"
+const Stack = createStackNavigator();
+
 const StartingScreen = () => {
   return (
-    <View style={styles.rootContainer}>
-     <Pressable style={{marginTop:20}}>
-      <Card style={{height:100,display:"flex",justifyContent:"center",backgroundColor:"#FFDE7D"}}>
-        <Card.Title title="English Pedagogy"
-          titleStyle={{fontFamily:PoppinsRegular,color:"black",fontSize:18,textAlign:"center"}}
-
-        />
-      </Card>
-     </Pressable>
-
-     <Pressable style={{marginTop:20}}>
-      <Card style={{height:100,display:"flex",justifyContent:"center",backgroundColor:"#00ADB5"}}>
-        <Card.Title title="General English" 
-          titleStyle={{fontFamily:PoppinsRegular,color:"black",fontSize:18,textAlign:"center"}}
-        />
-      </Card>
-     </Pressable>
-    </View>
+   <Stack.Navigator>
+    <Stack.Screen name = "home" component={Home} options={{headerShown:false}}/>
+    <Stack.Screen name = "English Pedagogy" component={EnglishPedagogy} options={{headerMode:"float"}}/>
+    <Stack.Screen name = "Quiz" component={AttemptQuiz} options={{headerMode:"float"}}/>
+    <Stack.Screen name = "Finish Quiz" component={FinishQuiz} options={{headerMode:"float"}}/>
+    <Stack.Screen name = "Quiz Results" component={Results} options={{headerMode:"float"}}/>
+   </Stack.Navigator>
   )
 }
 
