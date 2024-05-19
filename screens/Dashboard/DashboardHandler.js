@@ -31,12 +31,20 @@ import SimpleCompoundComplex from "./Academic/SimpleCompoundComplex/SimpleCompun
 import TensesAndTime from './Academic/TensesAndTime/TensesAndTime';
 import Paynow from "./Academic/Paynow";
 import FiguresOfSpeechStartingScreen from './Academic/FiguresOfSpeech/FiguresOfSpeechStartingScreen';
+import LeaderBoard from './LeaderBoard';
+import RecentAttempts from './RecentAttempts';
+import Analytics from './Analytics';
+import Metrics from './Metrics';
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
     <Stack.Navigator>
     <Stack.Screen name = "Dashboard" component={Dashboard} />
     <Stack.Screen name="Academic" component={Classes} />
+    <Stack.Screen name="LeaderBoard" component={LeaderBoard} />
+    <Stack.Screen name="RecentAttempts" component={RecentAttempts} />
+    <Stack.Screen name="Metrics" component={Metrics} />
+    <Stack.Screen name="Analytics" component={Analytics} />
     <Stack.Screen name="Competitive" component={StartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Noun's" component={NounsStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Pronoun" component={PronounStartingScreen} options={{headerShown:false}}/>

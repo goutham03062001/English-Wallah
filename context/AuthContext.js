@@ -32,7 +32,9 @@ export const AuthContext = createContext({
   currentOTP:Number,
   resetPassword:(currentPassword)=>{},
   createOrder:()=>{},
-  currentOrderId:null
+  currentOrderId:null,
+  getAllEnglishPedagogyQuiz : ()=>{},
+  getEnglishPedagogyById : (quizId)=>{}
 });
 
 export default function AuthContextProvider({ children }) {
@@ -578,6 +580,38 @@ export default function AuthContextProvider({ children }) {
     }
 
   }
+
+  async function getAllEnglishPedagogyQuiz(){
+    setLoading(true);
+    try {
+      const response = await axios.get(BACKEND_API_URL+"/api/Quiz/upload/getAllEnglishPedagogy");
+      if(response.data){
+        setLoading(false)
+        return setQuizExamsArr(response.data);
+      }else{
+        setLoading(false)
+        console.log("no data found")
+      }
+    } catch (error) {
+      setLoading(false)
+      return Alert.alert("Error Occurred",error.message)
+
+    }
+  }
+
+  async function getEnglishPedagogyById(id){
+    setLoading(true);
+    try {
+      const response = await axios.get(BACKEND_API_URL+"/api/Quiz/upload/getEnglishPedagogyPaperById/"+id);
+      if(response.data){
+        setLoading(false);
+        return setQuizExamsArr(response.data);
+      }
+    } catch (error) {
+      setLoading(false)
+      return Alert.alert("Error Occurred",error.message)
+    }
+  }
   const values = {
     signup: signup,
     studentLogin: studentLogin,
@@ -614,7 +648,9 @@ export default function AuthContextProvider({ children }) {
     currentOTP:currentOTP,
     resetPassword:resetPassword,
     createOrder:createOrder,
-    currentOrderId:currentOrderId
+    currentOrderId:currentOrderId,
+    getAllEnglishPedagogyQuiz:getAllEnglishPedagogyQuiz,
+    getEnglishPedagogyById:getEnglishPedagogyById
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

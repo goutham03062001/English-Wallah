@@ -73,7 +73,7 @@ const AttemptsCount = ({isButton,currentQuizId,isBestScore,isModelPaper,index,is
   return (
     
       <>
-        {isButton? <>{attemptCount >7? "7 attempts only":<Text>
+        {isButton? <>{attemptCount >7? "Reattempt":<Text>
           <Text>{attemptCount>0 ? "Reattempt":"Attempt"}</Text>
           {index==0? <></>:<>
             {personalDetails.userIsAuthorized ? <></>:<>
