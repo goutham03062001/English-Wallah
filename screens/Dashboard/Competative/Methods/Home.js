@@ -7,6 +7,7 @@ const Home = () => {
     const navigation = useNavigation();
   return (
     <View style={styles.rootContainer}>
+      <Text style={{fontSize:18}}>CTET / TET</Text>
         <Pressable style={{marginTop:20}}
         onPress={()=>navigation.navigate("English Pedagogy",{load : false})}>
       <Card style={{height:100,display:"flex",justifyContent:"center",backgroundColor:"#FFDE7D"}}>
@@ -33,7 +34,8 @@ export default Home
 
 const styles = StyleSheet.create({
     rootContainer:{
-      padding:10,
-      marginTop:30
+      padding:20,
+      marginTop:30,
+      flex:1,
     }
   })

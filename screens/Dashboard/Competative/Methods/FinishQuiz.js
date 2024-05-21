@@ -5,7 +5,7 @@ import { AuthContext } from "../../../../context/AuthContext";
 import { PoppinsLight, PoppinsBold } from "../../../../utils/FontHelper";
 import { useNavigation } from "@react-navigation/native";
 const FinishQuiz = ({ route }) => {
-  const { userAnswers ,actualQuestion} = route.params;
+  const { userAnswers ,actualQuestion,type} = route.params;
   console.log("ACTUAL QUESTIONS--- ",actualQuestion);
   const authContext = useContext(AuthContext);
   const navigation = useNavigation();
@@ -73,6 +73,7 @@ const FinishQuiz = ({ route }) => {
         wrong: wrongAnswerScore,
         missed : (authContext.quizExamsArr.Questions.length - userAnswers.length),
         quizId: authContext.quizExamsArr._id,
+        type:type
     });
 }
 

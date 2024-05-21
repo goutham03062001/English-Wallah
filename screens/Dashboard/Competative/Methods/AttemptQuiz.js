@@ -8,14 +8,22 @@ import { ScrollView } from 'react-native-gesture-handler';
 const AttemptQuiz = ({route}) => {
     const authContext = useContext(AuthContext);
     const navigation = useNavigation();
-    const {data} = route.params;
+    const {data,type} = route.params;
     const[currentIndex,setCurrentIndex] = useState(0);
     const[answers,setAnswers] = useState([]);
     const[currentQuestion,setCurrentQuestion] = useState([{
         question_id : '',answer : ''
     }])
     useEffect(()=>{
-        authContext.getEnglishPedagogyById(data);
+        console.log("type - "+type + "id - "+data);
+        if(type==="General English"){
+            console.log("Loading... General English")
+            authContext.getGeneralEnglishPaperById(data);
+        }else{
+            console.log("Loading... English Pedagogy")
+
+            authContext.getEnglishPedagogyById(data);
+        }
     },[]);
     
     const handleAnswers = (answer, questionId) => {
@@ -58,9 +66,22 @@ const AttemptQuiz = ({route}) => {
     
     
     function finishQuizHandler(){
-        Alert.alert("Finish Test","Are you sure you want to submit the test");
+        Alert.alert("Finish Test","Are you sure you want to submit the test",[
+            {
+                text : "Cancel",
+                style : "cancel",
+                onPress:()=>console.log("Not Finished Quiz")
+            },
+            {
+                text : 'Ok',
+                onPress:()=>{
+
+        return navigation.navigate("Finish Quiz",{userAnswers : answers,actualQuestion:authContext.quizExamsArr.Questions,type:type});
+
+                }
+            }
+        ]);
         console.log("user answers - ",answers);
-        return navigation.navigate("Finish Quiz",{userAnswers : answers,actualQuestion:authContext.quizExamsArr.Questions});
     }
    
     function answerHandler(){
@@ -74,6 +95,7 @@ const AttemptQuiz = ({route}) => {
     }
     const QuestionsComponent = ({ currentQuestionIndex, nextQuestion, prevQuestion }) => {
         // Find the current question based on the current index
+         
         const currentQuestionObj = currentQuestion.find(
             cq => cq.question_id === authContext.quizExamsArr.Questions[currentQuestionIndex]._id
         );
@@ -197,10 +219,10 @@ const AttemptQuiz = ({route}) => {
                         <Text style={{ color: 'white' }}>Next</Text>
                     </Button>
                    </>:<>
-                   <Button mode="elevated" buttonColor='#7ABA78' style={{ borderRadius: 1 }}
+                   {currentQuestionIndex===9 &&<Button mode="elevated" buttonColor='#7ABA78' style={{ borderRadius: 1 }}
                    onPress={finishQuizHandler}>
                         <Text style={{ color: 'white' }}>Finish</Text>
-                    </Button>
+                    </Button>}
                    </>}
     
                     <Button onPress={currentQuestionIndex > 0 && prevQuestion} mode="elevated" buttonColor='#E65C19' style={{ borderRadius: 1 }}>

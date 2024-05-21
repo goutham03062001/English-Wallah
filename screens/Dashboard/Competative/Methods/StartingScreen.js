@@ -8,7 +8,7 @@ import Home from './Home';
 import AttemptQuiz from './AttemptQuiz';
 import { createStackNavigator } from '@react-navigation/stack';
 import FinishQuiz from './FinishQuiz';
-import Results from "./Results"
+import Results from "./Results";
 const Stack = createStackNavigator();
 
 const StartingScreen = () => {
@@ -19,6 +19,7 @@ const StartingScreen = () => {
     <Stack.Screen name = "Quiz" component={AttemptQuiz} options={{headerMode:"float"}}/>
     <Stack.Screen name = "Finish Quiz" component={FinishQuiz} options={{headerMode:"float"}}/>
     <Stack.Screen name = "Quiz Results" component={Results} options={{headerMode:"float"}}/>
+    <Stack.Screen name = "General English" component={GeneralEnglish} options={{headerMode:"float"}}/>
    </Stack.Navigator>
   )
 }

@@ -21,7 +21,6 @@ import StartingScreen from "./screens/NotificationScreen";
 import { BACKEND_API_URL } from "./utils/Constants";
 import Constants from 'expo-constants';
 
-
 // Call the function when the app starts or at regular intervals
 
 

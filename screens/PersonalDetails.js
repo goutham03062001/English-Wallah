@@ -142,7 +142,7 @@ async function checkSubscriptionDetails(userId){
    
   </View>
   <View style={styles.bottomContainer}>
-    <Card style={{borderRadius:5,backgroundColor:"white"}}>
+    <Card style={{borderRadius:5,backgroundColor:"white",padding:10}}>
     <Chip icon={require("../assets/list.png")} 
     textStyle={{fontFamily:PoppinsRegular}}
     onPress={() => console.log('Pressed')}>Personal Info</Chip>
@@ -195,7 +195,7 @@ async function checkSubscriptionDetails(userId){
     </>:<></>}
         <Button mode="contained" onPress={()=>authContext.logout()}>
           <Text>LOGOUT   </Text>
-          <Image source={require("../assets/logout.png")} style={{width:25,height:25}}/>
+          <Image source={require("../assets/logout.png")} style={{width:25,height:25,paddingVertical:20}}/>
         </Button>
       </Card.Content>
  </>}
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
     height:400,
     paddingHorizontal:5,
     gap:10,
-    marginTop:30
+    marginTop:10
   },
   cardContent:{
     gap:25,

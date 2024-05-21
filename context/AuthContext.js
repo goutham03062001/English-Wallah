@@ -34,7 +34,10 @@ export const AuthContext = createContext({
   createOrder:()=>{},
   currentOrderId:null,
   getAllEnglishPedagogyQuiz : ()=>{},
-  getEnglishPedagogyById : (quizId)=>{}
+  getEnglishPedagogyById : (quizId)=>{},
+  getAllGeneralEnglishPapers:()=>{},
+  getGeneralEnglishPaperById : (quizId)=>{},
+  indexArr:[]
 });
 
 export default function AuthContextProvider({ children }) {
@@ -55,6 +58,7 @@ export default function AuthContextProvider({ children }) {
   const[quizExamsArr,setQuizExamsArr] = useState([])
   const[currentOTP,setCurrentOTP] = useState(Number);
   const[currentOrderId,setCurrentOrderId] = useState(null);
+  const[currentQuizIndexArr,setCurrentQuizIndexArr] = useState(null)
   async function updateCurrentStatus(email,isAuthorized) {
  let curremail =  await AsyncStorage.getItem("email");
  let currmobile =  await AsyncStorage.getItem("mobile");
@@ -612,6 +616,40 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred",error.message)
     }
   }
+
+  async function getAllGeneralEnglishPapers(){
+    setLoading(true);
+    try {
+      const response = await axios.get(BACKEND_API_URL+"/api/Quiz/upload/getAllGeneralEnglishPapers");
+      if(response.data){
+        setLoading(false);
+        setCurrentQuizIndexArr(response.data); //to calculat the index of quiz
+        return setQuizExamsArr(response.data);
+      }
+    } catch (error) {
+      setLoading(false)
+      return Alert.alert("Error Occurred",error.message)
+    }
+
+  }
+
+  async function getGeneralEnglishPaperById(id){
+    setLoading(true);
+
+    try {
+      console.log("Entered into general english paper function")
+      const response = await axios.get(BACKEND_API_URL+"/api/Quiz/upload/getGeneralEnglishPaperById/"+id);
+      if(response.data){
+        setLoading(false);
+        
+        return setQuizExamsArr(response.data);
+      }
+    } catch (error) {
+      setLoading(false)
+      return Alert.alert("Error Occurred",error.message)
+    }
+  }
+
   const values = {
     signup: signup,
     studentLogin: studentLogin,
@@ -650,7 +688,10 @@ export default function AuthContextProvider({ children }) {
     createOrder:createOrder,
     currentOrderId:currentOrderId,
     getAllEnglishPedagogyQuiz:getAllEnglishPedagogyQuiz,
-    getEnglishPedagogyById:getEnglishPedagogyById
+    getEnglishPedagogyById:getEnglishPedagogyById,
+    getAllGeneralEnglishPapers:getAllGeneralEnglishPapers,
+    getGeneralEnglishPaperById:getGeneralEnglishPaperById,
+    indexArr : currentQuizIndexArr
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }
