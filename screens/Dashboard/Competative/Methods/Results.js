@@ -63,7 +63,7 @@ const Results = ({route}) => {
         <View>
             {/* Bottom Container */}
 
-            <Button mode="outlined" onPress={()=>navigation.navigate("English Pedagogy",{load : true})}>Back To Practice</Button>
+            <Button mode="outlined" onPress={()=> type==="General English" ? navigation.navigate("General English",{load : true}) : navigation.navigate("English Pedagogy",{load : true}) }>Back To Practice</Button>
         </View>
     </>}
     </View>

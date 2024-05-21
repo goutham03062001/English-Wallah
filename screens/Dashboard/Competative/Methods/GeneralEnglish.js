@@ -32,7 +32,7 @@ const GeneralEnglish = () => {
               {/*  */}
               <Card style={{height:60,marginTop:8}}>
                 <Card.Content style={{display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center"}}>
-                <Text>{`English Pedagogy - `+(index+1)}</Text>
+                <Text>{`General English- `+(index+1)}</Text>
                 <Button  mode="contained" onPress={() => navigation.navigate("Quiz",{data : exam._id, type : "General English"})}
                 style={{width:110,height:40,borderRadius:2}}>
   Attempt
