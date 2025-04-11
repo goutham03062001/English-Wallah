@@ -15,7 +15,7 @@ import { List,Avatar ,Chip} from 'react-native-paper';
 import { AuthContext } from '../context/AuthContext';
 import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
+import axios from 'axios'; 
 const PersonalDetails =  () => {  
   const authContext = useContext(AuthContext);
   const[successData,setSuccessData] = useState(null);
@@ -89,12 +89,11 @@ async function checkSubscriptionDetails(userId){
   }
 }
   //razorpay payment integration
-  const thresholdAmount = 10;
+  const thresholdAmount = 2;
   const payableAmount = thresholdAmount*100;
   async function paymentFunction(){
 
-    authContext.createOrder(personalDetails.userName,personalDetails.userEmail,personalDetails.userMobile,personalDetails.userAddress,personalDetails.userId);
-    
+    authContext.createOrder(personalDetails.userName,personalDetails.userEmail,personalDetails.userMobile,personalDetails.userAddress,personalDetails.userId, payableAmount);
   }
  return (
     

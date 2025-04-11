@@ -407,9 +407,9 @@ export default function AuthContextProvider({ children }) {
   }
 // data.razorpay_payment_id,userEmail,userId,userMobile,data,userName
 // data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id,data.razorpay_order_id
-  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData,userName,orderId,razorPayOrderId){
+  async function updateAuthorization(paymentId,userEmail,userId,userMobile,successData,userName,orderId,razorPayOrderId,amountPaid){
     setLoading(true);
-    const body = {paymentId,userEmail,userMobile,successData,userId,userName,orderId,razorPayOrderId};
+    const body = {paymentId,userEmail,userMobile,successData,userId,userName,orderId,razorPayOrderId, amountPaid};
    const config = {
    headers :{
       "Content-Type":"application/json"
@@ -433,6 +433,8 @@ export default function AuthContextProvider({ children }) {
             if(response.data){
               if(response.data.isAuthenticated){
             await AsyncStorage.setItem("isAuthorized","true");
+
+            //call another api to store the amount paid
 
               }else{
                 console.log("Failed to set the value for authorization");
@@ -517,7 +519,7 @@ export default function AuthContextProvider({ children }) {
       return Alert.alert("Error Occurred!","Something went wrong "+error.message)
     }
   }
-  async function createOrder(userName,userEmail,userMobile,userAddress,userId){
+  async function createOrder(userName,userEmail,userMobile,userAddress,userId, amountPaid){
   // const body = {receiptName:}
   const currentUserName = await AsyncStorage.getItem("name");
   const body = {receiptName : currentUserName};
@@ -549,6 +551,7 @@ export default function AuthContextProvider({ children }) {
           amount: thresholdAmount*100,
           name: 'English Wallah | Xenicx',
           order_id: response.data.id,//Replace this with an order_id created using Orders API.
+          amountPaid : amountPaid,
           prefill: {
             email:userEmail,
             contact: userMobile,
@@ -562,7 +565,7 @@ export default function AuthContextProvider({ children }) {
           alert(`Success: ${data.razorpay_payment_id}`);
          alert(`Order: ${data.razorpay_order_id}`);
           setTimeout(()=>{
-          updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id,data.razorpay_order_id)
+          updateAuthorization(data.razorpay_payment_id,userEmail,userId,userMobile,data,userName,response.data.id,data.razorpay_order_id, amountPaid)
       
           },2000);
           

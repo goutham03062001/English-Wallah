@@ -2,7 +2,7 @@
 
 import RazorpayCheckout from 'react-native-razorpay';
 import { useState } from 'react';
-const thresholdAmount = 10;
+const thresholdAmount = 2;
   const payableAmount = thresholdAmount*1;
 async function paymentFunction(createOrderFunction,updateAuthorization, userInformation) {
   const [successData, setSuccessData] = useState(null); // State for success data
@@ -15,7 +15,7 @@ async function paymentFunction(createOrderFunction,updateAuthorization, userInfo
     image: require("../assets/icon.png"),
     currency: 'INR',
     key: 'rzp_live_J89zrEvhSQ2i1m',
-    amount: thresholdAmount*100,
+    amount: thresholdAmount*100, // Making it as 200
     name: 'English Wallah | Xenicx',
     order_id: userInformation.currentOrderId,//Replace this with an order_id created using Orders API.
     prefill: {
