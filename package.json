@@ -1,6 +1,6 @@
 {
   "name": "English Wallah",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
@@ -25,8 +25,9 @@
     "@react-navigation/stack": "^6.3.17",
     "@stripe/stripe-react-native": "~0.35.1",
     "axios": "^1.4.0",
-    "expo": "~50.0.17",
+    "expo": "^52.0.44",
     "expo-constants": "~15.4.6",
+    "expo-dev-client": "^5.0.20",
     "expo-device": "~5.9.4",
     "expo-doctor": "^1.6.1",
     "expo-font": "~11.10.2",

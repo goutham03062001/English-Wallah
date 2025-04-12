@@ -26,12 +26,18 @@ const PersonalDetails =  () => {
   const [personalDetails,setPersonalDetails] = useState({
     userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
   });
+  const[subscriptionAmount,setSubscriptionAmount] = useState(0);
   useEffect(()=>{
     async function getCurrentPersonDetails(){
       try {
         setLoading(true);
         console.log("Getting current person details");
         const id = await AsyncStorage.getItem("userId");
+        //get the updated subscription Amount From db
+        const subscriptionAmount = await axios.get(BACKEND_API_URL+"/Subscription/getSubscriptionAmount");
+        if(subscriptionAmount.data){
+          setSubscriptionAmount(subscriptionAmount.data.subscriptionAmount);
+        }
         const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
         if(response.data){
           console.log("Response data - ",response.data);
@@ -89,11 +95,11 @@ async function checkSubscriptionDetails(userId){
   }
 }
   //razorpay payment integration
-  const thresholdAmount = 10;
+  const thresholdAmount = subscriptionAmount;
   const payableAmount = thresholdAmount*100;
   async function paymentFunction(){
 
-    authContext.createOrder(personalDetails.userName,personalDetails.userEmail,personalDetails.userMobile,personalDetails.userAddress,personalDetails.userId);
+    authContext.createOrder(personalDetails.userName,personalDetails.userEmail,personalDetails.userMobile,personalDetails.userAddress,personalDetails.userId, payableAmount);
     
   }
  return (
