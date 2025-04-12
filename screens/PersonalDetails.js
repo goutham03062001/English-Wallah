@@ -15,7 +15,7 @@ import { List,Avatar ,Chip} from 'react-native-paper';
 import { AuthContext } from '../context/AuthContext';
 import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios'; 
+import axios from 'axios';
 const PersonalDetails =  () => {  
   const authContext = useContext(AuthContext);
   const[successData,setSuccessData] = useState(null);
@@ -26,12 +26,18 @@ const PersonalDetails =  () => {
   const [personalDetails,setPersonalDetails] = useState({
     userName : "",userEmail: "",userMobile:"",userIsAuthenticated:"",userIsAuthorized:"",userAddress:"",userId:""
   });
+  const[subscriptionAmount,setSubscriptionAmount] = useState(0);
   useEffect(()=>{
     async function getCurrentPersonDetails(){
       try {
         setLoading(true);
         console.log("Getting current person details");
         const id = await AsyncStorage.getItem("userId");
+        //get the updated subscription Amount From db
+        const subscriptionAmount = await axios.get(BACKEND_API_URL+"/Subscription/getSubscriptionAmount");
+        if(subscriptionAmount.data){
+          setSubscriptionAmount(subscriptionAmount.data.subscriptionAmount);
+        }
         const response = await axios.get(BACKEND_API_URL+"/Auth/currentPerson/"+id);
         if(response.data){
           console.log("Response data - ",response.data);
@@ -89,11 +95,12 @@ async function checkSubscriptionDetails(userId){
   }
 }
   //razorpay payment integration
-  const thresholdAmount = 2;
+  const thresholdAmount = subscriptionAmount;
   const payableAmount = thresholdAmount*100;
   async function paymentFunction(){
 
     authContext.createOrder(personalDetails.userName,personalDetails.userEmail,personalDetails.userMobile,personalDetails.userAddress,personalDetails.userId, payableAmount);
+    
   }
  return (
     
@@ -141,7 +148,7 @@ async function checkSubscriptionDetails(userId){
    
   </View>
   <View style={styles.bottomContainer}>
-    <Card style={{borderRadius:5,backgroundColor:"white"}}>
+    <Card style={{borderRadius:5,backgroundColor:"white",padding:10}}>
     <Chip icon={require("../assets/list.png")} 
     textStyle={{fontFamily:PoppinsRegular}}
     onPress={() => console.log('Pressed')}>Personal Info</Chip>
@@ -194,7 +201,7 @@ async function checkSubscriptionDetails(userId){
     </>:<></>}
         <Button mode="contained" onPress={()=>authContext.logout()}>
           <Text>LOGOUT   </Text>
-          <Image source={require("../assets/logout.png")} style={{width:25,height:25}}/>
+          <Image source={require("../assets/logout.png")} style={{width:25,height:25,paddingVertical:20}}/>
         </Button>
       </Card.Content>
  </>}
@@ -267,7 +274,7 @@ const styles = StyleSheet.create({
     height:400,
     paddingHorizontal:5,
     gap:10,
-    marginTop:30
+    marginTop:10
   },
   cardContent:{
     gap:25,

@@ -29,22 +29,15 @@ import ClausesStarting from './Academic/Clauses/ClausesStarting';
 import FormationOfSentence from './Academic/FormationOfSentence/FormationOfSentence';
 import SimpleCompoundComplex from "./Academic/SimpleCompoundComplex/SimpleCompundComplexStartingScreen";
 import TensesAndTime from './Academic/TensesAndTime/TensesAndTime';
-import Paynow from "./Academic/Paynow";
 import FiguresOfSpeechStartingScreen from './Academic/FiguresOfSpeech/FiguresOfSpeechStartingScreen';
-import LeaderBoard from './LeaderBoard';
 import RecentAttempts from './RecentAttempts';
-import Analytics from './Analytics';
-import Metrics from './Metrics';
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
     <Stack.Navigator>
     <Stack.Screen name = "Dashboard" component={Dashboard} />
     <Stack.Screen name="Academic" component={Classes} />
-    <Stack.Screen name="LeaderBoard" component={LeaderBoard} />
     <Stack.Screen name="RecentAttempts" component={RecentAttempts} />
-    <Stack.Screen name="Metrics" component={Metrics} />
-    <Stack.Screen name="Analytics" component={Analytics} />
     <Stack.Screen name="Competitive" component={StartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Noun's" component={NounsStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Pronoun" component={PronounStartingScreen} options={{headerShown:false}}/>
@@ -66,7 +59,6 @@ const DashboardHandler = () => {
     <Stack.Screen name = "Formation of Sentence" component={FormationOfSentence} options={{headerShown:false}}/>
     <Stack.Screen name = "Simple Compound Complex" component={SimpleCompoundComplex} options={{headerShown:false}}/>
     <Stack.Screen name = "Tenses And Time" component={TensesAndTime} options={{headerShown:false}}/>
-    <Stack.Screen name = "paynow" component={Paynow} options={{headerShown:false}}/>
     <Stack.Screen name = "Figures Of Speech" component={FiguresOfSpeechStartingScreen} options={{headerShown:false}}/>
     
     </Stack.Navigator>
