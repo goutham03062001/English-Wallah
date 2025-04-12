@@ -176,7 +176,7 @@ function App() {
         console.log("Latest Version ------------------"+latestVersion);
         if (latestVersion !== currentVersion) {
           setUpdateAvailable(true);
-
+          console.log("Update available");
         }
       } catch (error) {
         console.error('Error checking for update: ', error);
